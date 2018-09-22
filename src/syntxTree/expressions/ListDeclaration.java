@@ -1,0 +1,17 @@
+package syntxTree.expressions;
+
+import syntxTree.UmlContext;
+
+import java.util.List;
+
+public class ListDeclaration implements Expression {
+
+    private List<Expression> decs;
+
+    @Override
+    public void tokenize(UmlContext ctx) {
+        //todo: complete
+
+    }
+
+}

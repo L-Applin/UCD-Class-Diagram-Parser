@@ -1,0 +1,16 @@
+package syntxTree.expressions;
+
+import syntxTree.UmlContext;
+
+import java.util.ArrayList;
+
+public class OperationList implements Expression {
+
+    private ArrayList<Expression> opList;
+
+    @Override
+    public void tokenize(UmlContext ctx) {
+        //todo: complete
+
+    }
+}
