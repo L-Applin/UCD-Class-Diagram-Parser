@@ -7,6 +7,6 @@ import syntxTree.UmlContext;
  */
 public interface Expression {
 
-    void tokenize(UmlContext ctx, String content);
+    Expression tokenize(UmlContext ctx, String content);
 
 }

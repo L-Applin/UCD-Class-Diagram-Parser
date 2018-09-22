@@ -14,8 +14,10 @@ public class Multiplicity implements Expression {
     private MultiplicityValue mulitplicity;
 
     @Override
-    public void tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(UmlContext ctx, String content) {
         // todo : complete
+        return this;
+
     }
 
     public enum MultiplicityValue {

@@ -1,13 +1,8 @@
 package sample;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import parsing.UcdFileReader;
 
-import static parsing.Delims.NEW_LINE_TOKEN;
+import java.io.IOException;
 
 public class AppController {
 
@@ -19,29 +14,9 @@ public class AppController {
      */
     public String openUCDFile(String path) throws IOException {
 
-        String line;
-        StringBuilder sb = new StringBuilder();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+        UcdFileReader ucdFile = new UcdFileReader(path);
+        return ucdFile.readAndCleanFile();
 
-        while((line = bufferedReader.readLine()) != null) {
-
-            // remove spaces at beginning of a new linee
-            Matcher matcher = Pattern.compile("^ +").matcher(line);
-            if (matcher.find()){
-                line = matcher.replaceAll("");
-            }
-
-            sb.append(line);
-
-            // new line token^
-            sb.append(NEW_LINE_TOKEN);
-
-        }
-
-        bufferedReader.close();
-
-        return sb.toString();
     }
-
 
 }

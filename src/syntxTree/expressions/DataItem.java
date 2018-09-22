@@ -11,8 +11,9 @@ public class DataItem implements Expression {
     private Expression type;
 
     @Override
-    public void tokenize(UmlContext ctx, String content) {
-
+    public Expression tokenize(UmlContext ctx, String content) {
+        // todo : complete
+        return this;
     }
 
 }

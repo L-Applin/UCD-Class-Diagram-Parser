@@ -11,8 +11,9 @@ public class Association implements Expression {
     private Identifier id;
 
     @Override
-    public void tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(UmlContext ctx, String content) {
         //todo: complete
+        return this;
 
     }
 }

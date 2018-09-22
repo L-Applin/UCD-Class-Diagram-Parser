@@ -1,11 +1,14 @@
 package syntxTree.expressions;
 
-import parsing.UmlParser;
+import parsing.GrammarModel;
+import parsing.UcdParser;
 import syntxTree.IdentifierEntry;
 import syntxTree.UmlContext;
 
+import java.util.ArrayList;
+
 /**
- * <model> ::= “MODEL” IDENTIFIER <list_dec>
+ * <model> ::= “MODEL_TAG” IDENTIFIER <list_dec>
  */
 public class Model implements Expression {
 
@@ -14,29 +17,27 @@ public class Model implements Expression {
 
     private String _tmpContent;
 
-    public Model(final Identifier id, final ListDeclaration decs) {
-        this.id = id;
-        this.listDec = decs;
-    }
-
     @Override
-    public void tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) {
 
-        UmlParser parser = new UmlParser(content);
-        IdentifierEntry modelId = parser.splitIdContent();
+        // todo : manage if there is multiple MODEL_TAG declaration in the same file
+        UcdParser parser = new UcdParser(content);
+        IdentifierEntry modelId = parser.splitIdContent(GrammarModel.MODEL_TAG);
 
         id = new Identifier(modelId.getId());
-        listDec = new ListDeclaration();
+        listDec = new DeclarationList(new ArrayList<>());
         _tmpContent = modelId.getExpression();
         listDec.tokenize(ctx, modelId.getExpression());
 
         ctx.put(modelId.getId(), listDec);
+        return this;
 
     }
 
 
     @Override
     public String toString() {
-        return "MODEL \nid : \t" + id.toString() + "\ncontent : \t" + _tmpContent;
+        return "MODEL_TAG \nid : \t" + id.toString() + "\ncontent : \t" + _tmpContent;
     }
+
 }

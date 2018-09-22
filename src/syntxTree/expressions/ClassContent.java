@@ -10,8 +10,9 @@ public class ClassContent implements Expression {
     private Expression attributeList, operationList;
 
     @Override
-    public void tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(UmlContext ctx, String content) {
         //todo: complete
+        return this;
 
     }
 
