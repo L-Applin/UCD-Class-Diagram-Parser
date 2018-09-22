@@ -3,7 +3,7 @@ package syntxTree.expressions;
 import syntxTree.UmlContext;
 
 /**
- * <role> ::= “CLASS” IDENTIFIER <multiplicity> ;
+ * <role> ::= “CLASS” IDENTIFIER <multiplicity>
  */
 public class Role implements Expression {
 
@@ -11,7 +11,7 @@ public class Role implements Expression {
     private Expression multiplicity;
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }

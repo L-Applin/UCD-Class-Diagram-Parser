@@ -3,7 +3,7 @@ package syntxTree.expressions;
 import syntxTree.UmlContext;
 
 /**
- * <class_dec> ::= “CLASS” IDENTIFIER <class_content>;
+ * <class_dec> ::= “CLASS” IDENTIFIER <class_content>
  */
 public class ClassDeclaration implements Expression {
 
@@ -11,7 +11,7 @@ public class ClassDeclaration implements Expression {
     private Expression classContent;
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }

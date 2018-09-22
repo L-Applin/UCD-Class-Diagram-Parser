@@ -6,14 +6,14 @@ import syntxTree.UmlContext;
  * <declaration> ::= <class_dec> “;”
  *    | <association> “;”
  *    | <generalization> “;”
- *    | <aggregation> “;”;
+ *    | <aggregation> “;”
  */
 public class Declaration implements Expression {
 
     private Expression classDeclaration, association, generalization, aggregation;
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }

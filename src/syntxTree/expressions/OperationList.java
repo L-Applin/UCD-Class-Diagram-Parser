@@ -5,14 +5,14 @@ import syntxTree.UmlContext;
 import java.util.ArrayList;
 
 /**
- * <operation_list>::= [<operation> {“,” <operation>}] ;
+ * <operation_list>::= [<operation> {“,” <operation>}]
  */
 public class OperationList implements Expression {
 
     private ArrayList<Expression> opList;
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }

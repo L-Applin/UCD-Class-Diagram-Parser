@@ -3,7 +3,7 @@ package syntxTree.expressions;
 import syntxTree.UmlContext;
 
 /**
- * <operation> ::= IDENTIFIER <arg_declaration> “:” <type> ;
+ * <operation> ::= IDENTIFIER <arg_declaration> “:” <type>
  */
 public class Operation implements Expression {
 
@@ -11,7 +11,7 @@ public class Operation implements Expression {
     private Expression argDeclaration;
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }

@@ -3,7 +3,7 @@ package syntxTree.expressions;
 import syntxTree.UmlContext;
 
 /**
- * <association> ::= “RELATION” IDENTIFIER “ROLES” <two_roles> ;
+ * <association> ::= “RELATION” IDENTIFIER “ROLES” <two_roles>
  */
 public class Association implements Expression {
 
@@ -11,7 +11,7 @@ public class Association implements Expression {
     private Identifier id;
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }

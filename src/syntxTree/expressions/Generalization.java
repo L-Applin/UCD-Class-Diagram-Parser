@@ -8,7 +8,7 @@ public class Generalization implements Expression {
     private Expression subClassNames;
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         // todo : complete
     }
 }

@@ -14,9 +14,17 @@ public class Identifier implements Expression {
     }
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }
 
+    public String getValue(){
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -3,7 +3,7 @@ package syntxTree.expressions;
 import syntxTree.UmlContext;
 
 /**
- * <type> ::= IDENTIFIER ;
+ * <type> ::= IDENTIFIER
  */
 public class Type implements Expression {
 
@@ -14,7 +14,7 @@ public class Type implements Expression {
     }
 
     @Override
-    public void tokenize(UmlContext ctx) {
+    public void tokenize(UmlContext ctx, String content) {
         //todo: complete
 
     }
