@@ -2,6 +2,9 @@ package syntxTree.expressions;
 
 import syntxTree.UmlContext;
 
+/**
+ * <association> ::= “RELATION” IDENTIFIER “ROLES” <two_roles> ;
+ */
 public class Association implements Expression {
 
     private Expression twoRole;

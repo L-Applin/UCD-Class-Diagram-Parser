@@ -2,6 +2,9 @@ package syntxTree.expressions;
 
 import syntxTree.UmlContext;
 
+/**
+ * <role> ::= “CLASS” IDENTIFIER <multiplicity> ;
+ */
 public class Role implements Expression {
 
     private Identifier id;

@@ -2,6 +2,9 @@ package syntxTree.expressions;
 
 import syntxTree.UmlContext;
 
+/**
+ * <class_dec> ::= “CLASS” IDENTIFIER <class_content>;
+ */
 public class ClassDeclaration implements Expression {
 
     private Identifier id;

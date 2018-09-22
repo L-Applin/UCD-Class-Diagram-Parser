@@ -2,6 +2,9 @@ package syntxTree.expressions;
 
 import syntxTree.UmlContext;
 
+/**
+ * <data_item> ::= IDENTIFIER “:” <type> ;
+ */
 public class DataItem implements Expression {
 
     private Identifier id;

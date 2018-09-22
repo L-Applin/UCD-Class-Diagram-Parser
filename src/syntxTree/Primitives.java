@@ -7,7 +7,7 @@ public enum Primitives {
     ATTRIBUTES("ATTRIBUTES"),
     OPERATIONS("OPERATIONS");
 
-    String value;
+    private String value;
     Primitives(String value){
         this.value = value;
     }

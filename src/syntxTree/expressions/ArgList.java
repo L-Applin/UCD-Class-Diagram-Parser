@@ -4,6 +4,9 @@ import syntxTree.UmlContext;
 
 import java.util.List;
 
+/**
+ * <arg_list> ::= [<data_item> {“,” <data_item>}] ;
+ */
 public class ArgList implements Expression {
 
     private List<Expression> dataItems;
