@@ -25,4 +25,11 @@ public class IncompatibleTagException extends RuntimeException {
         this.tag = tag;
         this.content = content;
     }
+
+    public IncompatibleTagException(String tag, String content){
+        super(tag + " is not a valide tag.");
+        this.tag = tag;
+        this.content = content;
+    }
+
 }

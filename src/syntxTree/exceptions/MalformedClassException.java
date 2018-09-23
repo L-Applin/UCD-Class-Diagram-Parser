@@ -2,7 +2,7 @@ package syntxTree.exceptions;
 
 public class MalformedClassException extends IllegalArgumentException {
 
-    String content, clazz, missingTag;
+    protected String content, clazz;
 
     public String getContent() {
         return content;
@@ -18,14 +18,6 @@ public class MalformedClassException extends IllegalArgumentException {
 
     public void setClazz(String clazz) {
         this.clazz = clazz;
-    }
-
-    public String getMissingTag() {
-        return missingTag;
-    }
-
-    public void setMissingTag(String missingTag) {
-        this.missingTag = missingTag;
     }
 
 

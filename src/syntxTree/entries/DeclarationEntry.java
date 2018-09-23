@@ -1,5 +1,8 @@
-package syntxTree;
+package syntxTree.entries;
 
+/**
+ * A simple wrapper around informations contained in a Declaration tag.
+ */
 public class DeclarationEntry {
 
     private String decType;

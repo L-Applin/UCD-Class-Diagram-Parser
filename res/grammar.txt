@@ -23,6 +23,5 @@
     | “UNDEFINED” ;
 <aggregation> ::= “AGGREGATION” “CONTAINER” role “PARTS” roles;
 <roles> ::= <role> {“,” <role>} ;
-<generalization> ::= “GENERALIZATION” IDENTIFIER “SUBCLASSES”
-<sub_class_names> ;
+<generalization> ::= “GENERALIZATION” IDENTIFIER “SUBCLASSES” <sub_class_names> ;
 <sub_class_names> ::= IDENTIFIER {“,” IDENTIFIER};

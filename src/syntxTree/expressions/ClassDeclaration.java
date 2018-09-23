@@ -18,7 +18,7 @@ public class ClassDeclaration extends Declaration implements ExceptionCheckProvi
     }
 
     @Override
-    public Expression tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) {
         checkClassContent(id.getValue(), content); // from ExceptionCheckProvider interface
         Log.all("\nClass : ", id.toString()); //todo : remove (debug)
         classContent = new ClassContent(id).tokenize(ctx, content);

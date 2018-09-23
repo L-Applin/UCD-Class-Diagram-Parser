@@ -1,6 +1,7 @@
 package syntxTree.expressions;
 
 import syntxTree.UmlContext;
+import utils.Utils;
 
 /**
  * <association> ::= “RELATION” IDENTIFIER “ROLES” <two_roles>
@@ -15,8 +16,9 @@ public class Association implements Expression {
     }
 
     @Override
-    public Expression tokenize(UmlContext ctx, String content) {
-        //todo: complete
+    public Expression tokenize(final UmlContext ctx, String content) {
+        Utils.Log.all("\nAssocitaion :", id.getValue());
+        twoRole = new TwoRole(id).tokenize(ctx, content);
         return this;
 
     }

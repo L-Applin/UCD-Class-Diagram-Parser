@@ -1,11 +1,10 @@
 package parsing;
 
-import syntxTree.DeclarationEntry;
-import syntxTree.IdentifierEntry;
-import syntxTree.exceptions.ExceptionCheckProvider;
-import syntxTree.exceptions.IncompatibleTagException;
-import syntxTree.exceptions.MalformedClassException;
-import syntxTree.exceptions.MissingClassTagException;
+import syntxTree.entries.DeclarationEntry;
+import syntxTree.entries.IdentifierEntry;
+import syntxTree.entries.RoleEntry;
+import syntxTree.exceptions.*;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +13,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static parsing.Delims.CUSTOM_LIST_SEP;
-import static utils.Utils.*;
 
 public class UcdParser implements ExceptionCheckProvider {
 
@@ -51,13 +49,13 @@ public class UcdParser implements ExceptionCheckProvider {
      * @throws IncompatibleTagException when the actuall tag and the expected value does not matche.
      * @return
      */
-    public IdentifierEntry splitIdContent(String expectedTag){
+    public IdentifierEntry convertIdEntry(String expectedTag){
         checkTagEqual(txt, expectedTag); // from ExceptionCheckProvider interface
 
         String[] tag_idPlusContent = txt.split(" ", 2);
         String[] id_content = tag_idPlusContent[1].split(Delims.NEW_LINE_TOKEN, 2);
 
-        return new IdentifierEntry(id_content[0], id_content[1]);
+        return new IdentifierEntry(id_content);
 
     }
 
@@ -65,7 +63,7 @@ public class UcdParser implements ExceptionCheckProvider {
      * Splits the tag and content
      * @return
      */
-    public DeclarationEntry splitDeclarationEntry(){
+    public DeclarationEntry convertDeclarationEntry(){
 
         if (txt.contains(GrammarModel.Decs.AGGREGATION)){
             String[] splits = txt.split(Delims.NEW_LINE_TOKEN, 2);
@@ -77,6 +75,24 @@ public class UcdParser implements ExceptionCheckProvider {
         }
 
     }
+
+    /**
+     *
+     * @param associationId
+     * @return
+     */
+    public RoleEntry convertRolesEntry(String associationId){
+        String[] entries = txt.split(Delims.SPACE);
+        if (entries.length != 3){
+            throw new MalformedDeclarationException("Malformed role \'" + txt + "\' in association \'" + associationId + "\'");
+        }
+        if (!entries[0].equals(GrammarModel.Decs.CLASS)){
+            throw new MalformedDeclarationException("Malformed role \'" + txt + "\' in association \'" + associationId+"\'. " +
+                    "Must begin with \'"+GrammarModel.Decs.CLASS+"\' tag");
+        }
+        return new RoleEntry(entries);
+    }
+
 
 
     /**
@@ -101,6 +117,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
     public List<String> splitList(){
+
         // only split if not in parenthesis !
 
         removeSpaces();
@@ -108,14 +125,16 @@ public class UcdParser implements ExceptionCheckProvider {
         String regExCommaInParent = "\\((.*?)\\)";
         final Matcher matcher = Pattern.compile(regExCommaInParent).matcher(txt);
         while (matcher.find()){
-            Log.test("MATCH : ", matcher.group(1));
             if (matcher.group(1).contains(",")){
-                final Matcher m = Pattern.compile(",").matcher(matcher.group(1));
-                String customSeparatedList = m.replaceAll(CUSTOM_LIST_SEP);
-                Log.test(customSeparatedList);
+                final Matcher commaMatcher = Pattern.compile(",").matcher(matcher.group(1));
+                String customSeparatedList = "("+commaMatcher.replaceAll(CUSTOM_LIST_SEP)+")";
+                // Log.test(customSeparatedList);
+
+                // replace orignal string with cutom seperator string
+                final Matcher sepratedListMatcher = Pattern.compile(regExCommaInParent).matcher(txt);
+                txt = sepratedListMatcher.replaceAll(customSeparatedList);
 
             }
-
         }
         String[] splits = txt.split(",");
         return new ArrayList<>(Arrays.asList(splits));
@@ -124,7 +143,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
     private void removeSpaces(){
         final Matcher matcher = Pattern.compile(" ").matcher(txt);
-        txt =  matcher.replaceAll("");
+        txt = matcher.replaceAll("");
     }
 
     /**
@@ -170,10 +189,69 @@ public class UcdParser implements ExceptionCheckProvider {
 
     }
 
+
+    public String extractArgList(String methodId, String classId){
+        final Matcher matcher = Pattern.compile("\\((.*?)\\)").matcher(txt);
+        if (matcher.find()) {
+            return matcher.group(1);
+        } else {
+            throw new MalformedOperationException("Could not find argument list of method \'" +methodId +"\'", classId, txt);
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String extractType(String parentId){
+        String type = txt.substring(txt.lastIndexOf("):") + 2, txt.length());
+        checkValidType(type, parentId);
+        return type;
+    }
+
+
+    public String getOperationId(String classId){
+        removeSpaces();
+        checkValidOperation(txt, classId);
+
+        return txt.substring(0, txt.indexOf("("));
+    }
+
+
+
+
+    public String[] splitDataItem(String parentId){
+        checkValidDataItem(txt, parentId);
+
+        return txt.split(":", 2);
+    }
+
+
+    public String[] splitTwoRoles(String association){
+        checkValidRole(txt, association);
+
+        String roles = txt.split(Delims.NEW_LINE_TOKEN)[1];
+        String[] twoRoles = roles.split(Delims.LIST_SEPERATOR);
+        return new String[]{twoRoles[0].trim(), twoRoles[1].trim()};
+
+    }
+
+
+    public List<String> splitArgs(){
+        String[] args = txt.split("~");
+        return new ArrayList<>(Arrays.asList(args));
+    }
+
+
+
+
     public static String removeNewLines(String txt){
         String regEx = "("+Delims.NEW_LINE_TOKEN+")+";
         final Matcher matcher = Pattern.compile(regEx).matcher(txt);
         return matcher.replaceAll("");
     }
+
+
+
 
 }

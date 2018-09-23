@@ -2,7 +2,7 @@ package syntxTree.expressions;
 
 import parsing.GrammarModel;
 import parsing.UcdParser;
-import syntxTree.IdentifierEntry;
+import syntxTree.entries.IdentifierEntry;
 import syntxTree.UmlContext;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class Model implements Expression {
 
         // todo : manage if there is multiple MODEL_TAG declaration in the same file
         UcdParser parser = new UcdParser(content);
-        IdentifierEntry modelId = parser.splitIdContent(GrammarModel.MODEL_TAG);
+        IdentifierEntry modelId = parser.convertIdEntry(GrammarModel.MODEL_TAG);
 
         id = new Identifier(modelId.getId());
         Log.all("Model : ", id.toString(), " {");

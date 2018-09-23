@@ -10,7 +10,7 @@ public class Aggregation implements Expression {
     private Expression role, roles;
 
     @Override
-    public Expression tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) {
         // todo : complete
         return this;
     }

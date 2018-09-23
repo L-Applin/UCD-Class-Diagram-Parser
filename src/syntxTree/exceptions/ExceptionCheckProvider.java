@@ -1,6 +1,13 @@
 package syntxTree.exceptions;
 
+import parsing.Delims;
 import parsing.GrammarModel;
+import utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provides default methods for checking different types of possible error while parsing the ucd file.
@@ -78,4 +85,76 @@ public interface ExceptionCheckProvider {
     }
 
 
+    default void checkValidOperation(String txt, String classId){
+        // Check only if has method parameter.
+        // Param validation is done in checkValidDataItem later on during parsing
+        String paramsRegEx = "\\((.*?)\\)|\\(\\)";
+        Matcher matcher = Pattern.compile(paramsRegEx).matcher(txt);
+        if (!matcher.find()){
+            throw new MalformedOperationException("Method \'" + txt + "\' must have a parameter declaration.", classId, txt);
+        }
+
+        //checks for method return type
+        if (!txt.contains("):")){    // ok because spaces were remove
+            throw new MalformedOperationException("Method \'" + txt + "\' must have a return type.", classId, txt);
+        }
+
+        String validationType = txt.substring(txt.lastIndexOf("):") +2, txt.length());
+        checkValidType(validationType, txt);
+
+    }
+
+
+    default void checkValidDataItem(String txt, String parentId){
+        // must contains at least one ':'
+        if (!txt.contains(Delims.TYPE_SEPARATOR)){
+            throw new TypeNotFoundException(txt, parentId);
+        }
+
+        // must not contains more than 1 ':'
+        if (txt.lastIndexOf(Delims.TYPE_SEPARATOR) != txt.indexOf(Delims.TYPE_SEPARATOR)){
+            throw new MalformedTypeException(txt, parentId);
+        }
+
+    }
+
+
+    default void checkValidRole(String txt, String association){
+
+        if (txt.indexOf(GrammarModel.ROLES_TAG) != 0){
+            throw new MalformedDeclarationException("Malformed \'ROLES\' tag in \'" + association + "\'");
+        }
+
+        String roles = txt.split(Delims.NEW_LINE_TOKEN)[1];
+
+        // only one LIST_SEPERATOR => exaclty two roles
+        if (roles.indexOf(Delims.LIST_SEPERATOR) != roles.lastIndexOf(Delims.LIST_SEPERATOR)){
+            throw new MalformedDeclarationException("\'"+association+"\' association must contain exactly two roles");
+        }
+
+    }
+
+
+
+    default void checkValidType(String content, String parentId) {
+        if (Utils.containsAny(content, GrammarModel.illegalTypeChar)) {
+            // find illegal char
+            List<String> illegalChar = new ArrayList<>();
+            for (String c : GrammarModel.illegalTypeChar) {
+                if (content.contains(c)) {
+                    illegalChar.add(c);
+                }
+            }
+            String allIllegalChars = "";
+            for (String ill : illegalChar){
+                allIllegalChars = allIllegalChars.concat(ill);
+            }
+            throw new MalformedTypeException("Type " + content + " cannot contain illegal " +
+                    (allIllegalChars.length()>1?"characters":"character")+
+                    " \'" + allIllegalChars + "\' in "+ parentId + ":" + content,
+                    content, parentId);
+
+        }
+
+    }
 }

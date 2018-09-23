@@ -23,7 +23,7 @@ public class ClassContent implements Expression, ExceptionCheckProvider {
     }
 
     @Override
-    public Expression tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) {
 
         UcdParser parser = new UcdParser(content);
 

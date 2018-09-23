@@ -20,7 +20,7 @@ ATTRIBUTES
       statut : String
 OPERATIONS
       nombre_saisons() : Integer,
-      change_statut (st : String) : void
+      change_statut(st : String) : void
 ;
 
 CLASS Entraineur
@@ -34,7 +34,9 @@ ATTRIBUTES
       nom : String,
       adresse : String
 OPERATIONS
-      Utilise_par(eq : Equipe, annee : Integer) : Boolean
+      Utilise_par(eq : Equipe, annee : Integer) : Joueur,
+      Test_comme(eq : Equipe, annee : Integer) : Boolean,
+
 ;
 
 GENERALIZATION Participant
@@ -42,7 +44,7 @@ GENERALIZATION Participant
 ;
 
 RELATION est_localisee_a
-       ROLES
+    ROLES
        CLASS Equipe MANY,
        CLASS Stade ONE
 ;

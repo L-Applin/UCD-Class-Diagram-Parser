@@ -1,6 +1,4 @@
-package syntxTree;
-
-import syntxTree.expressions.Expression;
+package syntxTree.entries;
 
 /**
  * Wrapper around a element of suntax that has an identifer followed by the identifier value
@@ -14,6 +12,12 @@ public class IdentifierEntry {
         this.id = id;
         this.expression = expression;
     }
+
+    public IdentifierEntry(String[] entries) {
+        this.id = entries[0];
+        this.expression = entries[1];
+    }
+
 
     public String getId() {
         return id;

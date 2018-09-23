@@ -2,8 +2,10 @@ package sample;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import parsing.UcdParser;
 import syntxTree.SyntaxTree;
 import syntxTree.UmlContext;
+import utils.Utils.*;
 
 public class Main extends Application {
 
@@ -14,6 +16,7 @@ public class Main extends Application {
         Parameters params = getParameters();
         String doc = ctrl.openUCDFile(params.getRaw().get(0));
 
+        String test= "     test test   ";
 
         final UmlContext ctx = new UmlContext();
         final SyntaxTree tree = (SyntaxTree) new SyntaxTree().tokenize(ctx, doc);
