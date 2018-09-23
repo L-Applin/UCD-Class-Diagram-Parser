@@ -18,9 +18,9 @@ public class Main extends Application {
         final UmlContext ctx = new UmlContext();
         final SyntaxTree tree = (SyntaxTree) new SyntaxTree().tokenize(ctx, doc);
 
-        System.out.println(tree);
-    }
+        // System.out.println(tree);
 
+    }
 
     public static void main(String[] args) {
         launch(args);

@@ -6,7 +6,8 @@ import token.UmlToken;
 import java.util.*;
 
 /**
- *
+ * Manages the links between the {@link SyntaxTree} representation of the Context-Free Grammar and the display
+ * elements that JavaFX requires.
  */
 public class UmlContext implements Map<String, Expression> {
 

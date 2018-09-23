@@ -2,6 +2,8 @@ package syntxTree.expressions;
 
 import syntxTree.UmlContext;
 
+import static utils.Utils.*;
+
 /**
  * <operation> ::= IDENTIFIER <arg_declaration> “:” <type>
  */
@@ -12,7 +14,7 @@ public class Operation implements Expression {
 
     @Override
     public Expression tokenize(UmlContext ctx, String content) {
-        //todo: complete
+        Log.all("\t\t", content);
         return this;
 
     }

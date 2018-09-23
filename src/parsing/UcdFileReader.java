@@ -1,6 +1,8 @@
 package parsing;
 
 import parsing.Delims;
+import syntxTree.exceptions.ExceptionCheckProvider;
+import syntxTree.exceptions.IllegalCharacterException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,7 +12,7 @@ import java.util.regex.Pattern;
 
 import static parsing.Delims.NEW_LINE_TOKEN;
 
-public class UcdFileReader {
+public class UcdFileReader implements ExceptionCheckProvider{
 
     String path;
 
@@ -25,11 +27,14 @@ public class UcdFileReader {
      */
     public String readAndCleanFile() throws IOException {
 
+
         String line;
         StringBuilder sb = new StringBuilder();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
 
         while((line = bufferedReader.readLine()) != null) {
+
+            checkIllegalChar(line, path); // from ExceptionCheckProvider interface
 
             Matcher matcher;
 
@@ -53,7 +58,7 @@ public class UcdFileReader {
 
             sb.append(line);
 
-            // new line token^
+            // new line token
             sb.append(NEW_LINE_TOKEN);
 
         }
@@ -64,7 +69,11 @@ public class UcdFileReader {
 
         // remove new line after commas
         Matcher matcher = Pattern.compile(","+Delims.NEW_LINE_TOKEN).matcher(firstPass);
-        return matcher.replaceAll(",");
+        String result = matcher.replaceAll(",");
+
+
+        return result;
     }
+
 
 }

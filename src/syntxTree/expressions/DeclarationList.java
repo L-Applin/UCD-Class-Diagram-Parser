@@ -17,7 +17,7 @@ public class DeclarationList implements Expression {
     }
 
     @Override
-    public Expression tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) {
 
         UcdParser parser = new UcdParser(content);
 
@@ -30,4 +30,12 @@ public class DeclarationList implements Expression {
         return this;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("DeclarationList {\n");
+        decs.forEach(sb::append);
+        sb.append("}");
+        return sb.toString();
+    }
 }

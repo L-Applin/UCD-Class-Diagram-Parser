@@ -7,6 +7,8 @@ import syntxTree.UmlContext;
 
 import java.util.ArrayList;
 
+import static utils.Utils.*;
+
 /**
  * <model> ::= “MODEL_TAG” IDENTIFIER <list_dec>
  */
@@ -15,7 +17,6 @@ public class Model implements Expression {
     private Expression listDec;
     private Identifier id;
 
-    private String _tmpContent;
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
@@ -25,9 +26,8 @@ public class Model implements Expression {
         IdentifierEntry modelId = parser.splitIdContent(GrammarModel.MODEL_TAG);
 
         id = new Identifier(modelId.getId());
-        listDec = new DeclarationList(new ArrayList<>());
-        _tmpContent = modelId.getExpression();
-        listDec.tokenize(ctx, modelId.getExpression());
+        Log.all("Model : ", id.toString(), " {");
+        listDec = new DeclarationList(new ArrayList<>()).tokenize(ctx, modelId.getExpression());
 
         ctx.put(modelId.getId(), listDec);
         return this;
@@ -37,7 +37,7 @@ public class Model implements Expression {
 
     @Override
     public String toString() {
-        return "MODEL_TAG \nid : \t" + id.toString() + "\ncontent : \t" + _tmpContent;
+        return "MODEL_TAG \nid : \t" + id.toString() + "\ncontent : \t" + listDec.toString();
     }
 
 }

@@ -2,6 +2,7 @@ package parsing;
 
 public class GrammarModel {
 
+    public static final String[] illegalChar = {"~", "\\"};
     public static final String MODEL_TAG = "MODEL";
 
     public static class Decs {
@@ -9,7 +10,13 @@ public class GrammarModel {
         public static final String GENERALIZATION = "GENERALIZATION";
         public static final String ASSOCIATION = "RELATION";
         public static final String AGGREGATION = "AGGREGATION";
-
     }
+
+    public static class ClassContent {
+        public static final String ATTRIBUTES = "ATTRIBUTES";
+        public static final String OPERATIONS = "OPERATIONS";
+    }
+
+
 
 }

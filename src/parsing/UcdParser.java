@@ -4,11 +4,17 @@ import syntxTree.DeclarationEntry;
 import syntxTree.IdentifierEntry;
 import syntxTree.exceptions.ExceptionCheckProvider;
 import syntxTree.exceptions.IncompatibleTagException;
+import syntxTree.exceptions.MalformedClassException;
+import syntxTree.exceptions.MissingClassTagException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static parsing.Delims.CUSTOM_LIST_SEP;
+import static utils.Utils.*;
 
 public class UcdParser implements ExceptionCheckProvider {
 
@@ -27,23 +33,26 @@ public class UcdParser implements ExceptionCheckProvider {
      * @return the string that is between the two tags.
      */
     public String extractBetween(String beginToken, String endToken){
-        String regEx = beginToken + "(.+?)" + endToken;
 
-        final Pattern pattern = Pattern.compile(regEx);
-        final Matcher match = pattern.matcher(txt);
-        return match.group(1);
+        final Matcher match = Pattern.compile(beginToken + "(.+?)" + endToken).matcher(txt);
+
+        if (match.find()){
+            return match.group(1);
+        } else {
+            return "";
+        }
     }
 
     /**
      * Divides a section of the .ucd file into it's tag and it's content. Throws an exception if the
      * expected value does not matches the actuall value
      *
-     * @param tag the expected value of the tag
+     * @param expectedTag the expected value of the tag
      * @throws IncompatibleTagException when the actuall tag and the expected value does not matche.
      * @return
      */
-    public IdentifierEntry splitIdContent(String tag){
-        checkTagEqual(txt, tag);
+    public IdentifierEntry splitIdContent(String expectedTag){
+        checkTagEqual(txt, expectedTag); // from ExceptionCheckProvider interface
 
         String[] tag_idPlusContent = txt.split(" ", 2);
         String[] id_content = tag_idPlusContent[1].split(Delims.NEW_LINE_TOKEN, 2);
@@ -88,6 +97,83 @@ public class UcdParser implements ExceptionCheckProvider {
             }
         }
         return result;
+    }
+
+
+    public List<String> splitList(){
+        // only split if not in parenthesis !
+
+        removeSpaces();
+
+        String regExCommaInParent = "\\((.*?)\\)";
+        final Matcher matcher = Pattern.compile(regExCommaInParent).matcher(txt);
+        while (matcher.find()){
+            Log.test("MATCH : ", matcher.group(1));
+            if (matcher.group(1).contains(",")){
+                final Matcher m = Pattern.compile(",").matcher(matcher.group(1));
+                String customSeparatedList = m.replaceAll(CUSTOM_LIST_SEP);
+                Log.test(customSeparatedList);
+
+            }
+
+        }
+        String[] splits = txt.split(",");
+        return new ArrayList<>(Arrays.asList(splits));
+    }
+
+
+    private void removeSpaces(){
+        final Matcher matcher = Pattern.compile(" ").matcher(txt);
+        txt =  matcher.replaceAll("");
+    }
+
+    /**
+     * Extract the string representing the Attribute lis from a class content string.
+     *
+     * @param classId name of the class
+     * @param content it's content
+     * @return the String with
+     * @throws MissingClassTagException if the Attribute tag is missing from the class body
+     * @throws MalformedClassException if the Attribute tag is there more than once in the body
+     */
+    public String extractAttributes(String classId, String content){
+
+        // checks <attributes> tag is there from ExceptionCheckProvider interface
+        checkTagPresent(txt, GrammarModel.ClassContent.ATTRIBUTES, classId, content);
+
+        // check there is only one <attributes> tag from ExceptionCheckProvider interface
+        checkNoDuplicateTag(txt, GrammarModel.ClassContent.ATTRIBUTES, classId, content);
+
+        return extractBetween(GrammarModel.ClassContent.ATTRIBUTES, GrammarModel.ClassContent.OPERATIONS);
+
+    }
+
+    /**
+     * Extract the string representing the Operation list from a class content string.
+     *
+     * @param classId name of the class
+     * @param content it's content
+     * @return the String with
+     * @throws MissingClassTagException if the Operation tag is missing from the class body
+     * @throws MalformedClassException if the Operation tag is there more than once in the body
+     */
+    public String extractOperations(String classId, String content){
+
+        // checks <OPERATIONS> tag is there from ExceptionCheckProvider interface
+        checkTagPresent(txt, GrammarModel.ClassContent.OPERATIONS, classId, content);
+
+        // check there is only one <OPERATIONS> tag from ExceptionCheckProvider interface
+        checkNoDuplicateTag(txt, GrammarModel.ClassContent.OPERATIONS, classId, content);
+
+        int index = txt.indexOf(GrammarModel.ClassContent.OPERATIONS);
+        return txt.substring(index + GrammarModel.ClassContent.OPERATIONS.length(), txt.length());
+
+    }
+
+    public static String removeNewLines(String txt){
+        String regEx = "("+Delims.NEW_LINE_TOKEN+")+";
+        final Matcher matcher = Pattern.compile(regEx).matcher(txt);
+        return matcher.replaceAll("");
     }
 
 }

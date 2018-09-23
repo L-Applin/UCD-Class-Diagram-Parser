@@ -9,15 +9,15 @@ public class Type implements Expression {
 
     private Identifier id;
 
-    public Type(Identifier id) {
-        this.id = id;
+    @Override
+    public Expression tokenize(UmlContext ctx, String content) {
+        // todo : check for illegal character in identifier
+        this.id = new Identifier(content);
+        return this;
     }
 
     @Override
-    public Expression tokenize(UmlContext ctx, String content) {
-        //todo: complete
-        return this;
-
+    public String toString() {
+        return id.getValue();
     }
-
 }

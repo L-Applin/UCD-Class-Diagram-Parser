@@ -3,6 +3,9 @@ package syntxTree;
 import syntxTree.expressions.Expression;
 import syntxTree.expressions.Model;
 
+/**
+ * Entry point for parsing the .ucd file
+ */
 public class SyntaxTree implements Expression {
 
     private Expression root;

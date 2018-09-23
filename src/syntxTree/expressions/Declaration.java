@@ -16,22 +16,22 @@ public class Declaration implements Expression {
 
     @Override
     public Expression tokenize(UmlContext ctx, String content) {
-        //todo : check which declration class in instanciate
+
         UcdParser parser = new UcdParser(content);
         DeclarationEntry entry = parser.splitDeclarationEntry();
-        String tagId = entry.getDecType();
-        String expression = entry.getContent();
-        switch (tagId) {
+
+        switch (entry.getDecType()) {
             case GrammarModel.Decs.CLASS :
-                return new ClassDeclaration().tokenize(ctx, expression);
+                return new ClassDeclaration(entry.getId()).tokenize(ctx, entry.getContent());
             case GrammarModel.Decs.AGGREGATION:
-                return new Aggregation().tokenize(ctx, expression);
+                return new Aggregation().tokenize(ctx, entry.getContent());
             case GrammarModel.Decs.GENERALIZATION:
-                return new Generalization().tokenize(ctx, expression);
+                return new Generalization(entry.getId()).tokenize(ctx, entry.getContent());
             case GrammarModel.Decs.ASSOCIATION:
-                return new Association().tokenize(ctx, expression);
+                return new Association(entry.getId()).tokenize(ctx, entry.getContent());
             default: //todo : throw exception ?
         }
+
         return this;
     }
 }
