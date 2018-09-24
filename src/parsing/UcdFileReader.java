@@ -5,6 +5,7 @@ import syntxTree.exceptions.ExceptionCheckProvider;
 import syntxTree.exceptions.IllegalCharacterException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -27,6 +28,11 @@ public class UcdFileReader implements ExceptionCheckProvider{
      */
     public String readAndCleanFile() throws IOException {
 
+        if (!path.endsWith(".ucd")){
+            throw new IOException(
+                    String.format("File %s does not have .ucd extension",
+                            path.substring(path.lastIndexOf(File.separator)+1, path.length())));
+        }
 
         String line;
         StringBuilder sb = new StringBuilder();

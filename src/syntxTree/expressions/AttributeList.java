@@ -25,7 +25,9 @@ public class AttributeList implements Expression {
         List<String> stringAttributes = parser.splitList();
         stringAttributes.forEach(attr -> {
             if (attr != null && attr.length() > 0) {
-                attributes.add(new DataItem(classId).tokenize(ctx, attr));
+                DataItem attributeData = new DataItem(classId).tokenize(ctx, attr);
+                attributes.add(attributeData);
+                ctx.getUmlClass(classId.getValue()).addAttributes(attributeData);
             }
         });
         return this;

@@ -1,6 +1,6 @@
 package syntxTree.exceptions;
 
-public class TypeNotFoundException extends RuntimeException {
+public class TypeNotFoundException extends UcdParsingException {
 
     private String content, parentId;
 

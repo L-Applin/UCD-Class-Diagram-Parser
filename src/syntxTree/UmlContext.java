@@ -1,6 +1,9 @@
 package syntxTree;
 
 import syntxTree.expressions.Expression;
+import token.UmlAttribute;
+import token.UmlClass;
+import token.UmlOpertaion;
 import token.UmlToken;
 
 import java.util.*;
@@ -11,7 +14,20 @@ import java.util.*;
  */
 public class UmlContext implements Map<String, Expression> {
 
+    /**
+     * The model id as definedin the .ucd file
+     */
+    private String modelId;
+    public String getModelId() { return modelId; }
+    public void setModelId(String modelId) { this.modelId = modelId; }
+
     private Map<String, Expression> tokens;
+
+    /**
+     * All UmlClasses that were parsed represented in a more usable way for display
+     */
+    private Map<String, UmlClass> classes;
+    public Map<String, UmlClass> getClasses() { return classes; }
 
     public UmlContext(Map<String, Expression> map){
         this.tokens = map;
@@ -20,10 +36,25 @@ public class UmlContext implements Map<String, Expression> {
     // default use TreeMap
     public UmlContext(){
         this.tokens = new TreeMap<>();
+        classes = new HashMap<>();
     }
 
+    public UmlClass getUmlClass(String id){
+        return classes.get(id);
+    }
 
+    public void createClass(String id){
+        classes.put(id, new UmlClass(id));
+    }
 
+    @Override
+    public String toString() {
+        return "UmlContext{" +
+                "modelId='" + modelId + '\'' +
+                ", tokens=" + tokens +
+                ", classes=" + classes +
+                '}';
+    }
 
     // MAP IMPLEMENTATION :)
     @Override

@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class ArgList implements Expression {
 
+    private Identifier methodId, classId;
     private List<Expression> dataItems;
-    private Identifier methodId;
 
-    public ArgList(Identifier methodId) {
-        this.methodId = methodId;
+    public ArgList(Identifier methodId, Identifier classId) {
+        this.methodId = methodId; this.classId = classId;
         dataItems = new ArrayList<>();
     }
 
@@ -26,10 +26,14 @@ public class ArgList implements Expression {
         List<String> args = parser.splitArgs();
         args.forEach(arg -> {
             if (arg != null && arg.length() > 0){
-                dataItems.add(new DataItem(methodId).tokenize(ctx, arg));
+                DataItem item = new DataItem(methodId).tokenize(ctx, arg);
+                dataItems.add(item);
+                ctx.getUmlClass(classId.getValue()).getOperation(methodId.getValue()).addArgument(item);
             }
         });
         return this;
     }
+
+
 
 }

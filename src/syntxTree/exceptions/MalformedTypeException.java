@@ -1,6 +1,6 @@
 package syntxTree.exceptions;
 
-public class MalformedTypeException extends RuntimeException {
+public class MalformedTypeException extends UcdParsingException {
     private String txt, parentId;
 
     public MalformedTypeException(String txt, String parentId) {

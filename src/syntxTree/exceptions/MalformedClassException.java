@@ -1,6 +1,6 @@
 package syntxTree.exceptions;
 
-public class MalformedClassException extends IllegalArgumentException {
+public class MalformedClassException extends UcdParsingException {
 
     protected String content, clazz;
 

@@ -22,4 +22,11 @@ public class Association implements Expression {
         return this;
 
     }
+
+    @Override
+    public String toString() {
+        return "\n\n\tAssociation \n" +
+                "\t\tid = " + id.toString() +
+                "twoRole = " + twoRole.toString();
+    }
 }

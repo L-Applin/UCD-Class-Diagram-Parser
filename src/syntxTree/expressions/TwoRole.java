@@ -27,4 +27,13 @@ public class TwoRole implements Expression {
 
     }
 
+
+    @Override
+    public String toString() {
+        return "TwoRole { " +
+                "role1 = " + role1 +
+                ",role2 = " + role2 +
+                ",associationId = " + associationId +
+                "}";
+    }
 }

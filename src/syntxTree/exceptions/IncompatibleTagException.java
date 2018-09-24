@@ -1,6 +1,6 @@
 package syntxTree.exceptions;
 
-public class IncompatibleTagException extends RuntimeException {
+public class IncompatibleTagException extends UcdParsingException {
 
     /**
      * The tag that caused the error.

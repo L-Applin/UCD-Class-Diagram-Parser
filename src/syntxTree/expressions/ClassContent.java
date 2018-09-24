@@ -37,4 +37,12 @@ public class ClassContent implements Expression, ExceptionCheckProvider {
 
     }
 
+    @Override
+    public String toString() {
+        return "ClassContent {" +
+                "attributeList = " + attributeList.toString() +
+                ", operationList = " + operationList.toString() +
+                ", classId = " + classId.toString() +
+                '}';
+    }
 }

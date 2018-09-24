@@ -3,7 +3,7 @@ package syntxTree.expressions;
 import parsing.UcdParser;
 import syntxTree.UmlContext;
 import syntxTree.entries.RoleEntry;
-import utils.Utils;
+import utils.Utils.*;
 
 /**
  * <role> ::= “CLASS” IDENTIFIER <multiplicity>
@@ -20,13 +20,24 @@ public class Role implements Expression {
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        Utils.Log.all("role = ", content);
         UcdParser parser = new UcdParser(content);
         RoleEntry splits = parser.convertRolesEntry(associationId.getValue());
         classId = new Identifier(splits.getClassId());
-        multiplicity = new Multiplicity().tokenize(ctx, splits.getMultiplicity());
+        multiplicity = new Multiplicity(associationId).tokenize(ctx, splits.getMultiplicity());
+        Log.all("\trole =", classId.getValue(), ((Multiplicity) multiplicity).getMulitplicity().toString());
+
 
         return this;
 
     }
+
+    @Override
+    public String toString() {
+        return "Role {" +
+                "associationId = " + associationId.toString() +
+                ", classId =" + classId.toString() +
+                ", multiplicity = " + multiplicity.toString() +
+                "}";
+    }
+
 }

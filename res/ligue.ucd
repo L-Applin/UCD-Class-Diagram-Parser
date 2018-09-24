@@ -1,4 +1,4 @@
-MODEL      Ligue
+MODEL Ligue
 CLASS Equipe
 ATTRIBUTES
       nom_equipe : String
@@ -34,8 +34,8 @@ ATTRIBUTES
       nom : String,
       adresse : String
 OPERATIONS
-      Utilise_par(eq : Equipe, annee : Integer) : Joueur,
-      Test_comme(eq : Equipe, annee : Integer) : Boolean,
+      Test_comme(test: String) : Boolean,
+      Utilise_par(eq : Equipe, annee : Integer, year : Integer) : Joueur
 
 ;
 
@@ -60,4 +60,12 @@ CONTAINER
        CLASS Equipe ONE
 PARTS
        CLASS Joueur ONE_OR_MANY
+;
+
+AGGREGATION
+CONTAINER
+       CLASS Stade ONE
+PARTS
+       CLASS Joueur ONE_OR_MANY,
+       CLASS Entraineur MANY
 ;

@@ -20,11 +20,17 @@ public class ClassDeclaration extends Declaration implements ExceptionCheckProvi
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
         checkClassContent(id.getValue(), content); // from ExceptionCheckProvider interface
-        Log.all("\nClass : ", id.toString()); //todo : remove (debug)
+        ctx.createClass(id.toString());
         classContent = new ClassContent(id).tokenize(ctx, content);
         ctx.put(id.toString(), classContent);
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "\n\n\tClassDeclaration \n" +
+                "\t\tid=" + id.toString() +
+                ", classContent=" + classContent.toString();
 
+    }
 }

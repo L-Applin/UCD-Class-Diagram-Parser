@@ -33,9 +33,9 @@ public class DeclarationList implements Expression {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("DeclarationList {\n");
-        decs.forEach(sb::append);
-        sb.append("}");
+        sb.append("\nDeclarations : ");
+        decs.forEach( dec -> sb.append(dec.toString()));
+        sb.append("\n}");
         return sb.toString();
     }
 }

@@ -2,7 +2,7 @@ package syntxTree.exceptions;
 
 import sample.Main;
 
-public class IllegalCharacterException extends IllegalArgumentException {
+public class IllegalCharacterException extends UcdParsingException {
     private String content, illegalChar, filePath;
     public IllegalCharacterException(String content, String illegalChar){
         super("File cannot containe character \'" + illegalChar + "\' at line : " + content);

@@ -10,7 +10,7 @@ import static utils.Utils.*;
  */
 public class Operation implements Expression {
 
-    private Identifier id, classId;
+    private Identifier methodId, classId;
     private Expression argDeclaration, type;
 
     public Operation(Identifier classId) {
@@ -21,14 +21,15 @@ public class Operation implements Expression {
     public Expression tokenize(final UmlContext ctx, String content) {
 
         UcdParser parser = new UcdParser(content);
-        id = new Identifier(parser.getOperationId(classId.getValue()));
+        methodId = new Identifier(parser.getOperationId(classId.getValue()));
 
-        type = new Type(id).tokenize(ctx, parser.extractType(content));
-        Log.all("\t\tid =", id.getValue(), ": type =", type.toString());
+        type = new Type(methodId).tokenize(ctx, parser.extractType(content));
+        Log.all("\t\tmethodId =", methodId.getValue(), ": type =", type.toString());
 
-        String extractedArs = parser.extractArgList(id.getValue(), classId.getValue());
-        argDeclaration = new ArgDeclaration(id).tokenize(ctx, extractedArs);
+        ctx.getUmlClass(classId.getValue()).createOperation(methodId.getValue(), type.toString());
 
+        String extractedArs = parser.extractArgList(methodId.getValue(), classId.getValue());
+        argDeclaration = new ArgDeclaration(methodId, classId).tokenize(ctx, extractedArs);
 
         return this;
 

@@ -122,14 +122,14 @@ public interface ExceptionCheckProvider {
     default void checkValidRole(String txt, String association){
 
         if (txt.indexOf(GrammarModel.ROLES_TAG) != 0){
-            throw new MalformedDeclarationException("Malformed \'ROLES\' tag in \'" + association + "\'");
+            throw new MalformedDeclarationException("Malformed 'ROLES' tag in '" + association + "'");
         }
 
         String roles = txt.split(Delims.NEW_LINE_TOKEN)[1];
 
         // only one LIST_SEPERATOR => exaclty two roles
         if (roles.indexOf(Delims.LIST_SEPERATOR) != roles.lastIndexOf(Delims.LIST_SEPERATOR)){
-            throw new MalformedDeclarationException("\'"+association+"\' association must contain exactly two roles");
+            throw new MalformedDeclarationException("'"+association+"' association must contain exactly two roles");
         }
 
     }
@@ -157,4 +157,22 @@ public interface ExceptionCheckProvider {
         }
 
     }
+
+    default void checkValidSubclasses(String txt, String genId){
+        //must  start with SUBCLASSES
+        if (txt.indexOf(GrammarModel.SUBCLASSES_TAG) != 0){
+            String error = txt.split(" ")[0];
+            throw new MalformedDeclarationException(
+                    String.format("Cannot parse generelization %s, must have %s tag, but found %s",
+                            genId, GrammarModel.SUBCLASSES_TAG, error==null?"null":error));
+        }
+
+    }
+
+    default void checkValidAggregations(String txt){
+
+
+
+    }
+
 }

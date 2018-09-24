@@ -1,7 +1,12 @@
 package sample;
 
 import parsing.UcdFileReader;
+import screenDisplay.MainDisplay;
+import syntxTree.SyntaxTree;
+import syntxTree.UmlContext;
+import syntxTree.exceptions.UcdParsingException;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AppController {
@@ -12,10 +17,33 @@ public class AppController {
      * @return
      * @throws IOException
      */
-    public String openUCDFile(String path) throws IOException {
+    public String openUcdFile(String path) throws IOException {
+        return new UcdFileReader(path).readAndCleanFile();
+    }
 
-        UcdFileReader ucdFile = new UcdFileReader(path);
-        return ucdFile.readAndCleanFile();
+    /**
+     *
+     * @param doc
+     * @return
+     */
+    public UmlContext parseUcdFile(String doc){
+        UmlContext ctx = new UmlContext();
+        SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
+        return ctx;
+
+    }
+
+    public void lauchUcdActivity(MainDisplay screen, File ucdFile) {
+
+        try {
+            String stringFile = openUcdFile(ucdFile.getAbsolutePath());
+            UmlContext ctx = parseUcdFile(stringFile);
+            screen.setupUcdDisplay(ctx);
+        } catch (IOException ioe){
+            screen.errorScreen(ioe);
+        } catch (UcdParsingException ucde) {
+            screen.errorScreen(ucde);
+        }
 
     }
 

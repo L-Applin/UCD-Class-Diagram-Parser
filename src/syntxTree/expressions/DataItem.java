@@ -13,13 +13,37 @@ public class DataItem implements Expression {
     private Identifier id, parentId;
     private Expression type;
 
+    public Identifier getId() {
+        return id;
+    }
+
+    public String getIdAsString() {
+        return id.toString();
+    }
+
+    public void setId(Identifier id) {
+        this.id = id;
+    }
+
+    public Expression getType() {
+        return type;
+    }
+
+    public String getTypeAsString() {
+        return type.toString();
+    }
+
+
+    public void setType(Expression type) {
+        this.type = type;
+    }
 
     public DataItem(Identifier parentId) {
         this.parentId = parentId;
     }
 
     @Override
-    public Expression tokenize(final UmlContext ctx, String content) {
+    public DataItem tokenize(final UmlContext ctx, String content) {
         // todo : error handling
         UcdParser parser = new UcdParser(content);
         String[] splits = parser.splitDataItem(parentId.getValue());

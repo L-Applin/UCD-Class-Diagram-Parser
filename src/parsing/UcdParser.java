@@ -127,11 +127,11 @@ public class UcdParser implements ExceptionCheckProvider {
         while (matcher.find()){
             if (matcher.group(1).contains(",")){
                 final Matcher commaMatcher = Pattern.compile(",").matcher(matcher.group(1));
-                String customSeparatedList = "("+commaMatcher.replaceAll(CUSTOM_LIST_SEP)+")";
+                String customSeparatedList = commaMatcher.replaceAll(CUSTOM_LIST_SEP);
                 // Log.test(customSeparatedList);
 
                 // replace orignal string with cutom seperator string
-                final Matcher sepratedListMatcher = Pattern.compile(regExCommaInParent).matcher(txt);
+                final Matcher sepratedListMatcher = Pattern.compile(matcher.group(1)).matcher(txt);
                 txt = sepratedListMatcher.replaceAll(customSeparatedList);
 
             }
@@ -199,6 +199,15 @@ public class UcdParser implements ExceptionCheckProvider {
         }
     }
 
+
+    public String extractGeneralizationClasses(String genId){
+        txt = txt.trim();
+        txt = removeNewLines(txt);
+        checkValidSubclasses(txt, genId);
+        String[] id_subClass = txt.split(" ", 2);
+        return removeSpaces(id_subClass[1]);
+    }
+
     /**
      *
      * @return
@@ -207,6 +216,14 @@ public class UcdParser implements ExceptionCheckProvider {
         String type = txt.substring(txt.lastIndexOf("):") + 2, txt.length());
         checkValidType(type, parentId);
         return type;
+    }
+
+
+    public String extractcParts(){
+        // todo : chack valid form if not already?
+        int index = txt.indexOf(GrammarModel.PARTS_TAG);
+        String result =  txt.substring(index + GrammarModel.PARTS_TAG.length(), txt.length());
+        return removeNewLines(result);
     }
 
 
@@ -251,6 +268,11 @@ public class UcdParser implements ExceptionCheckProvider {
         return matcher.replaceAll("");
     }
 
+
+    public static String removeSpaces(String txt){
+        final Matcher matcher = Pattern.compile(" ").matcher(txt);
+        return matcher.replaceAll("");
+    }
 
 
 

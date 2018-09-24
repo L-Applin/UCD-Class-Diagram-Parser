@@ -26,9 +26,8 @@ public class Model implements Expression {
         IdentifierEntry modelId = parser.convertIdEntry(GrammarModel.MODEL_TAG);
 
         id = new Identifier(modelId.getId());
-        Log.all("Model : ", id.toString(), " {");
+        ctx.setModelId(id.toString());
         listDec = new DeclarationList(new ArrayList<>()).tokenize(ctx, modelId.getExpression());
-
         ctx.put(modelId.getId(), listDec);
         return this;
 
@@ -37,7 +36,7 @@ public class Model implements Expression {
 
     @Override
     public String toString() {
-        return "MODEL_TAG \nid : \t" + id.toString() + "\ncontent : \t" + listDec.toString();
+        return "\tMODEL_TAG \nid : \t" + id.toString() + "\n"+ listDec.toString();
     }
 
 }

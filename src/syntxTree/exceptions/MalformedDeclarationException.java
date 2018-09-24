@@ -1,6 +1,6 @@
 package syntxTree.exceptions;
 
-public class MalformedDeclarationException extends RuntimeException {
+public class MalformedDeclarationException extends UcdParsingException {
     public MalformedDeclarationException(String message) {
         super(message);
     }
