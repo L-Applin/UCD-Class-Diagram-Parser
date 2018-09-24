@@ -48,7 +48,7 @@ public class MainDisplay {
     public void init(){
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        
+
         rootLayout = new BorderPane();
 
         rootLayout.setBackground(appTheme.getprimaryDarkBackground());
