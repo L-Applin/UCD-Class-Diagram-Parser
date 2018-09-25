@@ -17,6 +17,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -75,6 +76,7 @@ public class MainDisplay {
         center.getChildren().addAll(importIcon, centerText, paths);
 
         topBar.setOnTrashClickedListener( event -> {
+            System.out.println("Trash clicked");
             paths.getChildren().clear();
         });
 
@@ -123,6 +125,16 @@ public class MainDisplay {
             event.consume();
         });
 
+        topBar.setOnClickMeListener(event -> {
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Choose .ucd file");
+            fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("UCD", "*.ucd"));
+            fc.setInitialDirectory(new File("res"));
+            File file = fc.showOpenDialog(primaryStage);
+            if (file != null && file.exists()) {
+                new AppController().lauchUcdActivity(this, file);
+            }
+        });
 
         rootLayout.setCenter(center);
         Scene scene = new Scene(rootLayout, 1024, 768);
@@ -137,7 +149,11 @@ public class MainDisplay {
     public void setupUcdDisplay(UmlContext context){
 
         System.out.println(context.toString());
+        VBox sideContainer = new VBox();
+        sideContainer.setPadding(new Insets(0,10,0,10));
+        sideContainer.setBackground(appTheme.getsecondaryDarkBackground());
         ScrollPane classContainer = new ScrollPane();
+        classContainer.setPadding(Insets.EMPTY);
         classContainer.setBackground(appTheme.getsecondaryDarkBackground());
         VBox vb = new VBox();
         vb.setBackground(appTheme.getsecondaryDarkBackground());
@@ -153,7 +169,14 @@ public class MainDisplay {
             vb.getChildren().add(hb);
         });
         classContainer.setContent(vb);
-        rootLayout.setLeft(classContainer);
+        Text classTitle = new Text("Class");
+        classTitle.setFont(appTheme.getMediumFont());
+        HBox classTitleBox = new HBox(classTitle);
+        classTitleBox.setAlignment(Pos.CENTER);
+        classTitleBox.setPadding(new Insets(10));
+        sideContainer.setAlignment(Pos.TOP_CENTER);
+        sideContainer.getChildren().addAll(classTitleBox, classContainer);
+        rootLayout.setLeft(sideContainer);
 
     }
 

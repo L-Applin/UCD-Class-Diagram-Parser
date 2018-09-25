@@ -138,6 +138,10 @@ public class AppTheme {
         return new Background( new BackgroundFill(contrastLight, null,null));
     }
 
+    public Background getcontrastLightBackground(CornerRadii radii, Insets insets){
+        return new Background( new BackgroundFill(contrastLight, radii,insets));
+    }
+
     public Background primaryRadialGradientBackground(){
         return new Background(new BackgroundFill(new RadialGradient(
                 0, 0, 0.5, 0.5, 1.5,

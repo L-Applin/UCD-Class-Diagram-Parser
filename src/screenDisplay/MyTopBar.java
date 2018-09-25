@@ -3,10 +3,14 @@ package screenDisplay;
 import app.theme.AppTheme;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -19,7 +23,12 @@ public class MyTopBar extends BorderPane {
 
     private AppTheme appTheme;
     private ImageView trashIcon;
+    private HBox trashContainer;
+    private HBox clickContainer;
+    private HBox exitCOntainer;
     private Text clickMeText;
+
+    private Background background;
 
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -28,24 +37,51 @@ public class MyTopBar extends BorderPane {
 
         this.appTheme = appTheme;
 
-        setBackground(appTheme.getprimaryDarkBackground());
+        background = appTheme.getsecondaryDarkBackground();
+        setBackground(background);
         setPadding(appTheme.getMediumPadding());
 
         clickMeText = new Text(click_me);
         clickMeText.setFont(appTheme.getMediumFont());
         clickMeText.setFill(Color.WHITE);
-        HBox hb = new HBox();
-        hb.setPadding(new Insets(12,10,0,20));
-        hb.getChildren().add(clickMeText);
-        setLeft(hb);
+        clickContainer = new HBox();
+        clickContainer.setAlignment(Pos.CENTER);
+        clickContainer.setPadding(new Insets(10));
+        setMargin(clickContainer, new Insets(8));
+        clickContainer.getChildren().add(clickMeText);
+        setLeft(clickContainer);
+
+        HBox rightContainer = new HBox();
+        exitCOntainer = new HBox();
+        Text exit = new Text("Quit program");
+        exit.setFont(appTheme.getMediumFont());
+        exit.setFill(Color.WHITE);
 
         trashIcon = new ImageView(trash_url);
         trashIcon.setFitHeight(24);
         trashIcon.setFitWidth(24);
-        HBox hbIm = new HBox();
-        hbIm.setPadding(new Insets(10,10,10,20));
-        hbIm.getChildren().add(trashIcon);
-        setRight(hbIm);
+        trashContainer = new HBox();
+        trashContainer.setAlignment(Pos.CENTER);
+        trashContainer.setPadding(new Insets(10));
+        setMargin(trashContainer, new Insets(8));
+        trashContainer.getChildren().add(trashIcon);
+        setRight(trashContainer);
+
+
+        trashContainer.setOnMouseEntered( event -> {
+            trashContainer.setBackground(
+                    appTheme.getcontrastLightBackground(new CornerRadii(10), null));
+        });
+
+
+        clickContainer.setOnMouseEntered( event -> {
+            clickContainer.setBackground(
+                    appTheme.getcontrastLightBackground(new CornerRadii(10), null));
+        });
+
+
+        trashContainer.setOnMouseExited(event -> trashContainer.setBackground(background));
+        clickContainer.setOnMouseExited(event -> clickContainer.setBackground(background));
 
         // drag screen
         setOnMousePressed( event -> {
@@ -64,11 +100,11 @@ public class MyTopBar extends BorderPane {
     }
 
     public void setOnTrashClickedListener(EventHandler<? super MouseEvent> value) {
-        trashIcon.setOnMouseClicked(value);
+        trashContainer.setOnMouseClicked(value);
     }
 
     public void setOnClickMeListener(EventHandler<? super MouseEvent> value){
-        clickMeText.setOnMouseClicked(value);
+        clickContainer.setOnMouseClicked(value);
     }
 
 
