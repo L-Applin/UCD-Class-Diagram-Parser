@@ -1,4 +1,4 @@
-package screenDisplay;
+package screenDisplay.components;
 
 import app.theme.AppTheme;
 import javafx.geometry.Insets;
@@ -12,8 +12,9 @@ import javafx.stage.StageStyle;
 
 public class MyAlertDialog extends Stage {
 
-    private String message;
-    private AppTheme theme;
+    protected String message;
+    protected AppTheme theme;
+    protected VBox content;
 
     public MyAlertDialog(String message, AppTheme theme) {
         this.message = message;
@@ -25,7 +26,7 @@ public class MyAlertDialog extends Stage {
         initModality(Modality.WINDOW_MODAL);
         initStyle(StageStyle.UNDECORATED);
 
-        VBox content = new VBox();
+        content = new VBox();
         content.setSpacing(200);
         content.setPadding(new Insets(100,100,100,100));
         content.setBackground(theme.getsecondaryDarkBackground());

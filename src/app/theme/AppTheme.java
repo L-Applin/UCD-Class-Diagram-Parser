@@ -19,13 +19,35 @@ public class AppTheme {
     private Font mediumFont;
     private Font classFont;
     private Color classFontColor;
+    private Color primaryLightTextColor = Color.WHITE;
+    private Color primaryDarTextColor;
 
-    public Insets getMediumPadding() {
-        return mediumPadding;
+    public Insets getMediumPadding() { return mediumPadding; }
+    public Font getMediumFont() { return mediumFont; }
+
+
+    public void setMediumPadding(Insets mediumPadding) {
+        this.mediumPadding = mediumPadding;
     }
 
-    public Font getMediumFont() {
-        return mediumFont;
+    public void setMediumFont(Font mediumFont) {
+        this.mediumFont = mediumFont;
+    }
+
+    public Color getPrimaryLightTextColor() {
+        return primaryLightTextColor;
+    }
+
+    public void setPrimaryLightTextColor(Color primaryLightTextColor) {
+        this.primaryLightTextColor = primaryLightTextColor;
+    }
+
+    public Color getPrimaryDarTextColor() {
+        return primaryDarTextColor;
+    }
+
+    public void setPrimaryDarTextColor(Color primaryDarTextColor) {
+        this.primaryDarTextColor = primaryDarTextColor;
     }
 
     public Color getPrimaryDark() {
@@ -107,6 +129,9 @@ public class AppTheme {
         this.classFont = ThemeValue.default_class_font;
         this.classFontColor = Color.web("#EEE", 1);
 
+        this.primaryLightTextColor = Color.WHITE;
+        this.primaryDarTextColor = contrastDark;
+
     }
 
     public Background getprimaryDarkBackground(){
@@ -141,6 +166,11 @@ public class AppTheme {
     public Background getcontrastLightBackground(CornerRadii radii, Insets insets){
         return new Background( new BackgroundFill(contrastLight, radii,insets));
     }
+
+    public Background getcontrastLightBackground(CornerRadii radii){
+        return new Background( new BackgroundFill(contrastLight, radii, Insets.EMPTY));
+    }
+
 
     public Background primaryRadialGradientBackground(){
         return new Background(new BackgroundFill(new RadialGradient(
