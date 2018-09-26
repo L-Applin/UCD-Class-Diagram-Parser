@@ -45,14 +45,18 @@ public class ClassListVIew extends VBox {
         umlClasses.forEach( (className, umlClass) -> {
             OverlayButton classButton = new OverlayButton(this, appTheme, className);
             classButton.setStyle(OverlayButton.ThemeStyle.CLASS);
-
+/*
             setOnMouseEntered(event -> {
+                classButton.setBackground(appTheme.getcontrastDarkBackground());
                 if (currentSelected == null || !currentSelected.equals(classButton)){
                     classButton.setBackground(appTheme.getcontrastDarkBackground());
                     currentSelected = classButton;
                     System.out.println(classButton.getText());
                 }
+
+
             });
+*/
 
             classButton.setOnMouseClicked(event -> {
                 classButtonClick(umlClass);

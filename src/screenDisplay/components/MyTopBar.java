@@ -49,6 +49,10 @@ public class MyTopBar extends BorderPane {
         OverlayButton mTrash = new OverlayButton(this, appTheme, trashIcon, 20);
         OverlayButton mExit = new OverlayButton(this, appTheme, exit);
 
+        mImport.setStyle(OverlayButton.ThemeStyle.PRIMARY);
+        mTrash.setStyle(OverlayButton.ThemeStyle.PRIMARY);
+        mExit.setStyle(OverlayButton.ThemeStyle.PRIMARY);
+
         HBox rightContainer = new HBox();
         HBox leftContainer = new HBox();
         rightContainer.getChildren().addAll(mTrash, mExit);
