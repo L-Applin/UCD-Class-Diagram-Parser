@@ -1,10 +1,7 @@
 package syntxTree;
 
 import syntxTree.expressions.Expression;
-import token.UmlAttribute;
 import token.UmlClass;
-import token.UmlOpertaion;
-import token.UmlToken;
 
 import java.util.*;
 

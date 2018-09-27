@@ -12,7 +12,7 @@ public class UmlClass extends UmlToken {
     private String name;
 
     private HashMap<String, UmlAttribute> attributes;
-    private HashMap<String, UmlOpertaion> operations;
+    private HashMap<String, UmlOperation> operations;
 
     private UmlClass superClass;
 
@@ -34,14 +34,14 @@ public class UmlClass extends UmlToken {
     }
 
     public void createOperation(String name, String type){
-        operations.put(name, new UmlOpertaion(name, type));
+        operations.put(name, new UmlOperation(name, type));
     }
 
     public void addAttributes(DataItem att){
         attributes.put(att.getIdAsString(), new UmlAttribute(att.getIdAsString(), att.getTypeAsString()));
     }
 
-    public UmlOpertaion getOperation(String methodId){
+    public UmlOperation getOperation(String methodId){
         return operations.get(methodId);
     }
 
