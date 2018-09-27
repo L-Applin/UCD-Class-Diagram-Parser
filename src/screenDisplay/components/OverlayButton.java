@@ -34,7 +34,7 @@ public class OverlayButton extends HBox {
         setAlignment(Pos.CENTER);
         setPadding(default_inset_value);
 
-        setOnMouseEntered(event -> setBackground(appTheme.getcontrastLightBackground(default_corner_radii)));
+        // setOnMouseEntered(event -> setBackground(appTheme.getcontrastLightBackground(default_corner_radii)));
         setOnMouseExited(event -> setDefaultBackground());
 
     }
@@ -46,9 +46,6 @@ public class OverlayButton extends HBox {
         textContent.setFill(appTheme.getPrimaryLightTextColor());
         setContent(textContent);
 
-        setOnMouseEntered(event -> {
-            setBackground(appTheme.getcontrastLightBackground(default_corner_radii));
-        });
 
     }
 
@@ -79,11 +76,11 @@ public class OverlayButton extends HBox {
         switch (style){
             case CLASS:
                 setPadding(class_padding);
+                setOnMouseEntered(event -> setBackground(appTheme.getcontrastDarkBackground()));
+
                 break;
             case PRIMARY:
-                setOnMouseEntered(event -> {
-                    setBackground(appTheme.getcontrastLightBackground(default_corner_radii));
-                });
+                setOnMouseEntered(event -> setBackground(appTheme.getcontrastLightBackground(default_corner_radii)));
                 break;
         }
 
