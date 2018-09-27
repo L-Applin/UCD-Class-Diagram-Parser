@@ -10,7 +10,8 @@ public class ScreenController {
     private MainDisplay screen;
 
     public ScreenController(Stage primaryStage, Application.Parameters parameters) {
-        this.primaryStage = primaryStage;  this.parameters = parameters;
+        this.primaryStage = primaryStage;
+        this.parameters = parameters;
     }
 
     public void setupMainDisplay(){

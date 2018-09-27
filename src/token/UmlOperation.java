@@ -6,13 +6,13 @@ import syntxTree.expressions.DataItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UmlOpertaion extends UmlToken {
+public class UmlOperation extends UmlToken {
 
     private String name, type;
     private List<Args> arguments;
 
 
-    public UmlOpertaion(String name, String type) {
+    public UmlOperation(String name, String type) {
         this.name = name;
         this.type = type;
         arguments = new ArrayList<>();
