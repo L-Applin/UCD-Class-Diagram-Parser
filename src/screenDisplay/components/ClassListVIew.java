@@ -1,16 +1,15 @@
 package screenDisplay.components;
 
 import app.theme.AppTheme;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import screenDisplay.components.specific.ListButton;
 import token.UmlClass;
 
 import java.util.ArrayList;
@@ -23,15 +22,21 @@ public class ClassListVIew extends VBox {
     private AppTheme appTheme;
     private List<OverlayButton> classBtnList;
 
-    private OverlayButton currentSelected;
+    private ListButton.OverlayStyle basicStyle, mouseoverStyle, clickedStyle;
+
+    private ListButton currentSelected;
 
     public ClassListVIew(Map<String, UmlClass> umlClasses, AppTheme theme) {
         this.umlClasses = umlClasses;
         this.appTheme = theme;
         classBtnList = new ArrayList<>();
+        basicStyle = new ListButton.OverlayStyle(appTheme.getsecondaryDarkBackground(), appTheme.getPrimaryLight());
+        mouseoverStyle = new ListButton.OverlayStyle(appTheme.getcontrastDarkBackground(), appTheme.getPrimaryLight());
+        clickedStyle = new ListButton.OverlayStyle(appTheme.getPrimaryLightBackground(), appTheme.getSecondaryDark());
+
     }
 
-    public VBox init(){
+    public ClassListVIew init(){
 
         // setPadding(new Insets(0,10,0,10));
         setBackground(appTheme.getsecondaryDarkBackground());
@@ -43,20 +48,10 @@ public class ClassListVIew extends VBox {
         vb.setPadding(new Insets(0));
 
         umlClasses.forEach( (className, umlClass) -> {
+
+
             OverlayButton classButton = new OverlayButton(this, appTheme, className);
             classButton.setStyle(OverlayButton.ThemeStyle.CLASS);
-/*
-            setOnMouseEntered(event -> {
-                classButton.setBackground(appTheme.getcontrastDarkBackground());
-                if (currentSelected == null || !currentSelected.equals(classButton)){
-                    classButton.setBackground(appTheme.getcontrastDarkBackground());
-                    currentSelected = classButton;
-                    System.out.println(classButton.getText());
-                }
-
-
-            });
-*/
 
             classButton.setOnMouseClicked(event -> {
                 classButtonClick(umlClass);

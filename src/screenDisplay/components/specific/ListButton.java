@@ -10,21 +10,25 @@ import screenDisplay.components.ListItem;
 /**
  * Custom button for mouseOver and clicked (selected) operation based on text content
  */
-public class TextButton extends HBox implements ListItem {
+public class ListButton extends HBox implements ListItem {
 
-    boolean isSelected;
+    private boolean isSelected;
 
     private Text content;
     private OverlayStyle basicStyle, mouseoverStyle, clickedStyle;
     private BtnAction onClickAction;
 
-    public TextButton(OverlayStyle basicStyle, OverlayStyle mouseoverStyle, OverlayStyle clickedStyle) {
+    public ListButton(OverlayStyle basicStyle, OverlayStyle mouseoverStyle, OverlayStyle clickedStyle) {
         this.basicStyle = basicStyle;
         this.mouseoverStyle = mouseoverStyle;
         this.clickedStyle = clickedStyle;
 
         setOnMouseEntered(event -> {this.setStatus(Status.MOUSEOVER);});
-        setOnMouseExited(event -> this.setStatus(Status.BASIC));
+        setOnMouseExited(event -> {
+            if (!isSelected) {
+                this.setStatus(Status.BASIC);
+            }
+        });
         setOnMouseClicked(event -> {
             this.select();
             if (onClickAction != null){
@@ -55,6 +59,7 @@ public class TextButton extends HBox implements ListItem {
     }
 
     public void select(){
+        System.out.println(content.getText() + "is selected.");
         setStatus(Status.SELECTED);
         isSelected = true;
     }
@@ -71,7 +76,7 @@ public class TextButton extends HBox implements ListItem {
     /**
      * Basic wrapper around style values for the button
      */
-    public class OverlayStyle {
+    public static class OverlayStyle {
         private Background background;
         private Color textColor;
 
@@ -105,7 +110,7 @@ public class TextButton extends HBox implements ListItem {
 
     @FunctionalInterface
     public interface BtnAction {
-        void run(TextButton btn);
+        void run(ListButton btn);
     }
 
 }

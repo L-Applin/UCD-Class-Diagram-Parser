@@ -74,7 +74,6 @@ public class MainDisplay {
 
         ClassListVIew classView = new ClassListVIew(context.getClasses(), appTheme);
         System.out.println(context.toString());
-
         rootLayout.setLeft(classView.init());
 
     }
@@ -119,8 +118,7 @@ public class MainDisplay {
 
         // thx Stack overflow : https://stackoverflow.com/questions/32534113/javafx-drag-and-drop-a-file-into-a-program
         center.setOnDragOver(event -> {
-            if (event.getGestureSource() != center
-                    && event.getDragboard().hasFiles()) {
+            if (event.getGestureSource() != center && event.getDragboard().hasFiles()) {
                 /* allow for both copying and moving, whatever user chooses */
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                 rootLayout.setBackground(appTheme.primaryRadialGradientBackground());
