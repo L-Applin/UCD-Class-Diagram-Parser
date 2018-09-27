@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list id="eb951590-90d5-4a17-a48b-11f43b90f5de" name="tmp" comment="">
+    <list id="eb951590-90d5-4a17-a48b-11f43b90f5de" name="tmp" comment="tmp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="merge jé" />
@@ -704,7 +704,14 @@
       <option name="project" value="LOCAL" />
       <updated>1537789411996</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="tmp">
+      <created>1538019278100</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1538019278101</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -792,7 +799,8 @@
     <MESSAGE value="parsing done up to Declaration" />
     <MESSAGE value="more parsing tree and parsing error handling" />
     <MESSAGE value="some Ui work" />
-    <option name="LAST_COMMIT_MESSAGE" value="some Ui work" />
+    <MESSAGE value="tmp" />
+    <option name="LAST_COMMIT_MESSAGE" value="tmp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
