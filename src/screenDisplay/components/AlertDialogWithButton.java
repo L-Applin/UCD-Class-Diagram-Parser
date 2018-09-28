@@ -7,6 +7,7 @@ public class AlertDialogWithButton extends MyAlertDialog {
 
     public AlertDialogWithButton(String message, AppTheme theme) {
         super(message, theme);
+
         HBox buttonContainer = new HBox();
         content.getChildren().add(buttonContainer);
 

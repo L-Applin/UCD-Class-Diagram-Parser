@@ -10,6 +10,7 @@ import java.util.List;
 public class UmlClass extends UmlToken {
 
     private String name;
+    public String getName(){return this.name; }
 
     private HashMap<String, UmlAttribute> attributes;
     private HashMap<String, UmlOperation> operations;
@@ -45,6 +46,10 @@ public class UmlClass extends UmlToken {
         return operations.get(methodId);
     }
 
-
+    @Override
+    public String toString() {
+        return "UmlClass{" +
+                "name='" + name + '\'' + '}';
+    }
 
 }

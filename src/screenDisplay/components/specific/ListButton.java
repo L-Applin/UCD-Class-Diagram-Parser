@@ -4,7 +4,9 @@ package screenDisplay.components.specific;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import screenDisplay.components.BtnListView;
 import screenDisplay.components.ListItem;
 
 /**
@@ -15,13 +17,22 @@ public class ListButton extends HBox implements ListItem {
     private boolean isSelected;
 
     private Text content;
+    private Font font;
+    public void setFont(Font font) { this.font = font; }
+
+    /**
+     * Overlay style for the buttons created
+     */
     private OverlayStyle basicStyle, mouseoverStyle, clickedStyle;
     private BtnAction onClickAction;
+    private BtnListView listView;
 
     public ListButton(OverlayStyle basicStyle, OverlayStyle mouseoverStyle, OverlayStyle clickedStyle) {
         this.basicStyle = basicStyle;
         this.mouseoverStyle = mouseoverStyle;
         this.clickedStyle = clickedStyle;
+
+        setBackground(basicStyle.background);
 
         setOnMouseEntered(event -> {this.setStatus(Status.MOUSEOVER);});
         setOnMouseExited(event -> {
@@ -35,11 +46,15 @@ public class ListButton extends HBox implements ListItem {
                 onClickAction.run(this);
             }
         });
+
     }
 
     public void setText(String txt){
         content = new Text(txt);
         content.setFill(basicStyle.textColor);
+        content.setFont(Font.font(18));
+        getChildren().add(content);
+
     }
 
     public void setStatus(Status status){
@@ -101,6 +116,10 @@ public class ListButton extends HBox implements ListItem {
             this.textColor = textColor;
         }
 
+    }
+
+    public void registerTo(BtnListView listView){
+        this.listView = listView;
     }
 
     /**

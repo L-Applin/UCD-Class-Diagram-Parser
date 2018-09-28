@@ -23,6 +23,7 @@ import screenDisplay.components.MyAlertDialog;
 import screenDisplay.components.MyTopBar;
 import syntxTree.UmlContext;
 import syntxTree.exceptions.UcdParsingException;
+import token.UmlClass;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,7 +72,7 @@ public class MainDisplay {
 
     public void setupUcdDisplay(UmlContext context){
 
-        ClassListVIew classView = new ClassListVIew(context.getClasses(), appTheme);
+        ClassListVIew classView = new ClassListVIew(context.getClasses(), appTheme, this);
         System.out.println(context.toString());
         rootLayout.setLeft(classView.init());
 
@@ -118,7 +119,6 @@ public class MainDisplay {
         // thx Stack overflow : https://stackoverflow.com/questions/32534113/javafx-drag-and-drop-a-file-into-a-program
         center.setOnDragOver(event -> {
             if (event.getGestureSource() != center && event.getDragboard().hasFiles()) {
-                /* allow for both copying and moving, whatever user chooses */
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                 rootLayout.setBackground(appTheme.primaryRadialGradientBackground());
             }
@@ -170,4 +170,7 @@ public class MainDisplay {
 
     }
 
+    public void updateClassSelected(UmlClass clazz){
+        System.out.println("CLICKED ON " + clazz.toString());
+    }
 }
