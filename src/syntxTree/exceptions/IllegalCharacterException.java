@@ -1,7 +1,5 @@
 package syntxTree.exceptions;
 
-import sample.Main;
-
 public class IllegalCharacterException extends UcdParsingException {
     private String content, illegalChar, filePath;
     public IllegalCharacterException(String content, String illegalChar){

@@ -36,9 +36,6 @@ public class MainDisplay {
     private AppTheme appTheme;
     private BorderPane rootLayout;
 
-    private VBox paths;
-    public VBox getPaths() { return paths; }
-
     public MainDisplay(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.appTheme = new AppTheme();
@@ -54,6 +51,7 @@ public class MainDisplay {
         rootLayout = new BorderPane();
 
         rootLayout.setBackground(appTheme.getprimaryDarkBackground());
+        rootLayout.setStyle("-fx-border-color:black;"); // TODO: change to theme color
 
         MyTopBar topBar = new MyTopBar(appTheme, this);
         rootLayout.setTop(topBar);
@@ -61,6 +59,7 @@ public class MainDisplay {
         Node center = getOnOpenCenterView();
         rootLayout.setCenter(center);
 
+        // TODO: set dynamic width/height ?
         Scene scene = new Scene(rootLayout, 1024, 768);
         primaryStage.setTitle(MyApp.APP_NAME);
         primaryStage.setScene(scene);
