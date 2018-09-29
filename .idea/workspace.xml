@@ -2,69 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/stylesheet.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/app/ShortcutController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassInfoListView.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlBtnListView.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlView.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/token/UmlAggregation.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/token/UmlAssociation.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/parser-tp1.xml" afterPath="$PROJECT_DIR$/parser-tp1.xml" />
-      <change beforePath="$PROJECT_DIR$/res/ligue.ucd" afterPath="$PROJECT_DIR$/res/ligue.ucd" />
-      <change beforePath="$PROJECT_DIR$/src/app/MyApp.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/theme/AppTheme.java" afterPath="$PROJECT_DIR$/src/app/theme/AppTheme.java" />
-      <change beforePath="$PROJECT_DIR$/src/app/theme/MySeperator.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/app/theme/ThemeValue.java" afterPath="$PROJECT_DIR$/src/app/theme/ThemeValue.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/Delims.java" afterPath="$PROJECT_DIR$/src/parsing/Delims.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/FileController.java" afterPath="$PROJECT_DIR$/src/parsing/FileController.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/UcdFileReader.java" afterPath="$PROJECT_DIR$/src/parsing/UcdFileReader.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/UcdParser.java" afterPath="$PROJECT_DIR$/src/parsing/UcdParser.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/AppController.java" afterPath="$PROJECT_DIR$/src/app/AppController.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/app/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" afterPath="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/ScreenController.java" afterPath="$PROJECT_DIR$/src/screenDisplay/ScreenController.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/AlertDialogWithButton.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/AlertDialogWithButton.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/ClassListVIew.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/ListItem.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/ListItem.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/MyTopBar.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MyTopBar.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/OverlayButton.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/OverlayButton.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/SectionTitle.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/SectionTitle.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/specific/ExitAlertDialog.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ExitAlertDialog.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/specific/ListButton.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/ListButton.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/UmlContext.java" afterPath="$PROJECT_DIR$/src/syntxTree/UmlContext.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/exceptions/ExceptionCheckProvider.java" afterPath="$PROJECT_DIR$/src/syntxTree/exceptions/ExceptionCheckProvider.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Aggregation.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Aggregation.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/ArgDeclaration.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/ArgDeclaration.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/ArgList.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/ArgList.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Association.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Association.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/AttributeList.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/AttributeList.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/ClassContent.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/ClassContent.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/ClassDeclaration.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/ClassDeclaration.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/DataItem.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/DataItem.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Declaration.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Declaration.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/DeclarationList.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/DeclarationList.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Expression.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Expression.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Identifier.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Identifier.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Model.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Model.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Operation.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Operation.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/OperationList.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/OperationList.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Role.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Role.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Roles.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Roles.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/SubClassNames.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/SubClassNames.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/TwoRole.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/TwoRole.java" />
-      <change beforePath="$PROJECT_DIR$/src/syntxTree/expressions/Type.java" afterPath="$PROJECT_DIR$/src/syntxTree/expressions/Type.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/Displayable.java" afterPath="$PROJECT_DIR$/src/token/Displayable.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlAttribute.java" afterPath="$PROJECT_DIR$/src/token/UmlAttribute.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlClass.java" afterPath="$PROJECT_DIR$/src/token/UmlClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlOperation.java" afterPath="$PROJECT_DIR$/src/token/UmlOperation.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlToken.java" afterPath="$PROJECT_DIR$/src/token/UmlToken.java" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Utils.java" afterPath="$PROJECT_DIR$/src/utils/Utils.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -766,7 +704,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538154921279</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Merge branch 'master' of https://github.com/L-Applin/parser-tp1&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1538260470336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1538260470336</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -954,8 +899,8 @@
         <state relative-caret-position="464">
           <caret line="975" column="0" lean-forward="true" selection-start-line="975" selection-start-column="0" selection-end-line="975" selection-end-column="0" />
           <folding>
-            <element signature="e#17246#17247#0" expanded="true" />
-            <element signature="e#17308#17309#0" expanded="true" />
+            <element signature="e#17246#17247#0" expanded="false" />
+            <element signature="e#17308#17309#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1010,8 +955,8 @@
         <state relative-caret-position="258">
           <caret line="114" column="28" lean-forward="true" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
           <folding>
-            <element signature="e#3008#3009#0" expanded="true" />
-            <element signature="e#3055#3056#0" expanded="true" />
+            <element signature="e#3008#3009#0" expanded="false" />
+            <element signature="e#3055#3056#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1053,7 +998,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#679#0" expanded="true" />
+            <element signature="e#0#679#0" expanded="false" />
           </folding>
         </state>
       </provider>
