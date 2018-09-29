@@ -1,4 +1,4 @@
-package screenDisplay.components;
+package screenDisplay.components.umlComponents;
 
 import app.theme.AppTheme;
 import javafx.geometry.Insets;
@@ -7,13 +7,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import parsing.FileController;
-import sample.AppController;
 import screenDisplay.MainDisplay;
-
-import java.io.File;
+import screenDisplay.components.OverlayButton;
 
 public class MyTopBar extends BorderPane {
 
@@ -49,9 +46,9 @@ public class MyTopBar extends BorderPane {
         OverlayButton mTrash = new OverlayButton(this, appTheme, trashIcon, 20);
         OverlayButton mExit = new OverlayButton(this, appTheme, exit);
 
-        mImport.setStyle(OverlayButton.ThemeStyle.PRIMARY);
-        mTrash.setStyle(OverlayButton.ThemeStyle.PRIMARY);
-        mExit.setStyle(OverlayButton.ThemeStyle.PRIMARY);
+        mImport.setStyle(OverlayButton.ThemeStyle.ROUNDED);
+        mTrash.setStyle(OverlayButton.ThemeStyle.ROUNDED);
+        mExit.setStyle(OverlayButton.ThemeStyle.ROUNDED);
 
         HBox rightContainer = new HBox();
         HBox leftContainer = new HBox();
@@ -92,8 +89,7 @@ public class MyTopBar extends BorderPane {
             System.exit(0);
         });
 
-
-
+        // setEffect(appTheme.elevation(appTheme.getContrastDark()));
     }
 
 

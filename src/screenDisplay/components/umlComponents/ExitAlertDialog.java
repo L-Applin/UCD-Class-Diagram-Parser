@@ -1,4 +1,4 @@
-package screenDisplay.components.specific;
+package screenDisplay.components.umlComponents;
 
 import app.theme.AppTheme;
 import screenDisplay.components.AlertDialogWithButton;

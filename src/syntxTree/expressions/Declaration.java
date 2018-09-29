@@ -15,6 +15,9 @@ import syntxTree.exceptions.IncompatibleTagException;
  */
 public class Declaration implements Expression {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
 

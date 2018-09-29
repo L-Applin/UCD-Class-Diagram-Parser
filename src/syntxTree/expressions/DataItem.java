@@ -16,11 +16,9 @@ public class DataItem implements Expression {
     public Identifier getId() {
         return id;
     }
-
     public String getIdAsString() {
         return id.toString();
     }
-
     public void setId(Identifier id) {
         this.id = id;
     }
@@ -28,20 +26,24 @@ public class DataItem implements Expression {
     public Expression getType() {
         return type;
     }
-
     public String getTypeAsString() {
         return type.toString();
     }
-
-
     public void setType(Expression type) {
         this.type = type;
     }
 
+    /**
+     * Represent a \<dataItem\> tag from the ucd Grammar syntax
+     * @param parentId
+     */
     public DataItem(Identifier parentId) {
         this.parentId = parentId;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataItem tokenize(final UmlContext ctx, String content) {
         // todo : error handling
@@ -49,7 +51,6 @@ public class DataItem implements Expression {
         String[] splits = parser.splitDataItem(parentId.getValue());
         id = new Identifier(splits[0]);
         type = new Type(id).tokenize(ctx, splits[1]);
-        Log.all("\t\t\t"+"id = ", id.getValue() + " : " + "type = ",type.toString() ); // todo : remove (debug)
         return this;
     }
 

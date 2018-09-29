@@ -15,6 +15,10 @@ public class ArgDeclaration extends Declaration {
         this.methodId = methodId; this.classId = classId;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
         Utils.Log.all("\t\targs =");

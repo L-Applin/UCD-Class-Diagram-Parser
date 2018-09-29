@@ -9,6 +9,4 @@ public class Delims {
     public static final String CUSTOM_LIST_SEP = "~";
     public static final String TYPE_SEPARATOR = ":";
 
-
-
 }

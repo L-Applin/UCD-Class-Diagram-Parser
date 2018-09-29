@@ -15,9 +15,12 @@ public class Association implements Expression {
         this.id = new Identifier(id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        Utils.Log.all("\nAssocitaion :", id.getValue());
         twoRole = new TwoRole(id).tokenize(ctx, content);
         return this;
 

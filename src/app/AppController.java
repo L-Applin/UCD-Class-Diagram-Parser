@@ -1,4 +1,4 @@
-package sample;
+package app;
 
 import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
@@ -29,10 +29,17 @@ public class AppController {
     public UmlContext parseUcdFile(String doc){
         UmlContext ctx = new UmlContext();
         SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
+        ctx.setTree(tree);
         return ctx;
 
     }
 
+    /**
+     * Called to start parsing the ucd file and update the display
+     *
+     * @param screen the MainDisplay of the application
+     * @param ucdFile the FIle reference to the .ucd file.
+     */
     public void lauchUcdActivity(MainDisplay screen, File ucdFile) {
 
         try {
@@ -43,6 +50,8 @@ public class AppController {
             screen.errorScreen(ioe);
         } catch (UcdParsingException ucde) {
             screen.errorScreen(ucde);
+        } catch (NullPointerException npe) {
+            screen.errorScreen(npe);
         }
 
     }

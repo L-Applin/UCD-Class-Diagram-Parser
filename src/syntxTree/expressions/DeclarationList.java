@@ -2,6 +2,7 @@ package syntxTree.expressions;
 
 import parsing.UcdParser;
 import syntxTree.UmlContext;
+import utils.Utils;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class DeclarationList implements Expression {
         this.decs = decs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
 

@@ -21,7 +21,7 @@ public class Model implements Expression {
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
 
-        // todo : manage if there is multiple MODEL_TAG declaration in the same file
+        // todo (OPTIONNAL) : manage if there is multiple MODEL_TAG declaration in the same file ?
         UcdParser parser = new UcdParser(content);
         IdentifierEntry modelId = parser.convertIdEntry(GrammarModel.MODEL_TAG);
 

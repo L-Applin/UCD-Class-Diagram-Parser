@@ -15,7 +15,6 @@ public class Identifier implements Expression {
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        //todo: complete
         return this;
 
     }

@@ -1,5 +1,6 @@
 package parsing;
 
+import syntxTree.UmlContext;
 import syntxTree.entries.DeclarationEntry;
 import syntxTree.entries.IdentifierEntry;
 import syntxTree.entries.RoleEntry;
@@ -13,15 +14,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static parsing.Delims.CUSTOM_LIST_SEP;
+import static parsing.Delims.LIST_SEPERATOR;
+import static parsing.Delims.SPACE;
 
+/**
+ * Helper classe that provides specific method for handling .ucd file.
+ */
 public class UcdParser implements ExceptionCheckProvider {
 
+    /**
+     * The string content that the parser will use to get, extract, convert, split or remove content from.
+     */
     private String txt;
 
     public UcdParser(String txt){
         this.txt = txt;
     }
-
+    public String getTxt() { return txt; }
+    public UcdParser setTxt(String txt) { this.txt = txt; return this; }
 
     /**
      * find the fisrt group of text that is between two identifier (tokens).
@@ -82,7 +92,7 @@ public class UcdParser implements ExceptionCheckProvider {
      * @return
      */
     public RoleEntry convertRolesEntry(String associationId){
-        String[] entries = txt.split(Delims.SPACE);
+        String[] entries = txt.split(SPACE);
         if (entries.length != 3){
             throw new MalformedDeclarationException("Malformed role \'" + txt + "\' in association \'" + associationId + "\'");
         }
@@ -109,24 +119,33 @@ public class UcdParser implements ExceptionCheckProvider {
         for (String dec : decs){
             match = pattern.matcher(dec);
             if (match.find()){
-                result.add(match.replaceAll(""));
+                dec = match.replaceAll("");
             }
+            if (!dec.equals("")) {
+                result.add(dec);
+            }
+
         }
         return result;
     }
 
-
+    /**
+     * Splits text base on {@link Delims#LIST_SEPERATOR} separator and ignores tokens in bwtweene parenthesis.<br></br>
+     * ex. : \tnombre_saisons() : Integer, change_statut(st : String, i : int) : void <br></br>
+     * will only split in two part :  <ul><li>nombre_saisons() : Integer</li><li>change_statut(st : String, i : int) : void</li></ul>
+     * @return the list of all split elements
+     */
     public List<String> splitList(){
 
         // only split if not in parenthesis !
 
-        removeSpaces();
+        // removeSpaces();
 
         String regExCommaInParent = "\\((.*?)\\)";
         final Matcher matcher = Pattern.compile(regExCommaInParent).matcher(txt);
         while (matcher.find()){
             if (matcher.group(1).contains(",")){
-                final Matcher commaMatcher = Pattern.compile(",").matcher(matcher.group(1));
+                final Matcher commaMatcher = Pattern.compile(LIST_SEPERATOR).matcher(matcher.group(1));
                 String customSeparatedList = commaMatcher.replaceAll(CUSTOM_LIST_SEP);
                 // Log.test(customSeparatedList);
 
@@ -141,13 +160,10 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
 
-    private void removeSpaces(){
-        final Matcher matcher = Pattern.compile(" ").matcher(txt);
-        txt = matcher.replaceAll("");
-    }
-
     /**
      * Extract the string representing the Attribute lis from a class content string.
+     * Used by the {@link syntxTree.expressions.ClassContent#tokenize(UmlContext, String)}
+     * to get the classes attributes.
      *
      * @param classId name of the class
      * @param content it's content
@@ -169,6 +185,8 @@ public class UcdParser implements ExceptionCheckProvider {
 
     /**
      * Extract the string representing the Operation list from a class content string.
+     * Used by the {@link syntxTree.expressions.ClassContent#tokenize(UmlContext, String)}
+     * to get the classes methods.
      *
      * @param classId name of the class
      * @param content it's content
@@ -220,18 +238,10 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
     public String extractcParts(){
-        // todo : chack valid form if not already?
+        // todo : chack valid form if not already ?
         int index = txt.indexOf(GrammarModel.PARTS_TAG);
         String result =  txt.substring(index + GrammarModel.PARTS_TAG.length(), txt.length());
         return removeNewLines(result);
-    }
-
-
-    public String getOperationId(String classId){
-        removeSpaces();
-        checkValidOperation(txt, classId);
-
-        return txt.substring(0, txt.indexOf("("));
     }
 
 
@@ -248,7 +258,7 @@ public class UcdParser implements ExceptionCheckProvider {
         checkValidRole(txt, association);
 
         String roles = txt.split(Delims.NEW_LINE_TOKEN)[1];
-        String[] twoRoles = roles.split(Delims.LIST_SEPERATOR);
+        String[] twoRoles = roles.split(LIST_SEPERATOR);
         return new String[]{twoRoles[0].trim(), twoRoles[1].trim()};
 
     }
@@ -264,16 +274,40 @@ public class UcdParser implements ExceptionCheckProvider {
 
     public static String removeNewLines(String txt){
         String regEx = "("+Delims.NEW_LINE_TOKEN+")+";
-        final Matcher matcher = Pattern.compile(regEx).matcher(txt);
-        return matcher.replaceAll("");
+        return Pattern.compile(regEx).matcher(txt).replaceAll("");
     }
 
 
     public static String removeSpaces(String txt){
-        final Matcher matcher = Pattern.compile(" ").matcher(txt);
-        return matcher.replaceAll("");
+        String regEx = " ";
+        return Pattern.compile(regEx).matcher(txt).replaceAll("");
     }
 
 
+
+    public String getOperationId(String classId){
+        removeSpaces();
+        checkValidOperation(txt, classId);
+
+        return txt.substring(0, txt.indexOf("("));
+    }
+
+
+    public String replaceNewLineToken(){
+        return Pattern.compile(Delims.NEW_LINE_TOKEN).matcher(txt).replaceAll("\n");
+    }
+
+    public String replaceCustomListSeperator(){
+        return Pattern.compile(Delims.CUSTOM_LIST_SEP).matcher(txt).replaceAll(", ");
+    }
+
+
+    /**
+     * WARNING : Modifies the {@link UcdParser#txt} attribute by removing all {@link Delims#SPACE} tag from it.
+     * Use with caution .
+     */
+    private void removeSpaces(){
+        txt = Pattern.compile(SPACE).matcher(txt).replaceAll("");
+    }
 
 }

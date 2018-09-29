@@ -2,6 +2,9 @@ package syntxTree.expressions;
 
 import parsing.UcdParser;
 import syntxTree.UmlContext;
+import token.UmlAssociation;
+import token.UmlClass;
+import utils.Utils;
 
 /**
  * <two_roles> ::= <role> “,” <role>
@@ -22,6 +25,18 @@ public class TwoRole implements Expression {
         String[] roles = parser.splitTwoRoles(associationId.getValue());
         role1 = new Role(associationId).tokenize(ctx, roles[0]);
         role2 = new Role(associationId).tokenize(ctx, roles[1]);
+
+
+
+        UmlClass first = ctx.getUmlClass(((Role) role1).getClassId().getValue());
+        UmlClass second = ctx.getUmlClass(((Role) role2).getClassId().getValue());
+        UmlAssociation umlAssociation =
+                new UmlAssociation(associationId.toString(),
+                        first, ((Role) role1).getMultiplicity().toString(),
+                        second, ((Role) role2).getMultiplicity().toString(),
+                        content);
+        first.getAssociations().put(associationId.getValue(), umlAssociation);
+        second.getAssociations().put(associationId.getValue(), umlAssociation);
 
         return this;
 

@@ -18,16 +18,19 @@ public class AttributeList implements Expression {
         this.attributes = attributes; this.classId = classId;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        Log.all("\tAttributes"); // todo : remove (debug)
         UcdParser parser = new UcdParser(content);
         List<String> stringAttributes = parser.splitList();
         stringAttributes.forEach(attr -> {
             if (attr != null && attr.length() > 0) {
                 DataItem attributeData = new DataItem(classId).tokenize(ctx, attr);
                 attributes.add(attributeData);
-                ctx.getUmlClass(classId.getValue()).addAttributes(attributeData);
+                ctx.getUmlClass(classId.getValue()).addAttributes(attributeData, content);
             }
         });
         return this;

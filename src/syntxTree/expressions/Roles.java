@@ -10,6 +10,7 @@ import java.util.List;
 public class Roles implements Expression {
 
     private List<Expression> roleList;
+    public List<Expression> getRoleList() { return roleList; }
 
     public Roles() {
         this.roleList = new ArrayList<>();

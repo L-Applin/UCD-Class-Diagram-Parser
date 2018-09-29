@@ -59,5 +59,15 @@ public class Utils {
         return false;
     }
 
+    public static boolean containsAny(String txt, String... illegal){
+        for (String c: illegal){
+            if (txt.contains(c)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
 }

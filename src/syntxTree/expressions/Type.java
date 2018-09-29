@@ -19,7 +19,6 @@ public class Type implements Expression {
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        // todo : check for illegal character in identifier
         UcdParser parser = new UcdParser(content);
         parser.checkValidType(content, parentId.getValue());
         this.id = new Identifier(content);

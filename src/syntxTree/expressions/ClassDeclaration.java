@@ -17,10 +17,13 @@ public class ClassDeclaration extends Declaration implements ExceptionCheckProvi
         this.id = new Identifier(id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
         checkClassContent(id.getValue(), content); // from ExceptionCheckProvider interface
-        ctx.createClass(id.toString());
+        ctx.createClass(id.toString(), content);
         classContent = new ClassContent(id).tokenize(ctx, content);
         ctx.put(id.toString(), classContent);
         return this;

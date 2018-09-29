@@ -22,7 +22,6 @@ public class OperationList implements Expression {
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        Log.all("\tOperations"); // todo : remove (debug)
         UcdParser parser = new UcdParser(content);
         List<String> opStringList = parser.splitList();
         opStringList.forEach( op -> {

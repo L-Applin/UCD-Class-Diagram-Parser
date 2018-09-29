@@ -2,6 +2,7 @@ package syntxTree.expressions;
 
 import parsing.UcdParser;
 import syntxTree.UmlContext;
+import token.UmlOperation;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -14,6 +15,10 @@ public class ArgList implements Expression {
 
     private Identifier methodId, classId;
     private List<Expression> dataItems;
+
+    /**
+     * {@inheritDoc}
+     */
 
     public ArgList(Identifier methodId, Identifier classId) {
         this.methodId = methodId; this.classId = classId;
@@ -28,9 +33,10 @@ public class ArgList implements Expression {
             if (arg != null && arg.length() > 0){
                 DataItem item = new DataItem(methodId).tokenize(ctx, arg);
                 dataItems.add(item);
-                ctx.getUmlClass(classId.getValue()).getOperation(methodId.getValue()).addArgument(item);
+                ((UmlOperation) ctx.getUmlClass(classId.getValue()).getOperation(methodId.getValue())).addArgument(item);
             }
         });
+
         return this;
     }
 

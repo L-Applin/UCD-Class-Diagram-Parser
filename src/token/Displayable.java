@@ -1,7 +1,9 @@
 package token;
 
-import javafx.scene.text.Text;
+import screenDisplay.ScreenController;
 
 public interface Displayable {
-    Text display();
+    String display();
+    void updateScreen(ScreenController controller);
+
 }

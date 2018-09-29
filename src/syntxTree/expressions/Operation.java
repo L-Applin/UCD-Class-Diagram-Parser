@@ -26,7 +26,7 @@ public class Operation implements Expression {
         type = new Type(methodId).tokenize(ctx, parser.extractType(content));
         Log.all("\t\tmethodId =", methodId.getValue(), ": type =", type.toString());
 
-        ctx.getUmlClass(classId.getValue()).createOperation(methodId.getValue(), type.toString());
+        ctx.getUmlClass(classId.getValue()).createOperation(methodId.getValue(), type.toString(), content);
 
         String extractedArs = parser.extractArgList(methodId.getValue(), classId.getValue());
         argDeclaration = new ArgDeclaration(methodId, classId).tokenize(ctx, extractedArs);

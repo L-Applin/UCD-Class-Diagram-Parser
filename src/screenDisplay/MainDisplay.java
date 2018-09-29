@@ -1,41 +1,52 @@
 package screenDisplay;
 
-import app.MyApp;
+import app.ShortcutController;
 import app.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import sample.AppController;
-import screenDisplay.components.ClassListVIew;
+import parsing.FileController;
+import app.AppController;
+import app.Main;
+import screenDisplay.components.umlComponents.ClassListView;
+import screenDisplay.components.umlComponents.MainCenterClassInfo;
 import screenDisplay.components.MyAlertDialog;
-import screenDisplay.components.MyTopBar;
+import screenDisplay.components.umlComponents.MyTopBar;
 import syntxTree.UmlContext;
 import syntxTree.exceptions.UcdParsingException;
 import token.UmlClass;
+import token.UmlToken;
+import utils.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class MainDisplay {
+public class MainDisplay extends BorderPane {
+
+    public static final String ATTRIBUTES_TITLE = "Atributes";
+    public static final String OPERATIONS_TITLE = "Operations";
+    public static final String SUBCLASS_TITLE = "Subclasses";
+    public static final String ASSO_INTRG_TITLE = "Relation/Aggregation";
+    public static final String DETAILS_TITLE = "Details";
 
     private Stage primaryStage;
     public Stage getPrimaryStage() { return primaryStage; }
 
     private AppTheme appTheme;
-    private BorderPane rootLayout;
+    public AppTheme getAppTheme() { return appTheme; }
+
+    private ClassListView classView;
+    private MainCenterClassInfo centerView;
 
     public MainDisplay(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -43,45 +54,61 @@ public class MainDisplay {
     }
 
     /**
-     * Setup main screen
+     * Setup main screen before file is imported
      */
     public void init(){
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-        rootLayout = new BorderPane();
+        // rootLayout = new BorderPane();
 
-        rootLayout.setBackground(appTheme.getprimaryDarkBackground());
-        rootLayout.setStyle("-fx-border-color:black;"); // TODO: change to theme color
+        setBackground(appTheme.getprimaryDarkBackground());
 
         MyTopBar topBar = new MyTopBar(appTheme, this);
-        rootLayout.setTop(topBar);
+        setTop(topBar);
 
         Node center = getOnOpenCenterView();
-        rootLayout.setCenter(center);
+        setCenter(center);
 
-        // TODO: set dynamic width/height ?
-        Scene scene = new Scene(rootLayout, 1024, 768);
-        primaryStage.setTitle(MyApp.APP_NAME);
+        Scene scene = new Scene(this, 1024, 768);
+        scene.setFill(Color.TRANSPARENT);
+        scene.getStylesheets().add("stylesheet.css");
+
+        primaryStage.setTitle(Main.APP_NAME);
         primaryStage.setScene(scene);
+
+        // setup shortcut
+        scene.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (ShortcutController.META_0.match(event)) {
+                new FileController().openUcdFIleFromSystemExplorer(this);
+            }
+        });
+
+        scene.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            if (ShortcutController.ESC.match(event)) {
+                System.exit(1);
+            }
+        });
 
         primaryStage.show();
 
     }
 
-
+    /**
+     * Setup main display once the éucd file is loaded
+     * @param context the UmlContext of the parsed file.
+     */
     public void setupUcdDisplay(UmlContext context){
 
-        ClassListVIew classView = new ClassListVIew(context.getClasses(), appTheme, this);
-        System.out.println(context.toString());
-        rootLayout.setLeft(classView.init());
+        classView = new ClassListView(context, this);
+        setLeft(classView.init());
 
     }
 
 
     public void errorScreen(IOException ioe){
         MyAlertDialog dialog = new MyAlertDialog(ioe.getMessage(), appTheme);
-        rootLayout.setOnMousePressed( mousePressedEvent -> {
+        setOnMousePressed( mousePressedEvent -> {
             if (dialog != null && dialog.isShowing()){
                 dialog.close();
             }
@@ -92,13 +119,24 @@ public class MainDisplay {
 
     public void errorScreen(UcdParsingException ucde){
         MyAlertDialog dialog = new MyAlertDialog(ucde.getMessage(), appTheme);
-        rootLayout.setOnMousePressed( mousePressedEvent -> {
+        setOnMousePressed( mousePressedEvent -> {
             if (dialog != null && dialog.isShowing()){
                 dialog.close();
             }
         });
         dialog.make(primaryStage).show();
     }
+
+    public void errorScreen(NullPointerException npe){
+        MyAlertDialog dialog = new MyAlertDialog(npe.getMessage(), appTheme);
+        setOnMousePressed( mousePressedEvent -> {
+            if (dialog != null && dialog.isShowing()){
+                dialog.close();
+            }
+        });
+        dialog.make(primaryStage).show();
+    }
+
 
 
 
@@ -120,12 +158,12 @@ public class MainDisplay {
         center.setOnDragOver(event -> {
             if (event.getGestureSource() != center && event.getDragboard().hasFiles()) {
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                rootLayout.setBackground(appTheme.primaryRadialGradientBackground());
+                setBackground(appTheme.primaryRadialGradientBackground());
             }
             event.consume();
         });
 
-        center.setOnDragExited( event -> rootLayout.setBackground(appTheme.getprimaryDarkBackground()));
+        center.setOnDragExited( event -> setBackground(appTheme.getprimaryDarkBackground()));
 
         center.setOnDragDropped( event -> {
             Dragboard db = event.getDragboard();
@@ -136,7 +174,7 @@ public class MainDisplay {
 
                     MyAlertDialog dialog = new MyAlertDialog("Only one file is supported", appTheme);
                     dialog.make(primaryStage).show();
-                    rootLayout.setOnMousePressed( mousePressedEvent -> {
+                    setOnMousePressed( mousePressedEvent -> {
                         if (dialog != null && dialog.isShowing()){
                             dialog.close();
                         }
@@ -162,15 +200,25 @@ public class MainDisplay {
     }
 
     public void resetLayout(){
-        rootLayout.setCenter(null);
-        rootLayout.setLeft(null);
-        rootLayout.setBottom(null);
-        rootLayout.setRight(null);
-        rootLayout.setCenter(getOnOpenCenterView());
+        setCenter(null);
+        setLeft(null);
+        setBottom(null);
+        setRight(null);
+        setCenter(getOnOpenCenterView());
 
     }
 
     public void updateClassSelected(UmlClass clazz){
-        System.out.println("CLICKED ON " + clazz.toString());
+        centerView = new MainCenterClassInfo(clazz, appTheme, this);
+        setCenter(centerView.init());
+        classView.forceClick(clazz.getName());
+        Utils.Log.test("CLICKED ON", clazz.toString());
+
     }
+
+    public void updateTokenClicked(UmlToken token){
+        centerView.resetButtons();
+        centerView.updateDetails(token);
+    }
+
 }

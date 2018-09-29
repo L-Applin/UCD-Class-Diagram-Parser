@@ -1,7 +1,9 @@
 package syntxTree;
 
 import syntxTree.expressions.Expression;
+import token.Displayable;
 import token.UmlClass;
+import token.UmlToken;
 
 import java.util.*;
 
@@ -23,8 +25,15 @@ public class UmlContext implements Map<String, Expression> {
     /**
      * All UmlClasses that were parsed represented in a more usable way for display
      */
-    private Map<String, UmlClass> classes;
-    public Map<String, UmlClass> getClasses() { return classes; }
+    private Map<String, UmlToken> classes;
+    public Map<String, UmlToken> getClasses() { return classes; }
+
+    /**
+     * The original syntax tree containing the parsed element
+     */
+    private SyntaxTree tree;
+    public SyntaxTree getTree() { return tree; }
+    public void setTree(SyntaxTree tree) { this.tree = tree; }
 
     public UmlContext(Map<String, Expression> map){
         this.tokens = map;
@@ -37,21 +46,21 @@ public class UmlContext implements Map<String, Expression> {
     }
 
     public UmlClass getUmlClass(String id){
-        return classes.get(id);
+        return (UmlClass) classes.get(id);
     }
 
-    public void createClass(String id){
-        classes.put(id, new UmlClass(id));
+    public void createClass(String id, String content){
+        classes.put(id, new UmlClass(id, content));
     }
 
-    @Override
-    public String toString() {
-        return "UmlContext{" +
-                "modelId='" + modelId + '\'' +
-                ", tokens=" + tokens +
-                ", classes=" + classes +
-                '}';
+
+    public void initializeSubclasses(){
+        classes.forEach((className, umlClass) ->{
+
+        });
     }
+
+
 
     // MAP IMPLEMENTATION :)
     @Override

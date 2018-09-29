@@ -1,8 +1,7 @@
 package parsing;
 
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import sample.AppController;
+import app.AppController;
 import screenDisplay.MainDisplay;
 
 import java.io.File;

@@ -31,7 +31,7 @@
         <jar destfile="release/tp1.jar" update="true">
             <fileset dir="release/classes" includes="**/*.class"/>
             <manifest>
-                <attribute name="Main-Class" value="sample.Main"/>
+                <attribute name="Main-Class" value="app.Main"/>
             </manifest>
         </jar>
     </target>
