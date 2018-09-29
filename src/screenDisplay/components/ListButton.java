@@ -1,8 +1,7 @@
 package screenDisplay.components;
 
 
-import app.theme.AppTheme;
-import app.theme.ThemeValue;
+import app.theme.DefaultThemeValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -10,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import utils.Utils;
 
 /**
  * Custom button for mouseOver and clicked (selected) operation based on text content
@@ -74,7 +72,7 @@ public class ListButton extends HBox implements ListItem {
     public void setText(String txt){
         content = new Text(txt);
         content.setFill(basicStyle.textColor);
-        content.setFont(Font.font(ThemeValue.font_weight));
+        content.setFont(Font.font(DefaultThemeValue.font_weight));
         getChildren().add(content);
     }
 

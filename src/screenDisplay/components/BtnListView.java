@@ -16,6 +16,8 @@ public abstract class BtnListView extends VBox implements UmlView {
     public void setCurrentSelected(ListButton btn){ this.currentSelected = btn; }
 
     protected List<ListButton> btnList;
+    public List<ListButton> getBtnList() { return btnList; }
+
     protected ScrollPane container;
 
     protected Insets button_padding;
@@ -53,6 +55,7 @@ public abstract class BtnListView extends VBox implements UmlView {
         });
     }
 
+    @SuppressWarnings("unchecked")
     public abstract BtnListView init();
 
     /**

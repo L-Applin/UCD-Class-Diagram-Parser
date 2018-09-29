@@ -33,6 +33,7 @@ public class MainCenterClassInfo extends GridPane implements UmlView{
     }
 
 
+    @SuppressWarnings("unchecked")
     public MainCenterClassInfo init(){
 
         setPadding(center_padding);

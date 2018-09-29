@@ -39,7 +39,6 @@ public class MyTopBar extends BorderPane {
         setPadding(new Insets(0,0,0,0));
         setBottom(new Separator());
 
-
         trashIcon = new ImageView(trash_url);
 
         OverlayButton mImport = new OverlayButton(this, appTheme, click_me);

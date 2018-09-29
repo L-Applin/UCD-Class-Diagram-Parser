@@ -12,11 +12,13 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 
+import static app.theme.DefaultThemeValue.primary_dark_transparent_color;
+
 
 public class AppTheme {
 
 
-    private Color primaryDark, primaryLight, secondaryDark, contrastDark, contrastLight;
+    private Color primaryDark, primaryLight, secondaryDark, contrastDark, contrastLight, primaryDarkTransparent;
     private String primaryDarkValue, primaryLightValue, secondaryDarkValue, contrastDarkValue, contrastLightValue;
     private Insets mediumPadding;
     private Font mediumFont;
@@ -48,21 +50,23 @@ public class AppTheme {
      */
     public AppTheme(){
 
-        this.primaryDarkValue =     ThemeValue.primary_dark_color_value;
-        this.primaryLightValue =    ThemeValue.primary_light_color_value;
-        this.secondaryDarkValue =   ThemeValue.secondary_dark_color_value;
-        this.contrastDarkValue =    ThemeValue.primary_contrast_color_value;
-        this.contrastLightValue =   ThemeValue.secondary_contrast_color_value;
+        this.primaryDarkValue =     DefaultThemeValue.primary_dark_color_value;
+        this.primaryLightValue =    DefaultThemeValue.primary_light_color_value;
+        this.secondaryDarkValue =   DefaultThemeValue.secondary_dark_color_value;
+        this.contrastDarkValue =    DefaultThemeValue.primary_contrast_color_value;
+        this.contrastLightValue =   DefaultThemeValue.secondary_contrast_color_value;
 
-        this.primaryDark =          ThemeValue.primary_dark_color;
-        this.primaryLight =         ThemeValue.primary_light_color;
-        this.secondaryDark =        ThemeValue.secondary_dark_color;
-        this.contrastDark =         ThemeValue.primary_contrast_color;
-        this.contrastLight =        ThemeValue.secondary_contrast_color;
+        this.primaryDarkTransparent = DefaultThemeValue.primary_dark_transparent_color;
 
-        this.mediumPadding =        ThemeValue.defaul_padding;
-        this.mediumFont =           ThemeValue.default_font;
-        this.classFont =            ThemeValue.default_class_font;
+        this.primaryDark =          DefaultThemeValue.primary_dark_color;
+        this.primaryLight =         DefaultThemeValue.primary_light_color;
+        this.secondaryDark =        DefaultThemeValue.secondary_dark_color;
+        this.contrastDark =         DefaultThemeValue.primary_contrast_color;
+        this.contrastLight =        DefaultThemeValue.secondary_contrast_color;
+
+        this.mediumPadding =        DefaultThemeValue.defaul_padding;
+        this.mediumFont =           DefaultThemeValue.default_font;
+        this.classFont =            DefaultThemeValue.default_class_font;
 
         this.classFontColor = Color.web("#EEE", 1);
 
@@ -74,6 +78,11 @@ public class AppTheme {
     public Background getprimaryDarkBackground(){
         return new Background(new BackgroundFill(primaryDark, null,null));
     }
+
+    public Background getprimaryDarkBackgroundAlpha(){
+        return new Background(new BackgroundFill(primaryDarkTransparent, null,null));
+    }
+
 
     public Background getprimaryDarkBackground(CornerRadii radii, Insets insets){
         return new Background(new BackgroundFill(primaryDark, radii,insets));

@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 import parsing.FileController;
 import app.AppController;
 import app.Main;
+import screenDisplay.components.ListButton;
 import screenDisplay.components.umlComponents.ClassListView;
 import screenDisplay.components.umlComponents.MainCenterClassInfo;
 import screenDisplay.components.MyAlertDialog;
@@ -29,6 +30,7 @@ import utils.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainDisplay extends BorderPane {
@@ -102,6 +104,11 @@ public class MainDisplay extends BorderPane {
 
         classView = new ClassListView(context, this);
         setLeft(classView.init());
+
+        // force select the first element, if it exist
+        if (classView.getBtnList().size() > 0){
+            classView.getBtnList().get(0).forceClick();
+        }
 
     }
 

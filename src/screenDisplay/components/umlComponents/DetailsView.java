@@ -1,7 +1,7 @@
 package screenDisplay.components.umlComponents;
 
 import app.theme.AppTheme;
-import app.theme.ThemeValue;
+import app.theme.DefaultThemeValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -68,7 +68,7 @@ public class DetailsView extends VBox implements UmlView {
     private Text createTextContent(String content){
         Text txt = new Text(content);
         txt.setFill(appTheme.getSecondaryDark());
-        txt.setFont(Font.font(ThemeValue.font_weight));
+        txt.setFont(Font.font(DefaultThemeValue.font_weight));
         return txt;
     }
 

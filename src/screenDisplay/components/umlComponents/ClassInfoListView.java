@@ -1,7 +1,6 @@
 package screenDisplay.components.umlComponents;
 
 import app.theme.AppTheme;
-import app.theme.ThemeValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
@@ -12,6 +11,7 @@ import screenDisplay.components.ListButton;
 import screenDisplay.components.SectionTitle;
 import token.UmlToken;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +34,7 @@ public class ClassInfoListView extends UmlBtnListView {
 
     public ClassInfoListView(MainDisplay mainDisplay, Map<String, UmlToken> tokens) {
         this(mainDisplay);
-        listItem = tokens.values();
+        listItem = new ArrayList<>(tokens.values());
 
     }
 

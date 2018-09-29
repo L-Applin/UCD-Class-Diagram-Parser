@@ -1,6 +1,5 @@
 package token;
 
-import com.oracle.tools.packager.IOUtils;
 import parsing.Delims;
 import parsing.UcdParser;
 import utils.Utils;
