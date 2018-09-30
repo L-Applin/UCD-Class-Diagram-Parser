@@ -1,11 +1,10 @@
 package parsing;
 
-import syntxTree.UmlContext;
-import syntxTree.entries.DeclarationEntry;
-import syntxTree.entries.IdentifierEntry;
-import syntxTree.entries.RoleEntry;
-import syntxTree.exceptions.*;
-import utils.Utils;
+import syntaxTree.UmlContext;
+import syntaxTree.entries.DeclarationEntry;
+import syntaxTree.entries.IdentifierEntry;
+import syntaxTree.entries.RoleEntry;
+import syntaxTree.exceptions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +17,7 @@ import static parsing.Delims.LIST_SEPERATOR;
 import static parsing.Delims.SPACE;
 
 /**
- * Helper classe that provides specific method for handling .ucd file.
+ * Helper class that provides specific method for handling .ucd file.
  */
 public class UcdParser implements ExceptionCheckProvider {
 
@@ -106,7 +105,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
     /**
-     * Splits declration definition within a MODEL tag
+     * Splits declaration definition within a MODEL tag
      * @return all declaration separated and clean-up
      */
     public List<String> splitDeclarations(){
@@ -130,7 +129,7 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
     /**
-     * Splits text base on {@link Delims#LIST_SEPERATOR} separator and ignores tokens in bwtweene parenthesis.<br></br>
+     * Splits text based on {@link Delims#LIST_SEPERATOR} separator and ignores tokens in bwtweene parenthesis.<br></br>
      * ex. : \tnombre_saisons() : Integer, change_statut(st : String, i : int) : void <br></br>
      * will only split in two part :  <ul><li>nombre_saisons() : Integer</li><li>change_statut(st : String, i : int) : void</li></ul>
      * @return the list of all split elements
@@ -162,7 +161,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
     /**
      * Extract the string representing the Attribute lis from a class content string.
-     * Used by the {@link syntxTree.expressions.ClassContent#tokenize(UmlContext, String)}
+     * Used by the {@link syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes attributes.
      *
      * @param classId name of the class
@@ -185,7 +184,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
     /**
      * Extract the string representing the Operation list from a class content string.
-     * Used by the {@link syntxTree.expressions.ClassContent#tokenize(UmlContext, String)}
+     * Used by the {@link syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes methods.
      *
      * @param classId name of the class

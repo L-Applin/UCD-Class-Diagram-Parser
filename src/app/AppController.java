@@ -2,9 +2,9 @@ package app;
 
 import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
-import syntxTree.SyntaxTree;
-import syntxTree.UmlContext;
-import syntxTree.exceptions.UcdParsingException;
+import syntaxTree.SyntaxTree;
+import syntaxTree.UmlContext;
+import syntaxTree.exceptions.UcdParsingException;
 
 import java.io.File;
 import java.io.IOException;

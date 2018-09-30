@@ -1,8 +1,7 @@
 package token;
 
-import javafx.scene.text.Text;
 import screenDisplay.ScreenController;
-import syntxTree.expressions.DataItem;
+import syntaxTree.expressions.DataItem;
 
 import java.util.ArrayList;
 import java.util.List;

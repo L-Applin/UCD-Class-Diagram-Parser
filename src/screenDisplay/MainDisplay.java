@@ -17,20 +17,18 @@ import javafx.stage.StageStyle;
 import parsing.FileController;
 import app.AppController;
 import app.Main;
-import screenDisplay.components.ListButton;
 import screenDisplay.components.umlComponents.ClassListView;
 import screenDisplay.components.umlComponents.MainCenterClassInfo;
 import screenDisplay.components.MyAlertDialog;
 import screenDisplay.components.umlComponents.MyTopBar;
-import syntxTree.UmlContext;
-import syntxTree.exceptions.UcdParsingException;
+import syntaxTree.UmlContext;
+import syntaxTree.exceptions.UcdParsingException;
 import token.UmlClass;
 import token.UmlToken;
 import utils.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainDisplay extends BorderPane {
@@ -64,7 +62,7 @@ public class MainDisplay extends BorderPane {
 
         // rootLayout = new BorderPane();
 
-        setBackground(appTheme.getprimaryDarkBackground());
+        setBackground(appTheme.getPrimaryDarkBackground());
 
         MyTopBar topBar = new MyTopBar(appTheme, this);
         setTop(topBar);
@@ -82,7 +80,7 @@ public class MainDisplay extends BorderPane {
         // setup shortcut
         scene.addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             if (ShortcutController.META_0.match(event)) {
-                new FileController().openUcdFIleFromSystemExplorer(this);
+                new FileController().openUcdFileFromSystemExplorer(this);
             }
         });
 
@@ -170,7 +168,7 @@ public class MainDisplay extends BorderPane {
             event.consume();
         });
 
-        center.setOnDragExited( event -> setBackground(appTheme.getprimaryDarkBackground()));
+        center.setOnDragExited( event -> setBackground(appTheme.getPrimaryDarkBackground()));
 
         center.setOnDragDropped( event -> {
             Dragboard db = event.getDragboard();

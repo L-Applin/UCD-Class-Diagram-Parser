@@ -3,9 +3,6 @@ package app;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import screenDisplay.ScreenController;
-import syntxTree.SyntaxTree;
-import syntxTree.UmlContext;
-import utils.Utils.*;
 
 public class Main extends Application {
 

@@ -11,9 +11,8 @@ import screenDisplay.ScreenController;
 import screenDisplay.components.BtnListView;
 import screenDisplay.components.ListButton;
 import screenDisplay.components.SectionTitle;
-import syntxTree.UmlContext;
+import syntaxTree.UmlContext;
 import token.UmlClass;
-import utils.Utils;
 
 public class ClassListView extends UmlBtnListView {
 
@@ -38,13 +37,13 @@ public class ClassListView extends UmlBtnListView {
 
         // setPadding(new Insets(0,10,0,10));
         setAlignment(Pos.TOP_CENTER);
-        setBackground(appTheme.getsecondaryDarkBackground());
+        setBackground(appTheme.getSecondaryDarkBackground());
 
         container.setPadding(Insets.EMPTY);
-        container.setBackground(appTheme.getsecondaryDarkBackground());
+        container.setBackground(appTheme.getSecondaryDarkBackground());
 
         VBox scrollViewContent = new VBox();
-        scrollViewContent.setBackground(appTheme.getsecondaryDarkBackground());
+        scrollViewContent.setBackground(appTheme.getSecondaryDarkBackground());
         scrollViewContent.setPadding(Insets.EMPTY);
 
         listItem.forEach( umlClass -> {

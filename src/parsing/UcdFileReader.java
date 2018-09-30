@@ -1,6 +1,6 @@
 package parsing;
 
-import syntxTree.exceptions.ExceptionCheckProvider;
+import syntaxTree.exceptions.ExceptionCheckProvider;
 
 import java.io.BufferedReader;
 import java.io.File;

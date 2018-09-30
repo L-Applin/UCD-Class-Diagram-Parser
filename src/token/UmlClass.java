@@ -1,9 +1,7 @@
 package token;
 
-import javafx.scene.text.Text;
 import screenDisplay.ScreenController;
-import syntxTree.expressions.DataItem;
-import utils.Utils;
+import syntaxTree.expressions.DataItem;
 
 import java.util.*;
 

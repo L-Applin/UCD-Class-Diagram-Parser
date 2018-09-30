@@ -3,13 +3,9 @@ package screenDisplay.components.umlComponents;
 import app.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import screenDisplay.MainDisplay;
 import token.UmlClass;
-import token.UmlOperation;
 import token.UmlToken;
 
 import static screenDisplay.MainDisplay.*;

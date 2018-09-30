@@ -34,7 +34,7 @@ public class MyTopBar extends BorderPane {
         this.mainDisplay = main;
         Stage primaryStage = main.getPrimaryStage();
 
-        background = appTheme.getsecondaryDarkBackground();
+        background = appTheme.getSecondaryDarkBackground();
         setBackground(background);
         setPadding(new Insets(0,0,0,0));
         setBottom(new Separator());
@@ -77,7 +77,7 @@ public class MyTopBar extends BorderPane {
 
 
         mImport.setOnMouseClicked(event ->
-                new FileController().openUcdFIleFromSystemExplorer(mainDisplay)
+                new FileController().openUcdFileFromSystemExplorer(mainDisplay)
         );
 
         mTrash.setOnMouseClicked( event -> {

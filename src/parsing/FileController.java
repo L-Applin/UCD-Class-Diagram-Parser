@@ -14,7 +14,7 @@ public class FileController {
             new FileChooser.ExtensionFilter("UCD", "*.ucd");
 
 
-    public void openUcdFIleFromSystemExplorer(MainDisplay main){
+    public void openUcdFileFromSystemExplorer(MainDisplay main){
         String title = "Choose .ucd file";
         AppController controller = new AppController();
         FileChooser fc = new FileChooser();
