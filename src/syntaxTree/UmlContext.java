@@ -55,7 +55,9 @@ public class UmlContext implements Map<String, Expression> {
 
     public void initializeSubclasses(){
         classes.forEach((className, umlClass) ->{
-
+            (((UmlClass) umlClass).getSubClasses()).forEach((sbClassName, subClass)-> {
+                ((UmlClass) subClass).setSuperClass((UmlClass) umlClass);
+            });
         });
     }
 

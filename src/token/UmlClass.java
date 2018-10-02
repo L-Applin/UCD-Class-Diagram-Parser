@@ -38,7 +38,12 @@ public class UmlClass extends UmlToken {
     private List<UmlToken> agregations;
     public List<UmlToken> getAgregations() { return agregations; }
 
+    /**
+     *
+     */
     private UmlClass superClass;
+    public UmlClass getSuperClass() { return superClass; }
+    public void setSuperClass(UmlClass superClass) { this.superClass = superClass; }
 
     public UmlClass(String name, String content) {
         super(content, name);

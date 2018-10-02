@@ -23,7 +23,6 @@ public class ClassContent implements Expression, ExceptionCheckProvider {
     /**
      * {@inheritDoc}
      */
-
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
 
