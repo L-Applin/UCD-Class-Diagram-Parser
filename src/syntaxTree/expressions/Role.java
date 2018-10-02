@@ -32,7 +32,7 @@ public class Role implements Expression {
         RoleEntry splits = parser.convertRolesEntry(associationId.getValue());
         classId = new Identifier(splits.getClassId());
         multiplicity = new Multiplicity(associationId).tokenize(ctx, splits.getMultiplicity());
-        Log.all("\trole =", classId.getValue(), ((Multiplicity) multiplicity).getMulitplicity().toString());
+        Log.all("\trole =", classId.getValue(), ((Multiplicity) multiplicity).getMultiplicity().toString());
 
         return this;
 
@@ -48,7 +48,7 @@ public class Role implements Expression {
     }
 
     public String getMultiplicityValueAsString(){
-        return ((Multiplicity) multiplicity).getMulitplicity().toString();
+        return ((Multiplicity) multiplicity).getMultiplicity().toString();
     }
 
 }

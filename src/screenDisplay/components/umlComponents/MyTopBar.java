@@ -16,7 +16,7 @@ public class MyTopBar extends BorderPane {
 
     private static final Insets default_bar_margin = new Insets(8);
     private static final String trash_url = "garbage.png";
-    private static final String click_me = "Click me to import file manually";
+    private static final String click_me = "Charger fichier";
     private static final String exit = "EXIT";
 
     private AppTheme appTheme;

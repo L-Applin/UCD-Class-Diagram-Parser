@@ -33,11 +33,11 @@ import java.util.List;
 
 public class MainDisplay extends BorderPane {
 
-    public static final String ATTRIBUTES_TITLE = "Atributes";
-    public static final String OPERATIONS_TITLE = "Operations";
-    public static final String SUBCLASS_TITLE = "Subclasses";
-    public static final String ASSO_INTRG_TITLE = "Relation/Aggregation";
-    public static final String DETAILS_TITLE = "Details";
+    public static final String ATTRIBUTES_TITLE = "Attributs";
+    public static final String OPERATIONS_TITLE = "Méthodes";
+    public static final String SUBCLASS_TITLE = "Sous-classes";
+    public static final String ASSO_INTRG_TITLE = "Associations/agrégations";
+    public static final String DETAILS_TITLE = "Détails";
 
     private Stage primaryStage;
     public Stage getPrimaryStage() { return primaryStage; }

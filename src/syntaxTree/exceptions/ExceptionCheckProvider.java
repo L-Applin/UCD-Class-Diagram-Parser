@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 public interface ExceptionCheckProvider {
 
     /**
-     * Verify that a specified tag is actually at the begining of the text.
+     * Verify that a specified tag is actually at the beginning of the text.
      * @param txt
      * @param delim
-     * @throws IncompatibleTagException when the actuall tag and the expected valu does not matche.
+     * @throws IncompatibleTagException when the actual tag and the expected value does not match.
      */
     default void checkTagEqual(String txt, String delim){
 
@@ -31,7 +31,7 @@ public interface ExceptionCheckProvider {
 
 
     /**
-     * Makes sur that class declaration contains OPERATION and ATTRIGUTES
+     * Makes sure that class declaration contains OPERATION and ATTRIBUTES
      * @param classContent
      */
     default void checkClassContent(String clazz, String classContent){
@@ -47,7 +47,7 @@ public interface ExceptionCheckProvider {
     }
 
     /**
-     * Makes sur the txt doesnot conatains illegal character
+     * Makes sure the text does not contains illegal characters
      * @param txt the text to verify
      */
     default void checkIllegalChar(String txt){
@@ -76,7 +76,7 @@ public interface ExceptionCheckProvider {
     default void checkNoDuplicateTag(String txt, String tag, String classId, String content){
         // check there is only one <attributes> tag
         if (txt.indexOf(tag) != txt.lastIndexOf(tag)){
-            MalformedClassException mce = new MalformedClassException("Class \'" + classId + "\' cannot conatains two sets of attributes.");
+            MalformedClassException mce = new MalformedClassException("Class \'" + classId + "\' cannot contain two sets of attributes.");
             mce.setClazz(classId);
             mce.setContent(content);
             throw mce;
@@ -163,7 +163,7 @@ public interface ExceptionCheckProvider {
         if (txt.indexOf(GrammarModel.SUBCLASSES_TAG) != 0){
             String error = txt.split(" ")[0];
             throw new MalformedDeclarationException(
-                    String.format("Cannot parse generelization %s, must have %s tag, but found %s",
+                    String.format("Cannot parse generalization %s, must have %s tag, but found %s",
                             genId, GrammarModel.SUBCLASSES_TAG, error==null?"null":error));
         }
 

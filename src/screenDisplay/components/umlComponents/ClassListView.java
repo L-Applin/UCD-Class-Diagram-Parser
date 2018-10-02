@@ -68,9 +68,9 @@ public class ClassListView extends UmlBtnListView {
         return this;
     }
 
-    public void forceClick(String classid){
+    public void forceClick(String classId){
         btnList.forEach(item -> {
-            if(item.getContent().getText().equals(classid)){
+            if(item.getContent().getText().equals(classId)){
                 item.forceClick();
             }
         });

@@ -15,8 +15,8 @@ import syntaxTree.exceptions.MalformedDeclarationException;
 public class Multiplicity implements Expression {
 
     private Identifier associationId;
-    private MultiplicityValue mulitplicity;
-    public MultiplicityValue getMulitplicity(){ return mulitplicity; }
+    private MultiplicityValue multiplicity;
+    public MultiplicityValue getMultiplicity(){ return multiplicity; }
 
 
     public Multiplicity(Identifier associationId) {
@@ -25,7 +25,7 @@ public class Multiplicity implements Expression {
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        mulitplicity = fromString(content);
+        multiplicity = fromString(content);
         return this;
 
     }
@@ -52,6 +52,6 @@ public class Multiplicity implements Expression {
 
     @Override
     public String toString() {
-        return mulitplicity.toString();
+        return multiplicity.toString();
     }
 }
