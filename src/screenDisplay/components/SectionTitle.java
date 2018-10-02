@@ -10,9 +10,9 @@ import javafx.scene.text.Text;
 
 public class SectionTitle extends HBox {
 
-    public SectionTitle(AppTheme appTheme) {
+    public SectionTitle(AppTheme appTheme, String title) {
 
-        Text classTitle = new Text("Class");
+        Text classTitle = new Text(title);
         classTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
         classTitle.setFill(appTheme.getPrimaryLight());
         setAlignment(Pos.CENTER);

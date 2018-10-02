@@ -1,49 +1,80 @@
 package token;
 
-import javafx.scene.text.Text;
-import syntxTree.expressions.DataItem;
+import screenDisplay.ScreenController;
+import syntaxTree.expressions.DataItem;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class UmlClass extends UmlToken {
 
-    private String name;
-    public String getName(){return this.name; }
+    /**
+     * All class attributs accessible by name
+     */
+    private Map<String, UmlToken> attributes;
+    public Map<String, UmlToken> getAttributes() { return attributes; }
 
-    private HashMap<String, UmlAttribute> attributes;
-    private HashMap<String, UmlOperation> operations;
+    /**
+     * All class methods, accessible by name
+     */
+    private Map<String, UmlToken> operations;
+    public Map<String, UmlToken> getOperations() { return operations; }
+
+
+    /**
+     *
+     */
+    private Map<String, UmlToken> subClasses;
+    public Map<String, UmlToken> getSubClasses() { return subClasses; }
+
+    /**
+     *
+     */
+    private Map<String, UmlToken> associations;
+    public Map<String, UmlToken> getAssociations() { return associations; }
+
+    /**
+     *
+     */
+    private List<UmlToken> agregations;
+    public List<UmlToken> getAgregations() { return agregations; }
 
     private UmlClass superClass;
 
-    private List<UmlClass> associations;
-    private List<UmlClass> agregation;
-
-    public UmlClass(String name) {
-        this.name = name;
+    public UmlClass(String name, String content) {
+        super(content, name);
         attributes = new HashMap<>();
         operations = new HashMap<>();
-        associations = new ArrayList<>();
-        agregation = new ArrayList<>();
+        associations = new HashMap<>();
+        agregations = new ArrayList<>();
+        subClasses = new HashMap<>();
+    }
+
+    public List<UmlToken> getAggAssocList(){
+        ArrayList<UmlToken> combined = new ArrayList<>();
+        combined.addAll(agregations);
+        combined.addAll(associations.values());
+        return combined;
     }
 
     @Override
-    public Text display() {
-        // todo
-        return null;
+    public String display() {
+        return name;
     }
 
-    public void createOperation(String name, String type){
-        operations.put(name, new UmlOperation(name, type));
+    public void createOperation(String name, String type, String content){
+        operations.put(name, new UmlOperation(name, type, content));
     }
 
-    public void addAttributes(DataItem att){
-        attributes.put(att.getIdAsString(), new UmlAttribute(att.getIdAsString(), att.getTypeAsString()));
+    public void addAttributes(DataItem att, String content){
+        attributes.put(att.getIdAsString(), new UmlAttribute(att.getIdAsString(), att.getTypeAsString(), content));
     }
 
-    public UmlOperation getOperation(String methodId){
+    public UmlToken getOperation(String methodId){
         return operations.get(methodId);
+    }
+
+    public void addSubClass(String classId, UmlClass subClass){
+        subClasses.put(classId, subClass);
     }
 
     @Override
@@ -51,5 +82,11 @@ public class UmlClass extends UmlToken {
         return "UmlClass{" +
                 "name='" + name + '\'' + '}';
     }
+
+    @Override
+    public void updateScreen(ScreenController controller) {
+        controller.updateSelection(this);
+    }
+
 
 }

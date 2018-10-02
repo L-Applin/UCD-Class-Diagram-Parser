@@ -12,20 +12,18 @@ import javafx.scene.text.Text;
 
 public class OverlayButton extends HBox {
 
-    private static int small_margin = 8;
-    private static int medium_margin = 16;
-    private static int large_margin = 22;
+    private static final int small_margin = 8;
+    private static final int medium_margin = 16;
+    private static final int large_margin = 22;
 
-    private static CornerRadii default_corner_radii = new CornerRadii(10);
-    private static Insets default_inset_value = new Insets(small_margin);
-    private static Insets class_padding = new Insets(small_margin, large_margin, small_margin, large_margin);
+    private static final CornerRadii rounded_corner_radii = new CornerRadii(10);
+    private static final Insets default_inset_value = new Insets(small_margin);
+    private static final Insets square_padding = new Insets(small_margin, large_margin, small_margin, large_margin);
     public static final Insets default_button_seperator_margin = new Insets(0, small_margin, 0, small_margin);
 
-    private ThemeStyle style;
     private Text textContent;
 
     private AppTheme appTheme;
-    private Node parent;
 
     public OverlayButton(Node parent, AppTheme appTheme) {
 
@@ -34,7 +32,6 @@ public class OverlayButton extends HBox {
         setAlignment(Pos.CENTER);
         setPadding(default_inset_value);
 
-        // setOnMouseEntered(event -> setBackground(appTheme.getcontrastLightBackground(default_corner_radii)));
         setOnMouseExited(event -> setDefaultBackground());
 
     }
@@ -62,7 +59,6 @@ public class OverlayButton extends HBox {
     }
 
 
-
     public OverlayButton setContent(Node... content){
         getChildren().clear();
         getChildren().addAll(content);
@@ -71,23 +67,21 @@ public class OverlayButton extends HBox {
 
     public void setStyle(ThemeStyle style){
 
-        System.out.println(style.toString());
-
         switch (style){
-            case CLASS:
-                setPadding(class_padding);
-                setOnMouseEntered(event -> setBackground(appTheme.getcontrastDarkBackground()));
+            case SQUARE_FULL:
+                setPadding(square_padding);
+                setOnMouseEntered(event -> setBackground(appTheme.getContrastDarkBackground()));
 
                 break;
-            case PRIMARY:
-                setOnMouseEntered(event -> setBackground(appTheme.getcontrastLightBackground(default_corner_radii)));
+            case ROUNDED:
+                setOnMouseEntered(event -> setBackground(appTheme.getContrastLightBackground(rounded_corner_radii)));
                 break;
         }
 
     }
 
     public void setDefaultBackground(){
-        setBackground(appTheme.getsecondaryDarkBackground());
+        setBackground(appTheme.getSecondaryDarkBackground());
         if (textContent != null){
             textContent.setFill(appTheme.getPrimaryLightTextColor());
         }
@@ -102,6 +96,6 @@ public class OverlayButton extends HBox {
     }
 
     public enum ThemeStyle {
-        PRIMARY, CLASS
+        ROUNDED, SQUARE_FULL
     }
 }

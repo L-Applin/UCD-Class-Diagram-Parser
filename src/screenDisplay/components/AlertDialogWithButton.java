@@ -16,4 +16,5 @@ public class AlertDialogWithButton extends MyAlertDialog {
         buttonContainer.getChildren().addAll(confirm, cancel);
 
     }
+
 }
