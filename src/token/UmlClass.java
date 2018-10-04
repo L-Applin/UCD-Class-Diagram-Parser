@@ -5,19 +5,16 @@ import utils.Utils;
 
 import java.util.*;
 
-/**
- * An UmlClass representation with all other class relation defined.
- */
 public class UmlClass extends UmlToken {
 
     /**
-     * All class attributes accessible by it's name.
+     * All class attributes, accessible by its name.
      */
     private Map<String, UmlToken> attributes;
     public Map<String, UmlToken> getAttributes() { return attributes; }
 
     /**
-     * All class operations, accessible by it's name.
+     * All class operations, accessible by its name.
      */
     private Map<String, UmlToken> operations;
     public Map<String, UmlToken> getOperations() { return operations; }
@@ -37,22 +34,22 @@ public class UmlClass extends UmlToken {
     public Map<String, UmlToken> getAssociations() { return associations; }
 
     /**
-     * All of the classes aggregation. This attributes contains
+     * All of the classes aggregation this attribute contains.
      */
     private List<UmlToken> agregations;
     public List<UmlToken> getAgregations() { return agregations; }
 
     /**
-     * The superclass this class extends
+     * The superclass this class extends.
      */
     private UmlClass superClass;
     public UmlClass getSuperClass() { return superClass; }
     public void setSuperClass(UmlClass superClass) { this.superClass = superClass; }
 
     /**
-     * The constructors must defines the name (tag) of the class and it's string content. All other attributes are
-     * defined as empty first and should be access with the createXXX or addXXX methods to put new element in them.
-     * @param name the actuall name of the class.
+     * The constructors must defines the name (tag) of the class and its string content. All other attributes are
+     * defined as empty first and should be accessed with the createXXX or addXXX methods to put new element in them.
+     * @param name the actual name of the class.
      * @param content the String content representation of the class. The content should define everything the class
      *                has and be coherent with how the {@link parsing.UcdParser} expect it to be formatted.
      */
@@ -67,7 +64,7 @@ public class UmlClass extends UmlToken {
     }
 
     /**
-     * Used to merger the {@link UmlClass#agregations} and {@link UmlClass#associations} into a single list.
+     * Used to merge the {@link UmlClass#agregations} and {@link UmlClass#associations} into a single list.
      * @return A new list containing both {@link UmlClass#agregations} and {@link UmlClass#associations}.
      */
     public List<UmlToken> getAggAssocList(){

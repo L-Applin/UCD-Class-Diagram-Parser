@@ -4,7 +4,7 @@ import parsing.UcdParser;
 import syntaxTree.UmlContext;
 
 /**
- * <data_item> ::= IDENTIFIER “:” <type>
+ * <data_item> ::= IDENTIFIER ":" <type>
  */
 public class DataItem implements Expression {
 

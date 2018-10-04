@@ -15,19 +15,19 @@ public class IncompatibleTagException extends UcdParsingException {
     public String getContent() { return tag + " " + content; }
 
     /**
-     * Represente an error that is caused by a malformed tag based on the BNF syntax for .ucd file.<p></p>
+     * Represents an error that is caused by a malformed tag based on the BNF syntax for .ucd file.<p></p>
      * Example : CLESS, ClASS, MODAL, mOdAlm tags written in the .ucd file would raise this exception
      * @param tag
      * @param content
      */
     public IncompatibleTagException(String tag, String expected, String content){
-        super(tag + " is not a valide tag for " + expected);
+        super(tag + " is not a valid tag for " + expected);
         this.tag = tag;
         this.content = content;
     }
 
     public IncompatibleTagException(String tag, String content){
-        super(tag + " is not a valide tag.");
+        super(tag + " is not a valid tag.");
         this.tag = tag;
         this.content = content;
     }

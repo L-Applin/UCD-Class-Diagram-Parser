@@ -7,7 +7,7 @@ import token.UmlClass;
 import utils.Utils;
 
 /**
- * <two_roles> ::= <role> “,” <role>
+ * <two_roles> ::= <role> "," <role>
  */
 public class TwoRole implements Expression {
 

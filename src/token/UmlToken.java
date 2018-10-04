@@ -14,13 +14,13 @@ import static parsing.GrammarModel.ClassContent.OPERATIONS;
 import static parsing.GrammarModel.Decs.*;
 
 /**
- * General representation of a uml parameters.
+ * General representation of a uml parameter.
  */
 public abstract class UmlToken implements Displayable {
 
     /**
      * The name (or tag) of the token. This is the key that is used in the various map attributes
-     * of classes that extend UmlToken. Exemple: {@link UmlClass#attributes}.
+     * of classes that extend UmlToken. Example: {@link UmlClass#attributes}.
      */
     protected String name;
     public String getName() { return name; }
@@ -81,9 +81,9 @@ public abstract class UmlToken implements Displayable {
     }
 
     /**
-     * replaces custom type seperator with regular seperator and space
+     * replaces custom type separator with regular separator and space
      * @param txt the text to convert
-     * @return the txt with it'S custom seperator removed
+     * @return the text with its custom separator removed
      */
     private String formatTypeSeperator(String txt){
         Matcher matcher = Pattern.compile(Delims.TYPE_SEPARATOR).matcher(txt);

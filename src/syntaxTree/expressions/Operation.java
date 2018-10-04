@@ -7,7 +7,7 @@ import utils.Utils;
 import static utils.Utils.*;
 
 /**
- * <operation> ::= IDENTIFIER <arg_declaration> “:” <type>
+ * <operation> ::= IDENTIFIER <arg_declaration> ":" <type>
  */
 public class Operation implements Expression {
 

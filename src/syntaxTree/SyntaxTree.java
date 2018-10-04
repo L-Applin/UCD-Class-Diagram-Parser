@@ -11,7 +11,7 @@ public class SyntaxTree implements Expression {
     private Expression root;
 
     /**
-     * The full context of the parsed tree. Contains all variable / identifers and methods to fetch them.
+     * The full context of the parsed tree. Contains all variable / identifiers and methods to fetch them.
      */
     private UmlContext ctx;
     public UmlContext getCtx() { return ctx; }

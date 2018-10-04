@@ -21,9 +21,9 @@ public class UcdFileReader implements ExceptionCheckProvider{
     }
 
     /**
-     * Reads and clean up the .ucd file. The method will modify the file in different ways.<
+     * Reads and cleans up the .ucd file. The method will modify the file in different ways.
      * New lines token will be replaced by {@link Delims#NEW_LINE_TOKEN}.
-     * @return the String that represent the content of the ucd file with modifications.
+     * @return the String that represents the content of the ucd file with modifications.
      * @throws IOException
      */
     public String readAndCleanFile() throws IOException {
@@ -51,7 +51,7 @@ public class UcdFileReader implements ExceptionCheckProvider{
                 // Utils.Log.test(line);
             }
 
-            // remove duplicate splaces
+            // remove duplicates places
             matcher = Pattern.compile(" +").matcher(line);
             if (matcher.find()){
                 line = matcher.replaceAll(" ");

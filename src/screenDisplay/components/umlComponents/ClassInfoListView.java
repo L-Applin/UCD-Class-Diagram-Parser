@@ -20,7 +20,7 @@ public class ClassInfoListView extends UmlBtnListView {
 
     public static final Insets list_container_padding = new Insets(0,20,0,20);
     public static final double default_width = 300;
-    public static final double default_height = 29.5*4; // four time the height of the button elements
+    public static final double default_height = 29.5*4; // four times the height of the button elements
 
     private SectionTitle title;
     private MainDisplay mainDisplay;
@@ -64,13 +64,13 @@ public class ClassInfoListView extends UmlBtnListView {
         container.setFocusTraversable(false);
 
 
-        // make sur the button fills the box horizontally
+        // make sure the button fills the box horizontally
         if (size == null){
             // default value
             container.setMinSize(default_width, default_height);
             container.setMaxSize(default_width, default_height);
         } else {
-            // overriden value
+            // overridden value
             container.setMinSize(size.width, default_height);
             container.setMaxSize(size.width, default_height);
         }
