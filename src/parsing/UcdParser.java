@@ -277,6 +277,12 @@ public class UcdParser implements ExceptionCheckProvider {
         return Pattern.compile(regEx).matcher(txt).replaceAll("");
     }
 
+    public static String replaceNewLines(String txt){
+        String regEx = "("+Delims.NEW_LINE_TOKEN+")+";
+        return Pattern.compile(regEx).matcher(txt).replaceAll("\n");
+    }
+
+
 
     public static String removeSpaces(String txt){
         String regEx = " ";

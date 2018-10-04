@@ -28,7 +28,6 @@ public class Model implements Expression {
         id = new Identifier(modelId.getId());
         ctx.setModelId(id.toString());
         listDec = new DeclarationList(new ArrayList<>()).tokenize(ctx, modelId.getExpression());
-        ctx.put(modelId.getId(), listDec);
         return this;
 
     }

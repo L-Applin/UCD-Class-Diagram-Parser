@@ -1,5 +1,7 @@
 package syntxTree.exceptions;
 
+import parsing.UcdParser;
+
 public class IncompatibleTagException extends UcdParsingException {
 
     /**
@@ -21,13 +23,13 @@ public class IncompatibleTagException extends UcdParsingException {
      * @param content
      */
     public IncompatibleTagException(String tag, String expected, String content){
-        super(tag + " is not a valide tag for " + expected);
+        super(UcdParser.removeNewLines(tag) + " is not a valide tag for " + UcdParser.removeNewLines(expected));
         this.tag = tag;
         this.content = content;
     }
 
     public IncompatibleTagException(String tag, String content){
-        super(tag + " is not a valide tag.");
+        super(UcdParser.removeNewLines(tag) + " is not a valide tag.");
         this.tag = tag;
         this.content = content;
     }

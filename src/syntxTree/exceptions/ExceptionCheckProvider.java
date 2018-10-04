@@ -24,6 +24,10 @@ public interface ExceptionCheckProvider {
 
         String[] splits = txt.split(" ", 2);
 
+        if (splits.length < 2) {
+            throw new IncompatibleTagException(txt, delim);
+        }
+
         if (!splits[0].equals(delim)){
             throw new IncompatibleTagException(splits[0], delim, splits[1]);
         }

@@ -10,20 +10,10 @@ public class SyntaxTree implements Expression {
 
     private Expression root;
 
-    /**
-     * The full context of the parsed tree. Contains all variable / identifers and methods to fetch them.
-     */
-    private UmlContext ctx;
-    public UmlContext getCtx() { return ctx; }
-
-
-    public SyntaxTree(UmlContext ctx) {
-        this.ctx = ctx;
-    }
 
     @Override
     public Expression tokenize(UmlContext ctx, String content) {
-        root = new Model().tokenize(this.ctx, content);
+        root = new Model().tokenize(ctx, content);
         return this;
     }
 

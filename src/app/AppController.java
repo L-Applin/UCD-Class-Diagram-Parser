@@ -27,8 +27,12 @@ public class AppController {
      * @return
      */
     public UmlContext parseUcdFile(String doc){
+        if (doc.equals("")) {
+            throw new UcdParsingException("Cannot read empty files"){ };
+
+        }
         UmlContext ctx = new UmlContext();
-        SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
+        SyntaxTree tree = (SyntaxTree) new SyntaxTree().tokenize(ctx, doc);
         ctx.setTree(tree);
         return ctx;
 

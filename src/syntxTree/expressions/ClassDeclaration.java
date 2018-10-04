@@ -25,7 +25,6 @@ public class ClassDeclaration extends Declaration implements ExceptionCheckProvi
         checkClassContent(id.getValue(), content); // from ExceptionCheckProvider interface
         ctx.createClass(id.toString(), content);
         classContent = new ClassContent(id).tokenize(ctx, content);
-        ctx.put(id.toString(), classContent);
         return this;
     }
 

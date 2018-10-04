@@ -56,7 +56,7 @@ public class MainDisplay extends BorderPane {
     }
 
     /**
-     * Setup main screen before file is imported
+     * Setup main screen before file is imported.
      */
     public void init(){
 
@@ -196,8 +196,6 @@ public class MainDisplay extends BorderPane {
                 }
 
             }
-            /* let the source know whether the string was successfully
-             * transferred and used */
             event.setDropCompleted(success);
 
             event.consume();
@@ -219,7 +217,6 @@ public class MainDisplay extends BorderPane {
         centerView = new MainCenterClassInfo(clazz, appTheme, this);
         setCenter(centerView.init());
         classView.forceClick(clazz.getName());
-        Utils.Log.test("CLICKED ON", clazz.toString());
 
     }
 
