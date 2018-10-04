@@ -1,5 +1,6 @@
 package syntaxTree.expressions;
 
+import parsing.UcdParser;
 import syntaxTree.UmlContext;
 import syntaxTree.exceptions.ExceptionCheckProvider;
 
@@ -21,7 +22,7 @@ public class ClassDeclaration extends Declaration implements ExceptionCheckProvi
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
         checkClassContent(id.getValue(), content); // from ExceptionCheckProvider interface
-        ctx.createClass(id.toString(), content);
+        ctx.createClass(UcdParser.removeSpaces(id.toString()), content);
         classContent = new ClassContent(id).tokenize(ctx, content);
         ctx.put(id.toString(), classContent);
         return this;

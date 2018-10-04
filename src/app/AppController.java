@@ -48,10 +48,13 @@ public class AppController {
             screen.setupUcdDisplay(ctx);
         } catch (IOException ioe){
             screen.errorScreen(ioe);
+            ioe.printStackTrace();
         } catch (UcdParsingException ucde) {
             screen.errorScreen(ucde);
+            ucde.printStackTrace();
         } catch (NullPointerException npe) {
             screen.errorScreen(npe);
+            npe.printStackTrace();
         }
 
     }

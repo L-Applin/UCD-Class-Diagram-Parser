@@ -1,6 +1,7 @@
 package parsing;
 
 import syntaxTree.exceptions.ExceptionCheckProvider;
+import utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,8 +21,9 @@ public class UcdFileReader implements ExceptionCheckProvider{
     }
 
     /**
-     * Reads and cleand up the .ucd file
-     * @return
+     * Reads and clean up the .ucd file. The method will modify the file in different ways.<
+     * New lines token will be replaced by {@link Delims#NEW_LINE_TOKEN}.
+     * @return the String that represent the content of the ucd file with modifications.
      * @throws IOException
      */
     public String readAndCleanFile() throws IOException {
@@ -46,6 +48,7 @@ public class UcdFileReader implements ExceptionCheckProvider{
             matcher = Pattern.compile("(^ +)|($ +)").matcher(line);
             if (matcher.find()){
                 line = matcher.replaceAll("");
+                // Utils.Log.test(line);
             }
 
             // remove duplicate splaces

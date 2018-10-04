@@ -14,8 +14,8 @@ public class IdentifierEntry {
     }
 
     public IdentifierEntry(String[] entries) {
-        this.id = entries[0];
-        this.expression = entries[1];
+        this.id = entries[0].trim();
+        this.expression = entries[1].trim();
     }
 
 

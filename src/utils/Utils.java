@@ -8,7 +8,7 @@ public class Utils {
 
     public static class Log {
 
-        public static final boolean logTest = false;
+        public static final boolean logTest = true;
         public static final boolean logAll = false;
 
 
