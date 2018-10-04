@@ -22,6 +22,11 @@ public class SubClassNames implements Expression {
     public Expression tokenize(final UmlContext ctx, String content) {
         UcdParser parser = new UcdParser(content);
         List<String> classList = parser.splitList();
+        classList.forEach(classId -> {
+            subClassList.add(new Identifier(classId));
+            ctx.getUmlClass(parentClassId.getValue()).addSubClass(classId, ctx.getUmlClass(classId));
+        });
+
         return this;
     }
 
