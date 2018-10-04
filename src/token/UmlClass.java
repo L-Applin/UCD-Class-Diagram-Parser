@@ -92,6 +92,10 @@ public class UmlClass extends UmlToken {
         return operations.get(methodId);
     }
 
+    public void addSubClass(String classId, UmlClass subClass){
+        subClasses.put(classId, subClass);
+    }
+
     @Override
     public String toString() {
         return "UmlClass{" +
