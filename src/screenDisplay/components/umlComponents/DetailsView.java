@@ -55,7 +55,7 @@ public class DetailsView extends VBox implements UmlView {
 
     public void setTitle(String txt){
         this.title = new SectionTitle(mainDisplay.getAppTheme(), txt);
-        title.setBackground(mainDisplay.getAppTheme().getprimaryDarkBackground());
+        title.setBackground(mainDisplay.getAppTheme().getPrimaryDarkBackground());
     }
 
 

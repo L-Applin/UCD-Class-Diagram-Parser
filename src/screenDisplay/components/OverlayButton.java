@@ -70,18 +70,17 @@ public class OverlayButton extends HBox {
         switch (style){
             case SQUARE_FULL:
                 setPadding(square_padding);
-                setOnMouseEntered(event -> setBackground(appTheme.getcontrastDarkBackground()));
-
+                setOnMouseEntered(event -> setBackground(appTheme.getContrastDarkBackground()));
                 break;
             case ROUNDED:
-                setOnMouseEntered(event -> setBackground(appTheme.getcontrastLightBackground(rounded_corner_radii)));
+                setOnMouseEntered(event -> setBackground(appTheme.getContrastLightBackground(rounded_corner_radii)));
                 break;
         }
 
     }
 
     public void setDefaultBackground(){
-        setBackground(appTheme.getsecondaryDarkBackground());
+        setBackground(appTheme.getSecondaryDarkBackground());
         if (textContent != null){
             textContent.setFill(appTheme.getPrimaryLightTextColor());
         }

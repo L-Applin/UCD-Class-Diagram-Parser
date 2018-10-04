@@ -12,8 +12,6 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 
-import static app.theme.DefaultThemeValue.primary_dark_transparent_color;
-
 
 public class AppTheme {
 
@@ -75,16 +73,16 @@ public class AppTheme {
 
     }
 
-    public Background getprimaryDarkBackground(){
+    public Background getPrimaryDarkBackground(){
         return new Background(new BackgroundFill(primaryDark, null,null));
     }
 
-    public Background getprimaryDarkBackgroundAlpha(){
+    public Background getPrimaryDarkBackgroundAlpha(){
         return new Background(new BackgroundFill(primaryDarkTransparent, null,null));
     }
 
 
-    public Background getprimaryDarkBackground(CornerRadii radii, Insets insets){
+    public Background getPrimaryDarkBackground(CornerRadii radii, Insets insets){
         return new Background(new BackgroundFill(primaryDark, radii,insets));
     }
 
@@ -97,23 +95,23 @@ public class AppTheme {
     }
 
 
-    public Background getsecondaryDarkBackground(){
+    public Background getSecondaryDarkBackground(){
         return new Background(new BackgroundFill(secondaryDark, null,null));
     }
 
-    public Background getcontrastDarkBackground(){
+    public Background getContrastDarkBackground(){
         return new Background(new BackgroundFill(contrastDark, null,null));
     }
 
-    public Background getcontrastLightBackground(){
+    public Background getContrastLightBackground(){
         return new Background( new BackgroundFill(contrastLight, null,null));
     }
 
-    public Background getcontrastLightBackground(CornerRadii radii, Insets insets){
+    public Background getContrastLightBackground(CornerRadii radii, Insets insets){
         return new Background( new BackgroundFill(contrastLight, radii,insets));
     }
 
-    public Background getcontrastLightBackground(CornerRadii radii){
+    public Background getContrastLightBackground(CornerRadii radii){
         return new Background( new BackgroundFill(contrastLight, radii, Insets.EMPTY));
     }
 

@@ -47,7 +47,7 @@ public class ClassInfoListView extends UmlBtnListView {
 
     public void setTitle(String txt){
         this.title = new SectionTitle(mainDisplay.getAppTheme(), txt);
-        title.setBackground(mainDisplay.getAppTheme().getprimaryDarkBackground());
+        title.setBackground(mainDisplay.getAppTheme().getPrimaryDarkBackground());
     }
 
 
@@ -78,7 +78,7 @@ public class ClassInfoListView extends UmlBtnListView {
 
         VBox scrollViewContent = new VBox();
         scrollViewContent.setMinHeight(default_height);
-        scrollViewContent.setBackground(appTheme.getsecondaryDarkBackground());
+        scrollViewContent.setBackground(appTheme.getSecondaryDarkBackground());
         scrollViewContent.setPadding(Insets.EMPTY);
         setMargin(scrollViewContent, Insets.EMPTY);
 

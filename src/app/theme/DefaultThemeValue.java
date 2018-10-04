@@ -1,7 +1,6 @@
 package app.theme;
 
 import javafx.geometry.Insets;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 

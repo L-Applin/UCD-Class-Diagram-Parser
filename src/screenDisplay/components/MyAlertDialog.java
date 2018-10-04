@@ -29,7 +29,7 @@ public class MyAlertDialog extends Stage {
         content = new VBox();
         content.setSpacing(200);
         content.setPadding(new Insets(100,100,100,100));
-        content.setBackground(theme.getsecondaryDarkBackground());
+        content.setBackground(theme.getSecondaryDarkBackground());
 
         Text text = new Text(message);
         text.setFont(theme.getMediumFont());

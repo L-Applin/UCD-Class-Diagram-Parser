@@ -11,8 +11,8 @@ public class AlertDialogWithButton extends MyAlertDialog {
         HBox buttonContainer = new HBox();
         content.getChildren().add(buttonContainer);
 
-        OverlayButton confirm = new OverlayButton(buttonContainer, theme, "Confrim");
-        OverlayButton cancel = new OverlayButton(buttonContainer, theme, "cancel");
+        OverlayButton confirm = new OverlayButton(buttonContainer, theme, "Confirm");
+        OverlayButton cancel = new OverlayButton(buttonContainer, theme, "Cancel");
         buttonContainer.getChildren().addAll(confirm, cancel);
 
     }
