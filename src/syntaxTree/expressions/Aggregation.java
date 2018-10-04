@@ -7,7 +7,7 @@ import token.UmlAggregation;
 import token.UmlClass;
 
 /**
- * <aggregation> ::= “AGGREGATION” “CONTAINER” role “PARTS” roles
+ * <aggregation> ::= "AGGREGATION" "CONTAINER" role "PARTS" roles
  */
 public class Aggregation implements Expression {
 

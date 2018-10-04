@@ -13,7 +13,7 @@ import java.util.*;
 public class UmlContext implements Map<String, Expression> {
 
     /**
-     * The model id as definedin the .ucd file
+     * The model id as defined in the .ucd file
      */
     private String modelId;
     public String getModelId() { return modelId; }

@@ -5,7 +5,7 @@ import syntaxTree.UmlContext;
 import syntaxTree.exceptions.ExceptionCheckProvider;
 
 /**
- * <class_dec> ::= “CLASS” IDENTIFIER <class_content>
+ * <class_dec> ::= "CLASS" IDENTIFIER <class_content>
  */
 public class ClassDeclaration extends Declaration implements ExceptionCheckProvider {
 
@@ -21,7 +21,7 @@ public class ClassDeclaration extends Declaration implements ExceptionCheckProvi
      */
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        checkClassContent(id.getValue(), content); // from ExceptionCheckProvider interface
+    	checkClassContent(id.getValue(), content); // from ExceptionCheckProvider interface
         ctx.createClass(UcdParser.removeSpaces(id.toString()), content);
         classContent = new ClassContent(id).tokenize(ctx, content);
         ctx.put(id.toString(), classContent);

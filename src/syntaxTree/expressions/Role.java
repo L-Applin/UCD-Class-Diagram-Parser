@@ -6,7 +6,7 @@ import syntaxTree.entries.RoleEntry;
 import utils.Utils.*;
 
 /**
- * <role> ::= “CLASS” IDENTIFIER <multiplicity>
+ * <role> ::= "CLASS" IDENTIFIER <multiplicity>
  */
 public class Role implements Expression {
 

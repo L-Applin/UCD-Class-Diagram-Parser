@@ -3,7 +3,7 @@ package syntaxTree.expressions;
 import syntaxTree.UmlContext;
 
 /**
- * <association> ::= “RELATION” IDENTIFIER “ROLES” <two_roles>
+ * <association> ::= "RELATION" IDENTIFIER "ROLES" <two_roles>
  */
 public class Association implements Expression {
 

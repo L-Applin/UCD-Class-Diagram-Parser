@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 
 /**
- * <class_content> ::= “ATTRIBUTES” <attribute_list> “OPERATIONS” <operation_list>
+ * <class_content> ::= "ATTRIBUTES" <attribute_list> "OPERATIONS" <operation_list>
  */
 public class ClassContent implements Expression, ExceptionCheckProvider {
 

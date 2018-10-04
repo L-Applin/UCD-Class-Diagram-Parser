@@ -27,13 +27,13 @@ public class UcdParser implements ExceptionCheckProvider {
     private String txt;
 
     public UcdParser(String txt){
-        this.txt = txt.trim();
+    	this.txt = txt.trim();
     }
     public String getTxt() { return txt; }
     public UcdParser setTxt(String txt) { this.txt = txt; return this; }
 
     /**
-     * find the fisrt group of text that is between two identifier (tokens).
+     * find the first group of text that is between two identifier (tokens).
      *
      * @param beginToken left tag
      * @param endToken right tag
@@ -52,10 +52,10 @@ public class UcdParser implements ExceptionCheckProvider {
 
     /**
      * Divides a section of the .ucd file into it's tag and it's content. Throws an exception if the
-     * expected value does not matches the actuall value
+     * expected value does not match the actual value
      *
      * @param expectedTag the expected value of the tag
-     * @throws IncompatibleTagException when the actuall tag and the expected value does not matche.
+     * @throws IncompatibleTagException when the actual tag and the expected value does not match.
      * @return
      */
     public IdentifierEntry convertIdEntry(String expectedTag){
@@ -91,7 +91,7 @@ public class UcdParser implements ExceptionCheckProvider {
      * @return
      */
     public RoleEntry convertRolesEntry(String associationId){
-        String[] entries = txt.split(SPACE);
+    	String[] entries = txt.split(SPACE);
         if (entries.length != 3){
             throw new MalformedDeclarationException("Malformed role \'" + txt + "\' in \'" + associationId + "\'");
         }
@@ -131,7 +131,7 @@ public class UcdParser implements ExceptionCheckProvider {
     /**
      * Splits text based on {@link Delims#LIST_SEPERATOR} separator and ignores tokens in between parenthesis.<br></br>
      * ex. : \tnombre_saisons() : Integer, change_statut(st : String, i : int) : void <br></br>
-     * will only split in two part :  <ul><li>nombre_saisons() : Integer</li><li>change_statut(st : String, i : int) : void</li></ul>
+     * will only split in two parts :  <ul><li>nombre_saisons() : Integer</li><li>change_statut(st : String, i : int) : void</li></ul>
      * @return the list of all split elements
      */
     public List<String> splitList(){
@@ -147,7 +147,7 @@ public class UcdParser implements ExceptionCheckProvider {
                 final Matcher commaMatcher = Pattern.compile(LIST_SEPERATOR).matcher(matcher.group(1));
                 String customSeparatedList = commaMatcher.replaceAll(CUSTOM_LIST_SEP);
 
-                // replace orignal string with cutom seperator string
+                // replace original string with custom separator string
                 final Matcher sepratedListMatcher = Pattern.compile(matcher.group(1)).matcher(txt);
                 txt = sepratedListMatcher.replaceAll(customSeparatedList);
 
@@ -159,7 +159,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
     /**
-     * Extract the string representing the Attribute lis from a class content string.
+     * Extract the string representing the Attribute list from a class content string.
      * Used by the {@link syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes attributes.
      *

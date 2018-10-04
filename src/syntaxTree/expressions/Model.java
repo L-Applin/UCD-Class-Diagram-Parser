@@ -8,7 +8,7 @@ import syntaxTree.UmlContext;
 import java.util.ArrayList;
 
 /**
- * <model> ::= “MODEL_TAG” IDENTIFIER <list_dec>
+ * <model> ::= "MODEL_TAG" IDENTIFIER <list_dec>
  */
 public class Model implements Expression {
 

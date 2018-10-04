@@ -7,7 +7,7 @@ import utils.Utils;
 import java.util.List;
 
 /**
- * <attribute_list> ::= [<data_item> {“,” <data_item>}]
+ * <attribute_list> ::= [<data_item> {"," <data_item>}]
  */
 public class AttributeList implements Expression {
 
@@ -15,7 +15,8 @@ public class AttributeList implements Expression {
     private Identifier classId;
 
     public AttributeList(List<Expression> attributes, Identifier classId) {
-        this.attributes = attributes; this.classId = classId;
+        this.attributes = attributes;
+        this.classId = classId;
         Utils.Log.test("ATTR ClassID", classId.getValue());
     }
 

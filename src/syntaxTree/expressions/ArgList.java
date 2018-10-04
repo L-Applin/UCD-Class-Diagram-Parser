@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <arg_list> ::= [<data_item> {“,” <data_item>}]
+ * <arg_list> ::= [<data_item> {"," <data_item>}]
  */
 public class ArgList implements Expression {
 

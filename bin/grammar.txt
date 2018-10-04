@@ -1,0 +1,27 @@
+<model> ::= “MODEL” IDENTIFIER <list_dec>;
+<list_dec> ::= {<declaration>};
+<declaration> ::= <class_dec> “;”
+    | <association> “;”
+    | <generalization> “;”
+    | <aggregation> “;”;
+<class_dec> ::= “CLASS” IDENTIFIER <class_content>;
+<class_content> ::= “ATTRIBUTES” <attribute_list> “OPERATIONS” <operation_list>;
+<attribute_list> ::= [<data_item> {“,” <data_item>}] ;
+<data_item> ::= IDENTIFIER “:” <type> ;
+<operation_list>::= [<operation> {“,” <operation>}] ;
+<operation> ::= IDENTIFIER <arg_declaration> “:” <type> ;
+<arg_declaration> ::= “(” <arg_list> “)” ;
+<arg_list> ::= [<data_item> {“,” <data_item>}] ;
+<type> ::= IDENTIFIER ;
+<association> ::= “RELATION” IDENTIFIER “ROLES” <two_roles> ;
+<two_roles> ::= <role> “,” <role> ;
+<role> ::= “CLASS” IDENTIFIER <multiplicity> ;
+<multiplcity> ::= “ONE”
+    | “MANY”
+    | “ONE_OR_MANY”
+    | “OPTIONALLY_ONE”
+    | “UNDEFINED” ;
+<aggregation> ::= “AGGREGATION” “CONTAINER” role “PARTS” roles;
+<roles> ::= <role> {“,” <role>} ;
+<generalization> ::= “GENERALIZATION” IDENTIFIER “SUBCLASSES” <sub_class_names> ;
+<sub_class_names> ::= IDENTIFIER {“,” IDENTIFIER};

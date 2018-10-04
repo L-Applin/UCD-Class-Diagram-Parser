@@ -59,8 +59,8 @@ public interface ExceptionCheckProvider {
     }
 
     /**
-     * Make sure no illegale character as defined in {@link GrammarModel#illegalChar} are contained in the text.
-     * @param txt the text to analyse for
+     * Make sure no illegal character as defined in {@link GrammarModel#illegalChar} are contained in the text.
+     * @param txt the text to analyze for
      * @param filePath The file path of the opened file. Used for message error display
      */
     default void checkIllegalChar(String txt, String filePath){
@@ -71,11 +71,12 @@ public interface ExceptionCheckProvider {
         }
     }
 
+
     /**
-     * Makes sure that a specified text is whithin anothe text.
+     * Makes sure that a specified text is within another text.
      * Basically a wrapper around {@link String#contains(CharSequence)} that can throw an exception
      * if it is not contained
-     * @param txt the text to analyse
+     * @param txt the text to analyze
      * @param tag the text to check if it is contained or not
      * @param classId used for message error display
      * @param content used for message error display
@@ -87,12 +88,12 @@ public interface ExceptionCheckProvider {
     }
 
     /**
-     *
-     * @param txt
-     * @param tag
-     * @param classId
-     * @param content
-     */
+    *
+    * @param txt
+    * @param tag
+    * @param classId
+    * @param content
+    */
     default void checkNoDuplicateTag(String txt, String tag, String classId, String content){
         // check there is only one <attributes> tag
         if (txt.indexOf(tag) != txt.lastIndexOf(tag)){
@@ -179,7 +180,7 @@ public interface ExceptionCheckProvider {
     }
 
     default void checkValidSubclasses(String txt, String genId){
-        //must  start with SUBCLASSES
+        //must start with SUBCLASSES
         if (txt.indexOf(GrammarModel.SUBCLASSES_TAG) != 0){
             String error = txt.split(" ")[0];
             throw new MalformedDeclarationException(
@@ -189,9 +190,8 @@ public interface ExceptionCheckProvider {
 
     }
 
-
     default void checkValidAggregations(String txt){
-        checkTagPresent(txt, GrammarModel.PARTS_TAG, "PARTS REQUIRED", txt);
+    	checkTagPresent(txt, GrammarModel.PARTS_TAG, "PARTS REQUIRED", txt);
         checkTagPresent(txt, GrammarModel.CONTAINER_TAG, "PARTS REQUIRED", txt);
     }
 
