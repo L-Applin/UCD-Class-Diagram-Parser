@@ -2,6 +2,7 @@ package syntaxTree.expressions;
 
 import parsing.UcdParser;
 import syntaxTree.UmlContext;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,8 @@ public class SubClassNames implements Expression {
         classList.forEach(classId -> {
             subClassList.add(new Identifier(classId));
             ctx.getUmlClass(parentClassId.getValue()).addSubClass(classId, ctx.getUmlClass(classId));
-
         });
+
         return this;
     }
 

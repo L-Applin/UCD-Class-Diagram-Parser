@@ -1,7 +1,7 @@
 package syntaxTree.entries;
 
 /**
- * Wrapper around a element of suntax that has an identifer followed by the identifier value
+ * Wrapper around a element of syntax that has an identifier followed by the identifier value
  */
 public class IdentifierEntry {
 
@@ -14,8 +14,8 @@ public class IdentifierEntry {
     }
 
     public IdentifierEntry(String[] entries) {
-        this.id = entries[0];
-        this.expression = entries[1];
+        this.id = entries[0].trim();
+        this.expression = entries[1].trim();
     }
 
 

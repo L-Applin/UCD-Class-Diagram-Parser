@@ -95,7 +95,7 @@ public class MainDisplay extends BorderPane {
     }
 
     /**
-     * Setup main display once the éucd file is loaded
+     * Setup main display once the .ucd file is loaded
      * @param context the UmlContext of the parsed file.
      */
     public void setupUcdDisplay(UmlContext context){

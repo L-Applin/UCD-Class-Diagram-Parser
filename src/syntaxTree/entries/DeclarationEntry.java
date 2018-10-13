@@ -1,5 +1,7 @@
 package syntaxTree.entries;
 
+import parsing.UcdParser;
+
 /**
  * A simple wrapper around informations contained in a Declaration tag.
  */
@@ -10,8 +12,8 @@ public class DeclarationEntry {
     private String content;
 
     public DeclarationEntry(String decType, String id, String content) {
-        this.decType = decType;
-        this.id = id;
+        this.decType = decType.trim();
+        this.id = id.trim();
         this.content = content;
     }
 

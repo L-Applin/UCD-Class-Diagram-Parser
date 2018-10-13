@@ -8,10 +8,10 @@ import syntaxTree.exceptions.IncompatibleTagException;
 
 
 /**
- * <declaration> ::= <class_dec> “;”
- *    | <association> “;”
- *    | <generalization> “;”
- *    | <aggregation> “;”
+ * <declaration> ::= <class_dec> ";"
+ *    | <association> ";"
+ *    | <generalization> ";"
+ *    | <aggregation> ";"
  */
 public class Declaration implements Expression {
 

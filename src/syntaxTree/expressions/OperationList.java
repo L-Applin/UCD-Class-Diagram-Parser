@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <operation_list>::= [<operation> {“,” <operation>}]
+ * <operation_list>::= [<operation> {"," <operation>}]
  */
 public class OperationList implements Expression {
 

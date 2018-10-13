@@ -4,7 +4,7 @@ import syntaxTree.UmlContext;
 import utils.Utils;
 
 /**
- * <arg_declaration> ::= “(” <arg_list> “)”
+ * <arg_declaration> ::= "(" <arg_list> ")"
  */
 public class ArgDeclaration extends Declaration {
 

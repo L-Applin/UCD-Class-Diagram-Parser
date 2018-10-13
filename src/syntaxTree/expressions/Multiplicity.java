@@ -6,11 +6,11 @@ import syntaxTree.exceptions.MalformedDeclarationException;
 
 /**
  * <multiplcity> ::=
- *    “ONE”
- *    | “MANY”
- *    | “ONE_OR_MANY”
- *    | “OPTIONALLY_ONE”
- *    | “UNDEFINED”
+ *    "ONE"
+ *    | "MANY"
+ *    | "ONE_OR_MANY"
+ *    | "OPTIONALLY_ONE"
+ *    | "UNDEFINED"
  */
 public class Multiplicity implements Expression {
 
