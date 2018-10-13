@@ -58,6 +58,7 @@ public class UmlContext {
 
 
 
+/*
     // MAP IMPLEMENTATION :)
     @Override
     public int size() {
@@ -118,5 +119,6 @@ public class UmlContext {
     public Set<Entry<String, Expression>> entrySet() {
         return tokens.entrySet();
     }
+*/
 
 }

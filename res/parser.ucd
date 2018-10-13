@@ -1,0 +1,79 @@
+MODEL parser
+
+CLASS AppTheme
+ATTRIBUTES
+    primaryDark : Color,
+    primaryLight : Color,
+    secondaryDark : Color,
+    contrastDark : Color,
+    contrastLight : Color,
+    primaryDarkTransparent : Color,
+    classFontColor : Color,
+    primaryLightTextColor : Color,
+    primaryDarkTextColor : Color,
+    primaryDarkValue : String,
+    primaryLightValue : String,
+    secondaryDarkValue : String,
+    contrastDarkValue : String,
+    contrastLightValue : String,
+    mediumPadding : inset,
+    mediumFont : Font,
+    classFont : Font
+
+OPERATIONS
+    getPrimaryDarkBackground() : Background,
+    getPrimaryDarkBackgroundAlpha() : Background,
+    getPrimaryDarkBackground(radii : CornerRadii, insets : Insets) : Background,
+    getPrimaryLightBackground() : Background,
+    getPrimaryLightBackground(radii : CornerRadii, insets : Insets) : Background,
+    getSecondaryDarkBackground() : Background,
+    getContrastDarkBackground() : Background,
+    getContrastLightBackground() : Background,
+    getContrastLightBackground(radii : CornerRadii, insets : Insets) : Background,
+    getContrastLightBackground(radii : CornerRadii) : Background,
+    primaryRadialGradientBackground() : Background,
+    elevation(color : Color) : DropShadow
+;
+
+CLASS DefaultThemeValue
+ATTRIBUTES
+    font_weight : double,
+    primary_dark_color_value : String,
+    primary_light_color_value : String,
+    secondary_dark_color_value : String,
+    primary_contrast_color_value : String,
+    secondary_contrast_color_value : String,
+    primary_dark_color : Color,
+    primary_dark_transparent_color : Color,
+    primary_light_color : Color,
+    secondary_dark_color : Color,
+    primary_contrast_color : Color,
+    secondary_contrast_color : Color,
+    defaul_padding : Inset,
+    default_font : Font,
+    default_class_font : Font
+;
+
+CLASS AppController
+ATTRIBUTES
+OPERATIONS
+    openUcdFile(path : String) : String,
+    parseUcdFile(doc : String) : UmlContext,
+    lauchUcdActivity(screen : MainDisplay, ucdFile : File): Void
+;
+
+CLASS Main
+ATTRIBUTES
+    APP_NAME : String,
+    os : Platform,
+    start(primaryStage : Stage) : void,
+    main(args : String[] ) : void
+;
+
+
+
+
+
+
+
+
