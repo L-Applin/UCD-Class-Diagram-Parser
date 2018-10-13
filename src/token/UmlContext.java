@@ -1,5 +1,6 @@
-package syntaxTree;
+package token;
 
+import syntaxTree.SyntaxTree;
 import syntaxTree.expressions.Expression;
 import token.UmlClass;
 import token.UmlToken;

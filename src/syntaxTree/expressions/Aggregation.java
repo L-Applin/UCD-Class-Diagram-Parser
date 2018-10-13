@@ -2,7 +2,7 @@ package syntaxTree.expressions;
 
 import parsing.GrammarModel;
 import parsing.UcdParser;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import token.UmlAggregation;
 import token.UmlClass;
 

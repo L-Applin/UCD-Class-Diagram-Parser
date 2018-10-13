@@ -1,7 +1,7 @@
 package syntaxTree.expressions;
 
 import parsing.UcdParser;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import syntaxTree.entries.RoleEntry;
 import utils.Utils.*;
 
@@ -30,8 +30,8 @@ public class Role implements Expression {
         Log.test("ROLE :", content);
         UcdParser parser = new UcdParser(content);
         RoleEntry splits = parser.convertRolesEntry(associationId.getValue());
-        classId = new Identifier(splits.getClassId());
-        multiplicity = new Multiplicity(associationId).tokenize(ctx, splits.getMultiplicity());
+        classId = new Identifier(splits.classId);
+        multiplicity = new Multiplicity(associationId).tokenize(ctx, splits.multiplicity);
         Log.all("\trole =", classId.getValue(), ((Multiplicity) multiplicity).getMultiplicity().toString());
 
         return this;

@@ -11,9 +11,8 @@ import screenDisplay.ScreenController;
 import screenDisplay.components.BtnListView;
 import screenDisplay.components.ListButton;
 import screenDisplay.components.SectionTitle;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import token.UmlClass;
-import token.UmlToken;
 
 public class ClassListView extends UmlBtnListView {
 

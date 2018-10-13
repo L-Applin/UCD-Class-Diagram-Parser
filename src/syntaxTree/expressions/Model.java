@@ -3,7 +3,7 @@ package syntaxTree.expressions;
 import parsing.GrammarModel;
 import parsing.UcdParser;
 import syntaxTree.entries.IdentifierEntry;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 
 import java.util.ArrayList;
 
@@ -23,9 +23,9 @@ public class Model implements Expression {
         UcdParser parser = new UcdParser(content);
         IdentifierEntry modelId = parser.convertIdEntry(GrammarModel.MODEL_TAG);
 
-        id = new Identifier(modelId.getId());
+        id = new Identifier(modelId.id);
         ctx.setModelId(id.toString());
-        listDec = new DeclarationList(new ArrayList<>()).tokenize(ctx, modelId.getExpression());
+        listDec = new DeclarationList(new ArrayList<>()).tokenize(ctx, modelId.expression);
         return this;
 
     }

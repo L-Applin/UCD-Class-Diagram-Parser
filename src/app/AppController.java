@@ -3,7 +3,7 @@ package app;
 import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
 import syntaxTree.SyntaxTree;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import syntaxTree.exceptions.UcdParsingException;
 import token.UmlToken;
 import token.visitor.UmlChildClassVisitor;
@@ -36,7 +36,7 @@ public class AppController {
 
         }
         UmlContext ctx = new UmlContext();
-        SyntaxTree tree = (SyntaxTree) new SyntaxTree().tokenize(ctx, doc);
+        SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
         ctx.setTree(tree);
         return ctx;
 

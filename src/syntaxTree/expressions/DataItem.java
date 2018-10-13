@@ -1,7 +1,7 @@
 package syntaxTree.expressions;
 
 import parsing.UcdParser;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 
 /**
  * <data_item> ::= IDENTIFIER ":" <type>
@@ -17,18 +17,12 @@ public class DataItem implements Expression {
     public String getIdAsString() {
         return id.toString();
     }
-    public void setId(Identifier id) {
-        this.id = id;
-    }
 
     public Expression getType() {
         return type;
     }
     public String getTypeAsString() {
         return type.toString();
-    }
-    public void setType(Expression type) {
-        this.type = type;
     }
 
     /**

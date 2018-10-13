@@ -1,8 +1,7 @@
 package syntaxTree.expressions;
 
 import parsing.UcdParser;
-import syntaxTree.UmlContext;
-import utils.Utils;
+import token.UmlContext;
 
 import java.util.ArrayList;
 import java.util.List;

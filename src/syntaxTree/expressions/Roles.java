@@ -2,7 +2,7 @@ package syntaxTree.expressions;
 
 import parsing.Delims;
 import parsing.GrammarModel;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 
 import java.util.ArrayList;
 import java.util.List;

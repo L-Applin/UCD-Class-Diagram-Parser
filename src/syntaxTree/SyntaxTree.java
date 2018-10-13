@@ -2,6 +2,7 @@ package syntaxTree;
 
 import syntaxTree.expressions.Expression;
 import syntaxTree.expressions.Model;
+import token.UmlContext;
 
 /**
  * Entry point for parsing the .ucd file

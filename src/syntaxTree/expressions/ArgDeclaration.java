@@ -1,6 +1,6 @@
 package syntaxTree.expressions;
 
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import utils.Utils;
 
 /**

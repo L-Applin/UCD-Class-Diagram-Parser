@@ -21,11 +21,10 @@ import screenDisplay.components.umlComponents.ClassListView;
 import screenDisplay.components.umlComponents.MainCenterClassInfo;
 import screenDisplay.components.MyAlertDialog;
 import screenDisplay.components.umlComponents.MyTopBar;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import syntaxTree.exceptions.UcdParsingException;
 import token.UmlClass;
 import token.UmlToken;
-import utils.*;
 
 import java.io.File;
 import java.io.IOException;

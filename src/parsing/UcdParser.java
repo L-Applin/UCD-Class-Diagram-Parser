@@ -1,6 +1,6 @@
 package parsing;
 
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import syntaxTree.entries.DeclarationEntry;
 import syntaxTree.entries.IdentifierEntry;
 import syntaxTree.entries.RoleEntry;

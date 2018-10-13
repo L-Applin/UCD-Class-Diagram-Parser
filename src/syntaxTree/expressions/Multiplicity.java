@@ -1,7 +1,7 @@
 package syntaxTree.expressions;
 
 import parsing.GrammarModel;
-import syntaxTree.UmlContext;
+import token.UmlContext;
 import syntaxTree.exceptions.MalformedDeclarationException;
 
 /**

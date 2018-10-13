@@ -68,12 +68,526 @@ ATTRIBUTES
     os : Platform,
     start(primaryStage : Stage) : void,
     main(args : String[] ) : void
+OPERATIONS
+;
+
+CLASS Delims
+ATTRIBUTES
+    SPACE : String,
+    DECLARATION_SEPERATOR : String,
+    LIST_SEPERATOR : String,
+    NEW_LINE_TOKEN : String,
+    CUSTOM_LIST_SEP : String,
+    TYPE_SEPARATOR : String
+OPERATIONS
+;
+
+CLASS FileController
+ATTRIBUTES
+    ucd_extension_filer : FileChooser.ExtensionFilter
+OPERATIONS
+    openUcdFileFromSystemExplorer(main : MainDisplay) : void
+;
+
+CLASS UcdFileReader
+ATTRIBUTES
+    path : String
+OPERATIONS
+    readAndCleanFile() : String
+;
+
+CLASS UcdParser
+ATTRIBUTES
+    txt : String
+OPERATIONS
+    extractBetween(String beginToken, String endToken) : String,
+    convertIdEntry(String expectedTag) : IdentifierEntry,
+    convertDeclarationEntry() : DeclarationEntry,
+    convertRolesEntry(String associationId) : RoleEntry,
+    splitDeclarations() :List<String>,
+    splitList() : List<String>,
+    extractAttributes(String classId, String content) : String,
+    extractOperations(String classId, String content) : String,
+    extractArgList(String methodId, String classId) : String,
+    extractGeneralizationClasses(String genId) : String,
+    extractType(String parentId) : String,
+    extractcParts() : String,
+    String[] splitDataItem(String parentId) : String[],
+    String[] splitTwoRoles(String association) : String[],
+    splitArgs() : List<String>,
+    removeNewLines(String txt) : String,
+    replaceNewLines(String txt) : String,
+    removeSpaces(String txt) : String,
+    getOperationId(String classId) : String,
+    replaceNewLineToken() : String,
+    replaceCustomListSeperator() : String,
+    removeSpaces() : void
+;
+
+CLASS MainDisplay
+ATTRIBUTES
+    ATTRIBUTES_TITLE
+    OPERATIONS_TITLE : String,
+    SUBCLASS_TITLE : String,
+    ASSO_INTRG_TITLE : String,
+    DETAILS_TITLE : String,
+    primaryStage : Stage,
+    appTheme : AppTheme,
+    classView : ClassListView,
+    centerView : MainCenterClassInfo
+
+OPERATIONS
+    init() : void
+    setupUcdDisplay(context : UmlContext) : void
+    errorScreen(ioe : IOException) : void
+    errorScreen(ucde : UcdParsingException) : void
+    errorScreen(npe : NullPointerException) : void
+    getOnOpenCenterView() : Node
+    resetLayout() : void
+    updateClassSelected(UmlClass clazz) : void
+    updateTokenClicked(UmlToken token) : void
+;
+
+CLASS ScreenController
+ATTRIBUTES
+    primaryStage : Stage,
+    parameters : Application.Parameters,
+    main : MainDisplay
+
+OPERATIONS
+   setupMainDisplay() : void
+   updateSelection(umlClass : UmlClass) : void
+   updateSelection(op : UmlOperation) : void
+   updateSelection(attr : UmlAttribute) : void
+   updateSelection(assoc : UmlAssociation) : void
+   updateSelection(aggreg : UmlAggregation) : void
+;
+
+CLASS DeclarationEntry
+ATTRIBUTES
+    decType ; String,
+    id ; String,
+    content ; String
+OPERATIONS
+;
+
+CLASS IdentifierEntry
+ATTRIBUTES
+    id : String,
+    expression : String
+OPERATIONS
+;
+
+CLASS RoleEntry
+ATTRIBUTES
+    tag : String,
+    classId : String,
+    multiplicity : String
+OPERATIONS
+;
+
+CLASS PartsEntry
+ATTRIBUTES
+    clazz : UmlClass,
+    mult : String
+OPERATIONS
+;
+
+CLASS Args
+ATTRIBUTES
+    name : String,
+    type : String,
+OPERATIONS
+;
+
+CLASS Expression
+ATTRIBUTES
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS Aggregation
+ATTRIBUTES
+    role : Expression,
+    roles : Expression
+OPERATIONS
+    tokenize() : Expression,
+    createAggregaton(ctx : UmlContext, content : String ) : void,
+    toString() : String
+;
+
+CLASS ArgDeclaration
+ATTRIBUTES
+    argList : Expression,
+    methodId : Identifier,
+    classId : Identifier
+
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS ArgList
+ATTRIBUTES
+    methodId : Identifier,
+    classId: Identifier,
+    dataItems, List<Expression>
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS Association
+ATTRIBUTES
+    twoRole : Expression,
+    id : Identifier
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS AttributeList
+ATTRIBUTES
+    attributes : List<Expression>,
+    classId, Identifier
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS ClassContent
+ATTRIBUTES
+    attributeList : Expression,
+    operationList : Expression,
+    classId : Identifier
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS ClassDeclaration
+ATTRIBUTES
+    id : Identifier,
+    classContent : Expression
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS DataItem
+ATTRIBUTES
+    id : Identifier,
+    parentId : Identifier,
+    type : Expression
+
+OPERATIONS
+    tokenize() : Expression,
+    getId() : Identifier,
+    getIdAsString() : String,
+    getType() : Expression,
+    getTypeAsString() : String
+;
+
+CLASS Declaration
+ATTRIBUTES
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS DeclarationList
+ATTRIBUTES
+    decs : List<Expression>
+OPERATIONS
+    tokenize() : Expression,
+;
+
+CLASS Generalization
+ATTRIBUTES
+    id : Identifier,
+    subClassNames : Expression
+
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS Identifier
+ATTRIBUTES
+    name : String
+OPERATIONS
+    tokenize() : Expression,
+    getValue() : String
+;
+
+CLASS Model
+ATTRIBUTES
+    listDec : Expression,
+    id : Identifier
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS Multiplicity
+ATTRIBUTES
+    Identifier associationId;
+    multiplicity : MultiplicityValue
+OPERATIONS
+    tokenize() : Expression,
+    fromString(String value) : MultiplicityValue
+;
+
+CLASS Operation
+ATTRIBUTES
+    methodId : Identifier,
+    classId : Identifier,
+    argDeclaration : Expression,
+    type : Expression
+
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS OperationList
+ATTRIBUTES
+    opList : ArrayList<Expression>,
+    classId : Identifier
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS Role
+ATTRIBUTES
+    associationId : Identifier,
+    classId : Identifier,
+    multiplicity : Expression
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS Roles
+ATTRIBUTES
+    roleList : List<Expression>
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS SubClassNames
+ATTRIBUTES
+    ubClassList : List<Identifier>,
+    parentClassId : Identifier
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS TwoRole
+ATTRIBUTES
+    role1 : Expression ,
+    role2 : Expression ,
+    associationId : Identifier
+OPERATIONS
+    tokenize() : Expression
+;
+
+CLASS Type
+ATTRIBUTES
+OPERATIONS
+    tokenize() : Expression
 ;
 
 
+CLASS Displayable
+ATTRIBUTES
+OPERATIONS
+    display() : String
+    updateScreen(controller : ScreenController) : void
+;
+
+CLASS UmlAggregation
+ATTRIBUTES
+    container : UmlClass,
+    part : PartsEntry
+OPERATIONS UmlAssociation
+    display() : String,
+    updateScreen(controller : ScreenController) : void
+;
+
+CLASS UmlAssociation
+ATTRIBUTES
+    firstClass : UmlClass,
+    secondClasse : UmlClass,
+    association : String,
+    firstClassMultiplicity : String,
+    secondClassMultiplicity : String
+OPERATIONS
+    display() : String,
+    updateScreen(controller : ScreenController) : void
+
+;
+
+CLASS UmlAttribute
+ATTRIBUTES
+    type : String
+OPERATIONS
+    display() : String,
+    updateScreen(controller : ScreenController) : void
+
+;
+
+CLASS UmlClass
+ATTRIBUTES
+    attributes : Map<String, UmlToken>,
+    operations : Map<String, UmlToken>,
+    subClasses : Map<String, UmlToken>,
+    associations : Map<String, UmlToken>,
+    agregations : List<UmlToken>,
+    superClass : UmlClass
+OPERATIONS
+    display() : String,
+    updateScreen(controller : ScreenController) : void,
+    getAggAssocList() : List<UmlToken>,
+    createOperation(name : String, type : String , content : String) : void,
+    createAttributes(id : String, type : String , content : String) : void,
+    addSubClass(classId : String, subClass : UmlClass) : void
+;
 
 
+CLASS UmlOperation
+ATTRIBUTES
+    type : String,
+    arguments : List<Args>
+OPERATIONS
+    display() : String,
+    updateScreen(controller : ScreenController) : void,
+    addArgument(item : DataItem) : void
+;
 
+CLASS UmlContext
+ATTRIBUTES
+    modelId : String,
+    tokens : Map<String, Expression>,
+    SyntaxTree tree;
+OPERATIONS
+    getUmlClass(id : String) : UmlClass,
+    createClass(id : String , content : String) : void,
+    initializeSubclasses() : void
+;
 
+CLASS UmlToken
+ATTRIBUTES
+   name : String,
+   content : String
+OPERATIONS
+    formatContent() : String
+    formatTypeSeperator(txt : String) : String
+;
 
+CLASS Utils
+ATTRIBUTES
+OPERATIONS
+    concatArraysToList(first : T[], second : T[]) : List<T>,
+    containsAny(txt : String, illegal : List<String>) : boolean,
+    containsAny(txt : String, illegal : VarArg<String>) : boolean
+;
+
+CLASS MainDisplay
+ATTRIBUTES
+    ATTRIBUTES_TITLE : String,
+    OPERATIONS_TITLE : String,
+    SUBCLASS_TITLE : String,
+    ASSO_INTRG_TITLE : String,
+    DETAILS_TITLE : String,
+    primaryStage : Stage,
+    appTheme : AppTheme,
+    classView : ClassListView,
+    centerView : MainCenterClassInfo
+OPERATIONS
+    init() : void,
+    setupUcdDisplay(UmlContext context) : void,
+    errorScreen(IOException ioe) : void,
+    errorScreen(UcdParsingException ucde) : void,
+    errorScreen(NullPointerException npe) : void,
+    getOnOpenCenterView() : Node,
+    resetLayout() : void,
+    updateClassSelected(UmlClass clazz) : void,
+    updateClassSelected(UmlClass clazz) : void,
+    updateTokenClicked(UmlToken token) : void
+;
+
+CLASS ScreenController
+ATTRIBUTES
+    private Stage primaryStage;
+    private Application.Parameters parameters;
+    private MainDisplay main;
+OPERATIONS
+    setupMainDisplay() : void,
+    updateSelection(umlClass : UmlClass) : void,
+    updateSelection(op : UmlOperation ) : void,
+    updateSelection(attr : UmlAttribute ) : void,
+    updateSelection(assoc : UmlAssociation ) : void,
+    updateSelection(aggreg : UmlAggregation ) : void
+;
+
+CLASS UmlView
+ATTRIBUTES
+     T init() : <T extends Node>
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
+
+CLASS
+ATTRIBUTES
+OPERATIONS
+;
 

@@ -1,6 +1,6 @@
 package syntaxTree.expressions;
 
-import syntaxTree.UmlContext;
+import token.UmlContext;
 
 /**
  * General representation of an Expression of the BNF grammar.

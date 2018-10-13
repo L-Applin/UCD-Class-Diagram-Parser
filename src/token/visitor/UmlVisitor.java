@@ -3,7 +3,7 @@ package token.visitor;
 import token.*;
 
 /**
- * Must be carfull with cyclic  !
+ * Must be carefull with cyclic !
  */
 public interface UmlVisitor {
     void visit(UmlAggregation aggregation);
