@@ -2,6 +2,7 @@ package token;
 
 import screenDisplay.ScreenController;
 import syntaxTree.expressions.DataItem;
+import token.visitor.UmlVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,5 +72,8 @@ public class UmlOperation extends UmlToken {
         }
     }
 
-
+    @Override
+    public void accept(UmlVisitor visitor) {
+        visitor.visit(this);
+    }
 }
