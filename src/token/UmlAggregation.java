@@ -1,7 +1,7 @@
 package token;
 
 import screenDisplay.ScreenController;
-import utils.Utils;
+import token.visitor.UmlVisitor;
 
 public class UmlAggregation extends UmlToken{
 
@@ -53,4 +53,8 @@ public class UmlAggregation extends UmlToken{
         }
     }
 
+    @Override
+    public void accept(UmlVisitor visitor) {
+        visitor.visit(this);
+    }
 }

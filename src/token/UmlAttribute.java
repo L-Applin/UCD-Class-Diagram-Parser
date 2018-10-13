@@ -1,6 +1,7 @@
 package token;
 
 import screenDisplay.ScreenController;
+import token.visitor.UmlVisitor;
 
 public class UmlAttribute extends UmlToken {
 
@@ -29,5 +30,8 @@ public class UmlAttribute extends UmlToken {
         controller.updateSelection(this);
     }
 
-
+    @Override
+    public void accept(UmlVisitor visitor) {
+        visitor.visit(this);
+    }
 }

@@ -1,6 +1,7 @@
 package token;
 
 import screenDisplay.ScreenController;
+import token.visitor.UmlVisitor;
 import utils.Utils;
 
 import java.util.*;
@@ -107,5 +108,14 @@ public class UmlClass extends UmlToken {
         controller.updateSelection(this);
     }
 
+    @Override
+    public void accept(UmlVisitor visitor) {
+        attributes.values().forEach(token -> token.accept(visitor));
+        operations.values().forEach(token -> token.accept(visitor));
+        subClasses.values().forEach(token -> token.accept(visitor));
+        associations.values().forEach(token -> token.accept(visitor));
+        agregations.forEach(token -> token.accept(visitor));
 
+        visitor.visit(this);
+    }
 }

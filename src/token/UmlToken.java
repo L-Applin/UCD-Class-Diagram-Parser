@@ -2,6 +2,7 @@ package token;
 
 import parsing.Delims;
 import parsing.UcdParser;
+import token.visitor.UmlVisitorElement;
 import utils.Utils;
 
 import java.io.*;
@@ -16,7 +17,7 @@ import static parsing.GrammarModel.Decs.*;
 /**
  * General representation of a uml parameter.
  */
-public abstract class UmlToken implements Displayable {
+public abstract class UmlToken implements Displayable, UmlVisitorElement {
 
     /**
      * The name (or tag) of the token. This is the key that is used in the various map attributes
@@ -88,6 +89,5 @@ public abstract class UmlToken implements Displayable {
     private String formatTypeSeperator(String txt){
         Matcher matcher = Pattern.compile(Delims.TYPE_SEPARATOR).matcher(txt);
         return matcher.replaceAll(Delims.SPACE + Delims.TYPE_SEPARATOR + Delims.SPACE);
-
     }
 }
