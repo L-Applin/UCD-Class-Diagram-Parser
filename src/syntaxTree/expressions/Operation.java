@@ -22,7 +22,6 @@ public class Operation implements Expression {
     public Expression tokenize(final UmlContext ctx, String content) {
 
         if (!(content.equals("") || content.equals(" "))) {
-            Utils.Log.test("OP CONTENT : ", content);
             UcdParser parser = new UcdParser(content);
             methodId = new Identifier(parser.getOperationId(classId.getValue()));
 

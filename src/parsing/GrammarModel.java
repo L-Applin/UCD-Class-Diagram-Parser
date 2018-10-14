@@ -9,7 +9,7 @@ public class GrammarModel {
 
     public static final String[] illegalChar = {"~", "\\"};
     public static final List<String> illegalTypeChar = Utils.concatArraysToList(illegalChar,
-            new String[]{"(", ")", "[", "]"});
+            new String[]{"(", ")"});
 
     public static final String MODEL_TAG = "MODEL";
     public static final String SUBCLASSES_TAG = "SUBCLASSES";

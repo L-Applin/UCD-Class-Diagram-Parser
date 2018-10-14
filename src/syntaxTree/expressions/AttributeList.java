@@ -17,7 +17,6 @@ public class AttributeList implements Expression {
     public AttributeList(List<Expression> attributes, Identifier classId) {
         this.attributes = attributes;
         this.classId = classId;
-        Utils.Log.test("ATTR ClassID", classId.getValue());
     }
 
     /**

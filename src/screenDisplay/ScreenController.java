@@ -33,22 +33,22 @@ public class ScreenController {
 
     public void updateSelection(UmlOperation op){
         main.updateTokenClicked(op);
-        Utils.Log.test("UmlOperation : ", op.display());
+        //Utils.Log.test("UmlOperation : ", op.display());
     }
 
     public void updateSelection(UmlAttribute attr){
         main.updateTokenClicked(attr);
-        Utils.Log.test("UmlAttribute : ", attr.display());
+        //Utils.Log.test("UmlAttribute : ", attr.display());
     }
 
     public void updateSelection(UmlAssociation assoc){
         main.updateTokenClicked(assoc);
-        Utils.Log.test("UmlOperation : ", assoc.display());
+        //Utils.Log.test("UmlOperation : ", assoc.display());
     }
 
     public void updateSelection(UmlAggregation aggreg){
         main.updateTokenClicked(aggreg);
-        Utils.Log.test("UmlOperation : ", aggreg.display());
+        //Utils.Log.test("UmlOperation : ", aggreg.display());
     }
 
 }

@@ -146,8 +146,8 @@ public class UcdParser implements ExceptionCheckProvider {
             if (matcher.group(1).contains(",")){
                 final Matcher commaMatcher = Pattern.compile(LIST_SEPERATOR).matcher(matcher.group(1));
                 String customSeparatedList = commaMatcher.replaceAll(CUSTOM_LIST_SEP);
-
                 // replace original string with custom separator string
+                // TODO : find a way to make it work with square brackets [] for array type
                 final Matcher sepratedListMatcher = Pattern.compile(matcher.group(1)).matcher(txt);
                 txt = sepratedListMatcher.replaceAll(customSeparatedList);
 

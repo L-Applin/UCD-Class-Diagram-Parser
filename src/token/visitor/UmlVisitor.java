@@ -9,6 +9,6 @@ public interface UmlVisitor {
     void visit(UmlAggregation aggregation);
     void visit(UmlAssociation association);
     void visit(UmlAttribute attribute);
-    void visit(UmlClass umlClass);
     void visit(UmlOperation operation);
+    void visit(UmlClass umlClass);
 }

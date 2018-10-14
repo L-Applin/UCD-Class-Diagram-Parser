@@ -8,7 +8,7 @@ public class Utils {
 
     public static class Log {
 
-        public static final boolean logTest = false;
+        public static final boolean logTest = true;
         public static final boolean logAll = false;
 
 
@@ -23,6 +23,11 @@ public class Utils {
                 logInput(logs);
             }
         }
+
+        public static void log(String... logs) {
+                logInput(logs);
+        }
+
 
         private static void logInput(String... logs) {
             StringBuilder sb = new StringBuilder();

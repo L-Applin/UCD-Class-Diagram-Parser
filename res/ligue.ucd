@@ -50,7 +50,7 @@ RELATION est_localisee_a
 ;
 
 RELATION dirige
-       ROLES
+   ROLES
        CLASS Entraineur ONE_OR_MANY,
        CLASS Equipe ONE
 ;

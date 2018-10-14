@@ -27,7 +27,6 @@ public class Role implements Expression {
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        Log.test("ROLE :", content);
         UcdParser parser = new UcdParser(content);
         RoleEntry splits = parser.convertRolesEntry(associationId.getValue());
         classId = new Identifier(splits.classId);

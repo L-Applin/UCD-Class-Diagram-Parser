@@ -59,8 +59,6 @@ public class MainDisplay extends BorderPane {
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-        // rootLayout = new BorderPane();
-
         setBackground(appTheme.getPrimaryDarkBackground());
 
         MyTopBar topBar = new MyTopBar(appTheme, this);

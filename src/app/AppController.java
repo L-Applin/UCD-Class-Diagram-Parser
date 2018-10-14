@@ -5,13 +5,11 @@ import screenDisplay.MainDisplay;
 import syntaxTree.SyntaxTree;
 import token.UmlContext;
 import syntaxTree.exceptions.UcdParsingException;
-import token.UmlToken;
-import token.visitor.UmlChildClassVisitor;
+import token.visitor.InfoDisplayVisitor;
+import token.visitor.SuperClassAssignationVisitor;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AppController {
 
@@ -38,6 +36,7 @@ public class AppController {
         UmlContext ctx = new UmlContext();
         SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
         ctx.setTree(tree);
+        ctx.visitClasses(new SuperClassAssignationVisitor());
         return ctx;
 
     }
@@ -53,8 +52,7 @@ public class AppController {
     	try {
             String stringFile = openUcdFile(ucdFile.getAbsolutePath());
             UmlContext ctx = parseUcdFile(stringFile);
-            List<UmlToken> tokens = new ArrayList<>(ctx.getClasses().values());
-            tokens.get(0).accept(new UmlChildClassVisitor());
+            ctx.visitClasses(new InfoDisplayVisitor());
             screen.setupUcdDisplay(ctx);
         } catch (IOException ioe){
             screen.errorScreen(ioe);

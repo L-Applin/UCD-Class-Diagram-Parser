@@ -21,8 +21,6 @@ public class TwoRole implements Expression {
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
 
-        Utils.Log.test("TWO ROLE :", content);
-
         UcdParser parser = new UcdParser(content);
         String[] roles = parser.splitTwoRoles(associationId.getValue());
         role1 = new Role(associationId).tokenize(ctx, roles[0]);
@@ -30,9 +28,6 @@ public class TwoRole implements Expression {
 
         UmlClass first = ctx.getUmlClass(((Role) role1).getClassId().getValue());
         UmlClass second = ctx.getUmlClass(((Role) role2).getClassId().getValue());
-        Utils.Log.test("ROLE 1:", role1.toString());
-        Utils.Log.test("ROLE 2:", role2.toString());
-
         UmlAssociation umlAssociation =
                 new UmlAssociation(associationId.toString(),
                         first, ((Role) role1).getMultiplicity().toString(),

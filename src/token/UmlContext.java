@@ -4,6 +4,7 @@ import syntaxTree.SyntaxTree;
 import syntaxTree.expressions.Expression;
 import token.UmlClass;
 import token.UmlToken;
+import token.visitor.UmlVisitor;
 
 import java.util.*;
 
@@ -60,6 +61,10 @@ public class UmlContext {
                 ((UmlClass) subClass).setSuperClass((UmlClass) umlClass);
             });
         });
+    }
+
+    public void visitClasses(UmlVisitor visitor){
+        classes.values().forEach(clazz -> clazz.accept(visitor));
     }
 
 }

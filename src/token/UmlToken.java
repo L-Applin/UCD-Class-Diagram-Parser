@@ -90,4 +90,6 @@ public abstract class UmlToken implements Displayable, UmlVisitorElement {
         Matcher matcher = Pattern.compile(Delims.TYPE_SEPARATOR).matcher(txt);
         return matcher.replaceAll(Delims.SPACE + Delims.TYPE_SEPARATOR + Delims.SPACE);
     }
+
+
 }

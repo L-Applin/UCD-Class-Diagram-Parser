@@ -56,7 +56,6 @@ public class UmlClass extends UmlToken {
      */
     public UmlClass(String name, String content) {
         super(content, name);
-        Utils.Log.test("UML CLASS:", name);
         attributes = new HashMap<>();
         operations = new HashMap<>();
         associations = new HashMap<>();
@@ -99,8 +98,7 @@ public class UmlClass extends UmlToken {
 
     @Override
     public String toString() {
-        return "UmlClass{" +
-                "name='" + name + '\'' + '}';
+        return "UmlClass{" + "name='" + name + '\'' + '}';
     }
 
     @Override
@@ -110,12 +108,12 @@ public class UmlClass extends UmlToken {
 
     @Override
     public void accept(UmlVisitor visitor) {
-        attributes.values().forEach(token -> token.accept(visitor));
-        operations.values().forEach(token -> token.accept(visitor));
-        subClasses.values().forEach(token -> token.accept(visitor));
-        associations.values().forEach(token -> token.accept(visitor));
-        agregations.forEach(token -> token.accept(visitor));
-
+        // attributes.values().forEach(token -> System.out.println(token.toString()));
+        // operations.values().forEach(token -> token.accept(visitor));
+        // subClasses.values().forEach(token -> token.accept(visitor));
+        // associations.values().forEach(token -> token.accept(visitor));
+        // agregations.forEach(token -> token.accept(visitor));
         visitor.visit(this);
     }
+
 }

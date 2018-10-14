@@ -52,6 +52,7 @@ ATTRIBUTES
     defaul_padding : Inset,
     default_font : Font,
     default_class_font : Font
+OPERATIONS
 ;
 
 CLASS AppController
@@ -62,14 +63,6 @@ OPERATIONS
     lauchUcdActivity(screen : MainDisplay, ucdFile : File): Void
 ;
 
-CLASS Main
-ATTRIBUTES
-    APP_NAME : String,
-    os : Platform,
-    start(primaryStage : Stage) : void,
-    main(args : String[] ) : void
-OPERATIONS
-;
 
 CLASS Delims
 ATTRIBUTES
@@ -100,25 +93,25 @@ CLASS UcdParser
 ATTRIBUTES
     txt : String
 OPERATIONS
-    extractBetween(String beginToken, String endToken) : String,
-    convertIdEntry(String expectedTag) : IdentifierEntry,
+    extractBetween(beginToken : String, endToken : String ) : String,
+    convertIdEntry(expectedTag : String) : IdentifierEntry,
     convertDeclarationEntry() : DeclarationEntry,
-    convertRolesEntry(String associationId) : RoleEntry,
+    convertRolesEntry(associationId : String) : RoleEntry,
     splitDeclarations() :List<String>,
     splitList() : List<String>,
-    extractAttributes(String classId, String content) : String,
-    extractOperations(String classId, String content) : String,
-    extractArgList(String methodId, String classId) : String,
-    extractGeneralizationClasses(String genId) : String,
-    extractType(String parentId) : String,
+    extractAttributes(classId : String, content : String) : String,
+    extractOperations(classId : String, content : String) : String,
+    extractArgList(methodId : String, classId : String) : String,
+    extractGeneralizationClasses(genId : String) : String,
+    extractType(parentId : String) : String,
     extractcParts() : String,
-    String[] splitDataItem(String parentId) : String[],
-    String[] splitTwoRoles(String association) : String[],
+    splitDataItem(parentId : String) : String[],
+    splitTwoRoles(association : String) : String[],
     splitArgs() : List<String>,
-    removeNewLines(String txt) : String,
-    replaceNewLines(String txt) : String,
-    removeSpaces(String txt) : String,
-    getOperationId(String classId) : String,
+    removeNewLines(txt : String) : String,
+    replaceNewLines(txt : String) : String,
+    removeSpaces(txt : String) : String,
+    getOperationId(classId : String) : String,
     replaceNewLineToken() : String,
     replaceCustomListSeperator() : String,
     removeSpaces() : void
@@ -126,8 +119,8 @@ OPERATIONS
 
 CLASS MainDisplay
 ATTRIBUTES
-    ATTRIBUTES_TITLE
-    OPERATIONS_TITLE : String,
+    ATT_TITLE : String,
+    OP_TITLE : String,
     SUBCLASS_TITLE : String,
     ASSO_INTRG_TITLE : String,
     DETAILS_TITLE : String,
@@ -135,7 +128,6 @@ ATTRIBUTES
     appTheme : AppTheme,
     classView : ClassListView,
     centerView : MainCenterClassInfo
-
 OPERATIONS
     init() : void
     setupUcdDisplay(context : UmlContext) : void
@@ -144,16 +136,15 @@ OPERATIONS
     errorScreen(npe : NullPointerException) : void
     getOnOpenCenterView() : Node
     resetLayout() : void
-    updateClassSelected(UmlClass clazz) : void
-    updateTokenClicked(UmlToken token) : void
+    updateClassSelected(clazz : UmlClass) : void
+    updateTokenClicked(token : UmlToken) : void
 ;
 
 CLASS ScreenController
 ATTRIBUTES
     primaryStage : Stage,
-    parameters : Application.Parameters,
+    parameters : Parameters,
     main : MainDisplay
-
 OPERATIONS
    setupMainDisplay() : void
    updateSelection(umlClass : UmlClass) : void
@@ -165,9 +156,9 @@ OPERATIONS
 
 CLASS DeclarationEntry
 ATTRIBUTES
-    decType ; String,
-    id ; String,
-    content ; String
+    decType : String,
+    id : String,
+    content : String
 OPERATIONS
 ;
 
@@ -229,8 +220,8 @@ OPERATIONS
 CLASS ArgList
 ATTRIBUTES
     methodId : Identifier,
-    classId: Identifier,
-    dataItems, List<Expression>
+    classId : Identifier,
+    dataItems : List<Expression>
 OPERATIONS
     tokenize() : Expression
 ;
@@ -246,7 +237,7 @@ OPERATIONS
 CLASS AttributeList
 ATTRIBUTES
     attributes : List<Expression>,
-    classId, Identifier
+    classId : Identifier
 OPERATIONS
     tokenize() : Expression
 ;
@@ -322,11 +313,11 @@ OPERATIONS
 
 CLASS Multiplicity
 ATTRIBUTES
-    Identifier associationId;
+    associationId : Identifier,
     multiplicity : MultiplicityValue
 OPERATIONS
     tokenize() : Expression,
-    fromString(String value) : MultiplicityValue
+    fromString(value : String) : MultiplicityValue
 ;
 
 CLASS Operation
@@ -366,7 +357,7 @@ OPERATIONS
 
 CLASS SubClassNames
 ATTRIBUTES
-    ubClassList : List<Identifier>,
+    subClassList : List<Identifier>,
     parentClassId : Identifier
 OPERATIONS
     tokenize() : Expression
@@ -428,18 +419,18 @@ OPERATIONS
 
 CLASS UmlClass
 ATTRIBUTES
-    attributes : Map<String, UmlToken>,
-    operations : Map<String, UmlToken>,
-    subClasses : Map<String, UmlToken>,
-    associations : Map<String, UmlToken>,
+    attributes : Map<String UmlToken>,
+    operations : Map<String UmlToken>,
+    subClasses : Map<String UmlToken>,
+    associations : Map<String UmlToken>,
     agregations : List<UmlToken>,
     superClass : UmlClass
 OPERATIONS
     display() : String,
     updateScreen(controller : ScreenController) : void,
     getAggAssocList() : List<UmlToken>,
-    createOperation(name : String, type : String , content : String) : void,
-    createAttributes(id : String, type : String , content : String) : void,
+    createOperation(name : String, type : String, content : String) : void,
+    createAttributes(id : String, type : String, content : String) : void,
     addSubClass(classId : String, subClass : UmlClass) : void
 ;
 
@@ -457,8 +448,8 @@ OPERATIONS
 CLASS UmlContext
 ATTRIBUTES
     modelId : String,
-    tokens : Map<String, Expression>,
-    SyntaxTree tree;
+    tokens : Map<String Expression>,
+    tree : SyntaxTree
 OPERATIONS
     getUmlClass(id : String) : UmlClass,
     createClass(id : String , content : String) : void,
@@ -477,15 +468,15 @@ OPERATIONS
 CLASS Utils
 ATTRIBUTES
 OPERATIONS
-    concatArraysToList(first : T[], second : T[]) : List<T>,
+    concatArraysToList(first : T, second : T) : List<T>,
     containsAny(txt : String, illegal : List<String>) : boolean,
     containsAny(txt : String, illegal : VarArg<String>) : boolean
 ;
 
 CLASS MainDisplay
 ATTRIBUTES
-    ATTRIBUTES_TITLE : String,
-    OPERATIONS_TITLE : String,
+    ATTRIBUTE_TITLE : String,
+    OPERATION_TITLE : String,
     SUBCLASS_TITLE : String,
     ASSO_INTRG_TITLE : String,
     DETAILS_TITLE : String,
@@ -495,29 +486,15 @@ ATTRIBUTES
     centerView : MainCenterClassInfo
 OPERATIONS
     init() : void,
-    setupUcdDisplay(UmlContext context) : void,
-    errorScreen(IOException ioe) : void,
-    errorScreen(UcdParsingException ucde) : void,
-    errorScreen(NullPointerException npe) : void,
+    setupUcdDisplay(context : UmlContext) : void,
+    errorScreen(ioe : IOException) : void,
+    errorScreen(ucde : UcdParsingException) : void,
+    errorScreen(npe : NullPointerException) : void,
     getOnOpenCenterView() : Node,
     resetLayout() : void,
-    updateClassSelected(UmlClass clazz) : void,
-    updateClassSelected(UmlClass clazz) : void,
-    updateTokenClicked(UmlToken token) : void
-;
-
-CLASS ScreenController
-ATTRIBUTES
-    private Stage primaryStage;
-    private Application.Parameters parameters;
-    private MainDisplay main;
-OPERATIONS
-    setupMainDisplay() : void,
-    updateSelection(umlClass : UmlClass) : void,
-    updateSelection(op : UmlOperation ) : void,
-    updateSelection(attr : UmlAttribute ) : void,
-    updateSelection(assoc : UmlAssociation ) : void,
-    updateSelection(aggreg : UmlAggregation ) : void
+    updateClassSelected(clazz : UmlClass) : void,
+    updateClassSelected(clazz : UmlClass) : void,
+    updateTokenClicked(token : UmlToken) : void
 ;
 
 CLASS UmlView
@@ -526,68 +503,70 @@ ATTRIBUTES
 OPERATIONS
 ;
 
-CLASS
-ATTRIBUTES
-OPERATIONS
+
+
+
+
+
+
+
+
+
+
+GENERALIZATION UmlToken
+	SUBCLASSES UmlClass, UmlOperation, UmlAttribute, UmlAssociation, UmlAggregation
 ;
 
-CLASS
-ATTRIBUTES
-OPERATIONS
+GENERALIZATION Displayable
+	SUBCLASSES UmlToken
 ;
 
-CLASS
-ATTRIBUTES
-OPERATIONS
+GENERALIZATION Expression
+    SUBCLASSES Aggregation, ArgDeclaration, ArgList, Association, AttributeList, ClassContent, ClassDeclaration, DataItem, DeclarationList, Generalization, Identifier, Model, Multiplicity, Operation, OperationList, Role, Roles, SubClassNames, TwoRole, Type
 ;
 
-CLASS
-ATTRIBUTES
-OPERATIONS
+
+
+
+
+
+
+
+AGGREGATION
+CONTAINER
+       CLASS UmlContext ONE
+PARTS
+       CLASS UmlClass ONE_OR_MANY,
+       CLASS SyntaxTree ONE
 ;
 
-CLASS
-ATTRIBUTES
-OPERATIONS
+AGGREGATION
+CONTAINER
+       CLASS UmlClass ONE
+PARTS
+       CLASS UmlOperation ONE_OR_MANY,
+       CLASS UmlAttribute ONE_OR_MANY,
+       CLASS UmlAggregation ONE_OR_MANY,
+       CLASS UmlAssociation ONE_OR_MANY
 ;
 
-CLASS
-ATTRIBUTES
-OPERATIONS
+
+
+
+
+
+
+
+
+RELATION extends
+   ROLES
+       CLASS UmlClass ONE_OR_MANY,
+       CLASS UmlClass ONE
 ;
 
-CLASS
-ATTRIBUTES
-OPERATIONS
-;
-
-CLASS
-ATTRIBUTES
-OPERATIONS
-;
-
-CLASS
-ATTRIBUTES
-OPERATIONS
-;
-
-CLASS
-ATTRIBUTES
-OPERATIONS
-;
-
-CLASS
-ATTRIBUTES
-OPERATIONS
-;
-
-CLASS
-ATTRIBUTES
-OPERATIONS
-;
-
-CLASS
-ATTRIBUTES
-OPERATIONS
+RELATION super
+   ROLES
+       CLASS UmlClass ONE,
+       CLASS UmlClass ONE_OR_MANY
 ;
 
