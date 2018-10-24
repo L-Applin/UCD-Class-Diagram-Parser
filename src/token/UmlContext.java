@@ -1,5 +1,7 @@
 package token;
 
+import token.visitor.InfoDisplayVisitor;
+import token.visitor.UmlClassVisitor;
 import token.visitor.UmlVisitor;
 
 import java.util.HashMap;
@@ -60,16 +62,20 @@ public class UmlContext {
     }
 
 
-    public void initializeSubclasses(){
-        classes.forEach((className, umlClass) ->{
-            (((UmlClass) umlClass).getSubClasses()).forEach((sbClassName, subClass)-> {
-                ((UmlClass) subClass).setSuperClass((UmlClass) umlClass);
-            });
-        });
-    }
-
     public void visitClasses(UmlVisitor visitor){
         classes.values().forEach(clazz -> clazz.accept(visitor));
     }
 
+
+    public void calculateMetrics(){
+        // prepare data for display
+        visitClasses(new InfoDisplayVisitor());
+
+        UmlClassVisitor superClassVisitor = new UmlClassVisitor();
+        superClassVisitor.setClassVisitor(clazz -> clazz.getSubClasses().values().forEach(
+                child -> ((UmlClass)child).setSuperClass(clazz)));
+
+        visitClasses(superClassVisitor);
+
+    }
 }

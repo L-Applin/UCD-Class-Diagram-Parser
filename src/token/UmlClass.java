@@ -39,7 +39,7 @@ public class UmlClass extends UmlToken {
     public Map<String, UmlToken> getAssociations() { return associations; }
 
     /**
-     * All of the classes aggregation this attribute contains.
+     * All of the classes aggregation this attribute contains. List because AGGREGATION dont have tags, ids, or names.
      */
     private List<UmlToken> agregations;
     public List<UmlToken> getAgregations() { return agregations; }
@@ -54,9 +54,8 @@ public class UmlClass extends UmlToken {
     /**
      * The metrics value of the class
      */
-    private UmlMetric metric;
-    public UmlMetric getMetric() { return metric; }
-    public void setMetric(UmlMetric metric) { this.metric = metric; }
+    private Map<String, UmlMetric> metric;
+    public Map<String, UmlMetric> getMetric() { return metric; }
 
     /**
      * The constructors must defines the name (tag) of the class and its string content. All other attributes are
@@ -67,11 +66,12 @@ public class UmlClass extends UmlToken {
      */
     public UmlClass(String name, String content) {
         super(content, name);
-        attributes = new HashMap<>();
-        operations = new HashMap<>();
-        associations = new HashMap<>();
-        agregations = new ArrayList<>();
-        subClasses = new HashMap<>();
+        attributes =    new HashMap<>();
+        operations =    new HashMap<>();
+        associations =  new HashMap<>();
+        subClasses =    new HashMap<>();
+        metric =        new HashMap<>();
+        agregations =   new ArrayList<>();
     }
 
     /**

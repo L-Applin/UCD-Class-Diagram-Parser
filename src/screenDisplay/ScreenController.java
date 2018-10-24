@@ -51,7 +51,7 @@ public class ScreenController {
     }
 
     public void updateSelection(UmlMetric metric){
-        main.updateMetricClicked(metric);
+        // todo
         //Utils.Log.test("UmlOperation : ", aggreg.display());
     }
 

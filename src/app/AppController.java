@@ -4,9 +4,11 @@ import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
 import parsing.syntaxTree.SyntaxTree;
 import parsing.syntaxTree.exceptions.MalformedFileException;
+import token.UmlClass;
 import token.UmlContext;
 import token.visitor.InfoDisplayVisitor;
 import token.visitor.SuperClassAssignationVisitor;
+import token.visitor.UmlClassVisitor;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,11 +58,7 @@ public class AppController {
     	try {
             String stringFile = openUcdFile(ucdFile.getAbsolutePath());
             UmlContext ctx = parseUcdFile(stringFile);
-
-            // prepare data for display
-            ctx.visitClasses(new InfoDisplayVisitor());
-            ctx.visitClasses(new SuperClassAssignationVisitor());
-
+            ctx.calculateMetrics();
             screen.setupUcdDisplay(ctx);
         } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);

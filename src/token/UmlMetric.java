@@ -33,9 +33,10 @@ public class UmlMetric implements Displayable {
     /**
      * Metrics used.
      1. ANA(ci) : Nombre moyen d’arguments des méthodes locales pour la classe ci.
-     2. NOM(ci) : Nombre de méthodes locales/héritées de la classe ci. Dans le cas où uneméthode est héritée et redéfinie localement (même nom, même ordre et types desarguments et même type de retour), elle ne compte qu’une fois.
+     2. NOM(ci) : Nombre de méthodes locales/héritées de la classe ci. Dans le cas où une méthode est héritée
+        et redéfinie localement (même nom, même ordre et types desarguments et même type de retour), elle ne compte qu’une fois.
      3. NOA(ci) : Nombre d’attributs locaux/hérités de la classe ci.
-     4. ITC(ci) : Nombre de fois où d’autres classes du diagramme apparaissent comme typesdes arguments des méthodes de ci.
+     4. ITC(ci) : Nombre de fois où d’autres classes du diagramme apparaissent comme types des arguments des méthodes de ci.
      5. ETC(ci) : Nombre de fois où ci apparaît comme type des arguments dans les méthodesdes autres classes du diagramme.
      6. CAC(ci) : Nombre d’associations (incluant les agrégations) locales/héritées auxquellesparticipe une classe ci.
      7. DIT(ci) : Taille du chemin le plus long reliant une classe ci à une classe racine dans legraphe d’héritage.
