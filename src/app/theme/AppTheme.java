@@ -13,10 +13,9 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 
 /**
- * Manages the color display of the app
+ * Manages the color display and padding value of the app
  */
 public class AppTheme {
-
 
     private Color primaryDark, primaryLight, secondaryDark, contrastDark, contrastLight, primaryDarkTransparent;
     private String primaryDarkValue, primaryLightValue, secondaryDarkValue, contrastDarkValue, contrastLightValue;
@@ -27,9 +26,19 @@ public class AppTheme {
     private Color primaryLightTextColor = Color.WHITE;
     private Color primaryDarkTextColor;
 
-
-
-    public AppTheme(String primaryDark, String primaryLight, String secondaryDark, String contrastDark, String contrastLight) {
+    /**
+     * Overrides default specified in {@link DefaultThemeValue} value with those passed as parameter.
+     * @param primaryDark the new color for the parameter in the form '#HHHHHH' where H is anan haxidecimal character. Opacity will be 1.
+     * @param primaryLight the new color for the parameter in the form '#HHHHHH' where H is anan haxidecimal character. Opacity will be 1.
+     * @param secondaryDark the new color for the parameter in the form '#HHHHHH' where H is anan haxidecimal character. Opacity will be 1.
+     * @param contrastDark the new color for the parameter in the form '#HHHHHH' where H is anan haxidecimal character. Opacity will be 1.
+     * @param contrastLight the new color for the parameter in the form '#HHHHHH' where H is anan haxidecimal character. Opacity will be 1.
+     */
+    public AppTheme(String primaryDark,
+                    String primaryLight,
+                    String secondaryDark,
+                    String contrastDark,
+                    String contrastLight) {
 
         this.primaryDarkValue =     primaryDark;
         this.primaryLightValue =    primaryLight;
@@ -37,12 +46,19 @@ public class AppTheme {
         this.contrastDarkValue =    contrastDark;
         this.contrastLightValue =   contrastLight;
 
-        this.primaryDark =          Color.web(primaryDark);
-        this.primaryLight =         Color.web(primaryLight);
-        this.secondaryDark =        Color.web(secondaryDark);
-        this.contrastDark =         Color.web(contrastDark);
-        this.contrastLight =        Color.web(contrastLight);
-
+        try {
+            this.primaryDark =          Color.web(primaryDark);
+            this.primaryLight =         Color.web(primaryLight);
+            this.secondaryDark =        Color.web(secondaryDark);
+            this.contrastDark =         Color.web(contrastDark);
+            this.contrastLight =        Color.web(contrastLight);
+        } catch (IllegalArgumentException | NullPointerException npe){
+            this.primaryDark =          DefaultThemeValue.primary_dark_color;
+            this.primaryLight =         DefaultThemeValue.primary_light_color;
+            this.secondaryDark =        DefaultThemeValue.secondary_dark_color;
+            this.contrastDark =         DefaultThemeValue.primary_contrast_color;
+            this.contrastLight =        DefaultThemeValue.secondary_contrast_color;
+        }
     }
 
     /**
@@ -205,7 +221,9 @@ public class AppTheme {
         return primaryDarkTextColor;
     }
 
-    public void setPrimaryDarkTextColor(Color primaryDarkTextColor) { this.primaryDarkTextColor = primaryDarkTextColor; }
+    public void setPrimaryDarkTextColor(Color primaryDarkTextColor) {
+        this.primaryDarkTextColor = primaryDarkTextColor;
+    }
 
     public Color getPrimaryDark() {
         return primaryDark;

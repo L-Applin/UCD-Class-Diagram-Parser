@@ -11,8 +11,7 @@ public class Main extends Application {
     public static final Platform os = Platform.getPlatform();
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        System.out.println(os);
+    public void start(Stage primaryStage) {
         final ScreenController screen = new ScreenController(primaryStage, getParameters());
         screen.setupMainDisplay();
 

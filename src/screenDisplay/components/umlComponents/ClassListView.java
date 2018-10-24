@@ -11,14 +11,12 @@ import screenDisplay.ScreenController;
 import screenDisplay.components.BtnListView;
 import screenDisplay.components.ListButton;
 import screenDisplay.components.SectionTitle;
-import token.UmlContext;
 import token.UmlClass;
+import token.UmlContext;
 import token.UmlToken;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class ClassListView extends UmlBtnListView {
 

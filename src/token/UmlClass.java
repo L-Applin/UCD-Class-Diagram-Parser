@@ -2,10 +2,15 @@ package token;
 
 import screenDisplay.ScreenController;
 import token.visitor.UmlVisitor;
-import utils.Utils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Representation of a class element for a Uml class diagram.
+ */
 public class UmlClass extends UmlToken {
 
     /**
@@ -19,7 +24,6 @@ public class UmlClass extends UmlToken {
      */
     private Map<String, UmlToken> operations;
     public Map<String, UmlToken> getOperations() { return operations; }
-
 
     /**
      * All the classes that extends this class.
@@ -46,6 +50,13 @@ public class UmlClass extends UmlToken {
     private UmlClass superClass;
     public UmlClass getSuperClass() { return superClass; }
     public void setSuperClass(UmlClass superClass) { this.superClass = superClass; }
+
+    /**
+     * The metrics value of the class
+     */
+    private UmlMetric metric;
+    public UmlMetric getMetric() { return metric; }
+    public void setMetric(UmlMetric metric) { this.metric = metric; }
 
     /**
      * The constructors must defines the name (tag) of the class and its string content. All other attributes are
@@ -79,17 +90,34 @@ public class UmlClass extends UmlToken {
         return name;
     }
 
+    /**
+     * Helper method used to create an {@link UmlOperation} associated with this class.
+     * @param name the name of the method
+     * @param type the return type of the method
+     * @param content the text content description of the method
+     */
     public void createOperation(String name, String type, String content){
         operations.put(name, new UmlOperation(name, type, content));
     }
 
-
+    /**
+     * Helper method to create an {@link UmlAttribute} associated with this class.
+     * @param id the name, or identifierm of the attribut
+     * @param type the type of the attribute
+     * @param content the text content description of the attribute
+     */
     public void createAttributes(String id, String type, String content){
         attributes.put(id, new UmlAttribute(id, type, content));
     }
 
-    public UmlToken getOperation(String methodId){
-        return operations.get(methodId);
+    /**
+     * Retrieve a single {@link UmlOperation} from methods this class defines by its name.
+     * @param methodId the name of the method to retrieve as defined when
+     * {@link UmlClass#createOperation(String, String, String)} was called.
+     * @return the operation requested.
+     */
+    public UmlOperation getOperation(String methodId){
+        return (UmlOperation) operations.get(methodId);
     }
 
     public void addSubClass(String classId, UmlClass subClass){

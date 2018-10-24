@@ -2,8 +2,8 @@ package app;
 
 import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
-import syntaxTree.SyntaxTree;
-import syntaxTree.exceptions.MalformedFileException;
+import parsing.syntaxTree.SyntaxTree;
+import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
 import token.visitor.InfoDisplayVisitor;
 import token.visitor.SuperClassAssignationVisitor;
@@ -29,13 +29,18 @@ public class AppController {
      * @return
      */
     public UmlContext parseUcdFile(String doc){
+        // todo : test why it not work!
         if (doc.equals("")) {
             throw new MalformedFileException("Cannot read empty files");
         }
+
         UmlContext ctx = new UmlContext();
-        SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
-        ctx.setTree(tree);
-        ctx.visitClasses(new SuperClassAssignationVisitor());
+        SyntaxTree tree = new SyntaxTree(ctx);
+
+        // begin the actuall parsing operation
+        tree.tokenize(ctx, doc);
+
+
         return ctx;
 
     }
@@ -51,7 +56,11 @@ public class AppController {
     	try {
             String stringFile = openUcdFile(ucdFile.getAbsolutePath());
             UmlContext ctx = parseUcdFile(stringFile);
+
+            // prepare data for display
             ctx.visitClasses(new InfoDisplayVisitor());
+            ctx.visitClasses(new SuperClassAssignationVisitor());
+
             screen.setupUcdDisplay(ctx);
         } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);

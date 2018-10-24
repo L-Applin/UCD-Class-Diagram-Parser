@@ -1,7 +1,6 @@
 package parsing;
 
-import syntaxTree.exceptions.ExceptionCheckProvider;
-import utils.Utils;
+import parsing.syntaxTree.exceptions.ExceptionCheckProvider;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +9,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static parsing.Delims.NEW_LINE_TOKEN;
+import static parsing.GrammarModel.NEW_LINE_TOKEN;
 
 public class UcdFileReader implements ExceptionCheckProvider{
 
@@ -22,7 +21,6 @@ public class UcdFileReader implements ExceptionCheckProvider{
 
     /**
      * Reads and cleans up the .ucd file. The method will modify the file in different ways.
-     * New lines token will be replaced by {@link Delims#NEW_LINE_TOKEN}.
      * @return the String that represents the content of the ucd file with modifications.
      * @throws IOException
      */
@@ -75,7 +73,7 @@ public class UcdFileReader implements ExceptionCheckProvider{
         String firstPass = sb.toString();
 
         // remove new line after commas
-        Matcher matcher = Pattern.compile(","+Delims.NEW_LINE_TOKEN).matcher(firstPass);
+        Matcher matcher = Pattern.compile(","+NEW_LINE_TOKEN).matcher(firstPass);
         String result = matcher.replaceAll(",");
 
 

@@ -3,7 +3,7 @@ package token;
 import screenDisplay.ScreenController;
 import token.visitor.UmlVisitor;
 
-public class UmlAggregation extends UmlToken{
+public class UmlAggregation extends UmlToken {
 
     private UmlClass container;
     public UmlClass getContainer() { return container; }

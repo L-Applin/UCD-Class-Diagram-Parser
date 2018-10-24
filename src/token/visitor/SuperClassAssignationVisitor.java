@@ -2,6 +2,9 @@ package token.visitor;
 
 import token.*;
 
+/**
+ * Sets the super class.
+ */
 public class SuperClassAssignationVisitor implements UmlVisitor {
     @Override public void visit(UmlAggregation aggregation) { }
     @Override public void visit(UmlAssociation association) { }

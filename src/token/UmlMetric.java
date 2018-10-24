@@ -7,6 +7,11 @@ import java.text.NumberFormat;
 
 public class UmlMetric implements Displayable {
 
+    /**
+     * Single instance of valueFormatter used by all instance to format the value
+     */
+    private static NumberFormat valueFormatter = new DecimalFormat("#0.00");
+
     private MetricType type;
     private double value;
 
@@ -14,11 +19,6 @@ public class UmlMetric implements Displayable {
         this.type = type;
         this.value = value;
     }
-
-    /**
-     * Single instance of valueFormatter used by all instance to format the value
-     */
-    private static NumberFormat valueFormatter = new DecimalFormat("#0.00");
 
     @Override
     public String display() {

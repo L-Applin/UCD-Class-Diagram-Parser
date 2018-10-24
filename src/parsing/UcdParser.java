@@ -1,20 +1,29 @@
 package parsing;
 
+import parsing.syntaxTree.entries.DeclarationEntry;
+import parsing.syntaxTree.entries.IdentifierEntry;
+import parsing.syntaxTree.entries.RoleEntry;
+import parsing.syntaxTree.exceptions.ExceptionCheckProvider;
+import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
-import syntaxTree.entries.DeclarationEntry;
-import syntaxTree.entries.IdentifierEntry;
-import syntaxTree.entries.RoleEntry;
-import syntaxTree.exceptions.*;
+import utils.Utils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static parsing.Delims.CUSTOM_LIST_SEP;
-import static parsing.Delims.LIST_SEPERATOR;
-import static parsing.Delims.SPACE;
+import static parsing.GrammarModel.*;
+import static parsing.GrammarModel.ClassContent.ATTRIBUTES;
+import static parsing.GrammarModel.ClassContent.OPERATIONS;
+import static parsing.GrammarModel.Decs.AGGREGATION;
+import static parsing.GrammarModel.Decs.ASSOCIATION;
+import static parsing.GrammarModel.Decs.GENERALIZATION;
+
 
 /**
  * Helper class that provides specific method for handling .ucd file.
@@ -62,7 +71,7 @@ public class UcdParser implements ExceptionCheckProvider {
         checkTagEqual(txt, expectedTag); // from ExceptionCheckProvider interface
 
         String[] tag_idPlusContent = txt.split(" ", 2);
-        String[] id_content = tag_idPlusContent[1].split(Delims.NEW_LINE_TOKEN, 2);
+        String[] id_content = tag_idPlusContent[1].split(NEW_LINE_TOKEN, 2);
 
         return new IdentifierEntry(id_content);
 
@@ -75,11 +84,11 @@ public class UcdParser implements ExceptionCheckProvider {
     public DeclarationEntry convertDeclarationEntry(){
 
         if (txt.contains(GrammarModel.Decs.AGGREGATION)){
-            String[] splits = txt.split(Delims.NEW_LINE_TOKEN, 2);
+            String[] splits = txt.split(NEW_LINE_TOKEN, 2);
             return new DeclarationEntry(splits[0], GrammarModel.Decs.AGGREGATION, splits[1]);
         } else {
             String[] tag_idPlusContent = txt.split(" ", 2);
-            String[] id_content = tag_idPlusContent[1].split(Delims.NEW_LINE_TOKEN, 2);
+            String[] id_content = tag_idPlusContent[1].split(NEW_LINE_TOKEN, 2);
             return new DeclarationEntry(tag_idPlusContent[0], id_content[0], id_content[1]);
         }
 
@@ -110,10 +119,10 @@ public class UcdParser implements ExceptionCheckProvider {
      */
     public List<String> splitDeclarations(){
         List<String> result = new ArrayList<>();
-        String[] decs = txt.split(Delims.DECLARATION_SEPERATOR);
+        String[] decs = txt.split(DECLARATION_SEPERATOR);
 
         // clean up : remove new lines from beginning
-        final Pattern pattern = Pattern.compile("^("+Delims.NEW_LINE_TOKEN+")+");
+        final Pattern pattern = Pattern.compile("^("+NEW_LINE_TOKEN+")+");
         Matcher match;
         for (String dec : decs){
             match = pattern.matcher(dec);
@@ -129,7 +138,7 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
     /**
-     * Splits text based on {@link Delims#LIST_SEPERATOR} separator and ignores tokens in between parenthesis.<br></br>
+     * Splits text based on {@link GrammarModel#LIST_SEPERATOR} separator and ignores tokens in between parenthesis.<br></br>
      * ex. : \tnombre_saisons() : Integer, change_statut(st : String, i : int) : void <br></br>
      * will only split in two parts :  <ul><li>nombre_saisons() : Integer</li><li>change_statut(st : String, i : int) : void</li></ul>
      * @return the list of all split elements
@@ -160,7 +169,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
     /**
      * Extract the string representing the Attribute list from a class content string.
-     * Used by the {@link syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
+     * Used by the {@link parsing.syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes attributes.
      *
      * @return the String with
@@ -180,7 +189,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
     /**
      * Extract the string representing the Operation list from a class content string.
-     * Used by the {@link syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
+     * Used by the {@link parsing.syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes methods.
      *
      * @return the String with
@@ -199,7 +208,7 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
 
-    public String extractArgList(String methodId, String classId){
+    public String extractArgList(String methodId){
         final Matcher matcher = Pattern.compile("\\((.*?)\\)").matcher(txt);
         if (matcher.find()) {
             return matcher.group(1);
@@ -248,7 +257,7 @@ public class UcdParser implements ExceptionCheckProvider {
     public String[] splitTwoRoles(){
         checkValidRole(txt);
 
-        String roles = txt.split(Delims.NEW_LINE_TOKEN)[1];
+        String roles = txt.split(NEW_LINE_TOKEN)[1];
         String[] twoRoles = roles.split(LIST_SEPERATOR);
         return new String[]{twoRoles[0].trim(), twoRoles[1].trim()};
 
@@ -264,12 +273,12 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
     public static String removeNewLines(String txt){
-        String regEx = "("+Delims.NEW_LINE_TOKEN+")+";
+        String regEx = "("+NEW_LINE_TOKEN+")+";
         return Pattern.compile(regEx).matcher(txt).replaceAll("");
     }
 
     public static String replaceNewLines(String txt){
-        String regEx = "("+Delims.NEW_LINE_TOKEN+")+";
+        String regEx = "("+NEW_LINE_TOKEN+")+";
         return Pattern.compile(regEx).matcher(txt).replaceAll("\n");
     }
 
@@ -290,20 +299,71 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
     public String replaceNewLineToken(){
-        return Pattern.compile(Delims.NEW_LINE_TOKEN).matcher(txt).replaceAll("\n");
+        return Pattern.compile(NEW_LINE_TOKEN).matcher(txt).replaceAll("\n");
     }
 
     public String replaceCustomListSeperator(){
-        return Pattern.compile(Delims.CUSTOM_LIST_SEP).matcher(txt).replaceAll(", ");
+        return Pattern.compile(CUSTOM_LIST_SEP).matcher(txt).replaceAll(", ");
     }
 
 
     /**
-     * WARNING : Modifies the {@link UcdParser#txt} attribute by removing all {@link Delims#SPACE} tag from it.
+     * WARNING : Modifies the {@link UcdParser#txt} attribute by removing all {@link GrammarModel#SPACE} tag from it.
      * Use with caution .
      */
     private void removeSpaces(){
         txt = Pattern.compile(SPACE).matcher(txt).replaceAll("");
+    }
+
+
+    /**
+     * Formats the String content of the token for display purpose.
+     * @return the String ready to be displayed,
+     */
+    public String formatContent() {
+        UcdParser parser = new UcdParser(txt);
+        String tmp = parser.replaceNewLineToken();
+
+        BufferedReader bufferedReader = new BufferedReader(new StringReader(tmp));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+
+                parser.setTxt(line);
+                parser.splitList().forEach(elem -> {
+
+                    // remove custom line breaks
+                    String cleaned = parser.setTxt(elem).replaceCustomListSeperator();
+
+                    // add indent for cleaner display
+                    if (!Utils.containsAny(cleaned,
+                            GENERALIZATION, ASSOCIATION, AGGREGATION, ATTRIBUTES, OPERATIONS, MODEL_TAG,
+                            SUBCLASSES_TAG, CONTAINER_TAG, ROLES_TAG, PARTS_TAG)
+                            && Utils.containsAny(txt,
+                            GENERALIZATION, ASSOCIATION, AGGREGATION, ATTRIBUTES, OPERATIONS, MODEL_TAG,
+                            SUBCLASSES_TAG, CONTAINER_TAG, ROLES_TAG, PARTS_TAG)) {
+                        sb.append("\t").append(cleaned).append("\n");
+                    } else {
+                        sb.append(elem).append("\n");
+                    }
+                });
+            }
+            return formatTypeSeperator(sb.toString());
+        } catch (IOException ioe) {
+            return formatTypeSeperator(tmp);
+        }
+
+    }
+
+    /**
+     * replaces custom type separator with regular separator and space
+     * @param txt the text to convert
+     * @return the text with its custom separator removed
+     */
+    private String formatTypeSeperator(String txt){
+        Matcher matcher = Pattern.compile(TYPE_SEPARATOR).matcher(txt);
+        return matcher.replaceAll(SPACE + TYPE_SEPARATOR + SPACE);
     }
 
 }

@@ -13,6 +13,8 @@ import token.UmlToken;
 
 public class DetailsView extends VBox implements UmlView {
 
+    // todo [class number reduction] : could be replace with a method in MainCenterClassInfo ? verify if it's worth it
+
     private static double width = 790;
     private static double height = 300;
 
@@ -39,7 +41,7 @@ public class DetailsView extends VBox implements UmlView {
         container.setPadding(Insets.EMPTY);
         container.setFocusTraversable(false);
 
-        this.textDisplay = createTextContent(content.formatContent());
+        this.textDisplay = createTextContent(content.getContent());
 
         container.setMinSize(width, height);
         container.setMaxSize(width, height);
@@ -61,7 +63,7 @@ public class DetailsView extends VBox implements UmlView {
 
     public void updateDetails(UmlToken token){
         this.content = token;
-        textDisplay.setText(token.formatContent());
+        textDisplay.setText(token.getContent());
 
     }
 

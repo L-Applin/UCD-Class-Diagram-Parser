@@ -10,6 +10,9 @@ import token.UmlToken;
 
 import static screenDisplay.MainDisplay.*;
 
+/**
+ * Container for displayinf all infos of the selected
+ */
 public class MainCenterClassInfo extends GridPane implements UmlView{
 
     private static final Insets center_padding = new Insets(10,10,10,10);
@@ -28,18 +31,17 @@ public class MainCenterClassInfo extends GridPane implements UmlView{
         this.mainDisplay = main;
     }
 
-
     @SuppressWarnings("unchecked")
     public MainCenterClassInfo init(){
 
         setPadding(center_padding);
         setAlignment(Pos.TOP_CENTER);
 
-        attributsList = new ClassInfoListView(mainDisplay, umlClass.getAttributes());
-        methodList = new ClassInfoListView(mainDisplay, umlClass.getOperations());
-        subClassList = new ClassInfoListView(mainDisplay, umlClass.getSubClasses());
-        assosIntegrList = new ClassInfoListView(mainDisplay, umlClass.getAggAssocList());
-        detailView = new DetailsView(mainDisplay, umlClass);
+        attributsList =     new ClassInfoListView(mainDisplay, umlClass.getAttributes());
+        methodList =        new ClassInfoListView(mainDisplay, umlClass.getOperations());
+        subClassList =      new ClassInfoListView(mainDisplay, umlClass.getSubClasses());
+        assosIntegrList =   new ClassInfoListView(mainDisplay, umlClass.getAggAssocList());
+        detailView =        new DetailsView(mainDisplay, umlClass);
 
         attributsList.setTitle(ATTRIBUTES_TITLE);
         methodList.setTitle(OPERATIONS_TITLE);

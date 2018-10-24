@@ -37,6 +37,14 @@ public class GrammarModel {
         public static final String UNDEFINED = "UNDEFINED";
     }
 
+    public static final String SPACE = " ";
+    public static final String DECLARATION_SEPERATOR = ";";
+    public static final String LIST_SEPERATOR = ",";
+    public static final String NEW_LINE_TOKEN = "~~nl~~";
+    public static final String CUSTOM_LIST_SEP = "~";
+    public static final String TYPE_SEPARATOR = ":";
+
+
 
 
 }

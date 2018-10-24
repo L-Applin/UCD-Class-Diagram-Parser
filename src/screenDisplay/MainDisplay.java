@@ -1,29 +1,35 @@
 package screenDisplay;
 
+import app.AppController;
+import app.Main;
 import app.ShortcutController;
 import app.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
-import javafx.scene.layout.*;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import parsing.FileController;
-import app.AppController;
-import app.Main;
+import screenDisplay.components.MyAlertDialog;
+import screenDisplay.components.OverlayButton;
 import screenDisplay.components.umlComponents.ClassListView;
 import screenDisplay.components.umlComponents.MainCenterClassInfo;
-import screenDisplay.components.MyAlertDialog;
-import screenDisplay.components.umlComponents.MyTopBar;
-import syntaxTree.exceptions.MalformedFileException;
-import token.UmlContext;
+import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlClass;
+import token.UmlContext;
 import token.UmlMetric;
 import token.UmlToken;
 
@@ -47,6 +53,11 @@ public class MainDisplay extends BorderPane {
     private ClassListView classView;
     private MainCenterClassInfo centerView;
 
+    // used for controlling mouse drag of the window
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+
     public MainDisplay(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.appTheme = new AppTheme();
@@ -61,10 +72,10 @@ public class MainDisplay extends BorderPane {
 
         setBackground(appTheme.getPrimaryDarkBackground());
 
-        MyTopBar topBar = new MyTopBar(appTheme, this);
-        setTop(topBar);
+        // MyTopBar topBar = new MyTopBar(appTheme, this);
+        setTop(createTopBar());
 
-        Node center = getOnOpenCenterView();
+        Node center = createCenterView();
         setCenter(center);
 
         Scene scene = new Scene(this, 1024, 768);
@@ -116,7 +127,7 @@ public class MainDisplay extends BorderPane {
                 dialog.close();
             }
         });
-        dialog.make(primaryStage).show();
+        dialog.make().show();
     }
 
 
@@ -127,14 +138,107 @@ public class MainDisplay extends BorderPane {
                 dialog.close();
             }
         });
-        dialog.make(primaryStage).show();
+        dialog.make().show();
+    }
+
+
+    public void resetLayout(){
+        setCenter(null);
+        setLeft(null);
+        setBottom(null);
+        setRight(null);
+        setCenter(createCenterView());
+
+    }
+
+    public void updateClassSelected(UmlClass clazz){
+        centerView = new MainCenterClassInfo(clazz, appTheme, this);
+        setCenter(centerView.init());
+        classView.forceClick(clazz.getName());
+
+    }
+
+    public void updateTokenClicked(UmlToken token){
+        centerView.resetButtons();
+        centerView.updateDetails(token);
     }
 
 
 
+    /* *************
+     *
+     *      Method for creating the basic displays
+
+     ************* */
+
+    private BorderPane createTopBar(){
+
+        BorderPane topBar = new BorderPane();
+
+        Insets default_bar_margin = new Insets(8);
+        String trash_url = "garbage.png";
+        String click_me = "Charger fichier";
+        String exit = "EXIT";
+
+        ImageView trashIcon = new ImageView(trash_url);
+        Background background = appTheme.getSecondaryDarkBackground();
+        topBar.setBackground(background);
+        topBar.setPadding(new Insets(0,0,0,0));
+        topBar.setBottom(new Separator());
 
 
-    private Node getOnOpenCenterView(){
+        OverlayButton mImport = new OverlayButton(this, appTheme, click_me);
+        OverlayButton mTrash = new OverlayButton(this, appTheme, trashIcon, 20);
+        OverlayButton mExit = new OverlayButton(this, appTheme, exit);
+
+        mImport.setStyle(OverlayButton.ThemeStyle.ROUNDED);
+        mTrash.setStyle(OverlayButton.ThemeStyle.ROUNDED);
+        mExit.setStyle(OverlayButton.ThemeStyle.ROUNDED);
+
+        HBox rightContainer = new HBox();
+        HBox leftContainer = new HBox();
+        rightContainer.getChildren().addAll(mTrash, mExit);
+        leftContainer.getChildren().addAll(mImport);
+
+        BorderPane.setMargin(rightContainer, default_bar_margin);
+        BorderPane.setMargin(leftContainer, default_bar_margin);
+
+        HBox.setMargin(mImport, OverlayButton.default_button_seperator_margin);
+        HBox.setMargin(mTrash, OverlayButton.default_button_seperator_margin);
+        HBox.setMargin(mExit, OverlayButton.default_button_seperator_margin);
+
+        topBar.setRight(rightContainer);
+        topBar.setLeft(leftContainer);
+
+        // drag screen
+        setOnMousePressed( event -> {
+            xOffset = primaryStage.getX() - event.getScreenX();
+            yOffset = primaryStage.getY() - event.getScreenY();
+        });
+
+        setOnMouseDragged( event -> {
+            primaryStage.setX(event.getScreenX() + xOffset);
+            primaryStage.setY(event.getScreenY() + yOffset);
+        });
+
+
+        mImport.setOnMouseClicked(event ->
+                new FileController().openUcdFileFromSystemExplorer(this)
+        );
+
+        mTrash.setOnMouseClicked( event -> {
+            resetLayout();
+        });
+
+        mExit.setOnMouseClicked(event -> {
+            System.exit(0);
+        });
+
+        return topBar;
+    }
+
+
+    private VBox createCenterView(){
 
         ImageView importIcon = new ImageView("importWhite.png");
         VBox center = new VBox();
@@ -167,7 +271,7 @@ public class MainDisplay extends BorderPane {
                 if (files.size() > 1) {
 
                     MyAlertDialog dialog = new MyAlertDialog("Only one file is supported", appTheme);
-                    dialog.make(primaryStage).show();
+                    dialog.make().show();
                     setOnMousePressed( mousePressedEvent -> {
                         if (dialog != null && dialog.isShowing()){
                             dialog.close();
@@ -179,7 +283,7 @@ public class MainDisplay extends BorderPane {
                     File file = files.get(0);
                     AppController controller = new AppController();
                     controller.lauchUcdActivity(this, file);
-
+                    success = true;
                 }
 
             }
@@ -189,31 +293,6 @@ public class MainDisplay extends BorderPane {
         });
 
         return center;
-    }
-
-    public void resetLayout(){
-        setCenter(null);
-        setLeft(null);
-        setBottom(null);
-        setRight(null);
-        setCenter(getOnOpenCenterView());
-
-    }
-
-    public void updateClassSelected(UmlClass clazz){
-        centerView = new MainCenterClassInfo(clazz, appTheme, this);
-        setCenter(centerView.init());
-        classView.forceClick(clazz.getName());
-
-    }
-
-    public void updateTokenClicked(UmlToken token){
-        centerView.resetButtons();
-        centerView.updateDetails(token);
-    }
-
-    public void updateMetricClicked(UmlMetric metric){
-
     }
 
 }

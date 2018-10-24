@@ -1,12 +1,14 @@
 package token;
 
-import syntaxTree.SyntaxTree;
 import token.visitor.UmlVisitor;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
- * Manages the links between the {@link SyntaxTree} representation of the Context-Free Grammar and the display
+ * Serves as an entry point for operation on the class diagram representation.
+ * Manages the links between the {@link parsing.syntaxTree.SyntaxTree} representation of the Context-Free Grammar and the display
  * elements that JavaFX requires.
  */
 public class UmlContext {
@@ -26,23 +28,18 @@ public class UmlContext {
     private Map<String, UmlToken> classes;
     public Map<String, UmlToken> getClasses() { return classes; }
 
-    /**
-     * The original syntax tree containing the parsed element
-     */
-    private SyntaxTree tree;
-    public SyntaxTree getTree() { return tree; }
-    public void setTree(SyntaxTree tree) { this.tree = tree; }
 
-/*
-    public UmlContext(Map<String, Expression> map){
-        this.tokens = map;
-    }
-*/
-
-    // default use TreeMap
+    // default use HashMap
     public UmlContext(){
-        // this.tokens = new TreeMap<>();
-        classes = new HashMap<>();
+        this(true);
+    }
+
+    public UmlContext(boolean useHashing){
+        if (useHashing){
+            classes = new HashMap<>();
+        } else {
+            classes = new TreeMap<>();
+        }
     }
 
     public UmlClass getUmlClass(String id){
@@ -51,6 +48,15 @@ public class UmlContext {
 
     public void createClass(String id, String content){
         classes.put(id, new UmlClass(id, content));
+    }
+
+    public void addArgumentToMethod(String classId, String methodId, String argId, String argType){
+        getUmlClass(classId).getOperation(methodId).addArgument(argId, argType);
+    }
+
+    public void addAttributeToMethod(String classId, String attrId, String attrType, String attrContent){
+        getUmlClass(classId).createAttributes(attrId, attrType, attrContent);
+
     }
 
 

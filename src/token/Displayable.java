@@ -6,7 +6,9 @@ import screenDisplay.ScreenController;
  * Item that can be displayed onto a {@link screenDisplay.MainDisplay} that can update the display information.
  */
 public interface Displayable {
+
     /**
+     * This method should return a single word, or very small text for representing the element.
      * @return The text to be display.
      */
     String display();
@@ -24,5 +26,7 @@ public interface Displayable {
      * @param controller the screen controller used to dispatch event.
      */
     void updateScreen(ScreenController controller);
+
+
 
 }
