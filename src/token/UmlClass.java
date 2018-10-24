@@ -108,11 +108,6 @@ public class UmlClass extends UmlToken {
 
     @Override
     public void accept(UmlVisitor visitor) {
-        // attributes.values().forEach(token -> System.out.println(token.toString()));
-        // operations.values().forEach(token -> token.accept(visitor));
-        // subClasses.values().forEach(token -> token.accept(visitor));
-        // associations.values().forEach(token -> token.accept(visitor));
-        // agregations.forEach(token -> token.accept(visitor));
         visitor.visit(this);
     }
 

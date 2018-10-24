@@ -40,7 +40,7 @@ public class UcdFileReader implements ExceptionCheckProvider{
 
         while((line = bufferedReader.readLine()) != null) {
 
-            checkIllegalChar(line, path); // from ExceptionCheckProvider interface
+            checkIllegalChar(line); // from ExceptionCheckProvider interface
 
             Matcher matcher;
 

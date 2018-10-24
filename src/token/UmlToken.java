@@ -91,5 +91,4 @@ public abstract class UmlToken implements Displayable, UmlVisitorElement {
         return matcher.replaceAll(Delims.SPACE + Delims.TYPE_SEPARATOR + Delims.SPACE);
     }
 
-
 }

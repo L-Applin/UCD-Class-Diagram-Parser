@@ -23,9 +23,9 @@ public class Operation implements Expression {
 
         if (!(content.equals("") || content.equals(" "))) {
             UcdParser parser = new UcdParser(content);
-            methodId = new Identifier(parser.getOperationId(classId.getValue()));
+            methodId = new Identifier(parser.getOperationId());
 
-            type = new Type(methodId).tokenize(ctx, parser.extractType(content));
+            type = new Type(methodId).tokenize(ctx, parser.extractType());
             Log.all("\t\tmethodId =", methodId.getValue(), ": type =", type.toString());
 
             ctx.getUmlClass(classId.getValue()).createOperation(methodId.getValue(), type.toString(), content);

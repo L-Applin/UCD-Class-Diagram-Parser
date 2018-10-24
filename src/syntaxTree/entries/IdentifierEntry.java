@@ -8,13 +8,12 @@ public class IdentifierEntry {
     public final String id, expression;
 
     public IdentifierEntry(String id, String expression) {
-        this.id = id;
-        this.expression = expression;
+        this.id = id.trim();
+        this.expression = expression.trim();
     }
 
     public IdentifierEntry(String[] entries) {
-        this.id = entries[0].trim();
-        this.expression = entries[1].trim();
+        this(entries[0], entries[1]);
     }
 
 }

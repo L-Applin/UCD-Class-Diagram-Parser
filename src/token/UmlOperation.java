@@ -1,7 +1,6 @@
 package token;
 
 import screenDisplay.ScreenController;
-import syntaxTree.expressions.DataItem;
 import token.visitor.UmlVisitor;
 
 import java.util.ArrayList;
@@ -35,9 +34,10 @@ public class UmlOperation extends UmlToken {
     }
 
 
-    public void addArgument(DataItem item){
-        arguments.add(new Args(item.getIdAsString(), item.getTypeAsString()));
+    public void addArgument(String id, String type){
+        arguments.add(new Args(id, type));
     }
+
 
     @Override
     public String display() {

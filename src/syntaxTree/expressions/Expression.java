@@ -3,7 +3,8 @@ package syntaxTree.expressions;
 import token.UmlContext;
 
 /**
- * General representation of an Expression of the BNF grammar.
+ * General representation of an Expression of the BNF grammar.<p></p>
+ * Every grammar rule of the BNF syntax must be declared as a class and must implement this interface.
  */
 public interface Expression {
 

@@ -3,8 +3,8 @@ package app;
 import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
 import syntaxTree.SyntaxTree;
+import syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
-import syntaxTree.exceptions.UcdParsingException;
 import token.visitor.InfoDisplayVisitor;
 import token.visitor.SuperClassAssignationVisitor;
 
@@ -30,8 +30,7 @@ public class AppController {
      */
     public UmlContext parseUcdFile(String doc){
         if (doc.equals("")) {
-            throw new UcdParsingException("Cannot read empty files"){ };
-
+            throw new MalformedFileException("Cannot read empty files");
         }
         UmlContext ctx = new UmlContext();
         SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
@@ -54,15 +53,12 @@ public class AppController {
             UmlContext ctx = parseUcdFile(stringFile);
             ctx.visitClasses(new InfoDisplayVisitor());
             screen.setupUcdDisplay(ctx);
-        } catch (IOException ioe){
-            screen.errorScreen(ioe);
-            ioe.printStackTrace();
-        } catch (UcdParsingException ucde) {
+        } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);
             ucde.printStackTrace();
-        } catch (NullPointerException npe) {
-            screen.errorScreen(npe);
-            npe.printStackTrace();
+        } catch (Exception e){
+            screen.errorScreen(e);
+            e.printStackTrace();
         }
 
     }

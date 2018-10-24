@@ -12,7 +12,9 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 
-
+/**
+ * Manages the color display of the app
+ */
 public class AppTheme {
 
 
@@ -35,11 +37,11 @@ public class AppTheme {
         this.contrastDarkValue =    contrastDark;
         this.contrastLightValue =   contrastLight;
 
-        this.primaryDark =      Color.web(primaryDark);
-        this.primaryLight =     Color.web(primaryLight);
-        this.secondaryDark =    Color.web(secondaryDark);
-        this.contrastDark =     Color.web(contrastDark);
-        this.contrastLight =    Color.web(contrastLight);
+        this.primaryDark =          Color.web(primaryDark);
+        this.primaryLight =         Color.web(primaryLight);
+        this.secondaryDark =        Color.web(secondaryDark);
+        this.contrastDark =         Color.web(contrastDark);
+        this.contrastLight =        Color.web(contrastLight);
 
     }
 

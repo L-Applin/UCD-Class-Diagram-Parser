@@ -5,11 +5,12 @@ import screenDisplay.components.BtnListView;
 import token.UmlToken;
 
 import java.util.Collection;
+import java.util.List;
 
 public abstract class UmlBtnListView extends BtnListView {
 
-    protected Collection<UmlToken> listItem;
-    public Collection<UmlToken> getListItem() { return listItem; }
+    protected List<UmlToken> listItem;
+    public List<UmlToken> getListItem() { return listItem; }
 
     public UmlBtnListView(AppTheme theme) {
         super(theme);

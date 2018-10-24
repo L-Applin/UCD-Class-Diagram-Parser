@@ -18,18 +18,17 @@ public interface ExceptionCheckProvider {
      * Verify that a specified tag is actually at the beginning of the text.
      * @param txt
      * @param delim
-     * @throws IncompatibleTagException when the actual tag and the expected value does not match.
      */
     default void checkTagEqual(String txt, String delim){
 
         String[] splits = txt.split(" ", 2);
 
         if (splits.length < 2) {
-            throw new IncompatibleTagException(txt, delim);
+            malformed();
         }
 
         if (!splits[0].equals(delim)){
-            throw new IncompatibleTagException(splits[0], delim, splits[1]);
+            malformed();
         }
     }
 
@@ -38,14 +37,14 @@ public interface ExceptionCheckProvider {
      * Makes sure that class declaration contains OPERATION and ATTRIBUTES
      * @param classContent
      */
-    default void checkClassContent(String clazz, String classContent){
+    default void checkClassContent(String classContent){
 
         if (!classContent.contains(GrammarModel.ClassContent.OPERATIONS)){
-            throw new MissingClassTagException(clazz, classContent, GrammarModel.ClassContent.OPERATIONS);
+            malformed();
         }
 
         if (!classContent.contains(GrammarModel.ClassContent.ATTRIBUTES)){
-            throw new MissingClassTagException(clazz, classContent, GrammarModel.ClassContent.ATTRIBUTES);
+            malformed();
         }
 
     }
@@ -57,20 +56,7 @@ public interface ExceptionCheckProvider {
     default void checkIllegalChar(String txt){
         for (String illegal : GrammarModel.illegalChar){
             if (txt.contains(illegal)){
-                throw new IllegalCharacterException(txt, illegal);
-            }
-        }
-    }
-
-    /**
-     * Make sure no illegal character as defined in {@link GrammarModel#illegalChar} are contained in the text.
-     * @param txt the text to analyze for
-     * @param filePath The file path of the opened file. Used for message error display
-     */
-    default void checkIllegalChar(String txt, String filePath){
-        for (String illegal : GrammarModel.illegalChar){
-            if (txt.contains(illegal)){
-                throw new IllegalCharacterException(txt, illegal, filePath);
+                malformed();
             }
         }
     }
@@ -82,12 +68,10 @@ public interface ExceptionCheckProvider {
      * if it is not contained
      * @param txt the text to analyze
      * @param tag the text to check if it is contained or not
-     * @param classId used for message error display
-     * @param content used for message error display
      */
-    default void checkTagPresent(String txt, String tag, String classId, String content) {
+    default void checkTagPresent(String txt, String tag) {
         if (!txt.contains(tag)) {
-            throw new MissingClassTagException(classId, content, GrammarModel.ClassContent.OPERATIONS);
+            malformed();
         }
     }
 
@@ -95,73 +79,68 @@ public interface ExceptionCheckProvider {
     *
     * @param txt
     * @param tag
-    * @param classId
-    * @param content
     */
-    default void checkNoDuplicateTag(String txt, String tag, String classId, String content){
+    default void checkNoDuplicateTag(String txt, String tag){
         // check there is only one <attributes> tag
         if (txt.indexOf(tag) != txt.lastIndexOf(tag)){
-            MalformedClassException mce = new MalformedClassException("Class \'" + classId + "\' cannot contain two sets of attributes.");
-            mce.setClazz(classId);
-            mce.setContent(content);
-            throw mce;
+            malformed();
         }
 
     }
 
 
-    default void checkValidOperation(String txt, String classId){
+    default void checkValidOperation(String txt){
         // Check only if has method parameter.
         // Param validation is done in checkValidDataItem later on during parsing
         String paramsRegEx = "\\((.*?)\\)|\\(\\)";
         Matcher matcher = Pattern.compile(paramsRegEx).matcher(txt);
         if (!matcher.find()){
-            throw new MalformedOperationException("Method \'" + txt + "\' must have a parameter declaration.", classId, txt);
+            malformed();
         }
 
         //checks for method return type
         if (!txt.contains("):")){    // ok because spaces were remove
-            throw new MalformedOperationException("Method \'" + txt + "\' must have a return type.", classId, txt);
+            malformed();
         }
 
         String validationType = txt.substring(txt.lastIndexOf("):") +2, txt.length());
-        checkValidType(validationType, txt);
+        checkValidType(validationType);
 
     }
 
 
-    default void checkValidDataItem(String txt, String parentId){
+    default void checkValidDataItem(String txt){
         // must contains at least one ':'
         if (!txt.contains(Delims.TYPE_SEPARATOR)){
-            throw new TypeNotFoundException(txt, parentId);
+            malformed();
         }
 
         // must not contains more than 1 ':'
         if (txt.lastIndexOf(Delims.TYPE_SEPARATOR) != txt.indexOf(Delims.TYPE_SEPARATOR)){
-            throw new MalformedTypeException(txt, parentId);
+            malformed();
         }
 
     }
 
 
-    default void checkValidRole(String txt, String association){
+    default void checkValidRole(String txt){
 
         if (txt.indexOf(GrammarModel.ROLES_TAG) != 0){
-            throw new MalformedDeclarationException("Malformed 'ROLES' tag in '" + association + "'");
+            malformed();
         }
 
         String roles = txt.split(Delims.NEW_LINE_TOKEN)[1];
 
         // only one LIST_SEPERATOR => exaclty two roles
         if (roles.indexOf(Delims.LIST_SEPERATOR) != roles.lastIndexOf(Delims.LIST_SEPERATOR)){
-            throw new MalformedDeclarationException("'"+association+"' association must contain exactly two roles");
+            malformed();
         }
 
     }
 
 
 
-    default void checkValidType(String content, String parentId) {
+    default void checkValidType(String content) {
         if (Utils.containsAny(content, GrammarModel.illegalTypeChar)) {
             // find illegal char
             List<String> illegalChar = new ArrayList<>();
@@ -174,29 +153,28 @@ public interface ExceptionCheckProvider {
             for (String ill : illegalChar){
                 allIllegalChars = allIllegalChars.concat(ill);
             }
-            throw new MalformedTypeException("Type " + content + " cannot contain illegal " +
-                    (allIllegalChars.length()>1?"characters":"character")+
-                    " \'" + allIllegalChars + "\' in "+ parentId + ":" + content,
-                    content, parentId);
+            malformed();
 
         }
 
     }
 
-    default void checkValidSubclasses(String txt, String genId){
+    default void checkValidSubclasses(String txt){
         //must start with SUBCLASSES
         if (txt.indexOf(GrammarModel.SUBCLASSES_TAG) != 0){
-            String error = txt.split(" ")[0];
-            throw new MalformedDeclarationException(
-                    String.format("Cannot parse generalization %s, must have %s tag, but found %s",
-                            genId, GrammarModel.SUBCLASSES_TAG, error==null?"null":error));
+            malformed();
         }
 
     }
 
     default void checkValidAggregations(String txt){
-    	checkTagPresent(txt, GrammarModel.PARTS_TAG, "PARTS REQUIRED", txt);
-        checkTagPresent(txt, GrammarModel.CONTAINER_TAG, "PARTS REQUIRED", txt);
+    	checkTagPresent(txt, GrammarModel.PARTS_TAG);
+        checkTagPresent(txt, GrammarModel.CONTAINER_TAG);
+    }
+
+
+    private void malformed(){
+        throw new MalformedFileException();
     }
 
 }

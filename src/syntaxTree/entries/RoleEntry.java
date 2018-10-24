@@ -14,9 +14,7 @@ public class RoleEntry {
     }
 
     public RoleEntry(String[] entries) {
-        this.tag = entries[0].trim();
-        this.classId = entries[1].trim();
-        this.multiplicity = entries[2].trim();
+        this(entries[0].trim(), entries[1].trim(), entries[2].trim());
     }
 
 }

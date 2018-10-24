@@ -55,7 +55,7 @@ public class UcdParser implements ExceptionCheckProvider {
      * expected value does not match the actual value
      *
      * @param expectedTag the expected value of the tag
-     * @throws IncompatibleTagException when the actual tag and the expected value does not match.
+     * @throws MalformedFileException when the actual tag and the expected value does not match.
      * @return
      */
     public IdentifierEntry convertIdEntry(String expectedTag){
@@ -93,10 +93,10 @@ public class UcdParser implements ExceptionCheckProvider {
     public RoleEntry convertRolesEntry(String associationId){
     	String[] entries = txt.split(SPACE);
         if (entries.length != 3){
-            throw new MalformedDeclarationException("Malformed role \'" + txt + "\' in \'" + associationId + "\'");
+            throw new MalformedFileException("Malformed role \'" + txt + "\' in \'" + associationId + "\'");
         }
         if (!entries[0].equals(GrammarModel.Decs.CLASS)){
-            throw new MalformedDeclarationException("Malformed role \'" + txt + "\' in \'" + associationId+"\'. " +
+            throw new MalformedFileException("Malformed role \'" + txt + "\' in \'" + associationId+"\'. " +
                     "Must begin with \'"+GrammarModel.Decs.CLASS+"\' tag");
         }
         return new RoleEntry(entries);
@@ -163,19 +163,16 @@ public class UcdParser implements ExceptionCheckProvider {
      * Used by the {@link syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes attributes.
      *
-     * @param classId name of the class
-     * @param content it's content
      * @return the String with
-     * @throws MissingClassTagException if the Attribute tag is missing from the class body
-     * @throws MalformedClassException if the Attribute tag is there more than once in the body
+     * @throws MalformedFileException if the Attribute tag is there more than once in the body
      */
-    public String extractAttributes(String classId, String content){
+    public String extractAttributes(){
 
         // checks <attributes> tag is there from ExceptionCheckProvider interface
-        checkTagPresent(txt, GrammarModel.ClassContent.ATTRIBUTES, classId, content);
+        checkTagPresent(txt, GrammarModel.ClassContent.ATTRIBUTES);
 
         // check there is only one <attributes> tag from ExceptionCheckProvider interface
-        checkNoDuplicateTag(txt, GrammarModel.ClassContent.ATTRIBUTES, classId, content);
+        checkNoDuplicateTag(txt, GrammarModel.ClassContent.ATTRIBUTES);
 
         return extractBetween(GrammarModel.ClassContent.ATTRIBUTES, GrammarModel.ClassContent.OPERATIONS);
 
@@ -186,19 +183,15 @@ public class UcdParser implements ExceptionCheckProvider {
      * Used by the {@link syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes methods.
      *
-     * @param classId name of the class
-     * @param content it's content
      * @return the String with
-     * @throws MissingClassTagException if the Operation tag is missing from the class body
-     * @throws MalformedClassException if the Operation tag is there more than once in the body
      */
-    public String extractOperations(String classId, String content){
+    public String extractOperations(){
 
         // checks <OPERATIONS> tag is there from ExceptionCheckProvider interface
-        checkTagPresent(txt, GrammarModel.ClassContent.OPERATIONS, classId, content);
+        checkTagPresent(txt, GrammarModel.ClassContent.OPERATIONS);
 
         // check there is only one <OPERATIONS> tag from ExceptionCheckProvider interface
-        checkNoDuplicateTag(txt, GrammarModel.ClassContent.OPERATIONS, classId, content);
+        checkNoDuplicateTag(txt, GrammarModel.ClassContent.OPERATIONS);
 
         int index = txt.indexOf(GrammarModel.ClassContent.OPERATIONS);
         return txt.substring(index + GrammarModel.ClassContent.OPERATIONS.length(), txt.length());
@@ -211,15 +204,15 @@ public class UcdParser implements ExceptionCheckProvider {
         if (matcher.find()) {
             return matcher.group(1);
         } else {
-            throw new MalformedOperationException("Could not find argument list of method \'" +methodId +"\'", classId, txt);
+            throw new MalformedFileException("Could not find argument list of method '" + methodId +"'");
         }
     }
 
 
-    public String extractGeneralizationClasses(String genId){
+    public String extractGeneralizationClasses(){
         txt = txt.trim();
         txt = removeNewLines(txt);
-        checkValidSubclasses(txt, genId);
+        checkValidSubclasses(txt);
         String[] id_subClass = txt.split(" ", 2);
         return removeSpaces(id_subClass[1]);
     }
@@ -228,9 +221,9 @@ public class UcdParser implements ExceptionCheckProvider {
      *
      * @return
      */
-    public String extractType(String parentId){
+    public String extractType(){
         String type = txt.substring(txt.lastIndexOf("):") + 2, txt.length());
-        checkValidType(type, parentId);
+        checkValidType(type);
         return type;
     }
 
@@ -245,15 +238,15 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
 
-    public String[] splitDataItem(String parentId){
-        checkValidDataItem(txt, parentId);
+    public String[] splitDataItem(){
+        checkValidDataItem(txt);
 
         return txt.split(":", 2);
     }
 
 
-    public String[] splitTwoRoles(String association){
-        checkValidRole(txt, association);
+    public String[] splitTwoRoles(){
+        checkValidRole(txt);
 
         String roles = txt.split(Delims.NEW_LINE_TOKEN)[1];
         String[] twoRoles = roles.split(LIST_SEPERATOR);
@@ -289,9 +282,9 @@ public class UcdParser implements ExceptionCheckProvider {
 
 
 
-    public String getOperationId(String classId){
+    public String getOperationId(){
         removeSpaces();
-        checkValidOperation(txt, classId);
+        checkValidOperation(txt);
         return txt.substring(0, txt.indexOf("("));
     }
 

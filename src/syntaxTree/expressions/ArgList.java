@@ -32,7 +32,8 @@ public class ArgList implements Expression {
             if (arg != null && arg.length() > 0){
                 DataItem item = new DataItem(methodId).tokenize(ctx, arg);
                 dataItems.add(item);
-                ((UmlOperation) ctx.getUmlClass(classId.getValue()).getOperation(methodId.getValue())).addArgument(item);
+                ((UmlOperation) ctx.getUmlClass(classId.getValue()).getOperation(methodId.getValue()))
+                        .addArgument(item.getIdAsString(), item.getTypeAsString());
             }
         });
 

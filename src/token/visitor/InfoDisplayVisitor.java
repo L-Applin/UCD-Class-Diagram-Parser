@@ -3,10 +3,17 @@ package token.visitor;
 import token.*;
 import utils.Utils;
 
+/**
+ * Used as a test for Visitor pattern design. <p></p>
+ * Will display in the console all informations about every class in the ucd file.
+ */
 public class InfoDisplayVisitor implements UmlVisitor {
 
     // unused for this implementation
-    @Override public void visit(UmlAggregation aggregation){ }
+    @Override public void visit(UmlAggregation aggregation){
+        Utils.Log.log(aggregation.display());
+    }
+
     @Override
     public void visit(UmlAssociation association){
         Utils.Log.log(association.display());
@@ -27,12 +34,15 @@ public class InfoDisplayVisitor implements UmlVisitor {
             System.out.print(" extends "+umlClass.getSuperClass().getName());
         }
         System.out.print("\n");
-        Utils.Log.log("attributs");
+        Utils.Log.log("Attributs");
         umlClass.getAttributes().values().forEach(attr -> attr.accept(this));
-        Utils.Log.log("operations");
+        Utils.Log.log("Operations");
         umlClass.getOperations().values().forEach(op -> op.accept(this));
         Utils.Log.log("Relations");
         umlClass.getAssociations().values().forEach(assoc -> assoc.accept(this));
+        Utils.Log.log("Aggregation");
+        umlClass.getAgregations().forEach(agg -> agg.accept(this));
+
     }
 
 }

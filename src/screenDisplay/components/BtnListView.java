@@ -33,7 +33,6 @@ public abstract class BtnListView extends VBox implements UmlView {
         this.clickedStyle = new ListButton.OverlayStyle(theme.getPrimaryLightBackground(), theme.getContrastDark());
         btnList = new ArrayList<>();
         container = new ScrollPane();
-
     }
 
     public ListButton createButton(String content){

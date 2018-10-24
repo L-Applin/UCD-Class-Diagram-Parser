@@ -21,13 +21,13 @@ import screenDisplay.components.umlComponents.ClassListView;
 import screenDisplay.components.umlComponents.MainCenterClassInfo;
 import screenDisplay.components.MyAlertDialog;
 import screenDisplay.components.umlComponents.MyTopBar;
+import syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
-import syntaxTree.exceptions.UcdParsingException;
 import token.UmlClass;
+import token.UmlMetric;
 import token.UmlToken;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class MainDisplay extends BorderPane {
@@ -108,18 +108,8 @@ public class MainDisplay extends BorderPane {
     }
 
 
-    public void errorScreen(IOException ioe){
-        MyAlertDialog dialog = new MyAlertDialog(ioe.getMessage(), appTheme);
-        setOnMousePressed( mousePressedEvent -> {
-            if (dialog != null && dialog.isShowing()){
-                dialog.close();
-            }
-        });
-        dialog.make(primaryStage).show();
 
-    }
-
-    public void errorScreen(UcdParsingException ucde){
+    public void errorScreen(MalformedFileException ucde){
         MyAlertDialog dialog = new MyAlertDialog(ucde.getMessage(), appTheme);
         setOnMousePressed( mousePressedEvent -> {
             if (dialog != null && dialog.isShowing()){
@@ -129,8 +119,9 @@ public class MainDisplay extends BorderPane {
         dialog.make(primaryStage).show();
     }
 
-    public void errorScreen(NullPointerException npe){
-        MyAlertDialog dialog = new MyAlertDialog(npe.getMessage(), appTheme);
+
+    public void errorScreen(Exception e){
+        MyAlertDialog dialog = new MyAlertDialog(e.getMessage(), appTheme);
         setOnMousePressed( mousePressedEvent -> {
             if (dialog != null && dialog.isShowing()){
                 dialog.close();
@@ -138,6 +129,7 @@ public class MainDisplay extends BorderPane {
         });
         dialog.make(primaryStage).show();
     }
+
 
 
 
@@ -218,6 +210,10 @@ public class MainDisplay extends BorderPane {
     public void updateTokenClicked(UmlToken token){
         centerView.resetButtons();
         centerView.updateDetails(token);
+    }
+
+    public void updateMetricClicked(UmlMetric metric){
+
     }
 
 }

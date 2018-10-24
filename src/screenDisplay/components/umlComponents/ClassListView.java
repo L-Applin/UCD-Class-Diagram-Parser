@@ -13,6 +13,12 @@ import screenDisplay.components.ListButton;
 import screenDisplay.components.SectionTitle;
 import token.UmlContext;
 import token.UmlClass;
+import token.UmlToken;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class ClassListView extends UmlBtnListView {
 
@@ -25,11 +31,10 @@ public class ClassListView extends UmlBtnListView {
     public ClassListView(UmlContext context, MainDisplay mainDisplay) {
         super(mainDisplay.getAppTheme());
         this.mainDisplay = mainDisplay;
-        this.listItem = context.getClasses().values();
+        this.listItem = new ArrayList<>(context.getClasses().values());
         this.modelName = context.getModelId();
         this.appTheme = mainDisplay.getAppTheme();
         this.font = Font.font ("Verdana", 20);
-
     }
 
     @Override
@@ -45,6 +50,10 @@ public class ClassListView extends UmlBtnListView {
         VBox scrollViewContent = new VBox();
         scrollViewContent.setBackground(appTheme.getSecondaryDarkBackground());
         scrollViewContent.setPadding(Insets.EMPTY);
+
+        // sort list item by alphabetical lexicographic order of their display name
+        // so that they are display in order on screen
+        listItem.sort(Comparator.comparing(UmlToken::getName, String.CASE_INSENSITIVE_ORDER));
 
         listItem.forEach( umlClass -> {
 

@@ -1,8 +1,8 @@
 package syntaxTree.expressions;
 
 import parsing.GrammarModel;
+import syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
-import syntaxTree.exceptions.MalformedDeclarationException;
 
 /**
  * <multiplcity> ::=
@@ -41,7 +41,7 @@ public class Multiplicity implements Expression {
             case GrammarModel.Mult.ONE_OR_MANY : return MultiplicityValue.ONE_OR_MANY;
             case GrammarModel.Mult.OPTIONALLY_ONE : return MultiplicityValue.OPTIONALLY_ONE;
             case GrammarModel.Mult.UNDEFINED : return MultiplicityValue.UNDEFINED;
-            default: throw new MalformedDeclarationException(
+            default: throw new MalformedFileException(
                     String.format("Cannot parse multiplicity value : '%s' of association '%s'. " +
                             "Multiplicity value must be one of " +
                             "'ONE', 'MANY', 'ONE_OR_MANY', 'OPTIONALLY_ONE' or 'UNDEFINED'",

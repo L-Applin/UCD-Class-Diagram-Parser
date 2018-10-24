@@ -1,7 +1,7 @@
 package syntaxTree.entries;
 
 /**
- * A simple wrapper around informations contained in a Declaration tag.
+ * A simple immutable wrapper around informations contained in a Declaration tag.
  */
 public class DeclarationEntry {
 

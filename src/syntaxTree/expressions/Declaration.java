@@ -3,8 +3,8 @@ package syntaxTree.expressions;
 import parsing.GrammarModel;
 import parsing.UcdParser;
 import syntaxTree.entries.DeclarationEntry;
+import syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
-import syntaxTree.exceptions.IncompatibleTagException;
 
 
 /**
@@ -33,7 +33,7 @@ public class Declaration implements Expression {
                 return new Generalization(entry.id).tokenize(ctx, entry.content);
             case GrammarModel.Decs.ASSOCIATION:
                 return new Association(entry.id).tokenize(ctx, entry.content);
-            default: throw new IncompatibleTagException(entry.decType, content);
+            default: throw new MalformedFileException();
         }
 
     }

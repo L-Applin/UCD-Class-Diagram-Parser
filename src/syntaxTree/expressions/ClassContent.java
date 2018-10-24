@@ -28,10 +28,10 @@ public class ClassContent implements Expression, ExceptionCheckProvider {
 
         UcdParser parser = new UcdParser(content);
 
-        String attributes = parser.extractAttributes(classId.getValue(), content);
+        String attributes = parser.extractAttributes();
         attributeList = new AttributeList(new ArrayList<>(), classId).tokenize(ctx, UcdParser.removeNewLines(attributes));
 
-        String operations = parser.extractOperations(classId.getValue(), content);
+        String operations = parser.extractOperations();
         operationList = new OperationList(new ArrayList<>(), classId).tokenize(ctx, UcdParser.removeNewLines(operations));
 
         return this;

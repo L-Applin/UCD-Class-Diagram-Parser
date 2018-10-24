@@ -22,7 +22,7 @@ public class TwoRole implements Expression {
     public Expression tokenize(final UmlContext ctx, String content) {
 
         UcdParser parser = new UcdParser(content);
-        String[] roles = parser.splitTwoRoles(associationId.getValue());
+        String[] roles = parser.splitTwoRoles();
         role1 = new Role(associationId).tokenize(ctx, roles[0]);
         role2 = new Role(associationId).tokenize(ctx, roles[1]);
 

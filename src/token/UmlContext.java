@@ -1,9 +1,6 @@
 package token;
 
 import syntaxTree.SyntaxTree;
-import syntaxTree.expressions.Expression;
-import token.UmlClass;
-import token.UmlToken;
 import token.visitor.UmlVisitor;
 
 import java.util.*;
@@ -21,7 +18,7 @@ public class UmlContext {
     public String getModelId() { return modelId; }
     public void setModelId(String modelId) { this.modelId = modelId; }
 
-    private Map<String, Expression> tokens;
+    // private Map<String, Expression> tokens;
 
     /**
      * All UmlClasses that were parsed represented in a more usable way for display
@@ -36,13 +33,15 @@ public class UmlContext {
     public SyntaxTree getTree() { return tree; }
     public void setTree(SyntaxTree tree) { this.tree = tree; }
 
+/*
     public UmlContext(Map<String, Expression> map){
         this.tokens = map;
     }
+*/
 
     // default use TreeMap
     public UmlContext(){
-        this.tokens = new TreeMap<>();
+        // this.tokens = new TreeMap<>();
         classes = new HashMap<>();
     }
 

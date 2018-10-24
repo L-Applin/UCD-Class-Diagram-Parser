@@ -40,7 +40,7 @@ public class DataItem implements Expression {
     public DataItem tokenize(final UmlContext ctx, String content) {
         // todo : error handling
         UcdParser parser = new UcdParser(content);
-        String[] splits = parser.splitDataItem(parentId.getValue());
+        String[] splits = parser.splitDataItem();
         id = new Identifier(splits[0]);
         type = new Type(id).tokenize(ctx, splits[1]);
         return this;
