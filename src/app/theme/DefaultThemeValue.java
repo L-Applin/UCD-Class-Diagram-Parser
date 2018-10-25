@@ -6,7 +6,7 @@ import javafx.scene.text.Font;
 
 public class DefaultThemeValue {
 
-    public static final double font_weight = 18;
+    public static final double font_weight = 16;
 
     public static final String primary_dark_color_value = "#353940";
 
@@ -24,9 +24,9 @@ public class DefaultThemeValue {
 
     public static final Insets defaul_padding = new Insets(10, 10, 10, 10);
 
-    public static final Font default_font = Font.font("Verdana", 16);
+    public static final Font default_font = Font.font("Verdana", 14);
 
-    public static final Font default_class_font = Font.font("Verdana", 14);
+    public static final Font default_class_font = Font.font("Verdana", 12);
 
 
 }

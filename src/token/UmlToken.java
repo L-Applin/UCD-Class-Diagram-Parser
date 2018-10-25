@@ -24,8 +24,8 @@ public abstract class UmlToken implements Displayable, UmlVisitorElement {
     public String getContent() { return content; }
 
     public UmlToken(String content, String name) {
-        this.content = content;
-        this.name = name;
+        this.content = content.trim();
+        this.name = name.trim();
     }
 
 

@@ -29,7 +29,7 @@ public class UcdFileReader implements ExceptionCheckProvider{
         if (!path.endsWith(".ucd")){
             throw new IOException(
                     String.format("File %s does not have .ucd extension",
-                            path.substring(path.lastIndexOf(File.separator)+1, path.length())));
+                            path.substring(path.lastIndexOf(File.separator)+1)));
         }
 
         String line;

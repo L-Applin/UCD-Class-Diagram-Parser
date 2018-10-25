@@ -11,4 +11,5 @@ public interface UmlVisitor {
     void visit(UmlAttribute attribute);
     void visit(UmlOperation operation);
     void visit(UmlClass umlClass);
+    void visit(UmlMetric umlMetric);
 }

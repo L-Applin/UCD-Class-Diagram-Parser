@@ -4,11 +4,7 @@ import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
 import parsing.syntaxTree.SyntaxTree;
 import parsing.syntaxTree.exceptions.MalformedFileException;
-import token.UmlClass;
 import token.UmlContext;
-import token.visitor.InfoDisplayVisitor;
-import token.visitor.SuperClassAssignationVisitor;
-import token.visitor.UmlClassVisitor;
 
 import java.io.File;
 import java.io.IOException;

@@ -5,6 +5,7 @@ import token.visitor.UmlVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represent a method in a form convenient for displaying onto a {@link screenDisplay.MainDisplay}.
@@ -70,6 +71,16 @@ public class UmlOperation extends UmlToken {
         public String toString() {
             return name + ":" + type;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Args args = (Args) o;
+            return Objects.equals(name, args.name) &&
+                    Objects.equals(type, args.type);
+        }
+
     }
 
     @Override

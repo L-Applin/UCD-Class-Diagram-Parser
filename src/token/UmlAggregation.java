@@ -22,10 +22,9 @@ public class UmlAggregation extends UmlToken {
     }
 
 
-
     @Override
     public String display() {
-        // todo : find out why part.clazz.name is null for UmlContext and romevoe try catch :)
+        // todo : find out why part.clazz.name is sometimes null for UmlContext and romevoe try catch :)
         try  {
             return String.format("(A) %s : %s", part.clazz.name, part.mult);
         } catch (NullPointerException npe){

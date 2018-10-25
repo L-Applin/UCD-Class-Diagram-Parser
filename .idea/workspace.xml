@@ -6,15 +6,31 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="more work on deprecated classes">
-      <change afterPath="$PROJECT_DIR$/src/token/visitor/UmlClassVisitor.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Visitor pattern design tests">
+      <change afterPath="$PROJECT_DIR$/src/token/metrics/MetricCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/theme/DefaultThemeValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/theme/DefaultThemeValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parsing/UcdFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parsing/UcdFileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screenDisplay/ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassInfoListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassInfoListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlBtnListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlBtnListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/UmlAggregation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/UmlAggregation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/UmlAttribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/UmlAttribute.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/token/UmlClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/UmlClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/token/UmlContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/UmlContext.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/token/UmlMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/UmlMetric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/token/visitor/SuperClassAssignationVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/visitor/SuperClassAssignationVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/UmlOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/UmlOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/UmlToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/UmlToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/visitor/InfoDisplayVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/visitor/InfoDisplayVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/visitor/SuperClassAssignationVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/visitor/UmlClassVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/visitor/UmlMetricVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/token/visitor/UmlVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/token/visitor/UmlVisitor.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,35 +86,36 @@
     <session id="1850741521">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="115" />
+          <entry key="java" value="268" />
           <entry key="svg" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="115" />
+          <entry key="JAVA" value="268" />
           <entry key="SVG" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3097" />
-          <entry key="txt" value="62" />
+          <entry key="java" value="8067" />
+          <entry key="txt" value="90" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3097" />
-          <entry key="PLAIN_TEXT" value="62" />
+          <entry key="JAVA" value="8067" />
+          <entry key="PLAIN_TEXT" value="90" />
         </counts>
       </usages-collector>
     </session>
@@ -107,48 +124,54 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6014563">
+    <splitter split-orientation="horizontal" split-proportion="0.52253073">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/app/AppController.java">
+            <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassInfoListView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="681">
-                  <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/token/visitor/InfoDisplayVisitor.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
-                  <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+                <state relative-caret-position="375">
+                  <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
+                  <caret line="75" column="56" selection-start-line="75" selection-start-column="56" selection-end-line="75" selection-end-column="56" />
                   <folding>
-                    <element signature="e#360#361#0" expanded="true" />
-                    <element signature="e#412#413#0" expanded="true" />
+                    <element signature="e#3413#3414#0" expanded="true" />
+                    <element signature="e#3445#3446#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/screenDisplay/ScreenController.java">
+            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/javafx.controls/javafx/scene/control/ScrollPane.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="846">
-                  <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+                <state relative-caret-position="208">
+                  <caret line="434" column="24" lean-forward="true" selection-start-line="434" selection-start-column="24" selection-end-line="434" selection-end-column="24" />
                   <folding>
-                    <element signature="imports" expanded="true" />
+                    <element signature="e#4596#4597#0" expanded="true" />
+                    <element signature="e#4643#4644#0" expanded="true" />
+                    <element signature="e#12560#12561#0" expanded="true" />
+                    <element signature="e#12628#12629#0" expanded="true" />
+                    <element signature="e#15280#15281#0" expanded="true" />
+                    <element signature="e#15344#15345#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="388">
+                  <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="364">
-                  <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+                <state relative-caret-position="622">
+                  <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
                   <folding>
                     <element signature="e#2641#2642#0" expanded="true" />
                     <element signature="e#2688#2689#0" expanded="true" />
@@ -158,83 +181,55 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlClassVisitor.java">
+            <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="756">
-                  <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
-                  <folding>
-                    <element signature="e#461#462#0" expanded="true" />
-                    <element signature="e#509#510#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="100">
+                  <caret line="41" column="45" lean-forward="true" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlVisitorElement.java">
+            <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlBtnListView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+                <state relative-caret-position="72">
+                  <caret line="8" column="49" lean-forward="true" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlVisitor.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="126">
-                  <caret line="7" column="27" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="27" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/token/UmlClass.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="36">
-                  <caret line="31" column="31" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="31" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#4291#4292#0" expanded="true" />
-                    <element signature="e#4353#4354#0" expanded="true" />
-                    <element signature="e#4418#4419#0" expanded="true" />
-                    <element signature="e#4467#4468#0" expanded="true" />
-                    <element signature="e#4513#4514#0" expanded="true" />
-                    <element signature="e#4578#4579#0" expanded="true" />
-                    <element signature="e#4653#4654#0" expanded="true" />
-                    <element signature="e#4701#4702#0" expanded="true" />
-                    <element signature="e#4761#4762#0" expanded="true" />
-                    <element signature="e#4796#4797#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/token/visitor/SuperClassAssignationVisitor.java">
+            <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="234">
-                  <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+                  <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/token/UmlContext.java">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/ListButton.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="286">
-                  <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#927#928#0" expanded="true" />
-                    <element signature="e#953#954#0" expanded="true" />
-                    <element signature="e#1178#1179#0" expanded="true" />
-                    <element signature="e#1227#1228#0" expanded="true" />
-                    <element signature="e#1284#1285#0" expanded="true" />
-                    <element signature="e#1342#1343#0" expanded="true" />
-                    <element signature="e#2061#2062#0" expanded="true" />
-                    <element signature="e#2133#2134#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="376">
+                  <caret line="73" column="56" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/app/theme/DefaultThemeValue.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/screenDisplay/MainDisplay.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="198">
+                  <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
                 </state>
               </provider>
             </entry>
@@ -246,8 +241,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/res/parser.ucd">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1020">
-                  <caret line="562" selection-start-line="561" selection-end-line="562" />
+                <state relative-caret-position="5627">
+                  <caret line="539" column="7" selection-start-line="539" selection-start-column="7" selection-end-line="539" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -284,20 +279,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/syntaxTree/expressions/Expression.java" />
-        <option value="$PROJECT_DIR$/src/syntaxTree/entries/DeclarationEntry.java" />
-        <option value="$PROJECT_DIR$/src/syntaxTree/entries/IdentifierEntry.java" />
-        <option value="$PROJECT_DIR$/src/syntaxTree/entries/RoleEntry.java" />
-        <option value="$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java" />
-        <option value="$PROJECT_DIR$/src/token/Metric.java" />
         <option value="$PROJECT_DIR$/src/syntaxTree/expressions/ArgList.java" />
-        <option value="$PROJECT_DIR$/src/token/UmlOperation.java" />
         <option value="$PROJECT_DIR$/src/syntaxTree/expressions/Type.java" />
-        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlBtnListView.java" />
         <option value="$PROJECT_DIR$/res/parser.ucd" />
-        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java" />
         <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MyTopBar.java" />
-        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java" />
         <option value="$PROJECT_DIR$/src/app/theme/AppTheme.java" />
         <option value="$PROJECT_DIR$/src/syntaxTree/expressions/Roles.java" />
         <option value="$PROJECT_DIR$/src/syntaxTree/exceptions/ExceptionCheckProvider.java" />
@@ -306,35 +291,45 @@
         <option value="$PROJECT_DIR$/src/syntaxTree/expressions/ClassDeclaration.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/ClassDeclaration.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/exceptions/ExceptionCheckProvider.java" />
-        <option value="$PROJECT_DIR$/src/parsing/UcdFileReader.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/entries/DeclarationEntry.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/entries/IdentifierEntry.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/entries/RoleEntry.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Role.java" />
-        <option value="$PROJECT_DIR$/src/token/visitor/InfoDisplayVisitor.java" />
-        <option value="$PROJECT_DIR$/src/token/UmlAggregation.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Operation.java" />
         <option value="$PROJECT_DIR$/src/deprecated/Delims.java" />
         <option value="$PROJECT_DIR$/src/parsing/UcdParser.java" />
         <option value="$PROJECT_DIR$/src/token/Displayable.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/ArgList.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Roles.java" />
-        <option value="$PROJECT_DIR$/src/token/UmlToken.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Aggregation.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/TwoRole.java" />
-        <option value="$PROJECT_DIR$/src/token/UmlAttribute.java" />
         <option value="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/AttributeList.java" />
         <option value="$PROJECT_DIR$/src/screenDisplay/components/MyAlertDialog.java" />
-        <option value="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" />
-        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java" />
         <option value="$PROJECT_DIR$/src/app/Main.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlBtnListView.java" />
+        <option value="$PROJECT_DIR$/src/token/visitor/SuperClassAssignationVisitor.java" />
+        <option value="$PROJECT_DIR$/src/token/UmlAttribute.java" />
+        <option value="$PROJECT_DIR$/src/token/UmlToken.java" />
+        <option value="$PROJECT_DIR$/src/token/UmlAggregation.java" />
+        <option value="$PROJECT_DIR$/src/parsing/UcdFileReader.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/ScreenController.java" />
+        <option value="$PROJECT_DIR$/src/token/visitor/UmlVisitor.java" />
+        <option value="$PROJECT_DIR$/src/token/visitor/InfoDisplayVisitor.java" />
+        <option value="$PROJECT_DIR$/src/app/AppController.java" />
+        <option value="$PROJECT_DIR$/src/token/UmlOperation.java" />
+        <option value="$PROJECT_DIR$/src/token/visitor/UmlClassVisitor.java" />
         <option value="$PROJECT_DIR$/src/token/UmlMetric.java" />
         <option value="$PROJECT_DIR$/src/token/UmlClass.java" />
-        <option value="$PROJECT_DIR$/src/screenDisplay/ScreenController.java" />
-        <option value="$PROJECT_DIR$/src/token/visitor/SuperClassAssignationVisitor.java" />
-        <option value="$PROJECT_DIR$/src/token/visitor/UmlClassVisitor.java" />
-        <option value="$PROJECT_DIR$/src/app/AppController.java" />
         <option value="$PROJECT_DIR$/src/token/UmlContext.java" />
+        <option value="$PROJECT_DIR$/src/token/metrics/MetricCalculator.java" />
+        <option value="$PROJECT_DIR$/src/token/visitor/UmlMetricVisitor.java" />
+        <option value="$PROJECT_DIR$/src/app/theme/DefaultThemeValue.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassInfoListView.java" />
+        <option value="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java" />
       </list>
     </option>
   </component>
@@ -376,14 +371,35 @@
               <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
               <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="token" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="theme" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
               <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="token" type="462c0819:PsiDirectoryNode" />
-              <item name="visitor" type="462c0819:PsiDirectoryNode" />
+              <item name="screenDisplay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="screenDisplay" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="screenDisplay" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="umlComponents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -405,7 +421,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540411749377" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540439914777" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -729,7 +745,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540403594322</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Visitor pattern design tests">
+      <created>1540411766523</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1540411766523</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -771,7 +794,7 @@
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18189038" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12827641" />
       <window_info id="Structure" order="1" weight="0.24973147" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -780,7 +803,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32962137" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.20564216" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32962137" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.22511144" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -859,216 +882,123 @@
     <MESSAGE value="parsing bug problem" />
     <MESSAGE value="removing some useless class" />
     <MESSAGE value="more work on deprecated classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="more work on deprecated classes" />
+    <MESSAGE value="Visitor pattern design tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Visitor pattern design tests" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/exceptions/MalformedFileException.java">
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="126">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/exceptions/ExceptionCheckProvider.java">
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Multiplicity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/FileController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/GrammarModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/UcdFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/entries/DeclarationEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/entries/IdentifierEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#397#398#0" expanded="true" />
-            <element signature="e#441#442#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/entries/RoleEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="e#433#434#0" expanded="true" />
-            <element signature="e#510#511#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#438#439#0" expanded="true" />
-            <element signature="e#476#477#0" expanded="true" />
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#549#550#0" expanded="true" />
-            <element signature="e#584#585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/importWhite.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/UcdParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#10317#10318#0" expanded="true" />
-            <element signature="e#10389#10390#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Deprecated.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="77" column="27" lean-forward="true" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/ShortcutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/Displayable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="96" selection-start-line="10" selection-start-column="96" selection-end-line="10" selection-end-column="96" />
+        <state relative-caret-position="216">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Operation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="126">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/UmlOperation.java">
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/ScreenController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="654">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#953#954#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#957#958#0" expanded="true" />
             <element signature="e#1002#1003#0" expanded="true" />
-            <element signature="e#1419#1420#0" expanded="true" />
-            <element signature="e#1467#1468#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1161#1162#0" expanded="true" />
+            <element signature="e#1208#1209#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Identifier.java">
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state>
           <folding>
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/ArgList.java">
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="34" column="2" lean-forward="true" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="72">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Roles.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="476">
+          <caret line="791" column="25" lean-forward="true" selection-start-line="791" selection-start-column="25" selection-end-line="791" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/UmlToken.java">
+    <entry file="file://$PROJECT_DIR$/src/token/UmlMetric.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/UmlAggregation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="19" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+        <state relative-caret-position="342">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1095#1096#0" expanded="true" />
-            <element signature="e#1143#1144#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Aggregation.java">
+    <entry file="file://$PROJECT_DIR$/src/token/Displayable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state relative-caret-position="126">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/parser.ucd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5627">
+          <caret line="539" column="7" selection-start-line="539" selection-start-column="7" selection-end-line="539" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token/visitor/InfoDisplayVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#446#447#0" expanded="true" />
+            <element signature="e#512#513#0" expanded="true" />
+            <element signature="e#564#565#0" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#738#739#0" expanded="true" />
+            <element signature="e#793#794#0" expanded="true" />
+            <element signature="e#853#854#0" expanded="true" />
+            <element signature="e#908#909#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/token/UmlAssociation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="e#1022#1023#0" expanded="true" />
             <element signature="e#1070#1071#0" expanded="true" />
@@ -1078,266 +1008,329 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/TwoRole.java">
+    <entry file="file://$PROJECT_DIR$/src/token/UmlToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="540">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/UmlAttribute.java">
+    <entry file="file://$PROJECT_DIR$/src/token/UmlOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="44" column="70" lean-forward="true" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Declaration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/DeclarationList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/entries/DeclarationEntry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#464#465#0" expanded="true" />
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#579#580#0" expanded="true" />
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#687#688#0" expanded="true" />
-            <element signature="e#722#723#0" expanded="true" />
-          </folding>
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/AttributeList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="37" column="11" lean-forward="true" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassInfoListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="e#3393#3394#0" expanded="true" />
-            <element signature="e#3425#3426#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/MyAlertDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/ListButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2232">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
-          <folding>
-            <element signature="e#3312#3313#0" expanded="true" />
-            <element signature="e#3350#3351#0" expanded="true" />
-            <element signature="e#3401#3402#0" expanded="true" />
-            <element signature="e#3441#3442#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/SectionTitle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/javafx.controls/javafx/scene/control/ScrollPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="101" column="29" selection-start-line="101" selection-start-column="29" selection-end-line="101" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/MainDisplay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="261" column="11" lean-forward="true" selection-start-line="261" selection-start-column="11" selection-end-line="261" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="15" column="118" selection-start-line="15" selection-start-column="118" selection-end-line="15" selection-end-column="118" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/deprecated/MyTopBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/deprecated/Delims.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#619#620#0" expanded="true" />
-            <element signature="e#647#648#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/parser.ucd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="562" selection-start-line="561" selection-end-line="562" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/UmlMetric.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#558#559#0" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
-            <element signature="e#771#772#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlVisitorElement.java">
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/entries/IdentifierEntry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/entries/RoleEntry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        <state relative-caret-position="270">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Iterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="56" column="3" lean-forward="true" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3193">
+          <caret line="188" column="9" selection-start-line="188" selection-start-column="9" selection-end-line="188" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="389" column="5" lean-forward="true" selection-start-line="389" selection-start-column="5" selection-end-line="389" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/AbstractSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="55" column="3" lean-forward="true" selection-start-line="55" selection-start-column="3" selection-end-line="55" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Collections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="4697" column="11" lean-forward="true" selection-start-line="4697" selection-start-column="11" selection-end-line="4697" selection-end-column="11" />
           <folding>
-            <element signature="e#2641#2642#0" expanded="true" />
-            <element signature="e#2688#2689#0" expanded="true" />
+            <element signature="e#183798#183799#0" expanded="true" />
+            <element signature="e#183842#183843#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/UmlClass.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Set.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="31" column="31" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4291#4292#0" expanded="true" />
-            <element signature="e#4353#4354#0" expanded="true" />
-            <element signature="e#4418#4419#0" expanded="true" />
-            <element signature="e#4467#4468#0" expanded="true" />
-            <element signature="e#4513#4514#0" expanded="true" />
-            <element signature="e#4578#4579#0" expanded="true" />
-            <element signature="e#4653#4654#0" expanded="true" />
-            <element signature="e#4701#4702#0" expanded="true" />
-            <element signature="e#4761#4762#0" expanded="true" />
-            <element signature="e#4796#4797#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="207">
+          <caret line="103" column="12" lean-forward="true" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/screenDisplay/ScreenController.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="370">
+          <caret line="341" column="7" lean-forward="true" selection-start-line="341" selection-start-column="7" selection-end-line="341" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/HashSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="95" column="25" lean-forward="true" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="27" />
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/visitor/InfoDisplayVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlVisitorElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="36">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlMetricVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token/metrics/MetricCalculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
           <folding>
-            <element signature="e#360#361#0" expanded="true" />
-            <element signature="e#412#413#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#5268#5269#0" expanded="true" />
+            <element signature="e#5361#5362#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/visitor/SuperClassAssignationVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/parsing/UcdFileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/ShortcutController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/token/visitor/UmlClassVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#461#462#0" expanded="true" />
-            <element signature="e#509#510#0" expanded="true" />
-          </folding>
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+        <state relative-caret-position="1008">
+          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token/UmlClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="205" selection-start-line="205" selection-end-line="205" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6673#6674#0" expanded="true" />
+            <element signature="e#6738#6739#0" expanded="true" />
+            <element signature="e#6813#6814#0" expanded="true" />
+            <element signature="e#6861#6862#0" expanded="true" />
+            <element signature="e#6921#6922#0" expanded="true" />
+            <element signature="e#6956#6957#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/token/UmlContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="46" column="42" lean-forward="true" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+        <state relative-caret-position="1206">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#927#928#0" expanded="true" />
-            <element signature="e#953#954#0" expanded="true" />
-            <element signature="e#1178#1179#0" expanded="true" />
-            <element signature="e#1227#1228#0" expanded="true" />
-            <element signature="e#1284#1285#0" expanded="true" />
-            <element signature="e#1342#1343#0" expanded="true" />
-            <element signature="e#2061#2062#0" expanded="true" />
-            <element signature="e#2133#2134#0" expanded="true" />
+            <element signature="e#1938#1939#0" expanded="true" />
+            <element signature="e#2010#2011#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token/UmlAggregation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token/UmlAttribute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/MyAlertDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/OverlayButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-764">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/ListButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="73" column="56" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/theme/DefaultThemeValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/javafx.graphics/javafx/scene/layout/Region.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="1197" column="7" lean-forward="true" selection-start-line="1197" selection-start-column="7" selection-end-line="1197" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/MainDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="41" column="45" lean-forward="true" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/BtnListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/UmlBtnListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="8" column="49" lean-forward="true" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/javafx.controls/javafx/scene/control/ScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="434" column="24" lean-forward="true" selection-start-line="434" selection-start-column="24" selection-end-line="434" selection-end-column="24" />
+          <folding>
+            <element signature="e#4596#4597#0" expanded="true" />
+            <element signature="e#4643#4644#0" expanded="true" />
+            <element signature="e#12560#12561#0" expanded="true" />
+            <element signature="e#12628#12629#0" expanded="true" />
+            <element signature="e#15280#15281#0" expanded="true" />
+            <element signature="e#15344#15345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/ClassInfoListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
+          <caret line="75" column="56" selection-start-line="75" selection-start-column="56" selection-end-line="75" selection-end-column="56" />
+          <folding>
+            <element signature="e#3413#3414#0" expanded="true" />
+            <element signature="e#3445#3446#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
+          <folding>
+            <element signature="e#2641#2642#0" expanded="true" />
+            <element signature="e#2688#2689#0" expanded="true" />
           </folding>
         </state>
       </provider>

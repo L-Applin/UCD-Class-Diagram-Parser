@@ -15,7 +15,7 @@ public class DetailsView extends VBox implements UmlView {
 
     // todo [class number reduction] : could be replace with a method in MainCenterClassInfo ? verify if it's worth it
 
-    private static double width = 790;
+    private static double width = 950;
     private static double height = 300;
 
     private SectionTitle title;

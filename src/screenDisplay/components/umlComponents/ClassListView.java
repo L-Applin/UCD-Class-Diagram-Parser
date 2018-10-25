@@ -3,6 +3,7 @@ package screenDisplay.components.umlComponents;
 import app.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -21,6 +22,7 @@ import java.util.Comparator;
 public class ClassListView extends UmlBtnListView {
 
     private static Insets button_padding = new Insets(4,18,4,18);
+    private static int window_width = 200;
 
     private AppTheme appTheme;
     private MainDisplay mainDisplay;
@@ -32,7 +34,7 @@ public class ClassListView extends UmlBtnListView {
         this.listItem = new ArrayList<>(context.getClasses().values());
         this.modelName = context.getModelId();
         this.appTheme = mainDisplay.getAppTheme();
-        this.font = Font.font ("Verdana", 20);
+        this.font = Font.font ("Verdana", 16);
     }
 
     @Override
@@ -44,6 +46,7 @@ public class ClassListView extends UmlBtnListView {
 
         container.setPadding(Insets.EMPTY);
         container.setBackground(appTheme.getSecondaryDarkBackground());
+        container.setPrefWidth(window_width);
 
         VBox scrollViewContent = new VBox();
         scrollViewContent.setBackground(appTheme.getSecondaryDarkBackground());
@@ -57,6 +60,7 @@ public class ClassListView extends UmlBtnListView {
 
             ListButton btn = createButton(umlClass.display());
             btnList.add(btn);
+            btn.setPrefWidth(window_width);
             btn.setPadding(button_padding);
             btn.setOnClickListener(button -> {
                 ScreenController screenCtrl = new ScreenController(mainDisplay);
@@ -67,9 +71,10 @@ public class ClassListView extends UmlBtnListView {
 
         scrollViewContent.getChildren().addAll(btnList);
         container.setContent(scrollViewContent);
-
+        container.setFitToWidth(true);
         getChildren().addAll(new SectionTitle(appTheme, modelName), container);
         setEffect(appTheme.elevation(Color.BLACK));
+        container.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         return this;
     }

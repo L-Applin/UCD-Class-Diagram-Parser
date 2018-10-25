@@ -19,6 +19,7 @@ public abstract class BtnListView extends VBox implements UmlView {
     public List<ListButton> getBtnList() { return btnList; }
 
     protected ScrollPane container;
+    public ScrollPane getContainer() { return container; }
 
     protected Insets button_padding;
 

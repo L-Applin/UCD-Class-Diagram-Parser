@@ -16,7 +16,7 @@ public class UmlAttribute extends UmlToken {
 
     public UmlAttribute(String name, String type, String content) {
         super(content, name);
-        this.type = type;
+        this.type = type.trim();
     }
 
 

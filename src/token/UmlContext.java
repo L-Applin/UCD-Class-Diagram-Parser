@@ -1,7 +1,8 @@
 package token;
 
+import token.metrics.MetricCalculator;
 import token.visitor.InfoDisplayVisitor;
-import token.visitor.UmlClassVisitor;
+import token.visitor.UmlMetricVisitor;
 import token.visitor.UmlVisitor;
 
 import java.util.HashMap;
@@ -27,8 +28,8 @@ public class UmlContext {
     /**
      * All UmlClasses that were parsed represented in a more usable way for display
      */
-    private Map<String, UmlToken> classes;
-    public Map<String, UmlToken> getClasses() { return classes; }
+    private Map<String, UmlClass> classes;
+    public Map<String, UmlClass> getClasses() { return classes; }
 
 
     // default use HashMap
@@ -62,20 +63,44 @@ public class UmlContext {
     }
 
 
+    /**
+     *
+     * @param visitor
+     */
     public void visitClasses(UmlVisitor visitor){
         classes.values().forEach(clazz -> clazz.accept(visitor));
     }
 
 
     public void calculateMetrics(){
-        // prepare data for display
-        visitClasses(new InfoDisplayVisitor());
 
-        UmlClassVisitor superClassVisitor = new UmlClassVisitor();
+        // prepare data
+        // set up parent (super) classes
+        UmlMetricVisitor superClassVisitor = new UmlMetricVisitor();
         superClassVisitor.setClassVisitor(clazz -> clazz.getSubClasses().values().forEach(
-                child -> ((UmlClass)child).setSuperClass(clazz)));
-
+                child -> child.setSuperClass(clazz)));
         visitClasses(superClassVisitor);
+
+        // calculates metrics for each classes
+        classes.values().forEach(clazz -> {
+
+            MetricCalculator calculator = new MetricCalculator(clazz, this);
+
+            calculator.calculateANA();
+            calculator.calculateNOM();
+            calculator.calculateNOA();
+            calculator.calculateCAC();
+            calculator.calculateCLD();
+            calculator.calculateNOD();
+            calculator.calculateDIT();
+            calculator.calculateETC();
+            calculator.calculateITC();
+            calculator.calculateNOC();
+
+        });
+
+        // testing visitor pattern todo: remove before due date
+        visitClasses(new InfoDisplayVisitor());
 
     }
 }

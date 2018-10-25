@@ -43,6 +43,7 @@ public class MainDisplay extends BorderPane {
     public static final String SUBCLASS_TITLE = "Sous-classes";
     public static final String ASSO_INTRG_TITLE = "Associations/agrégations";
     public static final String DETAILS_TITLE = "Détails";
+    public static final String METRIC_TITLE = "Métriques";
 
     private Stage primaryStage;
     public Stage getPrimaryStage() { return primaryStage; }
@@ -78,7 +79,7 @@ public class MainDisplay extends BorderPane {
         Node center = createCenterView();
         setCenter(center);
 
-        Scene scene = new Scene(this, 1024, 768);
+        Scene scene = new Scene(this, 1244, 768);
         scene.setFill(Color.TRANSPARENT);
         scene.getStylesheets().add("stylesheet.css");
 

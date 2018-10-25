@@ -1,5 +1,6 @@
 package token.visitor;
 
+import jdk.jshell.execution.Util;
 import token.*;
 import utils.Utils;
 
@@ -28,6 +29,11 @@ public class InfoDisplayVisitor implements UmlVisitor {
     }
 
     @Override
+    public void visit(UmlMetric umlMetric) {
+        Utils.Log.log("\t"+umlMetric.display());
+    }
+
+    @Override
     public void visit(UmlClass umlClass) {
         System.out.print("\n"+umlClass.getName());
         if (umlClass.getSuperClass() != null){
@@ -42,6 +48,8 @@ public class InfoDisplayVisitor implements UmlVisitor {
         umlClass.getAssociations().values().forEach(assoc -> assoc.accept(this));
         Utils.Log.log("Aggregation");
         umlClass.getAgregations().forEach(agg -> agg.accept(this));
+        Utils.Log.log("Metrics");
+        umlClass.getMetrics().values().forEach(metric -> metric.accept(this));
 
     }
 
