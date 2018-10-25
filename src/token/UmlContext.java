@@ -46,7 +46,7 @@ public class UmlContext {
     }
 
     public UmlClass getUmlClass(String id){
-        return (UmlClass) classes.get(id);
+        return classes.get(id);
     }
 
     public void createClass(String id, String content){
@@ -100,7 +100,7 @@ public class UmlContext {
         });
 
         // testing visitor pattern todo: remove before due date
-        visitClasses(new InfoDisplayVisitor());
+        // visitClasses(new InfoDisplayVisitor());
 
     }
 }

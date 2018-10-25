@@ -8,7 +8,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import parsing.FileController;
+import app.FileController;
 import screenDisplay.MainDisplay;
 import screenDisplay.components.OverlayButton;
 

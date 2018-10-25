@@ -11,6 +11,9 @@ import java.io.IOException;
 
 public class AppController {
 
+    private UmlContext ctx;
+    public UmlContext getCtx() { return ctx; }
+
     /**
      * Reads and cleans up the .ucd file
      * @param path path of the file to open, read and clean
@@ -53,15 +56,16 @@ public class AppController {
 
     	try {
             String stringFile = openUcdFile(ucdFile.getAbsolutePath());
-            UmlContext ctx = parseUcdFile(stringFile);
+            ctx = parseUcdFile(stringFile);
             ctx.calculateMetrics();
             screen.setupUcdDisplay(ctx);
+            screen.setFileLoaded(true);
         } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);
-            ucde.printStackTrace();
+            // ucde.printStackTrace();
         } catch (Exception e){
             screen.errorScreen(e);
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
     }

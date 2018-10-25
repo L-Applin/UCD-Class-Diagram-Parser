@@ -15,6 +15,8 @@ public class UmlMetric extends UmlToken implements Displayable {
 
     private MetricType type;
     private double value;
+    public double getValue() { return value; }
+    public void setValue(double value) { this.value = value; }
 
     public UmlMetric(MetricType type, double value, String desc) {
         super(desc, type.name());

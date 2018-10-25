@@ -158,15 +158,18 @@ public class MetricCalculator {
     }
 
     public void calculateCAC(){
-
+        //todo
+        umlClass.addMetric(UmlMetric.MetricType.CAC, 0.0);
     }
 
     public void calculateDIT(){
-
+        //todo
+        umlClass.addMetric(UmlMetric.MetricType.DIT, 0.0);
     }
 
     public void calculateCLD(){
-
+        //todo
+        umlClass.addMetric(UmlMetric.MetricType.CLD, 0.0);
     }
 
     /**

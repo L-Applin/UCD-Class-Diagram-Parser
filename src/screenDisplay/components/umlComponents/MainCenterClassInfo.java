@@ -8,6 +8,8 @@ import screenDisplay.MainDisplay;
 import token.UmlClass;
 import token.UmlToken;
 
+import java.util.ArrayList;
+
 import static screenDisplay.MainDisplay.*;
 
 /**
@@ -42,7 +44,7 @@ public class MainCenterClassInfo extends GridPane implements UmlView {
         methodList =        new ClassInfoListView(mainDisplay, umlClass.getOperations());
         subClassList =      new ClassInfoListView(mainDisplay, umlClass.getSubClasses());
         assosIntegrList =   new ClassInfoListView(mainDisplay, umlClass.getAggAssocList());
-        metricList =        new ClassInfoListView(mainDisplay, umlClass.getMetrics());
+        metricList =        new ClassInfoListView(mainDisplay, new ArrayList<>(umlClass.getMetrics().values()));
         detailView =        new DetailsView(mainDisplay, umlClass);
 
         attributsList.setTitle(ATTRIBUTES_TITLE);

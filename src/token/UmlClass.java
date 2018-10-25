@@ -1,16 +1,23 @@
 package token;
 
+import app.FileController;
+import csv.CsvFormatter;
 import screenDisplay.ScreenController;
 import token.visitor.UmlVisitor;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static token.UmlMetric.*;
 
 /**
  * Representation of a class element for a Uml class diagram.
  */
-public class UmlClass extends UmlToken {
+public class UmlClass extends UmlToken implements CsvFormatter {
 
     /**
      * All class attributes, accessible by its name.
@@ -53,8 +60,8 @@ public class UmlClass extends UmlToken {
     /**
      * The metrics value of the class
      */
-    private Map<String, UmlMetric> metrics;
-    public Map<String, UmlMetric> getMetrics() { return metrics; }
+    private Map<UmlMetric.MetricType, UmlMetric> metrics;
+    public Map<UmlMetric.MetricType, UmlMetric> getMetrics() { return metrics; }
 
     /**
      * The constructors must defines the name (tag) of the class and its string content. All other attributes are
@@ -138,7 +145,7 @@ public class UmlClass extends UmlToken {
             case NOD: content = NOD_DESC; break;
             default: content = "";
         }
-        metrics.put(type.name(), new UmlMetric(type, value, content));
+        metrics.put(type, new UmlMetric(type, value, content));
     }
 
     /**
@@ -209,4 +216,40 @@ public class UmlClass extends UmlToken {
         visitor.visit(this);
     }
 
+    public String csvFormat() {
+        // todo : do not walk on every file for every class ???
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            Stream<Path> p = Files.walk(Paths.get(""));
+            List<Path> test = p.filter(path -> path.toFile().getName().equals(name + ".java")).collect(Collectors.toList());
+            if (test.get(0)!= null){
+
+                FileController fc = new FileController();
+                int[] lines = fc.countLines(test.get(0));
+
+                System.out.println(test.get(0).toAbsolutePath().toString());
+                sb
+                    .append(test.get(0).toAbsolutePath().toString()).append(SEPERATOR) // chemin
+                    .append(name).append(SEPERATOR) // nom
+                    .append(1).append(SEPERATOR) // taille
+                    .append(lines[0]).append(SEPERATOR) // NLOC
+                    .append(lines[1]).append(SEPERATOR) // CLOC
+                    .append(metrics.get(MetricType.ANA).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.NOM).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.NOA).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.ITC).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.ETC).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.CAC).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.DIT).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.CLD).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.NOC).getValue()).append(SEPERATOR)
+                    .append(metrics.get(MetricType.NOD).getValue()).append("\n");
+            }
+        } catch (Exception e){
+            System.out.printf("CANNOT FIND CLASS [%s]\n", name);
+        }
+
+        return sb.toString();
+    }
 }

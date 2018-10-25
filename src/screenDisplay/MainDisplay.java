@@ -4,6 +4,7 @@ import app.AppController;
 import app.Main;
 import app.ShortcutController;
 import app.theme.AppTheme;
+import csv.CsvFormatter;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -22,7 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import parsing.FileController;
+import app.FileController;
 import screenDisplay.components.MyAlertDialog;
 import screenDisplay.components.OverlayButton;
 import screenDisplay.components.umlComponents.ClassListView;
@@ -30,10 +31,11 @@ import screenDisplay.components.umlComponents.MainCenterClassInfo;
 import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlClass;
 import token.UmlContext;
-import token.UmlMetric;
 import token.UmlToken;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 public class MainDisplay extends BorderPane {
@@ -53,6 +55,13 @@ public class MainDisplay extends BorderPane {
 
     private ClassListView classView;
     private MainCenterClassInfo centerView;
+
+    private UmlClass currentlySelected = null;
+    private boolean fileLoaded = false;
+    public void setFileLoaded(boolean fileLoaded) { this.fileLoaded = fileLoaded; }
+
+    private AppController controller = new AppController();
+    public AppController getController() { return controller; }
 
     // used for controlling mouse drag of the window
     private static double xOffset = 0;
@@ -156,6 +165,7 @@ public class MainDisplay extends BorderPane {
         centerView = new MainCenterClassInfo(clazz, appTheme, this);
         setCenter(centerView.init());
         classView.forceClick(clazz.getName());
+        currentlySelected = clazz;
 
     }
 
@@ -180,6 +190,7 @@ public class MainDisplay extends BorderPane {
         String trash_url = "garbage.png";
         String click_me = "Charger fichier";
         String exit = "EXIT";
+        String csvFileButtonTitle = "Générer .csv";
 
         ImageView trashIcon = new ImageView(trash_url);
         Background background = appTheme.getSecondaryDarkBackground();
@@ -191,14 +202,16 @@ public class MainDisplay extends BorderPane {
         OverlayButton mImport = new OverlayButton(this, appTheme, click_me);
         OverlayButton mTrash = new OverlayButton(this, appTheme, trashIcon, 20);
         OverlayButton mExit = new OverlayButton(this, appTheme, exit);
+        OverlayButton mCsvMetricFile = new OverlayButton(this, appTheme, csvFileButtonTitle);
 
         mImport.setStyle(OverlayButton.ThemeStyle.ROUNDED);
         mTrash.setStyle(OverlayButton.ThemeStyle.ROUNDED);
         mExit.setStyle(OverlayButton.ThemeStyle.ROUNDED);
+        mCsvMetricFile.setStyle(OverlayButton.ThemeStyle.ROUNDED);
 
         HBox rightContainer = new HBox();
         HBox leftContainer = new HBox();
-        rightContainer.getChildren().addAll(mTrash, mExit);
+        rightContainer.getChildren().addAll(mCsvMetricFile, mTrash, mExit);
         leftContainer.getChildren().addAll(mImport);
 
         BorderPane.setMargin(rightContainer, default_bar_margin);
@@ -207,6 +220,7 @@ public class MainDisplay extends BorderPane {
         HBox.setMargin(mImport, OverlayButton.default_button_seperator_margin);
         HBox.setMargin(mTrash, OverlayButton.default_button_seperator_margin);
         HBox.setMargin(mExit, OverlayButton.default_button_seperator_margin);
+        HBox.setMargin(mCsvMetricFile, OverlayButton.default_button_seperator_margin);
 
         topBar.setRight(rightContainer);
         topBar.setLeft(leftContainer);
@@ -229,10 +243,30 @@ public class MainDisplay extends BorderPane {
 
         mTrash.setOnMouseClicked( event -> {
             resetLayout();
+            fileLoaded = false;
         });
 
         mExit.setOnMouseClicked(event -> {
             System.exit(0);
+        });
+
+        mCsvMetricFile.setOnMouseClicked(event -> {
+            FileController fc = new FileController();
+            if (!fileLoaded){
+                MyAlertDialog alertDialog= new MyAlertDialog("Un fichier doit être ouvert", appTheme);
+                alertDialog.make().show();
+            } else {
+                try {
+                    File savedFile =
+                            fc.createCsvFile(controller.getCtx().getModelId(), controller.getCtx().getClasses().values());
+                    new MyAlertDialog("Fichier enregistré : " + savedFile.getAbsolutePath(), appTheme).make().show();
+
+                } catch (IOException ioe){
+                    ioe.printStackTrace();
+                    new MyAlertDialog("Une erreur s'est produite : " + ioe.getMessage(), appTheme).make().show();
+                }
+            }
+
         });
 
         return topBar;
@@ -282,9 +316,10 @@ public class MainDisplay extends BorderPane {
                 } else {
 
                     File file = files.get(0);
-                    AppController controller = new AppController();
                     controller.lauchUcdActivity(this, file);
+                    System.out.println("LOADED FILE");
                     success = true;
+
                 }
 
             }
@@ -292,6 +327,7 @@ public class MainDisplay extends BorderPane {
 
             event.consume();
         });
+
 
         return center;
     }
