@@ -3,7 +3,7 @@ package screenDisplay.components;
 public interface ListItem {
 
     @FunctionalInterface
-    public interface BtnAction {
+    interface BtnAction {
         void run(ListButton btn);
     }
 

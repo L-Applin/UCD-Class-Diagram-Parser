@@ -30,8 +30,6 @@ public class UmlAssociation extends UmlToken {
 
     @Override
     public void accept(UmlVisitor visitor) {
-        firstClass.accept(visitor);
-        secondClasse.accept(visitor);
         visitor.visit(this);
     }
 }

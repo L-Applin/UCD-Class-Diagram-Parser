@@ -2,18 +2,17 @@ package app;
 
 import parsing.UcdFileReader;
 import screenDisplay.MainDisplay;
-import syntaxTree.SyntaxTree;
-import syntaxTree.UmlContext;
-import syntaxTree.exceptions.UcdParsingException;
-import token.UmlToken;
-import token.visitor.UmlChildClassVisitor;
+import parsing.syntaxTree.SyntaxTree;
+import parsing.syntaxTree.exceptions.MalformedFileException;
+import token.UmlContext;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AppController {
+
+    private UmlContext ctx;
+    public UmlContext getCtx() { return ctx; }
 
     /**
      * Reads and cleans up the .ucd file
@@ -31,9 +30,18 @@ public class AppController {
      * @return
      */
     public UmlContext parseUcdFile(String doc){
+        // todo : test why it not work!
+        if (doc.equals("")) {
+            throw new MalformedFileException("Cannot read empty files");
+        }
+
         UmlContext ctx = new UmlContext();
-        SyntaxTree tree = (SyntaxTree) new SyntaxTree(ctx).tokenize(ctx, doc);
-        ctx.setTree(tree);
+        SyntaxTree tree = new SyntaxTree(ctx);
+
+        // begin the actuall parsing operation
+        tree.tokenize(ctx, doc);
+
+
         return ctx;
 
     }
@@ -48,19 +56,16 @@ public class AppController {
 
     	try {
             String stringFile = openUcdFile(ucdFile.getAbsolutePath());
-            UmlContext ctx = parseUcdFile(stringFile);
-            List<UmlToken> tokens = new ArrayList<>(ctx.getClasses().values());
-            tokens.get(0).accept(new UmlChildClassVisitor());
+            ctx = parseUcdFile(stringFile);
+            ctx.calculateMetrics();
             screen.setupUcdDisplay(ctx);
-        } catch (IOException ioe){
-            screen.errorScreen(ioe);
-            ioe.printStackTrace();
-        } catch (UcdParsingException ucde) {
+            screen.setFileLoaded(true);
+        } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);
-            ucde.printStackTrace();
-        } catch (NullPointerException npe) {
-            screen.errorScreen(npe);
-            npe.printStackTrace();
+            // ucde.printStackTrace();
+        } catch (Exception e){
+            screen.errorScreen(e);
+            // e.printStackTrace();
         }
 
     }

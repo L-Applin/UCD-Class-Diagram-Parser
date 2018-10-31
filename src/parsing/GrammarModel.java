@@ -9,7 +9,7 @@ public class GrammarModel {
 
     public static final String[] illegalChar = {"~", "\\"};
     public static final List<String> illegalTypeChar = Utils.concatArraysToList(illegalChar,
-            new String[]{"(", ")", "[", "]"});
+            new String[]{"(", ")"});
 
     public static final String MODEL_TAG = "MODEL";
     public static final String SUBCLASSES_TAG = "SUBCLASSES";
@@ -36,6 +36,14 @@ public class GrammarModel {
         public static final String OPTIONALLY_ONE = "OPTIONALLY_ONE";
         public static final String UNDEFINED = "UNDEFINED";
     }
+
+    public static final String SPACE = " ";
+    public static final String DECLARATION_SEPERATOR = ";";
+    public static final String LIST_SEPERATOR = ",";
+    public static final String NEW_LINE_TOKEN = "~~nl~~";
+    public static final String CUSTOM_LIST_SEP = "~";
+    public static final String TYPE_SEPARATOR = ":";
+
 
 
 

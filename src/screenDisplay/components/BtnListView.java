@@ -19,6 +19,7 @@ public abstract class BtnListView extends VBox implements UmlView {
     public List<ListButton> getBtnList() { return btnList; }
 
     protected ScrollPane container;
+    public ScrollPane getContainer() { return container; }
 
     protected Insets button_padding;
 
@@ -33,7 +34,6 @@ public abstract class BtnListView extends VBox implements UmlView {
         this.clickedStyle = new ListButton.OverlayStyle(theme.getPrimaryLightBackground(), theme.getContrastDark());
         btnList = new ArrayList<>();
         container = new ScrollPane();
-
     }
 
     public ListButton createButton(String content){

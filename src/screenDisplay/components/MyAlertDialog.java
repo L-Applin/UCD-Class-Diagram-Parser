@@ -21,7 +21,7 @@ public class MyAlertDialog extends Stage {
         this.theme = theme;
     }
 
-    public Stage make(Stage stage){
+    public Stage make(){
 
         initModality(Modality.WINDOW_MODAL);
         initStyle(StageStyle.UNDECORATED);
