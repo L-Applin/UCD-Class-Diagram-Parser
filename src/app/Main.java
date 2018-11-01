@@ -8,6 +8,8 @@ import screenDisplay.ScreenController;
 public class Main extends Application {
 
     public static final String APP_NAME = "ucd file reader 4000";
+    public static final String SELF_MODEL_NAME = "parser";
+    public static final boolean CREATE_SELF_UCD = true;
     public static final Platform os = Platform.getPlatform();
 
     @Override

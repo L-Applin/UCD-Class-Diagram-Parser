@@ -1,7 +1,6 @@
 package token;
 
 import app.FileController;
-import csv.CsvFormatter;
 import screenDisplay.ScreenController;
 import token.visitor.UmlVisitor;
 
@@ -216,40 +215,61 @@ public class UmlClass extends UmlToken implements CsvFormatter {
         visitor.visit(this);
     }
 
-    public String csvFormat() {
-        // todo : do not walk on every file for every class ???
+    public String csvFormat(boolean selfUcd) {
         StringBuilder sb = new StringBuilder();
 
         try {
-            Stream<Path> p = Files.walk(Paths.get(""));
-            List<Path> test = p.filter(path -> path.toFile().getName().equals(name + ".java")).collect(Collectors.toList());
-            if (test.get(0)!= null){
 
-                FileController fc = new FileController();
-                int[] lines = fc.countLines(test.get(0));
+            if (selfUcd) {
+                // this wll created the custom .csv file for the current project
+                // todo : remove before handing
+                // todo : do not walk on every file for every class ???
 
-                System.out.println(test.get(0).toAbsolutePath().toString());
-                sb
-                    .append(test.get(0).toAbsolutePath().toString()).append(SEPERATOR) // chemin
-                    .append(name).append(SEPERATOR) // nom
-                    .append(1).append(SEPERATOR) // taille
-                    .append(lines[0]).append(SEPERATOR) // NLOC
-                    .append(lines[1]).append(SEPERATOR) // CLOC
-                    .append(metrics.get(MetricType.ANA).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.NOM).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.NOA).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.ITC).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.ETC).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.CAC).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.DIT).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.CLD).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.NOC).getValue()).append(SEPERATOR)
-                    .append(metrics.get(MetricType.NOD).getValue()).append("\n");
+                Stream<Path> p = Files.walk(Paths.get(""));
+                List<Path> test =
+                        p.filter(path -> path.toFile().getName().equals(name + ".java")).collect(Collectors.toList());
+                if (test.get(0) != null) {
+
+                    FileController fc = new FileController();
+                    int[] lines = fc.countLines(test.get(0));
+
+                    sb
+                        .append(test.get(0).toAbsolutePath().toString()).append(SEPERATOR) // chemin
+                        .append(name).append(SEPERATOR) // nom
+                        .append(1).append(SEPERATOR) // taille
+                        .append(lines[0]).append(SEPERATOR) // NLOC
+                        .append(lines[1]).append(SEPERATOR); // CLOC
+                    appendMetrics(sb);
+                }
             }
-        } catch (Exception e){
+
+            else {
+                // this sould create the .csv containing only the name and metrics
+                sb.append(name);
+                appendMetrics(sb);
+
+            }
+
+
+        } catch (Exception e) {
             System.out.printf("CANNOT FIND CLASS [%s]\n", name);
         }
 
         return sb.toString();
     }
+
+    private void appendMetrics(StringBuilder sb){
+        sb.append(metrics.get(MetricType.ANA).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.NOM).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.NOA).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.ITC).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.ETC).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.CAC).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.DIT).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.CLD).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.NOC).getValue()).append(SEPERATOR)
+            .append(metrics.get(MetricType.NOD).getValue()).append("\n");
+
+    }
+
 }

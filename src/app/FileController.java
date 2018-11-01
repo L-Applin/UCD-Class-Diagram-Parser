@@ -1,6 +1,6 @@
 package app;
 
-import csv.CsvFormatter;
+import token.CsvFormatter;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -8,7 +8,6 @@ import screenDisplay.MainDisplay;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 
 public class FileController {
@@ -35,10 +34,12 @@ public class FileController {
 
     }
 
-    public File createCsvFile(String fileName, Collection<? extends CsvFormatter> elements) throws IOException{
 
+    public File createCsvFile(String fileName, Collection<? extends CsvFormatter> elements) throws IOException{
+        // filename is model name
         DirectoryChooser dirChooser = new DirectoryChooser();
         dirChooser.setTitle("Veuillez choisir une destination");
+
 
         File directory = dirChooser.showDialog(new Stage());
         File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + ".csv");
@@ -46,9 +47,10 @@ public class FileController {
         writer.write(csv_title + "\n");
         elements.forEach(row -> {
             try {
-                writer.write(row.csvFormat());
+                boolean create_self_file_ucd = Main.CREATE_SELF_UCD && fileName.equals(Main.SELF_MODEL_NAME);
+                writer.write(row.csvFormat(create_self_file_ucd));
             } catch (IOException ioe){
-
+                // todo
             }
         });
         writer.close();

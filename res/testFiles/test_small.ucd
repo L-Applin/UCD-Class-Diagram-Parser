@@ -1,0 +1,24 @@
+MODEL Small
+CLASS Parent
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op() : Integer,
+      second_op(arg : Integer) : String
+      third_op
+;
+
+CLASS Child
+ATTRIBUTES
+    new_attr : String
+OPERATIONS
+    new_op(arg : Other) : Parent
+;
+
+CLASS Other
+ATTRIBUTES
+    first_attr : Parent
+    second_attr : Child
+OPERATIONS
+
+;

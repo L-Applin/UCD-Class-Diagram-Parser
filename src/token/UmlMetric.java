@@ -6,6 +6,9 @@ import token.visitor.UmlVisitor;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+/**
+ * A representation of a numerical value for a UmlClass metric.
+ */
 public class UmlMetric extends UmlToken implements Displayable {
 
     /**
@@ -13,11 +16,22 @@ public class UmlMetric extends UmlToken implements Displayable {
      */
     private static NumberFormat valueFormatter = new DecimalFormat("#0.00");
 
+    /**
+     * The type category of the metric as defined by the assignement.
+     */
     private MetricType type;
+
+
     private double value;
     public double getValue() { return value; }
     public void setValue(double value) { this.value = value; }
 
+    /**
+     *
+     * @param type the type of the metric.
+     * @param value it'S value
+     * @param desc a text description of the metric. Use to display extra information
+     */
     public UmlMetric(MetricType type, double value, String desc) {
         super(desc, type.name());
         this.type = type;
@@ -56,27 +70,27 @@ public class UmlMetric extends UmlToken implements Displayable {
      */
     public enum MetricType { ANA, NOM, NOA, ITC, ETC, CAC, DIT, CLD, NOC, NOD }
 
-    public static final String ANA_DESC =
-            "Nombre moyen d’arguments des méthodes locale";
-    public static final String NOM_DESC =
-            "Nombre de méthodes locales/héritées. Dans le cas où une méthode est héritée " +
-            " et redéfinie localement (même nom, même ordre et types desarguments et même type de retour)," +
-            " elle ne compte qu’une seul fois.";
-    public static final String ITC_DESC =
-            "Nombre de fois où d’autres classes du diagramme apparaissent comme types des arguments des méthodes";
-    public static final String NOA_DESC =
-            "Nombre d’attributs locaux/hérités";
-    public static final String ETC_DESC =
-            "Nombre de fois où la classe apparaît comme type des arguments dans les méthodesdes autres classes du diagramme.";
-    public static final String CAC_DESC =
-            "Nombre d’associations (incluant les agrégations) locales/héritées";
-    public static final String DIT_DESC =
-            "Taille du chemin le plus long à une classe racine dans le graphe d’héritage.";
-    public static final String CLD_DESC =
-            "Taille du chemin le plus long à une classe feuille dans le graphe d’héritage.";
-    public static final String NOC_DESC =
-            "Nombre de sous-classes directes";
-    public static final String NOD_DESC =
-            "Nombre de sous-classes directes et indirectes";
+    static final String ANA_DESC =
+        "Nombre moyen d’arguments des méthodes locale";
+    static final String NOM_DESC =
+        "Nombre de méthodes locales/héritées. Dans le cas où une méthode est héritée " +
+        " et redéfinie localement (même nom, même ordre et types desarguments et même type de retour)," +
+        " elle ne compte qu’une seul fois.";
+    static final String ITC_DESC =
+        "Nombre de fois où d’autres classes du diagramme apparaissent comme types des arguments des méthodes";
+    static final String NOA_DESC =
+        "Nombre d’attributs locaux/hérités";
+    static final String ETC_DESC =
+        "Nombre de fois où la classe apparaît comme type des arguments dans les méthodesdes autres classes du diagramme.";
+    static final String CAC_DESC =
+        "Nombre d’associations (incluant les agrégations) locales/héritées";
+    static final String DIT_DESC =
+        "Taille du chemin le plus long à une classe racine dans le graphe d’héritage.";
+    static final String CLD_DESC =
+        "Taille du chemin le plus long à une classe feuille dans le graphe d’héritage.";
+    static final String NOC_DESC =
+        "Nombre de sous-classes directes";
+    static final String NOD_DESC =
+        "Nombre de sous-classes directes et indirectes";
 
 }

@@ -4,7 +4,6 @@ import app.AppController;
 import app.Main;
 import app.ShortcutController;
 import app.theme.AppTheme;
-import csv.CsvFormatter;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -35,7 +34,6 @@ import token.UmlToken;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 public class MainDisplay extends BorderPane {

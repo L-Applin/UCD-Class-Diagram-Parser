@@ -1,7 +1,5 @@
 package token;
 
-import token.metrics.MetricCalculator;
-import token.visitor.InfoDisplayVisitor;
 import token.visitor.UmlMetricVisitor;
 import token.visitor.UmlVisitor;
 

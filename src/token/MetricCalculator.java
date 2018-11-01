@@ -1,31 +1,41 @@
-package token.metrics;
+package token;
 
-import token.UmlClass;
-import token.UmlContext;
-import token.UmlMetric;
 import token.visitor.UmlMetricVisitor;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * This class provides methods for calculating different metrics related to a {@link UmlClass}.
+ * Every metric declared in {@link UmlMetric.MetricType} should have a corresponding method in this class
+ * corresponding the the actual calculation process of that metric.
+ *
+ * This class relies heavily on the use of the {@link token.visitor.UmlVisitor} and {@link token.visitor.UmlVisitorElement}
+ * interfaces to help the algorithm that measure the different metri values.
+ */
 public class MetricCalculator {
 
+    /**
+     * The class on which the metric will be calculated
+     */
     private UmlClass umlClass;
+
+    /**
+     * All other classes that the model defines that are kept in a {@link UmlContext}.
+     */
     private List<String> allClasses;
 
-    public MetricCalculator(UmlClass umlClass, UmlContext ctx) {
+    /**
+     * @param umlClass the class on which the metric will be calculated
+     * @param ctx the context containing all other related information of the model.
+     */
+    MetricCalculator(UmlClass umlClass, UmlContext ctx) {
         this.umlClass = umlClass;
 
-        // convert classes Map to list of class name
+        // convert classes Map to list of String class name
         Collection<UmlClass> tmpClassesCollection = ctx.getClasses().values();
         allClasses = tmpClassesCollection.stream().map(UmlClass::getName).collect(Collectors.toList());
-    }
-
-    public MetricCalculator(UmlClass umlClass, List<String> allClasses) {
-        this.umlClass = umlClass;
-        this.allClasses = allClasses;
     }
 
 
@@ -45,6 +55,7 @@ public class MetricCalculator {
             });
 
             // divided by the amount of methods
+            // prevent division by 0
             double avg_agr_amout = amount_of_methods > 0 ?
                     anaMetricVisitor.getValue() / amount_of_methods:
                     0;
@@ -187,14 +198,14 @@ public class MetricCalculator {
     }
 
     /**
-     * 9. NOC(ci) : Nombre de sous-classes directes de ci.
+     * NOC(ci) : Nombre de sous-classes directes de ci.
      */
     public void calculateNOC(){
         umlClass.addMetric(UmlMetric.MetricType.NOC, umlClass.getSubClasses().size());
     }
 
     /**
-     * 10. NOD(ci) : Nombre de sous-classes directes et indirectes de ci.
+     * NOD(ci) : Nombre de sous-classes directes et indirectes de ci.
      */
     public void calculateNOD(){
         // todo : test

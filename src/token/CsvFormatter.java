@@ -1,6 +1,6 @@
-package csv;
+package token;
 
 public interface CsvFormatter {
     String SEPERATOR = ",";
-    String csvFormat();
+    String csvFormat(boolean projectUcd);
 }
