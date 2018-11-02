@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * This class relies heavily on the use of the {@link token.visitor.UmlVisitor} and {@link token.visitor.UmlVisitorElement}
  * interfaces to help the algorithm that measure the different metri values.
  */
-public class MetricCalculator {
+class MetricCalculator {
 
     /**
      * The class on which the metric will be calculated
@@ -42,7 +42,7 @@ public class MetricCalculator {
     /**
      * 1. ANA(ci) : Nombre moyen d’arguments des méthodes locales pour la classe ci.
      */
-    public void calculateANA(){
+    void calculateANA(){
 
         UmlMetricVisitor anaMetricVisitor = new UmlMetricVisitor();
         anaMetricVisitor.setClassVisitor(clazz -> {
@@ -72,7 +72,7 @@ public class MetricCalculator {
      *         et redéfinie localement (même nom, même ordre et types des arguments et même type de retour),
      *         elle ne compte qu’une fois.
      */
-    public void calculateNOM(){
+    void calculateNOM(){
 
         UmlMetricVisitor nomMetricVisitor = new UmlMetricVisitor();
         nomMetricVisitor.setClassVisitor(clazz -> {
@@ -100,7 +100,7 @@ public class MetricCalculator {
     /**
      * 3. NOA(ci) : Nombre d’attributs locaux/hérités de la classe ci.
      */
-    public void calculateNOA(){
+    void calculateNOA(){
 
         UmlMetricVisitor noaMetricVisitor = new UmlMetricVisitor();
         noaMetricVisitor.setClassVisitor(clazz -> {
@@ -125,7 +125,7 @@ public class MetricCalculator {
      * 4. ITC(ci) : Nombre de fois où d’autres classes du diagramme apparaissent
      * comme types des arguments des méthodes de ci.
      */
-    public void calculateITC(){
+    void calculateITC(){
         UmlMetricVisitor noaMetricVisitor = new UmlMetricVisitor();
 
         noaMetricVisitor.setClassVisitor(clazz -> {
@@ -150,7 +150,7 @@ public class MetricCalculator {
      * dans les méthodesdes autres classes du diagramme.
      *
      */
-    public void calculateETC(){
+    void calculateETC(){
 
         UmlMetricVisitor etcMetricVisitor = new UmlMetricVisitor();
         etcMetricVisitor.setClassVisitor(clazz ->{
@@ -169,7 +169,7 @@ public class MetricCalculator {
     }
 
 
-    public void calculateCAC(){
+    void calculateCAC(){
         //todo
         umlClass.addMetric(UmlMetric.MetricType.CAC, 0.0);
     }
@@ -178,7 +178,7 @@ public class MetricCalculator {
      * DIT(ci) : Taille du chemin le plus long reliant une classe ci à une classe racine
      * dans le graphe d’héritage.
      */
-    public void calculateDIT(){
+    void calculateDIT(){
         UmlMetricVisitor ditMetricVisitor = new UmlMetricVisitor();
         ditMetricVisitor.setClassVisitor(clazz -> {
            UmlClass parent = clazz.getSuperClass();
@@ -192,7 +192,7 @@ public class MetricCalculator {
 
     }
 
-    public void calculateCLD(){
+    void calculateCLD(){
         //todo
         umlClass.addMetric(UmlMetric.MetricType.CLD, 0.0);
     }
@@ -200,14 +200,14 @@ public class MetricCalculator {
     /**
      * NOC(ci) : Nombre de sous-classes directes de ci.
      */
-    public void calculateNOC(){
+    void calculateNOC(){
         umlClass.addMetric(UmlMetric.MetricType.NOC, umlClass.getSubClasses().size());
     }
 
     /**
      * NOD(ci) : Nombre de sous-classes directes et indirectes de ci.
      */
-    public void calculateNOD(){
+    void calculateNOD(){
         // todo : test
         umlClass.addMetric(UmlMetric.MetricType.NOD, recursiveNOD(umlClass));
     }

@@ -78,7 +78,7 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
     /**
-     * Splits the tag and content
+     * Splits the tag and content of a declaration.
      * @return
      */
     public DeclarationEntry convertDeclarationEntry(){

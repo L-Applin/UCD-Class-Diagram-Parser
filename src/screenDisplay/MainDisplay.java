@@ -36,8 +36,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class representing the main display window of the application.
+ */
 public class MainDisplay extends BorderPane {
 
+    // some title information
     public static final String ATTRIBUTES_TITLE = "Attributs";
     public static final String OPERATIONS_TITLE = "Méthodes";
     public static final String SUBCLASS_TITLE = "Sous-classes";
@@ -45,19 +49,33 @@ public class MainDisplay extends BorderPane {
     public static final String DETAILS_TITLE = "Détails";
     public static final String METRIC_TITLE = "Métriques";
 
+    /**
+     * The javaFx Stage on which to display the app
+     */
     private Stage primaryStage;
     public Stage getPrimaryStage() { return primaryStage; }
 
+    /**
+     * The app theme containing colos and border informations
+     */
     private AppTheme appTheme;
     public AppTheme getAppTheme() { return appTheme; }
 
+    /**
+     * The Left side panel that contains the list of all classes of the loaded model
+     */
     private ClassListView classView;
     private MainCenterClassInfo centerView;
 
-    private UmlClass currentlySelected = null;
+    /**
+     * Tracks if a model is currently loaded or not
+     */
     private boolean fileLoaded = false;
     public void setFileLoaded(boolean fileLoaded) { this.fileLoaded = fileLoaded; }
 
+    /**
+     * The main app controller that dispatches operation to the parser
+     */
     private AppController controller = new AppController();
     public AppController getController() { return controller; }
 
@@ -74,7 +92,7 @@ public class MainDisplay extends BorderPane {
     /**
      * Setup main screen before file is imported.
      */
-    public void init(){
+    void init(){
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
@@ -127,7 +145,10 @@ public class MainDisplay extends BorderPane {
     }
 
 
-
+    /**
+     * Shows a modal error scren
+     * @param ucde the exceptionthat caused the error
+     */
     public void errorScreen(MalformedFileException ucde){
         MyAlertDialog dialog = new MyAlertDialog(ucde.getMessage(), appTheme);
         setOnMousePressed( mousePressedEvent -> {
@@ -138,7 +159,10 @@ public class MainDisplay extends BorderPane {
         dialog.make().show();
     }
 
-
+    /**
+     * Shows a modal error scren
+     * @param e the exceptionthat caused the error
+     */
     public void errorScreen(Exception e){
         MyAlertDialog dialog = new MyAlertDialog(e.getMessage(), appTheme);
         setOnMousePressed( mousePressedEvent -> {
@@ -149,7 +173,9 @@ public class MainDisplay extends BorderPane {
         dialog.make().show();
     }
 
-
+    /**
+     * Allows to remove all information and reset the window just like when the app is launched
+     */
     public void resetLayout(){
         setCenter(null);
         setLeft(null);
@@ -159,15 +185,23 @@ public class MainDisplay extends BorderPane {
 
     }
 
-    public void updateClassSelected(UmlClass clazz){
+    /**
+     * Entry point for updating th display when a class is clicked in the {@link ClassListView}.
+     * @param clazz the class that was clicked.
+     */
+    void updateClassSelected(UmlClass clazz){
         centerView = new MainCenterClassInfo(clazz, appTheme, this);
         setCenter(centerView.init());
         classView.forceClick(clazz.getName());
-        currentlySelected = clazz;
 
     }
 
-    public void updateTokenClicked(UmlToken token){
+    /**
+     * Entry point for updating the display when a UmlToken other than a class (Aggreation, Metric, etc)
+     * is clicked somewhere in the {@link MainCenterClassInfo}
+     * @param token the token that was clicked
+     */
+    void updateTokenClicked(UmlToken token){
         centerView.resetButtons();
         centerView.updateDetails(token);
     }
@@ -180,6 +214,10 @@ public class MainDisplay extends BorderPane {
 
      ************* */
 
+    /**
+     * Creates the draggable top bar of the app with the buttons and everything.
+     * @return the layout of the top bar, ready to be added as a Node the the Node tree of JavaFx.
+     */
     private BorderPane createTopBar(){
 
         BorderPane topBar = new BorderPane();
@@ -303,7 +341,7 @@ public class MainDisplay extends BorderPane {
                 List<File> files = db.getFiles();
                 if (files.size() > 1) {
 
-                    MyAlertDialog dialog = new MyAlertDialog("Only one file is supported", appTheme);
+                    MyAlertDialog dialog = new MyAlertDialog("Un seul fichier est supporté", appTheme);
                     dialog.make().show();
                     setOnMousePressed( mousePressedEvent -> {
                         if (dialog != null && dialog.isShowing()){

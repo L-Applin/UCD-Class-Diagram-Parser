@@ -19,9 +19,9 @@ import java.util.Map;
 
 public class ClassInfoListView extends UmlBtnListView {
 
-    public static final Insets list_container_padding = new Insets(0,20,0,20);
-    public static final double default_width = 300;
-    public static final double default_height = 29.5*4; // four times the height of the button elements
+    static final Insets list_container_padding = new Insets(0,20,0,20);
+    static final double default_width = 300;
+    static final double default_height = 29.5*4; // four times the height of the button elements
 
     private SectionTitle title;
     private MainDisplay mainDisplay;
@@ -33,20 +33,20 @@ public class ClassInfoListView extends UmlBtnListView {
         this.button_padding = new Insets(4,12,4,12);
     }
 
-    public ClassInfoListView(MainDisplay mainDisplay, Map<String, ? extends UmlToken> tokens) {
+    ClassInfoListView(MainDisplay mainDisplay, Map<String, ? extends UmlToken> tokens) {
         this(mainDisplay);
         listItem = new ArrayList<>(tokens.values());
 
     }
 
-    public ClassInfoListView(MainDisplay mainDisplay, List<? extends UmlToken> tokens) {
+    ClassInfoListView(MainDisplay mainDisplay, List<? extends UmlToken> tokens) {
         this(mainDisplay);
         listItem = tokens;
 
     }
 
 
-    public void setTitle(String txt){
+    void setTitle(String txt){
         this.title = new SectionTitle(mainDisplay.getAppTheme(), txt);
         title.setBackground(mainDisplay.getAppTheme().getPrimaryDarkBackground());
     }
@@ -108,7 +108,7 @@ public class ClassInfoListView extends UmlBtnListView {
 
     }
 
-    public void overrideDefaultSize(Size size){
+    void overrideDefaultSize(Size size){
         this.size = size;
     }
 
