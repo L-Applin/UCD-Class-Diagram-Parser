@@ -1,6 +1,6 @@
 package screenDisplay.components;
 
-import app.theme.DefaultThemeValue;
+import screenDisplay.theme.DefaultThemeValue;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;

@@ -1,6 +1,6 @@
 package screenDisplay.components;
 
-import app.theme.AppTheme;
+import screenDisplay.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;

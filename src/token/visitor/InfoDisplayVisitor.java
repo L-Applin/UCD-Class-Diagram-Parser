@@ -1,7 +1,7 @@
 package token.visitor;
 
 import token.*;
-import utils.Utils;
+import app.Utils;
 
 /**
  * Used as a test for Visitor pattern design. <p></p>

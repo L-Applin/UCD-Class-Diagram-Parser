@@ -1,6 +1,6 @@
 package screenDisplay.components.umlComponents;
 
-import app.theme.AppTheme;
+import screenDisplay.theme.AppTheme;
 import screenDisplay.components.BtnListView;
 import token.UmlToken;
 

@@ -3,7 +3,7 @@ package parsing.syntaxTree.expressions;
 import parsing.UcdParser;
 import token.UmlContext;
 
-import static utils.Utils.Log;
+import static app.Utils.Log;
 
 /**
  * <operation> ::= IDENTIFIER <arg_declaration> ":" <type>

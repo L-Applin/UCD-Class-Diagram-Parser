@@ -3,7 +3,7 @@ package screenDisplay;
 import app.AppController;
 import app.Main;
 import app.ShortcutController;
-import app.theme.AppTheme;
+import screenDisplay.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

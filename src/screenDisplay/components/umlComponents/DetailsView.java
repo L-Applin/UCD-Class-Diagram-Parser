@@ -1,7 +1,7 @@
 package screenDisplay.components.umlComponents;
 
-import app.theme.AppTheme;
-import app.theme.DefaultThemeValue;
+import screenDisplay.theme.AppTheme;
+import screenDisplay.theme.DefaultThemeValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;

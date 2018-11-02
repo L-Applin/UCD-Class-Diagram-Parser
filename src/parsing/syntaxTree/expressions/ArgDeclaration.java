@@ -1,7 +1,7 @@
 package parsing.syntaxTree.expressions;
 
 import token.UmlContext;
-import utils.Utils;
+import app.Utils;
 
 /**
  * <arg_declaration> ::= "(" <arg_list> ")"
