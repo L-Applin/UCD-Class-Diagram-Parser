@@ -7,6 +7,8 @@ public class UmlAssociation extends UmlToken {
 
     private UmlClass firstClass, secondClasse;
     private String association, firstClassMultiplicity, secondClassMultiplicity;
+    public UmlClass getFirstClass() { return firstClass; }
+    public UmlClass getSecondClasse() { return secondClasse; }
 
     public UmlAssociation(String association, UmlClass firstClass, String firstClassMultiplicity, UmlClass secondClasse, String secondClassMultiplicity, String content) {
         super(content, association);

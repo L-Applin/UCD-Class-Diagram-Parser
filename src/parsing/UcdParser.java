@@ -6,7 +6,7 @@ import parsing.syntaxTree.entries.RoleEntry;
 import parsing.syntaxTree.exceptions.ExceptionCheckProvider;
 import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
-import utils.Utils;
+import app.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

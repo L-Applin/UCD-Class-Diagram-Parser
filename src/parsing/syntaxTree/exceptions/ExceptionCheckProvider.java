@@ -1,7 +1,7 @@
 package parsing.syntaxTree.exceptions;
 
 import parsing.GrammarModel;
-import utils.Utils;
+import app.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

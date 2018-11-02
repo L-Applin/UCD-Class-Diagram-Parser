@@ -2,7 +2,9 @@ package token;
 
 import token.visitor.UmlMetricVisitor;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -168,14 +170,40 @@ class MetricCalculator {
 
     }
 
+    /**
+     * CAC(ci) : Nombre d’associations (incluant les agrégations) locales/héritées auxquelles participe la classe.
+     */
+    public void calculateCAC(){
+        //todo : test
+        UmlMetricVisitor cacMetricVisitor = new UmlMetricVisitor();
+        cacMetricVisitor.setClassVisitor(clazz ->{
 
-    void calculateCAC(){
-        //todo
-        umlClass.addMetric(UmlMetric.MetricType.CAC, 0.0);
+            // visiter les assoc et aggreg de la classe curante :
+            clazz.getAggAssocList().forEach(aggAss -> aggAss.accept(cacMetricVisitor));
+
+            // visiter les assoc / aggreg de la classe parente
+            if (clazz.getSuperClass() != null) {
+                clazz.getSuperClass().accept(cacMetricVisitor);
+            }
+
+        }).setAggregationVisitor(aggregation ->{
+            if (umlClass.getName().equals(aggregation.getPart().clazz.getName())){
+                cacMetricVisitor.incrementValue();
+            }
+        }).setAssociationVisitor(assoc -> {
+            if (umlClass.getName().equals(assoc.getFirstClass().getName())
+                    || umlClass.getName().equals(assoc.getSecondClasse().getName())){
+                cacMetricVisitor.incrementValue();
+            }
+        });
+
+        umlClass.accept(cacMetricVisitor);
+        umlClass.addMetric(UmlMetric.MetricType.DIT, cacMetricVisitor.getValue());
+
     }
 
     /**
-     * DIT(ci) : Taille du chemin le plus long reliant une classe ci à une classe racine
+     * DIT : Taille du chemin le plus long reliant une classe ci à une classe racine
      * dans le graphe d’héritage.
      */
     void calculateDIT(){
@@ -192,9 +220,12 @@ class MetricCalculator {
 
     }
 
-    void calculateCLD(){
+    /**
+     *  CLD : Taille du chemin le plus long reliant une classe ci à une classe feuille dans le graphe d’héritage.
+     */
+    public void calculateCLD(){
         //todo
-        umlClass.addMetric(UmlMetric.MetricType.CLD, 0.0);
+        umlClass.addMetric(UmlMetric.MetricType.CLD, recursiveCLD(umlClass));
     }
 
     /**
@@ -221,6 +252,19 @@ class MetricCalculator {
             total += 1 + recursiveNOD(cls);
         }
         return total;
+    }
+
+    private Integer recursiveCLD(UmlClass clazz){
+
+        if (clazz.getSubClasses().size() == 0){
+            return 0;
+        }
+        ArrayList<Integer> values = new ArrayList<>();
+
+        for (UmlClass child : clazz.getSubClasses().values()){
+            values.add(1 + recursiveCLD(child));
+        }
+        return Collections.max(values);
     }
 
 }

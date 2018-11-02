@@ -1,6 +1,6 @@
 package screenDisplay.components.umlComponents;
 
-import app.theme.AppTheme;
+import screenDisplay.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;

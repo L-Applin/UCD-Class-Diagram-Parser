@@ -46,7 +46,7 @@
     <position height="-1" width="-1" x="42" y="702"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
   </package>  
-  <package id="10" language="java" name="app.theme" project="uml-parser-tp1" file="/uml-parser-tp1/src/app/theme" 
+  <package id="10" language="java" name="screenDisplay.theme" project="uml-parser-tp1" file="/uml-parser-tp1/src/app/theme"
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="55" width="122" x="-18" y="471"/>    
     <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  

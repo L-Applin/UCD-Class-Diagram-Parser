@@ -1,6 +1,6 @@
 package deprecated;
 
-import app.theme.AppTheme;
+import screenDisplay.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
