@@ -23,7 +23,7 @@ public class SyntaxTree implements Expression {
     }
 
     @Override
-    public Expression tokenize(UmlContext ctx, String content) {
+    public Expression tokenize(UmlContext ctx, String content) throws IllegalAccessException {
         root = new Model().tokenize(this.ctx, content);
         return this;
     }

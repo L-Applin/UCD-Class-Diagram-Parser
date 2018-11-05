@@ -3,7 +3,7 @@ package token;
 import token.visitor.UmlVisitorElement;
 
 /**
- * General representation of a uml parameter.
+ * General abstract representation of a uml element in a classdiagram.
  */
 public abstract class UmlToken implements Displayable, UmlVisitorElement {
 
@@ -23,6 +23,12 @@ public abstract class UmlToken implements Displayable, UmlVisitorElement {
     public void setContent(String content) { this.content = content; }
     public String getContent() { return content; }
 
+    /**
+     * The element needs to have a name and a content because both are used to display information
+     * in the software.
+     * @param content the content to be displayed
+     * @param name the name to be displayed
+     */
     public UmlToken(String content, String name) {
         this.content = content.trim();
         this.name = name.trim();

@@ -28,7 +28,14 @@ public class Aggregation implements Expression {
         String partsString = parser.extractcParts();
         roles = new Roles().tokenize(ctx, partsString);
 
-        createAggregaton(ctx, parser.formatContent());
+        UmlClass containerClass = ctx.getUmlClass(((Role) role).getClassId().getValue());
+
+        ((Roles) roles).getRoleList().forEach( partRole -> {
+            UmlAggregation agg = new UmlAggregation(containerClass, parser.formatContent());
+            UmlClass partClass = ctx.getUmlClass(((Role) partRole).getClassId().getValue());
+            agg.setPart(new UmlAggregation.PartsEntry(partClass, ((Role) partRole).getMultiplicityValueAsString()));
+            containerClass.getAgregations().add(agg);
+        });
 
         return this;
     }
@@ -41,16 +48,4 @@ public class Aggregation implements Expression {
     }
 
 
-    private void createAggregaton(UmlContext ctx, String content){
-
-        UmlClass containerClass = ctx.getUmlClass(((Role) role).getClassId().getValue());
-
-        ((Roles) roles).getRoleList().forEach( partRole -> {
-            UmlAggregation agg = new UmlAggregation(containerClass, content);
-            UmlClass partClass = ctx.getUmlClass(((Role) partRole).getClassId().getValue());
-            agg.setPart(new UmlAggregation.PartsEntry(partClass, ((Role) partRole).getMultiplicityValueAsString()));
-            containerClass.getAgregations().add(agg);
-        });
-
-    }
 }

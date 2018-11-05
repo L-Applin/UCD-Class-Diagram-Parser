@@ -15,7 +15,7 @@ public class Generalization implements Expression {
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
         UcdParser parser = new UcdParser(content);
-        subClassNames = new SubClassNames(id).tokenize(ctx, parser.extractGeneralizationClasses());
+        subClassNames = new SubClassNames(id).tokenize(ctx, parser.extractGeneralizationSubclasses());
         return this;
     }
 

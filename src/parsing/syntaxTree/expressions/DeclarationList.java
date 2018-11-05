@@ -20,16 +20,16 @@ public class DeclarationList implements Expression {
      * {@inheritDoc}
      */
     @Override
-    public Expression tokenize(final UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) throws IllegalAccessException {
 
         UcdParser parser = new UcdParser(content);
 
         List<String> stringDecs = parser.splitDeclarations();
-        stringDecs.forEach( declaration -> {
+        for (String declaration : stringDecs){
             if (declaration.length() > 0){
                 decs.add(new Declaration().tokenize(ctx, declaration));
             }
-        });
+        }
         return this;
     }
 

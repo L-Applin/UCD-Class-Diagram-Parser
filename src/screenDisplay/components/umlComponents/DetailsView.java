@@ -1,5 +1,6 @@
 package screenDisplay.components.umlComponents;
 
+import javafx.scene.layout.HBox;
 import screenDisplay.theme.AppTheme;
 import screenDisplay.theme.DefaultThemeValue;
 import javafx.geometry.Insets;
@@ -8,17 +9,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import screenDisplay.MainDisplay;
-import screenDisplay.components.SectionTitle;
 import token.UmlToken;
 
 public class DetailsView extends VBox implements UmlView {
 
-    // todo [class number reduction] : could be replace with a method in MainCenterClassInfo ? verify if it's worth it
-
     private static double width = 950;
     private static double height = 300;
 
-    private SectionTitle title;
+    private HBox title;
     private MainDisplay mainDisplay;
     private AppTheme appTheme;
     private ScrollPane container;
@@ -36,8 +34,10 @@ public class DetailsView extends VBox implements UmlView {
     public DetailsView init(){
         container = new ScrollPane();
 
-        container.setStyle("-fx-background:" + appTheme.getPrimaryLightValue() + ";\n"
-                + "-fx-focus-color: transparent;\n-fx-faint-focus-color: transparent;");
+        container.setStyle(
+                "-fx-background:" + appTheme.getPrimaryLightValue() + ";\n" +
+                "-fx-focus-color: transparent;\n" +
+                "-fx-faint-focus-color: transparent;");
         container.setPadding(Insets.EMPTY);
         container.setFocusTraversable(false);
 
@@ -56,7 +56,7 @@ public class DetailsView extends VBox implements UmlView {
 
 
     public void setTitle(String txt){
-        this.title = new SectionTitle(mainDisplay.getAppTheme(), txt);
+        this.title = mainDisplay.sectionTitle(txt);
         title.setBackground(mainDisplay.getAppTheme().getPrimaryDarkBackground());
     }
 

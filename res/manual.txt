@@ -1,0 +1,157 @@
+GENERALIZATION UmlToken
+	SUBCLASSES UmlClass, UmlOperation, UmlAttribute, UmlAssociation, UmlAggregation
+;
+
+GENERALIZATION Displayable
+	SUBCLASSES UmlToken
+;
+
+GENERALIZATION Expression
+    SUBCLASSES Aggregation, ArgDeclaration, ArgList, Association, AttributeList, ClassContent, ClassDeclaration, DataItem, DeclarationList, Generalization, Identifier, Model, Multiplicity, Operation, OperationList, Role, Roles, SubClassNames, TwoRole, Type
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AGGREGATION
+CONTAINER
+       CLASS UmlContext ONE
+PARTS
+       CLASS UmlClass ONE_OR_MANY,
+;
+
+AGGREGATION
+CONTAINER
+       CLASS UmlClass ONE
+PARTS
+       CLASS UmlOperation ONE_OR_MANY,
+       CLASS UmlAttribute ONE_OR_MANY,
+       CLASS UmlAggregation ONE_OR_MANY,
+       CLASS UmlAssociation ONE_OR_MANY
+;
+
+
+AGGREGATION
+CONTAINER
+       CLASS MainDisplay ONE
+PARTS
+       CLASS AppController ONE,
+       CLASS MainCenterClassInfo ONE,
+       CLASS ClassListView ONE,
+       CLASS AppTheme ONE,
+
+;
+
+
+AGGREGATION
+CONTAINER
+       CLASS ScreenController ONE
+PARTS
+       CLASS MainDisplay ONE
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+RELATION updatesClass
+   ROLES
+       CLASS ScreenController ONE,
+       CLASS UmlClass ONE
+;
+
+
+RELATION updatesOp
+   ROLES
+       CLASS ScreenController ONE,
+       CLASS UmlOperation ONE
+;
+
+
+RELATION updatesAttr
+   ROLES
+       CLASS ScreenController ONE,
+       CLASS UmlAttribute ONE
+;
+
+
+RELATION updatesAssoc
+   ROLES
+       CLASS ScreenController ONE,
+       CLASS UmlAssociation ONE
+;
+
+
+RELATION updatesAggr
+   ROLES
+       CLASS ScreenController ONE,
+       CLASS UmlAggregation ONE
+;
+
+
+RELATION updatesMetric
+   ROLES
+       CLASS ScreenController ONE,
+       CLASS UmlMetric ONE
+;
+
+
+RELATION updatesCenter
+   ROLES
+       CLASS UmlClass ONE_OR_MANY,
+       CLASS MainDisplay ONE
+;
+
+
+RELATION updatesInfos
+   ROLES
+       CLASS UmlToken ONE_OR_MANY,
+       CLASS MainDisplay ONE
+;
+
+
+RELATION launch
+   ROLES
+       CLASS AppController ONE,
+       CLASS MainDisplay ONE
+;
+
+
+RELATION dispatch
+   ROLES
+       CLASS AppController ONE,
+       CLASS UmlContext ONE
+;
+
+
+RELATION extends
+   ROLES
+       CLASS UmlClass ONE_OR_MANY,
+       CLASS UmlClass ONE
+;
+
+
+RELATION super
+   ROLES
+       CLASS UmlClass ONE,
+       CLASS UmlClass ONE_OR_MANY
+;

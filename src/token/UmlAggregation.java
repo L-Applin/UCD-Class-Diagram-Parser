@@ -3,19 +3,32 @@ package token;
 import screenDisplay.ScreenController;
 import token.visitor.UmlVisitor;
 
+/**
+ * A general representation of a UML Aggregation between a class and the classes that it aggregate to.
+ * Used to model a UML class diagram.
+ */
 public class UmlAggregation extends UmlToken {
 
+    /**
+     * The containing class.
+     */
     private UmlClass container;
     public UmlClass getContainer() { return container; }
     public void setContainer(UmlClass container) { this.container = container; }
 
+    /**
+     * Theparts that arre contained by the container
+     */
     private PartsEntry part;
     public PartsEntry getPart() { return part; }
-    public void setPart(PartsEntry part) {
-        this.part = part;
-    }
+    public void setPart(PartsEntry part) { this.part = part; }
 
-
+    /**
+     * The constructor needs to receive the containing class. Part is added using the
+     * {@link UmlAggregation#setPart(PartsEntry)} method.
+     * @param container The class that will contain the parts.
+     * @param content used for display purpose
+     */
     public UmlAggregation(UmlClass container, String content) {
         super(content, container.name);
         this.container = container;

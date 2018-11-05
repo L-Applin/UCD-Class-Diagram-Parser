@@ -1,6 +1,6 @@
 package token;
 
-import token.visitor.UmlMetricVisitor;
+import app.Utils;
 import token.visitor.UmlVisitor;
 
 import java.util.HashMap;
@@ -13,6 +13,11 @@ import java.util.TreeMap;
  * elements that JavaFX requires.
  */
 public class UmlContext {
+
+    private boolean metricCalculated = false;
+    private boolean immutable = false;
+    public boolean isImmutable() { return immutable; }
+    public void setImmutable() { this.immutable = true; }
 
     /**
      * The model id as defined in the .ucd file
@@ -51,12 +56,27 @@ public class UmlContext {
         classes.put(id, new UmlClass(id, content));
     }
 
-    public void addArgumentToMethod(String classId, String methodId, String argId, String argType){
-        getUmlClass(classId).getOperation(methodId).addArgument(argId, argType);
+    /**
+     * Allows for Class modification before the end of parsing execution
+     * @param classId
+     * @param methodId
+     * @param argId
+     * @param argType
+     */
+    public void addArgumentToMethod(String classId, String methodId, String argId, String argType) throws IllegalAccessException {
+        if (!immutable) {
+            getUmlClass(classId).getOperation(methodId).addArgument(argId, argType);
+        } else {
+            throw new IllegalAccessException("Cannot modify Context after parsing complete");
+        }
     }
 
-    public void addAttributeToMethod(String classId, String attrId, String attrType, String attrContent){
-        getUmlClass(classId).createAttributes(attrId, attrType, attrContent);
+    public void addAttributeToMethod(String classId, String attrId, String attrType, String attrContent) throws IllegalAccessException {
+        if (!immutable) {
+            getUmlClass(classId).createAttributes(attrId, attrType, attrContent);
+        } else {
+            throw new IllegalAccessException("Cannot modify Context after parsing complete");
+        }
 
     }
 
@@ -72,33 +92,29 @@ public class UmlContext {
 
     public void calculateMetrics(){
 
-        // prepare data
-        // set up parent (super) classes
-        UmlMetricVisitor superClassVisitor = new UmlMetricVisitor();
-        superClassVisitor.setClassVisitor(clazz -> clazz.getSubClasses().values().forEach(
-                child -> child.setSuperClass(clazz)));
-        visitClasses(superClassVisitor);
+        if (metricCalculated) return;
 
-        // calculates metrics for each classes
         classes.values().forEach(clazz -> {
-
             MetricCalculator calculator = new MetricCalculator(clazz, this);
-
-            calculator.calculateANA();
-            calculator.calculateNOM();
-            calculator.calculateNOA();
-            calculator.calculateCAC();
-            calculator.calculateCLD();
-            calculator.calculateNOD();
-            calculator.calculateDIT();
-            calculator.calculateETC();
-            calculator.calculateITC();
-            calculator.calculateNOC();
-
+            calculator.calculateAllMetrics();
         });
 
-        // testing visitor pattern todo: remove before due date
-        // visitClasses(new InfoDisplayVisitor());
+        metricCalculated = true;
 
+    }
+
+    public void logMetrics(){
+        if (metricCalculated) {
+            classes.forEach((name, umlClass) -> {
+                System.out.println(name);
+                umlClass.getMetrics().forEach((type, umlMetric) -> {
+                    System.out.printf("%s : %s\n", type.name(), umlMetric.getValue());
+                });
+                System.out.println("\n");
+                metricCalculated = true;
+            });
+        } else {
+            Utils.Log.log("Les métriques n'ont pas été calculée");
+        }
     }
 }

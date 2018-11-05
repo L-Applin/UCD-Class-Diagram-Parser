@@ -5,6 +5,9 @@ import app.Utils;
 
 import java.util.List;
 
+/**
+ * A simple static class used to keep all informations about the syntax grammar and token it uses
+ */
 public class GrammarModel {
 
     public static final String[] illegalChar = {"~", "\\"};
@@ -17,6 +20,9 @@ public class GrammarModel {
     public static final String ROLES_TAG = "ROLES";
     public static final String PARTS_TAG = "PARTS";
 
+    /**
+     * All token related to declaration
+     */
     public static class Decs {
         public static final String CLASS = "CLASS";
         public static final String GENERALIZATION = "GENERALIZATION";
@@ -24,11 +30,17 @@ public class GrammarModel {
         public static final String AGGREGATION = "AGGREGATION";
     }
 
+    /**
+     * All token related to a CLASS
+     */
     public static class ClassContent {
         public static final String ATTRIBUTES = "ATTRIBUTES";
         public static final String OPERATIONS = "OPERATIONS";
     }
 
+    /**
+     * All token related to multiplicituy
+     */
     public static class Mult {
         public static final String ONE = "ONE";
         public static final String MANY = "MANY";

@@ -4,8 +4,8 @@ ATTRIBUTES
       first_attr : String
 OPERATIONS
       first_op() : Integer,
-      second_op(arg : Integer) : String
-      third_op
+      second_op(arg : Integer) : String,
+      third_op(arg1 : String, arg2 : Child) : void
 ;
 
 CLASS Child
@@ -17,8 +17,22 @@ OPERATIONS
 
 CLASS Other
 ATTRIBUTES
-    first_attr : Parent
+    first_attr : Parent,
     second_attr : Child
 OPERATIONS
 
 ;
+
+
+CLASS Last
+ATTRIBUTES
+OPERATIONS
+    first_op() : void,
+    second_op(arg1 : Child) : Parent
+;
+
+
+GENERALIZATION Parent
+	SUBCLASSES Child
+;
+

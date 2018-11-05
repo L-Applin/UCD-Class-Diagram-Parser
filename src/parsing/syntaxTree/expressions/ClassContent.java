@@ -24,7 +24,7 @@ public class ClassContent implements Expression, ExceptionCheckProvider {
      * {@inheritDoc}
      */
     @Override
-    public Expression tokenize(final UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) throws IllegalAccessException {
 
         UcdParser parser = new UcdParser(content);
 

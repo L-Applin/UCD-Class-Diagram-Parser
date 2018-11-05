@@ -1,5 +1,6 @@
 package app;
 
+import parsing.UcdFileReader;
 import token.CsvFormatter;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -8,12 +9,15 @@ import screenDisplay.MainDisplay;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Collection;
 
 public class FileController {
 
     // private static final String default_file_path = "res";
-    private static final String csv_title = "Chemin, nom, taille, NLOC, CLOC, ANA, NOM, NOA, ITC, ETC, CAC, DIT, CLD, NOC, NOD";
+    private static final String csv_title_long = "Chemin, nom, taille, NLOC, CLOC, ANA, NOM, NOA, ITC, ETC, CAC, DIT, CLD, NOC, NOD";
+    private static final String csv_title_short = "Nom, ANA, NOM, NOA, ITC, ETC, CAC, DIT, CLD, NOC, NOD";
 
     private static FileChooser.ExtensionFilter ucd_extension_filer =
             new FileChooser.ExtensionFilter("UCD", "*.ucd");
@@ -35,19 +39,23 @@ public class FileController {
     }
 
 
-    public File createCsvFile(String fileName, Collection<? extends CsvFormatter> elements) throws IOException{
+    public File createCsvFile(String fileName, Collection<? extends CsvFormatter> elements) throws IOException {
         // filename is model name
         DirectoryChooser dirChooser = new DirectoryChooser();
         dirChooser.setTitle("Veuillez choisir une destination");
 
-
+        // append date to filename
         File directory = dirChooser.showDialog(new Stage());
-        File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + ".csv");
+        String currentTime = new Timestamp(Calendar.getInstance().getTimeInMillis()).toString();
+        File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + "_" + currentTime.substring(0, currentTime.length() - 4)  + ".csv");
         BufferedWriter writer = new BufferedWriter(new FileWriter(toSave));
-        writer.write(csv_title + "\n");
+
+        boolean create_self_file_ucd = Main.CREATE_SELF_UCD && fileName.equals(Main.SELF_MODEL_NAME);
+
+        writer.write((create_self_file_ucd ? csv_title_long : csv_title_short) + "\n");
+
         elements.forEach(row -> {
             try {
-                boolean create_self_file_ucd = Main.CREATE_SELF_UCD && fileName.equals(Main.SELF_MODEL_NAME);
                 writer.write(row.csvFormat(create_self_file_ucd));
             } catch (IOException ioe){
                 // todo
@@ -59,7 +67,25 @@ public class FileController {
 
     }
 
-    public int[] countLines(Path path) throws IOException {
+    public static File createUcdFileFromJavaClass(String path) throws IOException {
+
+        String ucdContent = JavaAnalyzer.toUcdFile();
+
+        String manual = new UcdFileReader(path + "manual.txt").simpleReader();
+        File toSave = new File(path + "parser_auto2.ucd");
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(toSave));
+        writer.write("MODEL Parser");
+        writer.write(ucdContent);
+        for (int i = 0; i < 5; i++) {
+            writer.newLine();
+        }
+        writer.write(manual);
+        writer.close();
+        return toSave;
+    }
+
+    public LineCount countLines(Path path) throws IOException {
         int nLOC = 0;
         int total = 0;
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path.toFile()));
@@ -69,14 +95,21 @@ public class FileController {
             if (!currentLine.equals("")){
                 total++;
             }
-            if ((currentLine.startsWith("//") || currentLine.startsWith("//*"))|| currentLine.startsWith("*")){
+            if ((currentLine.startsWith("//") || currentLine.startsWith("//*")) || currentLine.startsWith("*")){
                 nLOC++;
             }
         }
 
-        return new int[]{nLOC, total - nLOC};
+        return new LineCount(nLOC, total - nLOC);
     }
 
+    public static class LineCount {
+        public final int nLoc, cLoc;
+        public LineCount(int nLoc, int cLoc) { this.nLoc = nLoc; this.cLoc = cLoc; }
+    }
 
+    public void calculateTotal(File file){
+
+    }
 
 }

@@ -3,6 +3,8 @@ package screenDisplay;
 import app.AppController;
 import app.Main;
 import app.ShortcutController;
+import javafx.application.Platform;
+import javafx.scene.text.FontWeight;
 import screenDisplay.theme.AppTheme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -42,8 +44,8 @@ import java.util.List;
 public class MainDisplay extends BorderPane {
 
     // some title information
-    public static final String ATTRIBUTES_TITLE = "Attributs";
-    public static final String OPERATIONS_TITLE = "Méthodes";
+    public static final String ATTR_TITLE = "Attributs";
+    public static final String OP_TITLE = "Méthodes";
     public static final String SUBCLASS_TITLE = "Sous-classes";
     public static final String ASSO_INTRG_TITLE = "Associations/agrégations";
     public static final String DETAILS_TITLE = "Détails";
@@ -150,7 +152,7 @@ public class MainDisplay extends BorderPane {
      * @param ucde the exceptionthat caused the error
      */
     public void errorScreen(MalformedFileException ucde){
-        MyAlertDialog dialog = new MyAlertDialog(ucde.getMessage(), appTheme);
+        MyAlertDialog dialog = new MyAlertDialog(ucde.getTextCause(), appTheme);
         setOnMousePressed( mousePressedEvent -> {
             if (dialog != null && dialog.isShowing()){
                 dialog.close();
@@ -164,7 +166,7 @@ public class MainDisplay extends BorderPane {
      * @param e the exceptionthat caused the error
      */
     public void errorScreen(Exception e){
-        MyAlertDialog dialog = new MyAlertDialog(e.getMessage(), appTheme);
+        MyAlertDialog dialog = new MyAlertDialog("Une erreur s'est produite.\nException : " + e.getClass().getName()+"\nMeassage : "+e.getMessage(), appTheme);
         setOnMousePressed( mousePressedEvent -> {
             if (dialog != null && dialog.isShowing()){
                 dialog.close();
@@ -172,6 +174,35 @@ public class MainDisplay extends BorderPane {
         });
         dialog.make().show();
     }
+
+    /**
+     * Shows a modal error scren
+     * @param str the message to display
+     */
+    public void errorScreen(String str){
+        MyAlertDialog dialog = new MyAlertDialog(str, appTheme);
+        setOnMousePressed( mousePressedEvent -> {
+            if (dialog != null && dialog.isShowing()){
+                dialog.close();
+            }
+        });
+        dialog.make().show();
+    }
+
+
+    /**
+     * Shows a modal error scren
+     */
+    public void errorScreen(){
+        MyAlertDialog dialog = new MyAlertDialog("Une erreur s'est produite", appTheme);
+        setOnMousePressed( mousePressedEvent -> {
+            if (dialog != null && dialog.isShowing()){
+                dialog.close();
+            }
+        });
+        dialog.make().show();
+    }
+
 
     /**
      * Allows to remove all information and reset the window just like when the app is launched
@@ -193,7 +224,6 @@ public class MainDisplay extends BorderPane {
         centerView = new MainCenterClassInfo(clazz, appTheme, this);
         setCenter(centerView.init());
         classView.forceClick(clazz.getName());
-
     }
 
     /**
@@ -291,16 +321,17 @@ public class MainDisplay extends BorderPane {
             if (!fileLoaded){
                 MyAlertDialog alertDialog= new MyAlertDialog("Un fichier doit être ouvert", appTheme);
                 alertDialog.make().show();
+
             } else {
                 try {
-                    File savedFile =
-                            fc.createCsvFile(controller.getCtx().getModelId(), controller.getCtx().getClasses().values());
+                    File savedFile = fc.createCsvFile(controller.getCtx().getModelId(), controller.getCtx().getClasses().values());
+                    fc.calculateTotal(savedFile);
                     new MyAlertDialog("Fichier enregistré : " + savedFile.getAbsolutePath(), appTheme).make().show();
-
                 } catch (IOException ioe){
-                    ioe.printStackTrace();
-                    new MyAlertDialog("Une erreur s'est produite : " + ioe.getMessage(), appTheme).make().show();
+                    MyAlertDialog alertDialog = new MyAlertDialog("Une erreur s'est produite", appTheme);
+                    alertDialog.make().show();
                 }
+
             }
 
         });
@@ -367,5 +398,18 @@ public class MainDisplay extends BorderPane {
 
         return center;
     }
+
+    public HBox sectionTitle(String title) {
+        HBox content = new HBox();
+        Text classTitle = new Text(title);
+        classTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
+        classTitle.setFill(appTheme.getPrimaryLight());
+        content.setAlignment(Pos.CENTER);
+        content.setPadding(new Insets(10));
+        content.getChildren().add(classTitle);
+        return content;
+
+    }
+
 
 }

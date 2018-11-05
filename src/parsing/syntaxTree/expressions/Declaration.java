@@ -19,7 +19,7 @@ public class Declaration implements Expression {
      * {@inheritDoc}
      */
     @Override
-    public Expression tokenize(final UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) throws IllegalAccessException {
 
         UcdParser parser = new UcdParser(content);
         DeclarationEntry entry = parser.convertDeclarationEntry();

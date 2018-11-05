@@ -5,6 +5,7 @@ import screenDisplay.MainDisplay;
 import parsing.syntaxTree.SyntaxTree;
 import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
+import token.visitor.UmlMetricVisitor;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,9 +30,9 @@ public class AppController {
      * @param doc
      * @return
      */
-    public UmlContext parseUcdFile(String doc){
-        // todo : test why it not work!
-        if (doc.equals("")) {
+    public UmlContext parseUcdFile(String doc) throws IllegalAccessException {
+
+        if (doc.trim().equals("")) {
             throw new MalformedFileException("Cannot read empty files");
         }
 
@@ -41,6 +42,14 @@ public class AppController {
         // begin the actuall parsing operation
         tree.tokenize(ctx, doc);
 
+        // set parent (super) class for inheritence
+        UmlMetricVisitor superClassVisitor = new UmlMetricVisitor();
+        superClassVisitor.setClassVisitor(clazz ->
+                clazz.getSubClasses().forEach((__, child) ->
+                        child.setSuperClass(clazz)));
+        ctx.visitClasses(superClassVisitor);
+
+        ctx.setImmutable();
 
         return ctx;
 
@@ -63,9 +72,15 @@ public class AppController {
         } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);
             // ucde.printStackTrace();
+            // System.out.println(ucde.getTextCause());
+        }catch (IllegalAccessException iae){
+            screen.errorScreen("Le fichier ne peut être analysé qu'une seule fois");
+        } catch (NullPointerException npe){
+    	    screen.errorScreen(npe);
+    	    npe.printStackTrace();
         } catch (Exception e){
             screen.errorScreen(e);
-            // e.printStackTrace();
+            e.printStackTrace();
         }
 
     }

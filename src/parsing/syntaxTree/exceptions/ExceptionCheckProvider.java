@@ -87,7 +87,7 @@ public interface ExceptionCheckProvider {
     default void checkNoDuplicateTag(String txt, String tag){
         // check there is only one <attributes> tag
         if (txt.indexOf(tag) != txt.lastIndexOf(tag)){
-            malformed();
+            malformed(txt);
         }
 
     }
@@ -99,7 +99,7 @@ public interface ExceptionCheckProvider {
         String paramsRegEx = "\\((.*?)\\)|\\(\\)";
         Matcher matcher = Pattern.compile(paramsRegEx).matcher(txt);
         if (!matcher.find()){
-            malformed();
+            malformed(txt);
         }
 
         //checks for method return type
@@ -116,12 +116,12 @@ public interface ExceptionCheckProvider {
     default void checkValidDataItem(String txt){
         // must contains at least one ':'
         if (!txt.contains(TYPE_SEPARATOR)){
-            malformed();
+            malformed(txt);
         }
 
         // must not contains more than 1 ':'
         if (txt.lastIndexOf(TYPE_SEPARATOR) != txt.indexOf(TYPE_SEPARATOR)){
-            malformed();
+            malformed(txt);
         }
 
     }
@@ -157,13 +157,14 @@ public interface ExceptionCheckProvider {
             for (String ill : illegalChar){
                 allIllegalChars = allIllegalChars.concat(ill);
             }
-            malformed();
+            malformed("illegal characters : " + allIllegalChars);
 
         }
 
     }
 
     default void checkValidSubclasses(String txt){
+
         //must start with SUBCLASSES
         if (txt.indexOf(GrammarModel.SUBCLASSES_TAG) != 0){
             malformed();
@@ -177,8 +178,13 @@ public interface ExceptionCheckProvider {
     }
 
 
-    private void malformed(){
+    default void malformed(){
         throw new MalformedFileException();
     }
+
+    private void malformed(String txt){
+        throw new MalformedFileException(txt);
+    }
+
 
 }
