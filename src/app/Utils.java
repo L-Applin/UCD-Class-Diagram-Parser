@@ -24,6 +24,7 @@ public class Utils {
             }
         }
 
+
         public static void log(String... logs) {
             logInput(logs);
         }

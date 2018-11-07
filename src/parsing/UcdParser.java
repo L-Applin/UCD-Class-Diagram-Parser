@@ -304,16 +304,17 @@ public class UcdParser implements ExceptionCheckProvider {
      * @return the array containing both Roles
      */
     public String[] splitTwoRoles(){
-        String[] twoRoles = new String[2];
+        String[] res = new String[2];
         try {
             checkValidRole(txt);
-            Utils.Log.test(txt);
-            String roles = txt.split(NEW_LINE_TOKEN)[1];
-            twoRoles = roles.split(LIST_SEPERATOR);
+            String roles = txt.split(NEW_LINE_TOKEN, 2)[1];
+            String[] tmp = roles.split(LIST_SEPERATOR);
+            res[0] = UcdParser.removeNewLines(tmp[0]).trim();
+            res[1] = UcdParser.removeNewLines(tmp[1]).trim();
         } catch (ArrayIndexOutOfBoundsException ex){
             malformed();
         }
-        return new String[]{twoRoles[0].trim(), twoRoles[1].trim()};
+        return res;
 
     }
 
@@ -360,7 +361,11 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
 
-
+    /**
+     * From a correctly formatted String, extract the text before the first opening parentheses.
+     * This is usually used to extract the name of a method.
+     * @return The extracted String
+     */
     public String getOperationId(){
         removeSpaces();
         checkValidOperation(txt);
@@ -368,10 +373,21 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
 
+    /**
+     * The method is used to replace the {@link GrammarModel#NEW_LINE_TOKEN}
+     * by the defaut new line char
+     * @return the string with the new line char replaced
+     * @return
+     */
     public String replaceNewLineToken(){
         return Pattern.compile(NEW_LINE_TOKEN).matcher(txt).replaceAll("\n");
     }
 
+    /**
+     * The method is used to replace the {@link GrammarModel#CUSTOM_LIST_SEP}
+     * by the defaut comma seperator
+     * @return the string with the seperator replaced
+     */
     public String replaceCustomListSeperator(){
         return Pattern.compile(CUSTOM_LIST_SEP).matcher(txt).replaceAll(", ");
     }

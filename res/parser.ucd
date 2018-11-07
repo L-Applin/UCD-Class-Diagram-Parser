@@ -473,41 +473,11 @@ OPERATIONS
     containsAny(txt : String, illegal : VarArg<String>) : boolean
 ;
 
-CLASS MainDisplay
-ATTRIBUTES
-    ATTRIBUTE_TITLE : String,
-    OPERATION_TITLE : String,
-    SUBCLASS_TITLE : String,
-    ASSO_INTRG_TITLE : String,
-    DETAILS_TITLE : String,
-    primaryStage : Stage,
-    appTheme : AppTheme,
-    classView : ClassListView,
-    centerView : MainCenterClassInfo
-OPERATIONS
-    init() : void,
-    setupUcdDisplay(context : UmlContext) : void,
-    errorScreen(ioe : IOException) : void,
-    errorScreen(ucde : UcdParsingException) : void,
-    errorScreen(npe : NullPointerException) : void,
-    getOnOpenCenterView() : Node,
-    resetLayout() : void,
-    updateClassSelected(clazz : UmlClass) : void,
-    updateClassSelected(clazz : UmlClass) : void,
-    updateTokenClicked(token : UmlToken) : void
-;
-
 CLASS UmlView
 ATTRIBUTES
      T init() : <T extends Node>
 OPERATIONS
 ;
-
-
-
-
-
-
 
 
 
@@ -595,56 +565,50 @@ PARTS
 
 RELATION updatesClass
    ROLES
-       CLASS ScreenController ONE
+       CLASS ScreenController ONE,
        CLASS UmlClass ONE
 ;
 
 
 RELATION updatesOp
    ROLES
-       CLASS ScreenController ONE
+       CLASS ScreenController ONE,
        CLASS UmlOperation ONE
 ;
 
 
 RELATION updatesAttr
    ROLES
-       CLASS ScreenController ONE
+       CLASS ScreenController ONE,
        CLASS UmlAttribute ONE
 ;
 
 
 RELATION updatesAssoc
    ROLES
-       CLASS ScreenController ONE
+       CLASS ScreenController ONE,
        CLASS UmlAssociation ONE
 ;
 
 
 RELATION updatesAggr
    ROLES
-       CLASS ScreenController ONE
+       CLASS ScreenController ONE,
        CLASS UmlAggregation ONE
 ;
 
 
-RELATION updatesMetric
-   ROLES
-       CLASS ScreenController ONE
-       CLASS UmlMetric ONE
-;
-
 
 RELATION updatesCenter
    ROLES
-       CLASS UmlClass ONE_OR_MANY
+       CLASS UmlClass ONE_OR_MANY,
        CLASS MainDisplay ONE
 ;
 
 
 RELATION updatesInfos
    ROLES
-       CLASS UmlToken ONE_OR_MANY
+       CLASS UmlToken ONE_OR_MANY,
        CLASS MainDisplay ONE
 ;
 

@@ -15,27 +15,25 @@ import static screenDisplay.MainDisplay.*;
 /**
  * Container for displayinf all infos of the selected
  */
-public class MainCenterClassInfo extends GridPane implements UmlView {
+public class MainCenterClassInfo extends GridPane {
 
     private static final Insets center_padding = new Insets(10,0,10,10);
     private static final int window_width = 450;
 
     private MainDisplay mainDisplay;
 
-    private UmlClass umlClass;
     private AppTheme theme;
 
     private ClassInfoListView attributsList, methodList, subClassList, assosIntegrList, metricList;
     private DetailsView detailView;
 
-    public MainCenterClassInfo(UmlClass umlClass, AppTheme theme, MainDisplay main) {
-        this.umlClass = umlClass;
+    public MainCenterClassInfo(AppTheme theme, MainDisplay main) {
         this.theme = theme;
         this.mainDisplay = main;
     }
 
     @SuppressWarnings("unchecked")
-    public MainCenterClassInfo init(){
+    public MainCenterClassInfo init(UmlClass umlClass){
 
         setPadding(center_padding);
         setAlignment(Pos.TOP_CENTER);
@@ -45,7 +43,7 @@ public class MainCenterClassInfo extends GridPane implements UmlView {
         subClassList =      new ClassInfoListView(mainDisplay, umlClass.getSubClasses());
         assosIntegrList =   new ClassInfoListView(mainDisplay, umlClass.getAggAssocList());
         metricList =        new ClassInfoListView(mainDisplay, new ArrayList<>(umlClass.getMetrics().values()));
-        detailView =        new DetailsView(mainDisplay, umlClass);
+        detailView =        new DetailsView(mainDisplay);
 
         attributsList.setTitle(ATTR_TITLE);
         methodList.setTitle(OP_TITLE);
@@ -67,7 +65,7 @@ public class MainCenterClassInfo extends GridPane implements UmlView {
         add(methodList.init(), 1, 0);
         add(subClassList.init(), 0,1);
         add(assosIntegrList.init(), 1,1);
-        add(detailView.init(),0,2, 3, 1);
+        add(detailView.init(umlClass),0,2, 3, 1);
         add(metricList.init(), 2, 0, 1, 2);
         return this;
     }

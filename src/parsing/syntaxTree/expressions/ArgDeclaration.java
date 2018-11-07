@@ -21,7 +21,6 @@ public class ArgDeclaration extends Declaration {
 
     @Override
     public Expression tokenize(final UmlContext ctx, String content) {
-        Utils.Log.all("\t\targs =");
         argList = new ArgList(methodId, classId).tokenize(ctx, content);
         return this;
     }

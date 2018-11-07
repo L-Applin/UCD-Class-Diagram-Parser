@@ -1,6 +1,8 @@
 package parsing.syntaxTree.expressions;
 
+import app.Utils;
 import parsing.UcdParser;
+import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlAssociation;
 import token.UmlClass;
 import token.UmlContext;
@@ -32,9 +34,24 @@ public class TwoRole implements Expression {
                         first, ((Role) role1).getMultiplicity().toString(),
                         second, ((Role) role2).getMultiplicity().toString(),
                         parser.formatContent());
-        first.getAssociations().put(associationId.getValue(), umlAssociation);
-        second.getAssociations().put(associationId.getValue(), umlAssociation);
 
+        try {
+
+            Utils.Log.test(associationId.toString());
+
+            if (first.getAssociations().containsKey(associationId.getValue())){
+                throw new MalformedFileException();
+            }
+            if (second.getAssociations().containsKey(associationId.getValue())){
+                throw new MalformedFileException();
+            }
+
+            first.getAssociations().put(associationId.getValue(), umlAssociation);
+            second.getAssociations().put(associationId.getValue(), umlAssociation);
+
+        } catch (NullPointerException npe){
+            throw new MalformedFileException();
+        }
         return this;
 
     }

@@ -1,21 +1,45 @@
 import app.AppController;
+import app.Main;
 import org.junit.Test;
+import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlContext;
 
 import java.io.IOException;
 
-public class ParsingTest {
+import static token.MetricCalculatorTest.path_to_medium_test_file;
+import static token.MetricCalculatorTest.path_to_res;
+import static token.MetricCalculatorTest.path_to_small_test_file;
 
-    private static String path_to_small_test_file = "/Users/Applin/Documents/dev/parser-tp1/res/testFiles/test_small.ucd";
+public class ParsingTest {
 
     @Test
     public void testParsing() throws IOException, IllegalAccessException {
 
         AppController app = new AppController();
-        UmlContext testContext = app.parseUcdFile(app.openUcdFile(path_to_small_test_file));
-        testContext.calculateMetrics();
-        testContext.logMetrics();
+        app.parseUcdFile(app.openUcdFile(path_to_small_test_file));
+        app.parseUcdFile(app.openUcdFile(path_to_medium_test_file));
 
+        // assertion for classes
+    }
+
+    @Test(expected = MalformedFileException.class)
+    public void emptyFile() throws IOException, IllegalAccessException {
+        AppController app = new AppController();
+        app.parseUcdFile(app.openUcdFile(path_to_res + "/res/testFiles/empty.ucd"));
+    }
+
+
+    @Test(expected = MalformedFileException.class)
+    public void sameClass() throws IOException, IllegalAccessException {
+        AppController app = new AppController();
+        app.parseUcdFile(app.openUcdFile(path_to_res + "/res/testFiles/sameClass.ucd"));
+    }
+
+
+    @Test(expected = MalformedFileException.class)
+    public void sameClassBig() throws IOException, IllegalAccessException {
+        AppController app = new AppController();
+        app.parseUcdFile(app.openUcdFile(path_to_res + "/res/testFiles/sameClassBig.ucd"));
     }
 
 }

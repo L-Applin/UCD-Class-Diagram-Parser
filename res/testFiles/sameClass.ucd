@@ -1,0 +1,15 @@
+MODEL SameClass
+
+CLASS Test
+ATTRIBUTES
+OPERATIONS
+    first_op() : void,
+    second_op(arg1 : Child) : Parent
+;
+
+CLASS Test
+ATTRIBUTES
+    attr : int
+OPERATIONS
+    test() : void,
+;

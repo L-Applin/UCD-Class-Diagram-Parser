@@ -1,0 +1,35 @@
+MODEL TestITCETC
+
+CLASS C1
+ATTRIBUTES
+      first : Integer
+OPERATIONS
+;
+
+
+CLASS C2
+ATTRIBUTES
+OPERATIONS
+  test():void
+;
+
+
+CLASS C3
+ATTRIBUTES
+OPERATIONS
+  test(arg:C1):void
+;
+
+
+CLASS C4
+ATTRIBUTES
+OPERATIONS
+  test(arg:C1, arg2:C2):C1
+;
+
+
+CLASS C5
+ATTRIBUTES
+OPERATIONS
+  test(arg:C1, arg2:C2, arg3:C3, arg4:C4):void
+;

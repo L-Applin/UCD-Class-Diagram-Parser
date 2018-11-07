@@ -45,8 +45,7 @@ public class AppController {
         // set parent (super) class for inheritence
         UmlMetricVisitor superClassVisitor = new UmlMetricVisitor();
         superClassVisitor.setClassVisitor(clazz ->
-                clazz.getSubClasses().forEach((__, child) ->
-                        child.setSuperClass(clazz)));
+                clazz.getSubClasses().forEach((__, child) -> child.setSuperClass(clazz)));
         ctx.visitClasses(superClassVisitor);
 
         ctx.setImmutable();
@@ -71,7 +70,7 @@ public class AppController {
             screen.setFileLoaded(true);
         } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);
-            // ucde.printStackTrace();
+            ucde.printStackTrace();
             // System.out.println(ucde.getTextCause());
         }catch (IllegalAccessException iae){
             screen.errorScreen("Le fichier ne peut être analysé qu'une seule fois");

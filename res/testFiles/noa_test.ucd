@@ -1,0 +1,86 @@
+MODEL TestNOM
+
+CLASS Parent1
+ATTRIBUTES
+      first : Integer,
+      second : String
+OPERATIONS
+;
+
+
+CLASS Child1_Parent1
+ATTRIBUTES
+    new_attr : Integer
+OPERATIONS
+;
+
+CLASS Child2_Parent1
+ATTRIBUTES
+OPERATIONS
+      mod_op(test : Integer) : Integer
+;
+
+
+
+CLASS Parent2
+ATTRIBUTES
+OPERATIONS
+      first_op() : Integer
+;
+
+
+
+CLASS Child1_Parent2
+ATTRIBUTES
+    attr1 : String
+OPERATIONS
+;
+
+
+CLASS GC1_Child1_Parent1
+ATTRIBUTES
+     dc_attr : ArrayList<String>
+OPERATIONS
+      new_op(arg1 : String) : Integer
+;
+
+CLASS GC2_Child1_Parent1
+ATTRIBUTES
+OPERATIONS
+      new_op() : void
+;
+
+
+
+CLASS GC1_Child1_Parent2
+ATTRIBUTES
+     dc_attr : ArrayList<String>
+OPERATIONS
+      new_op(arg1 : String) : Integer
+;
+
+CLASS GC2_Child1_Parent2
+ATTRIBUTES
+OPERATIONS
+      new_op() : void
+;
+
+
+
+GENERALIZATION Parent1
+	SUBCLASSES Child1_Parent1, Child2_Parent1
+;
+
+
+GENERALIZATION Parent2
+	SUBCLASSES Child1_Parent2
+;
+
+
+GENERALIZATION Child1_Parent1
+	SUBCLASSES GC1_Child1_Parent1, GC2_Child1_Parent1
+;
+
+GENERALIZATION Child1_Parent2
+	SUBCLASSES GC1_Child1_Parent2, GC2_Child1_Parent2
+;

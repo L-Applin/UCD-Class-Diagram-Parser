@@ -62,6 +62,120 @@ PARTS
 ;
 
 
+AGGREGATION
+CONTAINER
+       CLASS ArgDeclaration ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS DataItem ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS ClassContent ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS AttributeList ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS Association ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS ArgList ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+
+AGGREGATION
+CONTAINER
+       CLASS Type ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+
+AGGREGATION
+CONTAINER
+       CLASS Multiplicity ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS TwoRole ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS Role ONE
+PARTS
+       CLASS Identifier MANY
+;
+
+AGGREGATION
+CONTAINER
+       CLASS SubClassNames ONE
+PARTS
+       CLASS Identifier MANY
+;
+
+AGGREGATION
+CONTAINER
+       CLASS OperationList ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS Model ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+AGGREGATION
+CONTAINER
+       CLASS Generelization ONE
+PARTS
+       CLASS Identifier ONE
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -154,4 +268,39 @@ RELATION super
    ROLES
        CLASS UmlClass ONE,
        CLASS UmlClass ONE_OR_MANY
+;
+
+
+RELATION creates
+    ROLES
+        CLASS AppController ONE
+        CLASS UmlCOntext ONE
+;
+
+
+RELATION defines
+    ROLES
+        CLASS SyntexTree ONE
+        CLASS UmlCOntext ONE
+;
+
+
+RELATION calculates_metrics_of
+    ROLES
+        CLASS UmlClass ONE
+        CLASS MetricCalculator ONE
+;
+
+
+RELATION calculates_metrics_of
+    ROLES
+        CLASS UmlClass ONE
+        CLASS MetricCalculator ONE
+;
+
+
+RELATION displays_info_of
+    ROLES
+        CLASS UmlButtonListView ONE
+        CLASS UmlToken ONE
 ;

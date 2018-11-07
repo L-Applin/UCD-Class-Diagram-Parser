@@ -1,0 +1,95 @@
+MODEL TestNOM
+
+CLASS Parent1
+ATTRIBUTES
+OPERATIONS
+      first_op() : Integer,
+      mod_op() : void
+;
+
+
+CLASS Child1_Parent1
+ATTRIBUTES
+OPERATIONS
+      new_op(arg1 : String) : Integer,
+;
+
+CLASS Child2_Parent1
+ATTRIBUTES
+OPERATIONS
+      mod_op(test : Integer) : Integer
+;
+
+
+CLASS Child3_Parent1
+ATTRIBUTES
+OPERATIONS
+      mod_op() : void
+;
+
+
+
+
+CLASS Parent2
+ATTRIBUTES
+OPERATIONS
+      first_op() : Integer,
+      sec_op() : Integer,
+      third_op() : Integer,
+      fourth_op() : Integer
+;
+
+
+
+CLASS Child1_Parent2
+ATTRIBUTES
+OPERATIONS
+      first_op(agr1 : Test2, agr2 : Test3, agr3 : Test4, agr4 : String) : Integer
+;
+
+CLASS Child2_Parent2
+ATTRIBUTES
+OPERATIONS
+      first_op() : Integer,
+      sec_op() : Integer,
+      third_op() : Integer,
+      fourth_op() : Integer
+;
+
+
+CLASS Child3_Parent2
+ATTRIBUTES
+OPERATIONS
+      first_op(test : Integer) : Integer,
+      sec_op() : void,
+      third_op() : Integer,
+      fourth_op() : Integer
+;
+
+CLASS GC1_Child1_Parent1
+ATTRIBUTES
+OPERATIONS
+      new_op(arg1 : String) : Integer,
+;
+
+
+CLASS GC2_Child1_Parent1
+ATTRIBUTES
+OPERATIONS
+      new_op() : void,
+;
+
+
+GENERALIZATION Parent1
+	SUBCLASSES Child1_Parent1, Child2_Parent1, Child3_Parent1
+;
+
+
+GENERALIZATION Parent2
+	SUBCLASSES Child1_Parent2, Child2_Parent2
+;
+
+
+GENERALIZATION Child1_Parent1
+	SUBCLASSES GC1_Child1_Parent1, GC2_Child1_Parent1
+;

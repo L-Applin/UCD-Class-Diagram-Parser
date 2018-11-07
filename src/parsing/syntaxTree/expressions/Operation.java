@@ -25,7 +25,6 @@ public class Operation implements Expression {
             methodId = new Identifier(parser.getOperationId());
 
             type = new Type(methodId).tokenize(ctx, parser.extractType());
-            Log.all("\t\tmethodId =", methodId.getValue(), ": type =", type.toString());
 
             ctx.getUmlClass(classId.getValue()).createOperation(methodId.getValue(), type.toString(), content);
 
