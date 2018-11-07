@@ -2,6 +2,7 @@ package parsing.syntaxTree.expressions;
 
 import parsing.GrammarModel;
 import parsing.UcdParser;
+import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.UmlAggregation;
 import token.UmlClass;
 import token.UmlContext;
@@ -31,6 +32,9 @@ public class Aggregation implements Expression {
         UmlClass containerClass = ctx.getUmlClass(((Role) role).getClassId().getValue());
 
         ((Roles) roles).getRoleList().forEach( partRole -> {
+            if (containerClass == null){
+                throw new MalformedFileException();
+            }
             UmlAggregation agg = new UmlAggregation(containerClass, parser.formatContent());
             UmlClass partClass = ctx.getUmlClass(((Role) partRole).getClassId().getValue());
             agg.setPart(new UmlAggregation.PartsEntry(partClass, ((Role) partRole).getMultiplicityValueAsString()));

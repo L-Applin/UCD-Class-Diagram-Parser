@@ -28,7 +28,7 @@ AGGREGATION
 CONTAINER
        CLASS UmlContext ONE
 PARTS
-       CLASS UmlClass ONE_OR_MANY,
+       CLASS UmlClass ONE_OR_MANY
 ;
 
 AGGREGATION
@@ -49,8 +49,7 @@ PARTS
        CLASS AppController ONE,
        CLASS MainCenterClassInfo ONE,
        CLASS ClassListView ONE,
-       CLASS AppTheme ONE,
-
+       CLASS AppTheme ONE
 ;
 
 
@@ -157,7 +156,7 @@ PARTS
 
 AGGREGATION
 CONTAINER
-       CLASS Generelization ONE
+       CLASS Generalization ONE
 PARTS
        CLASS Identifier ONE
 ;
@@ -273,34 +272,28 @@ RELATION super
 
 RELATION creates
     ROLES
-        CLASS AppController ONE
-        CLASS UmlCOntext ONE
+        CLASS AppController ONE,
+        CLASS UmlContext ONE
 ;
 
 
 RELATION defines
     ROLES
-        CLASS SyntexTree ONE
-        CLASS UmlCOntext ONE
+        CLASS SyntaxTree ONE,
+        CLASS UmlContext ONE
 ;
 
 
 RELATION calculates_metrics_of
     ROLES
-        CLASS UmlClass ONE
+        CLASS UmlClass ONE,
         CLASS MetricCalculator ONE
 ;
 
-
-RELATION calculates_metrics_of
-    ROLES
-        CLASS UmlClass ONE
-        CLASS MetricCalculator ONE
-;
 
 
 RELATION displays_info_of
     ROLES
-        CLASS UmlButtonListView ONE
+        CLASS UmlBtnListView ONE,
         CLASS UmlToken ONE
 ;

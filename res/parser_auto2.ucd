@@ -1,5 +1,1003 @@
 MODEL Parser
 
+CLASS AggAssoc
+ATTRIBUTES
+OPERATIONS
+  getFirstName() : String,
+  getSecondName() : String
+;
+
+
+CLASS UmlOperation
+ATTRIBUTES
+  type : String,
+  arguments : List<UmlOperation.Args>
+OPERATIONS
+  accept(visitor : UmlVisitor) : void,
+  getType() : String,
+  display() : String,
+  setType(type : String) : void,
+  updateScreen(controller : ScreenController) : void,
+  getArguments() : List<UmlOperation.Args>,
+  setArguments(arguments : List<UmlOperation.Args>) : void,
+  addArgument(id : String, type : String) : void
+;
+
+
+CLASS UmlAggregation
+ATTRIBUTES
+  container : UmlClass,
+  part : UmlAggregation.PartsEntry
+OPERATIONS
+  toString() : String,
+  accept(visitor : UmlVisitor) : void,
+  display() : String,
+  getFirstName() : String,
+  getSecondName() : String,
+  getContainer() : UmlClass,
+  setContainer(container : UmlClass) : void,
+  getPart() : UmlAggregation.PartsEntry,
+  setPart(part : UmlAggregation.PartsEntry) : void,
+  updateScreen(controller : ScreenController) : void
+;
+
+
+CLASS UmlAssociation
+ATTRIBUTES
+  firstClass : UmlClass,
+  secondClasse : UmlClass,
+  association : String,
+  firstClassMultiplicity : String,
+  secondClassMultiplicity : String
+OPERATIONS
+  toString() : String,
+  accept(visitor : UmlVisitor) : void,
+  display() : String,
+  getFirstName() : String,
+  getSecondName() : String,
+  updateScreen(controller : ScreenController) : void,
+  getFirstClass() : UmlClass,
+  getSecondClasse() : UmlClass
+;
+
+
+CLASS CsvFormatter
+ATTRIBUTES
+  SEPERATOR : String
+OPERATIONS
+  csvFormat(projectUcd : boolean) : String
+;
+
+
+CLASS Displayable
+ATTRIBUTES
+OPERATIONS
+  display() : String,
+  updateScreen(controller : ScreenController) : void
+;
+
+
+CLASS UmlToken
+ATTRIBUTES
+  name : String,
+  content : String
+OPERATIONS
+  getName() : String,
+  setName(name : String) : void,
+  getContent() : String,
+  setContent(content : String) : void
+;
+
+
+CLASS InfoDisplayVisitor
+ATTRIBUTES
+OPERATIONS
+  visit(umlClass : UmlClass) : void,
+  visit(aggregation : UmlAggregation) : void,
+  visit(association : UmlAssociation) : void,
+  visit(operation : UmlOperation) : void,
+  visit(attribute : UmlAttribute) : void,
+  visit(umlMetric : UmlMetric) : void
+;
+
+
+CLASS UmlMetricVisitor
+ATTRIBUTES
+  value : double,
+  aggregationVisitor : UmlMetricVisitor.UmlVisitorAggregationRunnable,
+  associationVisitor : UmlMetricVisitor.UmlVisitorAssociationRunnable,
+  classVisitor : UmlMetricVisitor.UmlVisitorClassRunnable,
+  operationVisitor : UmlMetricVisitor.UmlVisitorOperationRunnable,
+  attributeVisitor : UmlMetricVisitor.UmlVisitorAttributeRunnable,
+  metricVisitor : UmlMetricVisitor.UmlVisitorMetricRunnable
+OPERATIONS
+  getValue() : double,
+  setValue(value : double) : void,
+  incrementValue() : void,
+  incrementValue(value : double) : void,
+  setAggregationVisitor(aggregationVisitor : UmlMetricVisitor.UmlVisitorAggregationRunnable) : UmlMetricVisitor,
+  setAssociationVisitor(associationVisitor : UmlMetricVisitor.UmlVisitorAssociationRunnable) : UmlMetricVisitor,
+  setOperationVisitor(operationVisitor : UmlMetricVisitor.UmlVisitorOperationRunnable) : UmlMetricVisitor,
+  setAttributeVisitor(attributeVisitor : UmlMetricVisitor.UmlVisitorAttributeRunnable) : UmlMetricVisitor,
+  setMetricVisitor(metricVisitor : UmlMetricVisitor.UmlVisitorMetricRunnable) : UmlMetricVisitor,
+  setClassVisitor(classVisitor : UmlMetricVisitor.UmlVisitorClassRunnable) : UmlMetricVisitor,
+  visit(operation : UmlOperation) : void,
+  visit(umlClass : UmlClass) : void,
+  visit(umlMetric : UmlMetric) : void,
+  visit(attribute : UmlAttribute) : void,
+  visit(association : UmlAssociation) : void,
+  visit(aggregation : UmlAggregation) : void
+;
+
+
+CLASS UmlVisitorElement
+ATTRIBUTES
+OPERATIONS
+  accept(visitor : UmlVisitor) : void
+;
+
+
+CLASS UmlVisitor
+ATTRIBUTES
+OPERATIONS
+  visit(umlMetric : UmlMetric) : void,
+  visit(umlClass : UmlClass) : void,
+  visit(operation : UmlOperation) : void,
+  visit(attribute : UmlAttribute) : void,
+  visit(association : UmlAssociation) : void,
+  visit(aggregation : UmlAggregation) : void
+;
+
+
+CLASS UmlContext
+ATTRIBUTES
+  metricCalculated : boolean,
+  immutable : boolean,
+  modelId : String,
+  classes : Map<String, UmlClass>
+OPERATIONS
+  getClasses() : Map<String, UmlClass>,
+  getModelId() : String,
+  setModelId(modelId : String) : void,
+  isImmutable() : boolean,
+  getUmlClass(id : String) : UmlClass,
+  createClass(id : String, content : String) : void,
+  addArgumentToMethod(classId : String, methodId : String, argId : String, argType : String) : void,
+  addAttributeToMethod(classId : String, attrId : String, attrType : String, attrContent : String) : void,
+  logMetrics() : void,
+  getAllAggAssoc() : List<AggAssoc>,
+  visitClasses(visitor : UmlVisitor) : void,
+  setImmutable() : void,
+  calculateMetrics() : void
+;
+
+
+CLASS UmlAttribute
+ATTRIBUTES
+  type : String
+OPERATIONS
+  accept(visitor : UmlVisitor) : void,
+  getType() : String,
+  display() : String,
+  setType(type : String) : void,
+  updateScreen(controller : ScreenController) : void
+;
+
+
+CLASS MetricCalculator
+ATTRIBUTES
+  umlClass : UmlClass,
+  allClasses : Set<String>,
+  ctx : UmlContext
+OPERATIONS
+  calculateAllMetrics() : void,
+  calculateANA() : void,
+  calculateNOM() : void,
+  calculateNOA() : void,
+  calculateITC() : void,
+  calculateETC() : void,
+  calculateCAC() : Integer,
+  calculateDIT() : void,
+  calculateCLD() : void,
+  calculateNOC() : void,
+  calculateNOD() : void,
+  recursiveNOD(clazz : UmlClass) : double,
+  recursiveCLD(clazz : UmlClass) : Integer
+;
+
+
+CLASS UmlClass
+ATTRIBUTES
+  attributes : Map<String, UmlAttribute>,
+  operations : Map<String, UmlOperation>,
+  subClasses : Map<String, UmlClass>,
+  associations : Map<String, UmlAssociation>,
+  agregations : List<UmlAggregation>,
+  superClass : UmlClass,
+  metrics : Map<MetricType, UmlMetric>
+OPERATIONS
+  toString() : String,
+  accept(visitor : UmlVisitor) : void,
+  getAttributes() : Map<String, UmlAttribute>,
+  display() : String,
+  updateScreen(controller : ScreenController) : void,
+  getSuperClass() : UmlClass,
+  getAssociations() : Map<String, UmlAssociation>,
+  getAgregations() : List<UmlAggregation>,
+  getOperation(methodId : String) : UmlOperation,
+  getAggAssocListAsInterface() : List<AggAssoc>,
+  addMetric(type : UmlMetric.MetricType, value : double) : void,
+  hasOperation(toCompare : UmlOperation) : boolean,
+  getMetricValue(metricType : UmlMetric.MetricType) : double,
+  createOperation(name : String, type : String, content : String) : void,
+  addSubClass(classId : String, subClass : UmlClass) : void,
+  compareArgumentList(args1 : List<UmlOperation.Args>, args2 : List<UmlOperation.Args>) : boolean,
+  appendMetrics(sb : StringBuilder) : void,
+  getMetrics() : Map<MetricType, UmlMetric>,
+  setSuperClass(superClass : UmlClass) : void,
+  getSubClasses() : Map<String, UmlClass>,
+  getAggAssocList() : List<UmlToken>,
+  getOperations() : Map<String, UmlOperation>,
+  csvFormat(selfUcd : boolean) : String,
+  createAttributes(id : String, type : String, content : String) : void
+;
+
+
+CLASS UmlMetric
+ATTRIBUTES
+  valueFormatter : NumberFormat,
+  type : UmlMetric.MetricType,
+  value : double,
+  ANA_DESC : String,
+  NOM_DESC : String,
+  ITC_DESC : String,
+  NOA_DESC : String,
+  ETC_DESC : String,
+  CAC_DESC : String,
+  DIT_DESC : String,
+  CLD_DESC : String,
+  NOC_DESC : String,
+  NOD_DESC : String
+OPERATIONS
+  getValue() : double,
+  accept(visitor : UmlVisitor) : void,
+  setValue(value : double) : void,
+  display() : String,
+  updateScreen(controller : ScreenController) : void
+;
+
+
+CLASS AppController
+ATTRIBUTES
+  ctx : UmlContext
+OPERATIONS
+  lauchUcdActivity(screen : MainDisplay, ucdFile : File) : void,
+  getCtx() : UmlContext,
+  openUcdFile(path : String) : String,
+  parseUcdFile(doc : String) : UmlContext
+;
+
+
+CLASS Utils
+ATTRIBUTES
+OPERATIONS
+  concatArraysToList(first : T[], second : T[]) : List<T>,
+  containsAny(txt : String, illegal : String[]) : boolean,
+  containsAny(txt : String, illegal : List<String>) : boolean
+;
+
+
+CLASS FileController
+ATTRIBUTES
+  csv_title_long : String,
+  csv_title_short : String,
+  ucd_extension_filer : FileChooser.ExtensionFilter
+OPERATIONS
+  createCsvFile(fileName : String, elements : Collection<CsvFormatter>) : File,
+  calculateTotal(file : File) : void,
+  openUcdFileFromSystemExplorer(main : MainDisplay) : void,
+  createUcdFileFromJavaClass(path : String) : File,
+  countLines(path : Path) : FileController.LineCount
+;
+
+
+CLASS Main
+ATTRIBUTES
+  APP_NAME : String,
+  SELF_MODEL_NAME : String,
+  CREATE_SELF_UCD : boolean,
+  os : Platform,
+  USER_PATH : String
+OPERATIONS
+  main(args : String[]) : void,
+  start(primaryStage : Stage) : void
+;
+
+
+CLASS JavaAnalyzer
+ATTRIBUTES
+  CREATE_UCD_FILE_AT_LAUNCH : boolean,
+  basic_file_path : String,
+  ALL_PATHS : List<Path>,
+  class_model : String,
+  attr_model : String,
+  method_model : String
+OPERATIONS
+  lastDot(str : String) : String,
+  toUcdFile() : String,
+  createMethods(declaredMethods : Method[]) : String,
+  defineUcdClass(className : String, attributes : String, operations : String) : String,
+  createAttributes(fields : Field[]) : String,
+  removePackageName(classPath : String) : String
+;
+
+
+CLASS ShortcutController
+ATTRIBUTES
+  META_0 : KeyCombination,
+  ESC : KeyCombination,
+  scene : Scene
+OPERATIONS
+;
+
+
+CLASS UcdFileReader
+ATTRIBUTES
+  path : String
+OPERATIONS
+  simpleReader() : String,
+  readAndCleanFile() : String
+;
+
+
+CLASS GrammarModel
+ATTRIBUTES
+  illegalChar : String[],
+  illegalTypeChar : List<String>,
+  MODEL_TAG : String,
+  SUBCLASSES_TAG : String,
+  CONTAINER_TAG : String,
+  ROLES_TAG : String,
+  PARTS_TAG : String,
+  SPACE : String,
+  DECLARATION_SEPERATOR : String,
+  LIST_SEPERATOR : String,
+  NEW_LINE_TOKEN : String,
+  CUSTOM_LIST_SEP : String,
+  TYPE_SEPARATOR : String
+OPERATIONS
+;
+
+
+CLASS UcdParser
+ATTRIBUTES
+  txt : String
+OPERATIONS
+  setTxt(txt : String) : UcdParser,
+  getTxt() : String,
+  extractBetween(beginToken : String, endToken : String) : String,
+  convertIdEntry(expectedTag : String) : IdentifierEntry,
+  convertDeclarationEntry() : DeclarationEntry,
+  convertRolesEntry(associationId : String) : RoleEntry,
+  splitDeclarations() : List<String>,
+  splitAttributeList() : List<String>,
+  splitList() : List<String>,
+  extractAttributes() : String,
+  extractOperations() : String,
+  extractArgList(methodId : String) : String,
+  extractGeneralizationSubclasses() : String,
+  extractType() : String,
+  extractcParts() : String,
+  splitDataItem() : String[],
+  splitTwoRoles() : String[],
+  splitArgs() : List<String>,
+  removeNewLines(txt : String) : String,
+  replaceNewLines(txt : String) : String,
+  removeSpaces(txt : String) : String,
+  removeSpaces() : void,
+  getOperationId() : String,
+  replaceNewLineToken() : String,
+  replaceCustomListSeperator() : String,
+  formatContent() : String,
+  formatTypeSeperator(txt : String) : String
+;
+
+
+CLASS DeclarationEntry
+ATTRIBUTES
+  decType : String,
+  id : String,
+  content : String
+OPERATIONS
+;
+
+
+CLASS RoleEntry
+ATTRIBUTES
+  tag : String,
+  classId : String,
+  multiplicity : String
+OPERATIONS
+;
+
+
+CLASS IdentifierEntry
+ATTRIBUTES
+  id : String,
+  expression : String
+OPERATIONS
+;
+
+
+CLASS SyntaxTree
+ATTRIBUTES
+  root : Expression,
+  ctx : UmlContext
+OPERATIONS
+  toString() : String,
+  getCtx() : UmlContext,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS ExceptionCheckProvider
+ATTRIBUTES
+OPERATIONS
+  checkIllegalChar(txt : String) : void,
+  checkTagEqual(txt : String, delim : String) : void,
+  checkClassContent(classContent : String) : void,
+  checkTagPresent(txt : String, tag : String) : void,
+  checkNoDuplicateTag(txt : String, tag : String) : void,
+  checkValidOperation(txt : String) : void,
+  checkValidDataItem(txt : String) : void,
+  checkValidRole(txt : String) : void,
+  checkValidType(content : String) : void,
+  checkValidSubclasses(txt : String) : void,
+  checkValidAggregations(txt : String) : void,
+  malformed() : void,
+  malformed(txt : String) : void
+;
+
+
+CLASS MalformedFileException
+ATTRIBUTES
+  PARSING_ERROR_MESSAGE : String,
+  textCause : String
+OPERATIONS
+  getTextCause() : String
+;
+
+
+CLASS SubClassNames
+ATTRIBUTES
+  subClassList : List<Identifier>,
+  parentClassId : Identifier
+OPERATIONS
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Identifier
+ATTRIBUTES
+  name : String
+OPERATIONS
+  toString() : String,
+  getValue() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS ArgList
+ATTRIBUTES
+  methodId : Identifier,
+  classId : Identifier,
+  dataItems : List<Expression>
+OPERATIONS
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS TwoRole
+ATTRIBUTES
+  role1 : Expression,
+  role2 : Expression,
+  associationId : Identifier
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS ClassContent
+ATTRIBUTES
+  attributeList : Expression,
+  operationList : Expression,
+  classId : Identifier
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS AttributeList
+ATTRIBUTES
+  attributes : List<Expression>,
+  classId : Identifier
+OPERATIONS
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Multiplicity
+ATTRIBUTES
+  associationId : Identifier,
+  multiplicity : Multiplicity.MultiplicityValue
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression,
+  getMultiplicity() : Multiplicity.MultiplicityValue,
+  fromString(value : String) : Multiplicity.MultiplicityValue
+;
+
+
+CLASS Type
+ATTRIBUTES
+  id : Identifier,
+  parentId : Identifier
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Operation
+ATTRIBUTES
+  methodId : Identifier,
+  classId : Identifier,
+  argDeclaration : Expression,
+  type : Expression
+OPERATIONS
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Generalization
+ATTRIBUTES
+  id : Identifier,
+  subClassNames : Expression
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS ArgDeclaration
+ATTRIBUTES
+  argList : Expression,
+  methodId : Identifier,
+  classId : Identifier
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS DeclarationList
+ATTRIBUTES
+  decs : List<Expression>
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Expression
+ATTRIBUTES
+OPERATIONS
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS OperationList
+ATTRIBUTES
+  opList : ArrayList<Expression>,
+  classId : Identifier
+OPERATIONS
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Declaration
+ATTRIBUTES
+OPERATIONS
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS DataItem
+ATTRIBUTES
+  id : Identifier,
+  parentId : Identifier,
+  type : Expression
+OPERATIONS
+  getId() : Identifier,
+  getType() : Expression,
+  tokenize(ctx : UmlContext, content : String) : DataItem,
+  tokenize(ctx : UmlContext, content : String) : Expression,
+  getIdAsString() : String,
+  getTypeAsString() : String
+;
+
+
+CLASS Association
+ATTRIBUTES
+  twoRole : Expression,
+  id : Identifier
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Aggregation
+ATTRIBUTES
+  role : Expression,
+  roles : Expression
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Role
+ATTRIBUTES
+  associationId : Identifier,
+  classId : Identifier,
+  multiplicity : Expression
+OPERATIONS
+  toString() : String,
+  getClassId() : Identifier,
+  getMultiplicityValueAsString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression,
+  getMultiplicity() : Expression
+;
+
+
+CLASS ClassDeclaration
+ATTRIBUTES
+  id : Identifier,
+  classContent : Expression
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Roles
+ATTRIBUTES
+  roleList : List<Expression>
+OPERATIONS
+  toString() : String,
+  getRoleList() : List<Expression>,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS Model
+ATTRIBUTES
+  listDec : Expression,
+  id : Identifier
+OPERATIONS
+  toString() : String,
+  tokenize(ctx : UmlContext, content : String) : Expression
+;
+
+
+CLASS ClassInfoListView
+ATTRIBUTES
+  list_container_padding : Insets,
+  default_width : double,
+  default_height : double,
+  title : HBox,
+  mainDisplay : MainDisplay
+OPERATIONS
+  init() : BtnListView,
+  init() : Node,
+  setTitle(txt : String) : void,
+  overrideDefaultSize(size : BtnListView.Size) : void
+;
+
+
+CLASS ClassListView
+ATTRIBUTES
+  button_padding : Insets,
+  window_width : int,
+  appTheme : AppTheme,
+  mainDisplay : MainDisplay,
+  modelName : String
+OPERATIONS
+  init() : BtnListView,
+  init() : Node,
+  forceClick(classId : String) : void
+;
+
+
+CLASS DetailsView
+ATTRIBUTES
+  width : double,
+  height : double,
+  title : HBox,
+  mainDisplay : MainDisplay,
+  appTheme : AppTheme,
+  container : ScrollPane,
+  textDisplay : Text
+OPERATIONS
+  init(content : UmlToken) : DetailsView,
+  updateDetails(token : UmlToken) : void,
+  createTextContent(content : String) : Text,
+  setTitle(txt : String) : void
+;
+
+
+CLASS MainCenterClassInfo
+ATTRIBUTES
+  center_padding : Insets,
+  window_width : int,
+  mainDisplay : MainDisplay,
+  theme : AppTheme,
+  attributsList : ClassInfoListView,
+  methodList : ClassInfoListView,
+  subClassList : ClassInfoListView,
+  assosIntegrList : ClassInfoListView,
+  metricList : ClassInfoListView,
+  detailView : DetailsView
+OPERATIONS
+  init(umlClass : UmlClass) : MainCenterClassInfo,
+  resetButtons() : void,
+  updateDetails(token : UmlToken) : void
+;
+
+
+CLASS UmlBtnListView
+ATTRIBUTES
+  listItem : List<UmlToken>
+OPERATIONS
+  getListItem() : List<UmlToken>
+;
+
+
+CLASS UmlView
+ATTRIBUTES
+OPERATIONS
+  init() : T
+;
+
+
+CLASS BtnListView
+ATTRIBUTES
+  currentSelected : ListButton,
+  btnList : List<ListButton>,
+  container : ScrollPane,
+  button_padding : Insets,
+  basicStyle : ListButton.OverlayStyle,
+  mouseoverStyle : ListButton.OverlayStyle,
+  clickedStyle : ListButton.OverlayStyle,
+  font : Font,
+  size : BtnListView.Size
+OPERATIONS
+  init() : Node,
+  init() : BtnListView,
+  getContainer() : ScrollPane,
+  getBtnList() : List<ListButton>,
+  createButton(content : String) : ListButton,
+  setCurrentSelected(btn : ListButton) : void,
+  resetButtonView() : void,
+  resetSelect() : void
+;
+
+
+CLASS MyAlertDialog
+ATTRIBUTES
+  message : String,
+  theme : AppTheme,
+  content : VBox
+OPERATIONS
+  make() : Stage
+;
+
+
+CLASS ListItem
+ATTRIBUTES
+OPERATIONS
+;
+
+
+CLASS ListButton
+ATTRIBUTES
+  isSelected : boolean,
+  content : Text,
+  font : Font,
+  onClickevent : EventHandler<MouseEvent>,
+  basicStyle : ListButton.OverlayStyle,
+  mouseoverStyle : ListButton.OverlayStyle,
+  clickedStyle : ListButton.OverlayStyle,
+  onClickAction : ListItem.BtnAction,
+  listView : BtnListView
+OPERATIONS
+  getContent() : Text,
+  forceClick() : void,
+  setFont(font : Font) : void,
+  setOnClickListener(action : ListItem.BtnAction) : void,
+  updateStyle(style : ListButton.OverlayStyle) : void,
+  setText(txt : String) : void,
+  setSelected(selected : boolean) : void,
+  setStatus(status : ListButton.Status) : void,
+  setStatus() : void,
+  registerTo(listView : BtnListView) : void,
+  select() : void
+;
+
+
+CLASS OverlayButton
+ATTRIBUTES
+  small_margin : int,
+  medium_margin : int,
+  large_margin : int,
+  rounded_corner_radii : CornerRadii,
+  default_inset_value : Insets,
+  square_padding : Insets,
+  default_button_seperator_margin : Insets,
+  textContent : Text,
+  appTheme : AppTheme
+OPERATIONS
+  setContent(content : Node[]) : OverlayButton,
+  setStyle(style : OverlayButton.ThemeStyle) : void,
+  getText() : String,
+  setDefaultBackground() : void,
+  setTextColor(color : Color) : void
+;
+
+
+CLASS ScreenController
+ATTRIBUTES
+  primaryStage : Stage,
+  parameters : Application.Parameters,
+  main : MainDisplay
+OPERATIONS
+  updateSelection(assoc : UmlAssociation) : void,
+  updateSelection(attr : UmlAttribute) : void,
+  updateSelection(aggreg : UmlAggregation) : void,
+  updateSelection(metric : UmlMetric) : void,
+  updateSelection(op : UmlOperation) : void,
+  updateSelection(umlClass : UmlClass) : void,
+  setupMainDisplay() : void
+;
+
+
+CLASS DefaultThemeValue
+ATTRIBUTES
+  font_weight : double,
+  primary_dark_color_value : String,
+  primary_light_color_value : String,
+  secondary_dark_color_value : String,
+  primary_contrast_color_value : String,
+  secondary_contrast_color_value : String,
+  primary_dark_color : Color,
+  primary_dark_transparent_color : Color,
+  primary_light_color : Color,
+  secondary_dark_color : Color,
+  primary_contrast_color : Color,
+  secondary_contrast_color : Color,
+  defaul_padding : Insets,
+  default_font : Font,
+  default_class_font : Font
+OPERATIONS
+;
+
+
+CLASS AppTheme
+ATTRIBUTES
+  primaryDark : Color,
+  primaryLight : Color,
+  secondaryDark : Color,
+  contrastDark : Color,
+  contrastLight : Color,
+  primaryDarkTransparent : Color,
+  primaryDarkValue : String,
+  primaryLightValue : String,
+  secondaryDarkValue : String,
+  contrastDarkValue : String,
+  contrastLightValue : String,
+  mediumPadding : Insets,
+  mediumFont : Font,
+  classFont : Font,
+  classFontColor : Color,
+  primaryLightTextColor : Color,
+  primaryDarkTextColor : Color
+OPERATIONS
+  getPrimaryDarkBackground(radii : CornerRadii, insets : Insets) : Background,
+  getPrimaryDarkBackground() : Background,
+  getSecondaryDarkBackground() : Background,
+  getPrimaryLight() : Color,
+  primaryRadialGradientBackground() : Background,
+  getPrimaryLightBackground(radii : CornerRadii, insets : Insets) : Background,
+  getPrimaryLightBackground() : Background,
+  getContrastDark() : Color,
+  getContrastDarkBackground() : Background,
+  getMediumFont() : Font,
+  getPrimaryLightTextColor() : Color,
+  getContrastLightBackground() : Background,
+  getContrastLightBackground(radii : CornerRadii, insets : Insets) : Background,
+  getContrastLightBackground(radii : CornerRadii) : Background,
+  getPrimaryDarkBackgroundAlpha() : Background,
+  elevation(color : Color) : DropShadow,
+  getMediumPadding() : Insets,
+  getPrimaryDarkValue() : String,
+  setPrimaryDarkValue(primaryDarkValue : String) : void,
+  getPrimaryLightValue() : String,
+  setPrimaryLightValue(primaryLightValue : String) : void,
+  getSecondaryDarkValue() : String,
+  setSecondaryDarkValue(secondaryDarkValue : String) : void,
+  getContrastDarkValue() : String,
+  setContrastDarkValue(contrastDarkValue : String) : void,
+  getContrastLightValue() : String,
+  setContrastLightValue(contrastLightValue : String) : void,
+  setMediumPadding(mediumPadding : Insets) : void,
+  setMediumFont(mediumFont : Font) : void,
+  setPrimaryLightTextColor(primaryLightTextColor : Color) : void,
+  getPrimaryDarkTextColor() : Color,
+  setPrimaryDarkTextColor(primaryDarkTextColor : Color) : void,
+  getPrimaryDark() : Color,
+  setPrimaryDark(primaryDark : Color) : void,
+  setPrimaryLight(primaryLight : Color) : void,
+  getSecondaryDark() : Color,
+  setSecondaryDark(secondaryDark : Color) : void,
+  setContrastDark(contrastDark : Color) : void,
+  getContrastLight() : Color,
+  setContrastLight(contrastLight : Color) : void,
+  getClassFont() : Font,
+  setClassFont(classFont : Font) : void,
+  getClassFontColor() : Color,
+  setClassFontColor(classFontColor : Color) : void
+;
+
+
+CLASS MainDisplay
+ATTRIBUTES
+  ATTR_TITLE : String,
+  OP_TITLE : String,
+  SUBCLASS_TITLE : String,
+  ASSO_INTRG_TITLE : String,
+  DETAILS_TITLE : String,
+  METRIC_TITLE : String,
+  primaryStage : Stage,
+  appTheme : AppTheme,
+  classView : ClassListView,
+  centerView : MainCenterClassInfo,
+  fileLoaded : boolean,
+  controller : AppController,
+  xOffset : double,
+  yOffset : double
+OPERATIONS
+  init() : void,
+  updateClassSelected(clazz : UmlClass) : void,
+  updateTokenClicked(token : UmlToken) : void,
+  getPrimaryStage() : Stage,
+  getAppTheme() : AppTheme,
+  setFileLoaded(fileLoaded : boolean) : void,
+  getController() : AppController,
+  setupUcdDisplay(context : UmlContext) : void,
+  errorScreen(ucde : MalformedFileException) : void,
+  errorScreen(e : Exception) : void,
+  errorScreen(str : String) : void,
+  errorScreen() : void,
+  resetLayout() : void,
+  createTopBar() : BorderPane,
+  createCenterView() : VBox,
+  sectionTitle(title : String) : HBox
+;
+
+
 
 
 
@@ -33,7 +1031,7 @@ AGGREGATION
 CONTAINER
        CLASS UmlContext ONE
 PARTS
-       CLASS UmlClass ONE_OR_MANY,
+       CLASS UmlClass ONE_OR_MANY
 ;
 
 AGGREGATION
@@ -54,8 +1052,7 @@ PARTS
        CLASS AppController ONE,
        CLASS MainCenterClassInfo ONE,
        CLASS ClassListView ONE,
-       CLASS AppTheme ONE,
-
+       CLASS AppTheme ONE
 ;
 
 
@@ -162,7 +1159,7 @@ PARTS
 
 AGGREGATION
 CONTAINER
-       CLASS Generelization ONE
+       CLASS Generalization ONE
 PARTS
        CLASS Identifier ONE
 ;
@@ -278,34 +1275,28 @@ RELATION super
 
 RELATION creates
     ROLES
-        CLASS AppController ONE
-        CLASS UmlCOntext ONE
+        CLASS AppController ONE,
+        CLASS UmlContext ONE
 ;
 
 
 RELATION defines
     ROLES
-        CLASS SyntexTree ONE
-        CLASS UmlCOntext ONE
+        CLASS SyntaxTree ONE,
+        CLASS UmlContext ONE
 ;
 
 
 RELATION calculates_metrics_of
     ROLES
-        CLASS UmlClass ONE
+        CLASS UmlClass ONE,
         CLASS MetricCalculator ONE
 ;
 
-
-RELATION calculates_metrics_of
-    ROLES
-        CLASS UmlClass ONE
-        CLASS MetricCalculator ONE
-;
 
 
 RELATION displays_info_of
     ROLES
-        CLASS UmlButtonListView ONE
+        CLASS UmlBtnListView ONE,
         CLASS UmlToken ONE
 ;
