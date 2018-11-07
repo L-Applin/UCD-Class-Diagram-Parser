@@ -2,11 +2,10 @@ package token;
 
 import token.visitor.UmlMetricVisitor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+
+import static token.UmlMetric.MetricType.*;
+
 
 /**
  * This class provides methods for calculating different metrics related to a {@link UmlClass}.
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
  * This class relies heavily on the use of the {@link token.visitor.UmlVisitor} and {@link token.visitor.UmlVisitorElement}
  * interfaces to help the algorithm that measure the different metri values.
  */
-public class MetricCalculator {
+class MetricCalculator {
 
     /**
      * The class on which the metric will be calculated
@@ -26,7 +25,7 @@ public class MetricCalculator {
     /**
      * All other classes that the model defines that are kept in a {@link UmlContext}.
      */
-    private List<String> allClasses;
+    private Set<String> allClasses;
 
     /**
      * @param umlClass the class on which the metric will be calculated
@@ -34,19 +33,32 @@ public class MetricCalculator {
      */
     MetricCalculator(UmlClass umlClass, UmlContext ctx) {
         this.umlClass = umlClass;
-
-        // convert classes Map to list of String class name
-        Collection<UmlClass> tmpClassesCollection = ctx.getClasses().values();
-        allClasses = tmpClassesCollection.stream().map(UmlClass::getName).collect(Collectors.toList());
+        allClasses = ctx.getClasses().keySet();
     }
 
+    /**
+     * Helper method to calculate all metrics of the provided class in the constructor in it's context.
+     */
+    void calculateAllMetrics(){
+        calculateANA();
+        calculateCAC();
+        calculateCLD();
+        calculateDIT();
+        calculateETC();
+        calculateITC();
+        calculateNOA();
+        calculateNOC();
+        calculateNOD();
+        calculateNOM();
+    }
 
     /**
-     * 1. ANA(ci) : Nombre moyen d’arguments des méthodes locales pour la classe ci.
+     * ANA : Nombre moyen d’arguments des méthodes locales pour la classe.
      */
-    public void calculateANA(){
+    void calculateANA(){
 
         UmlMetricVisitor anaMetricVisitor = new UmlMetricVisitor();
+
         anaMetricVisitor.setClassVisitor(clazz -> {
 
             int amount_of_methods = clazz.getOperations().size();
@@ -62,7 +74,7 @@ public class MetricCalculator {
                     anaMetricVisitor.getValue() / amount_of_methods:
                     0;
 
-            umlClass.addMetric(UmlMetric.MetricType.ANA, avg_agr_amout);
+            umlClass.addMetric(ANA, avg_agr_amout);
         });
 
         umlClass.accept(anaMetricVisitor);
@@ -70,13 +82,14 @@ public class MetricCalculator {
     }
 
     /**
-     * 2. NOM(ci) : Nombre de méthodes locales/héritées de la classe ci. Dans le cas où une méthode est héritée
+     * NOM : Nombre de méthodes locales/héritées de la classe. Dans le cas où une méthode est héritée
      *         et redéfinie localement (même nom, même ordre et types des arguments et même type de retour),
-     *         elle ne compte qu’une fois.
+     *         elle ne compte qu’une seule fois.
      */
-    public void calculateNOM(){
+    void calculateNOM(){
 
         UmlMetricVisitor nomMetricVisitor = new UmlMetricVisitor();
+
         nomMetricVisitor.setClassVisitor(clazz -> {
 
             // amount of local methods
@@ -95,16 +108,17 @@ public class MetricCalculator {
         });
 
         umlClass.accept(nomMetricVisitor);
-        umlClass.addMetric(UmlMetric.MetricType.NOM, nomMetricVisitor.getValue());
+        umlClass.addMetric(NOM, nomMetricVisitor.getValue());
 
     }
 
     /**
-     * 3. NOA(ci) : Nombre d’attributs locaux/hérités de la classe ci.
+     * NOA : Nombre d’attributs locaux/hérités de la classe.
      */
-    public void calculateNOA(){
+    void calculateNOA(){
 
         UmlMetricVisitor noaMetricVisitor = new UmlMetricVisitor();
+
         noaMetricVisitor.setClassVisitor(clazz -> {
             // amount of local arguments
             noaMetricVisitor.setValue(clazz.getAttributes().size());
@@ -118,43 +132,45 @@ public class MetricCalculator {
         });
 
         umlClass.accept(noaMetricVisitor);
-        umlClass.addMetric(UmlMetric.MetricType.NOA, noaMetricVisitor.getValue());
+        umlClass.addMetric(NOA, noaMetricVisitor.getValue());
 
 
     }
 
     /**
-     * 4. ITC(ci) : Nombre de fois où d’autres classes du diagramme apparaissent
-     * comme types des arguments des méthodes de ci.
+     * ITC : Nombre de fois où d’autres classes du diagramme apparaissent
+     * comme types des arguments des méthodes de la classe.
      */
-    public void calculateITC(){
-        UmlMetricVisitor noaMetricVisitor = new UmlMetricVisitor();
+    void calculateITC(){
 
-        noaMetricVisitor.setClassVisitor(clazz -> {
+        UmlMetricVisitor ditMetricVisitor = new UmlMetricVisitor();
+
+        ditMetricVisitor.setClassVisitor(clazz -> {
             clazz.getOperations().values().forEach(method -> {
                 method.getArguments().forEach(arg -> {
                     // is this arg a class that exist in the diagram ?
                     if (allClasses.contains(arg.name)){
-                        noaMetricVisitor.incrementValue();
+                        ditMetricVisitor.incrementValue();
                     }
                 });
             });
         });
 
-        umlClass.accept(noaMetricVisitor);
-        umlClass.addMetric(UmlMetric.MetricType.ITC, noaMetricVisitor.getValue());
+        umlClass.accept(ditMetricVisitor);
+        umlClass.addMetric(ITC, ditMetricVisitor.getValue());
 
 
     }
 
     /**
-     * 5. ETC(ci) : Nombre de fois où ci apparaît comme type des arguments
+     * ETC : Nombre de fois où la classe apparaît comme type des arguments
      * dans les méthodesdes autres classes du diagramme.
      *
      */
-    public void calculateETC(){
+    void calculateETC(){
 
         UmlMetricVisitor etcMetricVisitor = new UmlMetricVisitor();
+
         etcMetricVisitor.setClassVisitor(clazz ->{
             String className = umlClass.getName();
 
@@ -166,19 +182,20 @@ public class MetricCalculator {
         });
 
         umlClass.accept(etcMetricVisitor);
-        umlClass.addMetric(UmlMetric.MetricType.ETC, etcMetricVisitor.getValue());
+        umlClass.addMetric(ETC, etcMetricVisitor.getValue());
 
     }
 
     /**
-     * CAC(ci) : Nombre d’associations (incluant les agrégations) locales/héritées auxquelles participe la classe.
+     * CAC : Nombre d’associations (incluant les agrégations) locales/héritées auxquelles participe la classe.
      */
     public void calculateCAC(){
-        //todo : test
+
         UmlMetricVisitor cacMetricVisitor = new UmlMetricVisitor();
+
         cacMetricVisitor.setClassVisitor(clazz ->{
 
-            // visiter les assoc et aggreg de la classe curante :
+            // visiter les assoc et aggreg de la classe courante :
             clazz.getAggAssocList().forEach(aggAss -> aggAss.accept(cacMetricVisitor));
 
             // visiter les assoc / aggreg de la classe parente
@@ -186,19 +203,29 @@ public class MetricCalculator {
                 clazz.getSuperClass().accept(cacMetricVisitor);
             }
 
-        }).setAggregationVisitor(aggregation ->{
-            if (umlClass.getName().equals(aggregation.getPart().clazz.getName())){
+        }).setAggregationVisitor(aggregation -> {
+
+            String aggName = aggregation.getPart().clazz.getName();
+            String className = umlClass.getName();
+
+            if (className.equals(aggName)){
                 cacMetricVisitor.incrementValue();
             }
+
         }).setAssociationVisitor(assoc -> {
-            if (umlClass.getName().equals(assoc.getFirstClass().getName())
-                    || umlClass.getName().equals(assoc.getSecondClasse().getName())){
+
+            String firstAssocName = assoc.getFirstClass().getName();
+            String secondAssocName = assoc.getSecondClasse().getName();
+            String className = umlClass.getName();
+
+            if (className.equals(firstAssocName) || className.equals(secondAssocName)){
                 cacMetricVisitor.incrementValue();
             }
+
         });
 
         umlClass.accept(cacMetricVisitor);
-        umlClass.addMetric(UmlMetric.MetricType.DIT, cacMetricVisitor.getValue());
+        umlClass.addMetric(CAC, cacMetricVisitor.getValue());
 
     }
 
@@ -206,18 +233,20 @@ public class MetricCalculator {
      * DIT : Taille du chemin le plus long reliant une classe ci à une classe racine
      * dans le graphe d’héritage.
      */
-    public void calculateDIT(){
+    void calculateDIT(){
+
         UmlMetricVisitor ditMetricVisitor = new UmlMetricVisitor();
+
         ditMetricVisitor.setClassVisitor(clazz -> {
            UmlClass parent = clazz.getSuperClass();
            while (parent != null){
                ditMetricVisitor.incrementValue();
-               parent = clazz.getSuperClass();
+               parent = parent.getSuperClass();
            }
         });
 
         umlClass.accept(ditMetricVisitor);
-        umlClass.addMetric(UmlMetric.MetricType.DIT, ditMetricVisitor.getValue());
+        umlClass.addMetric(DIT, ditMetricVisitor.getValue());
 
     }
 
@@ -226,22 +255,22 @@ public class MetricCalculator {
      */
     public void calculateCLD(){
         //todo
-        umlClass.addMetric(UmlMetric.MetricType.CLD, recursiveCLD(umlClass));
+        umlClass.addMetric(CLD, recursiveCLD(umlClass));
     }
 
     /**
      * NOC(ci) : Nombre de sous-classes directes de ci.
      */
-    public void calculateNOC(){
-        umlClass.addMetric(UmlMetric.MetricType.NOC, umlClass.getSubClasses().size());
+    void calculateNOC(){
+        umlClass.addMetric(NOC, umlClass.getSubClasses().size());
     }
 
     /**
      * NOD(ci) : Nombre de sous-classes directes et indirectes de ci.
      */
-    public void calculateNOD(){
+    void calculateNOD(){
         // todo : test
-        umlClass.addMetric(UmlMetric.MetricType.NOD, recursiveNOD(umlClass));
+        umlClass.addMetric(NOD, recursiveNOD(umlClass));
     }
 
     private double recursiveNOD(UmlClass clazz){

@@ -1,5 +1,6 @@
 package parsing.syntaxTree.expressions;
 
+import app.Utils;
 import parsing.UcdParser;
 import token.UmlContext;
 
@@ -22,10 +23,10 @@ public class AttributeList implements Expression {
      * {@inheritDoc}
      */
     @Override
-    public Expression tokenize(final UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) throws IllegalAccessException {
         UcdParser parser = new UcdParser(content);
-        List<String> stringAttributes = parser.splitList();
-        stringAttributes.forEach(attr -> {
+        List<String> stringAttributes = parser.splitAttributeList();
+        for (String attr : stringAttributes){
             if (attr != null && attr.length() > 0) {
                 DataItem attributeData = new DataItem(classId).tokenize(ctx, attr);
                 attributes.add(attributeData);
@@ -35,7 +36,7 @@ public class AttributeList implements Expression {
                         attributeData.getTypeAsString(),
                         attr);
             }
-        });
+        }
         return this;
     }
 

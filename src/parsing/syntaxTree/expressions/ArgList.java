@@ -1,5 +1,6 @@
 package parsing.syntaxTree.expressions;
 
+import app.Utils;
 import parsing.UcdParser;
 import token.UmlContext;
 
@@ -29,13 +30,15 @@ public class ArgList implements Expression {
         List<String> args = parser.splitArgs();
         args.forEach(arg -> {
             if (arg != null && arg.length() > 0){
+                // Utils.Log.test(arg);
                 DataItem item = new DataItem(methodId).tokenize(ctx, arg);
                 dataItems.add(item);
-                ctx.addArgumentToMethod(classId.getValue(), methodId.getValue(), item.getIdAsString(), item.getTypeAsString());
-/*
-                (ctx.getUmlClass(classId.getValue()).getOperation(methodId.getValue()))
-                        .addArgument(item.getIdAsString(), item.getTypeAsString());
-*/
+                try {
+                    ctx.addArgumentToMethod(classId.getValue(), methodId.getValue(), item.getIdAsString(), item.getTypeAsString());
+                } catch (IllegalAccessException iae) {
+
+                }
+
             }
         });
 

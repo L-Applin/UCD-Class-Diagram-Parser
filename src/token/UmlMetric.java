@@ -73,8 +73,8 @@ public class UmlMetric extends UmlToken implements Displayable {
     static final String ANA_DESC =
         "Nombre moyen d’arguments des méthodes locale";
     static final String NOM_DESC =
-        "Nombre de méthodes locales/héritées. Dans le cas où une méthode est héritée " +
-        " et redéfinie localement (même nom, même ordre et types desarguments et même type de retour)," +
+        "Nombre de méthodes locales/héritées. Dans le cas où une méthode est héritée \n" +
+        " et redéfinie localement (même nom, même ordre et types desarguments et même type de retour),\n" +
         " elle ne compte qu’une seul fois.";
     static final String ITC_DESC =
         "Nombre de fois où d’autres classes du diagramme apparaissent comme types des arguments des méthodes";

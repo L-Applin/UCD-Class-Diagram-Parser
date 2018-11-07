@@ -1,0 +1,73 @@
+MODEL Medium
+CLASS Parent
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op() : Integer,
+      second_op(arg : Integer) : String,
+      third_op(arg1 : String, arg2 : Child) : void
+;
+
+
+CLASS Child_1
+ATTRIBUTES
+    new_attr_1 : String
+OPERATIONS
+    override_op(arg : Other) : Parent
+;
+
+
+CLASS Child_2
+ATTRIBUTES
+    new_attr_2 : String
+OPERATIONS
+    override_op(arg : Other) : Parent
+;
+
+
+CLASS Child_3
+ATTRIBUTES
+    new_attr_3 : String
+OPERATIONS
+    new_op(arg : Other) : Parent
+;
+
+
+CLASS GrandChild_1
+ATTRIBUTES
+    new_attr : String
+OPERATIONS
+    override_op(arg : Other) : Parent
+;
+
+
+CLASS GrandChild_2
+ATTRIBUTES
+    new_attr : String
+OPERATIONS
+    override_op(arg : Parent) : Parent
+;
+
+
+CLASS Other
+ATTRIBUTES
+    first_attr : Parent,
+    second_attr : Child
+OPERATIONS
+    test_op(arg : Other) : Other
+;
+
+
+
+GENERALIZATION Parent
+	SUBCLASSES Child_1, Child_2, Child_3
+;
+
+GENERALIZATION Child_1
+	SUBCLASSES GrandChild_1
+;
+
+GENERALIZATION Child_2
+	SUBCLASSES GrandChild_2
+;
+

@@ -1,4 +1,4 @@
-MODEL Ligue
+    MODEL Ligue
 CLASS Equipe
 ATTRIBUTES
       nom_equipe : String

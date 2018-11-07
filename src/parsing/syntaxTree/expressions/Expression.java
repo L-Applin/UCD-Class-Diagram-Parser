@@ -14,6 +14,6 @@ public interface Expression {
      * @param content
      * @return
      */
-    Expression tokenize(final UmlContext ctx, String content);
+    Expression tokenize(final UmlContext ctx, String content) throws IllegalAccessException;
 
 }

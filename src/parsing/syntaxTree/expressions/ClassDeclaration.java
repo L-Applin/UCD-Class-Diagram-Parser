@@ -20,11 +20,12 @@ public class ClassDeclaration extends Declaration implements ExceptionCheckProvi
      * {@inheritDoc}
      */
     @Override
-    public Expression tokenize(final UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) throws IllegalAccessException {
     	checkClassContent(content); // from ExceptionCheckProvider interface
         UcdParser p = new UcdParser(content);
         ctx.createClass(UcdParser.removeSpaces(id.toString()), p.formatContent());
         classContent = new ClassContent(id).tokenize(ctx, content);
+        System.out.println(id.getValue());
         return this;
     }
 

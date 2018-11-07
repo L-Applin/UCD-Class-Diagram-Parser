@@ -11,7 +11,6 @@ import screenDisplay.MainDisplay;
 import screenDisplay.ScreenController;
 import screenDisplay.components.BtnListView;
 import screenDisplay.components.ListButton;
-import screenDisplay.components.SectionTitle;
 import token.UmlClass;
 import token.UmlContext;
 import token.UmlToken;
@@ -72,7 +71,7 @@ public class ClassListView extends UmlBtnListView {
         scrollViewContent.getChildren().addAll(btnList);
         container.setContent(scrollViewContent);
         container.setFitToWidth(true);
-        getChildren().addAll(new SectionTitle(appTheme, modelName), container);
+        getChildren().addAll(mainDisplay.sectionTitle(modelName), container);
         setEffect(appTheme.elevation(Color.BLACK));
         container.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 

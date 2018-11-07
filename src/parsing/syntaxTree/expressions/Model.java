@@ -17,7 +17,7 @@ public class Model implements Expression {
 
 
     @Override
-    public Expression tokenize(final UmlContext ctx, String content) {
+    public Expression tokenize(final UmlContext ctx, String content) throws IllegalAccessException {
 
         // todo (OPTIONNAL) : manage if there is multiple MODEL_TAG declaration in the same file ?
         UcdParser parser = new UcdParser(content);

@@ -47,8 +47,8 @@ public class MainCenterClassInfo extends GridPane implements UmlView {
         metricList =        new ClassInfoListView(mainDisplay, new ArrayList<>(umlClass.getMetrics().values()));
         detailView =        new DetailsView(mainDisplay, umlClass);
 
-        attributsList.setTitle(ATTRIBUTES_TITLE);
-        methodList.setTitle(OPERATIONS_TITLE);
+        attributsList.setTitle(ATTR_TITLE);
+        methodList.setTitle(OP_TITLE);
         subClassList.setTitle(SUBCLASS_TITLE);
         assosIntegrList.setTitle(ASSO_INTRG_TITLE);
         detailView.setTitle(DETAILS_TITLE);

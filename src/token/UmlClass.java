@@ -1,6 +1,7 @@
 package token;
 
 import app.FileController;
+import app.JavaAnalyzer;
 import screenDisplay.ScreenController;
 import token.visitor.UmlVisitor;
 
@@ -9,9 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static token.UmlMetric.*;
+import static token.UmlMetric.MetricType.*;
+import static token.UmlOperation.Args;
+
 
 /**
  * Representation of a class element for a Uml class diagram.
@@ -59,8 +62,9 @@ public class UmlClass extends UmlToken implements CsvFormatter {
     /**
      * The metrics value of the class
      */
-    private Map<UmlMetric.MetricType, UmlMetric> metrics;
-    public Map<UmlMetric.MetricType, UmlMetric> getMetrics() { return metrics; }
+    private Map<MetricType, UmlMetric> metrics;
+    public Map<MetricType, UmlMetric> getMetrics() { return metrics; }
+    public double getMetricValue(MetricType metricType) { return metrics.get(metricType).getValue(); }
 
     /**
      * The constructors must defines the name (tag) of the class and its string content. All other attributes are
@@ -129,7 +133,7 @@ public class UmlClass extends UmlToken implements CsvFormatter {
         subClasses.put(classId, subClass);
     }
 
-    public void addMetric(UmlMetric.MetricType type, double value){
+    public void addMetric(MetricType type, double value){
         String content;
         switch (type) {
             case ANA: content = ANA_DESC; break;
@@ -170,19 +174,19 @@ public class UmlClass extends UmlToken implements CsvFormatter {
      * @param args2
      * @return
      */
-    private static boolean compareArgumentList(List<UmlOperation.Args> args1, List<UmlOperation.Args> args2){
+    private static boolean compareArgumentList(List<Args> args1, List<Args> args2){
         // todo : test
 
         if (args1.size() != args2.size()){
             return false;
         }
 
-        // lists have same length, if its 0 they have the same attributes, i.e. nothing
+        // Lists have same length now
+        // If its 0 they have the same attributes, i.e. nothing
         if (args1.size() == 0){
             return true;
         }
 
-        // todo : something must exist that already does that ...
         boolean same = true;
         for (UmlOperation.Args arg_1 : args1){
             boolean found = false;
@@ -216,6 +220,7 @@ public class UmlClass extends UmlToken implements CsvFormatter {
     }
 
     public String csvFormat(boolean selfUcd) {
+
         StringBuilder sb = new StringBuilder();
 
         try {
@@ -225,27 +230,28 @@ public class UmlClass extends UmlToken implements CsvFormatter {
                 // todo : remove before handing
                 // todo : do not walk on every file for every class ???
 
-                Stream<Path> p = Files.walk(Paths.get(""));
-                List<Path> test =
-                        p.filter(path -> path.toFile().getName().equals(name + ".java")).collect(Collectors.toList());
+                List<Path> test = JavaAnalyzer.ALL_PATHS.stream()
+                            .filter(path -> path.toFile().getName().equals(name + ".java"))
+                            .collect(Collectors.toList());
+
                 if (test.get(0) != null) {
 
                     FileController fc = new FileController();
-                    int[] lines = fc.countLines(test.get(0));
+                    FileController.LineCount lines = fc.countLines(test.get(0));
 
                     sb
                         .append(test.get(0).toAbsolutePath().toString()).append(SEPERATOR) // chemin
                         .append(name).append(SEPERATOR) // nom
                         .append(1).append(SEPERATOR) // taille
-                        .append(lines[0]).append(SEPERATOR) // NLOC
-                        .append(lines[1]).append(SEPERATOR); // CLOC
+                        .append(lines.nLoc).append(SEPERATOR) // NLOC
+                        .append(lines.cLoc).append(SEPERATOR); // CLOC
                     appendMetrics(sb);
                 }
             }
 
             else {
                 // this sould create the .csv containing only the name and metrics
-                sb.append(name);
+                sb.append(name).append(SEPERATOR);
                 appendMetrics(sb);
 
             }
@@ -253,22 +259,25 @@ public class UmlClass extends UmlToken implements CsvFormatter {
 
         } catch (Exception e) {
             System.out.printf("CANNOT FIND CLASS [%s]\n", name);
+            e.printStackTrace();
         }
 
         return sb.toString();
     }
 
     private void appendMetrics(StringBuilder sb){
-        sb.append(metrics.get(MetricType.ANA).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.NOM).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.NOA).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.ITC).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.ETC).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.CAC).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.DIT).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.CLD).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.NOC).getValue()).append(SEPERATOR)
-            .append(metrics.get(MetricType.NOD).getValue()).append("\n");
+        // THE ORDERING OF THE METRICS IS VERY IMPORTANT !!!
+        // if anybody touch this method, make sure that the metrics are appended in the same order
+        sb  .append(getMetricValue(ANA)).append(SEPERATOR)
+            .append(getMetricValue(NOM)).append(SEPERATOR)
+            .append(getMetricValue(NOA)).append(SEPERATOR)
+            .append(getMetricValue(ITC)).append(SEPERATOR)
+            .append(getMetricValue(ETC)).append(SEPERATOR)
+            .append(getMetricValue(CAC)).append(SEPERATOR)
+            .append(getMetricValue(DIT)).append(SEPERATOR)
+            .append(getMetricValue(CLD)).append(SEPERATOR)
+            .append(getMetricValue(NOC)).append(SEPERATOR)
+            .append(getMetricValue(NOD)).append("\n");
 
     }
 

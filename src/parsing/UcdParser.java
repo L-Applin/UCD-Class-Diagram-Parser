@@ -41,6 +41,7 @@ public class UcdParser implements ExceptionCheckProvider {
     public String getTxt() { return txt; }
     public UcdParser setTxt(String txt) { this.txt = txt; return this; }
 
+
     /**
      * find the first group of text that is between two identifier (tokens).
      *
@@ -58,6 +59,7 @@ public class UcdParser implements ExceptionCheckProvider {
             return "";
         }
     }
+
 
     /**
      * Divides a section of the .ucd file into it's tag and it's content. Throws an exception if the
@@ -77,8 +79,9 @@ public class UcdParser implements ExceptionCheckProvider {
 
     }
 
+
     /**
-     * Splits the tag and content
+     * Splits the tag and content of a declaration.
      * @return
      */
     public DeclarationEntry convertDeclarationEntry(){
@@ -94,10 +97,11 @@ public class UcdParser implements ExceptionCheckProvider {
 
     }
 
+
     /**
-     *
-     * @param associationId
-     * @return
+     * This converts the String representation of an association and extract all relevant information
+     * @param associationId The String representation of the Association
+     * @return A structure containing all relevant infos of the Association.
      */
     public RoleEntry convertRolesEntry(String associationId){
     	String[] entries = txt.split(SPACE);
@@ -137,6 +141,20 @@ public class UcdParser implements ExceptionCheckProvider {
         return result;
     }
 
+
+    /**
+     * Splits the attributes list in respect to keeping Type within parameterizec types coeherent. As such, it
+     * will not split on the comma in <pre>Map<String, String></></pre>.
+     * @return A list of all attributes
+     */
+    public List<String> splitAttributeList(){
+        String regExCommaNotInTag = ",\\s*(?![^<>]*\\>)";
+        String[] splits = Pattern.compile(regExCommaNotInTag).matcher(txt).replaceAll("~").split("~");
+        return new ArrayList<>(Arrays.asList(splits));
+
+    }
+
+
     /**
      * Splits text based on {@link GrammarModel#LIST_SEPERATOR} separator and ignores tokens in between parenthesis.<br></br>
      * ex. : \tnombre_saisons() : Integer, change_statut(st : String, i : int) : void <br></br>
@@ -145,24 +163,21 @@ public class UcdParser implements ExceptionCheckProvider {
      */
     public List<String> splitList(){
 
-        // only split if not in parenthesis !
+        if (txt.trim().equals("")) return new ArrayList<>();
 
-        // removeSpaces();
+        /* DOES NOT KEEP SPACES AFTER COMMA IN PARAMETERIZED TYPE */
 
-        String regExCommaInParent = "\\((.*?)\\)";
-        final Matcher matcher = Pattern.compile(regExCommaInParent).matcher(txt);
-        while (matcher.find()){
-            if (matcher.group(1).contains(",")){
-                final Matcher commaMatcher = Pattern.compile(LIST_SEPERATOR).matcher(matcher.group(1));
-                String customSeparatedList = commaMatcher.replaceAll(CUSTOM_LIST_SEP);
-                // replace original string with custom separator string
-                // TODO : find a way to make it work with square brackets [] for array type
-                final Matcher sepratedListMatcher = Pattern.compile(matcher.group(1)).matcher(txt);
-                txt = sepratedListMatcher.replaceAll(customSeparatedList);
+        String regEx_commaNotInParentheses = ",\\s*(?![^()]*\\))";
+        String regEx_tidleWithinAngleBrackets = "~(?=[^<>]*\\>)";
 
-            }
-        }
-        String[] splits = txt.split(",");
+        // only split if comma not in parenthesis !
+        Matcher commeInParent = Pattern.compile(regEx_commaNotInParentheses).matcher(txt);
+        String tmpSeperator = commeInParent.replaceAll("~");
+
+        // need to replace ~ within <> by commas to split correctly
+        String readyToSplit = Pattern.compile(regEx_tidleWithinAngleBrackets).matcher(tmpSeperator).replaceAll(",");
+        String[] splits = readyToSplit.split("~");
+
         return new ArrayList<>(Arrays.asList(splits));
     }
 
@@ -187,12 +202,13 @@ public class UcdParser implements ExceptionCheckProvider {
 
     }
 
+
     /**
      * Extract the string representing the Operation list from a class content string.
      * Used by the {@link parsing.syntaxTree.expressions.ClassContent#tokenize(UmlContext, String)}
      * to get the classes methods.
      *
-     * @return the String with
+     * @return the String with all operation
      */
     public String extractOperations(){
 
@@ -203,40 +219,67 @@ public class UcdParser implements ExceptionCheckProvider {
         checkNoDuplicateTag(txt, GrammarModel.ClassContent.OPERATIONS);
 
         int index = txt.indexOf(GrammarModel.ClassContent.OPERATIONS);
-        return txt.substring(index + GrammarModel.ClassContent.OPERATIONS.length(), txt.length());
+        return txt.substring(index + GrammarModel.ClassContent.OPERATIONS.length(), txt.length()).trim();
 
     }
 
 
+    /**
+     * Extract a String representing all argument of a method.
+     * @param methodId the name of the method
+     * @return a String containing only all arguments
+     */
     public String extractArgList(String methodId){
         final Matcher matcher = Pattern.compile("\\((.*?)\\)").matcher(txt);
         if (matcher.find()) {
-            return matcher.group(1);
+            return matcher.group(1).trim();
         } else {
             throw new MalformedFileException("Could not find argument list of method '" + methodId +"'");
         }
     }
 
 
-    public String extractGeneralizationClasses(){
+    /**
+     * Extracts the class from a String representation of a GENERELIZATION section of the
+     * .ucd file.
+     * @return the class name of the GENERELIZATION
+     */
+    public String extractGeneralizationSubclasses(){
         txt = txt.trim();
         txt = removeNewLines(txt);
         checkValidSubclasses(txt);
         String[] id_subClass = txt.split(" ", 2);
+
+        if (id_subClass.length < 2){
+            malformed();
+        }
+
+        if (!id_subClass[0].equals(GrammarModel.SUBCLASSES_TAG)){
+            malformed();
+        }
+
         return removeSpaces(id_subClass[1]);
     }
 
+
     /**
-     *
-     * @return
+     * Extract the return type of an operation
+     * @return the String representation of the return type
      */
     public String extractType(){
-        String type = txt.substring(txt.lastIndexOf("):") + 2, txt.length());
+        removeSpaces();
+        if(!txt.contains("):")){
+            malformed();
+        }
+        String type = txt.substring(txt.lastIndexOf("):") + 2);
         checkValidType(type);
-        return type;
+        return type.trim();
     }
 
-
+    /**
+     * Extract parts from an aggregation string representation
+     * @return the extracted parts
+     */
     public String extractcParts(){
         // todo : chack valid form if not already ?
         int index = txt.indexOf(GrammarModel.PARTS_TAG);
@@ -245,8 +288,10 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
 
-
-
+    /**
+     * From a DataItem representation, splits it into its data item form
+     * @return the data items
+     */
     public String[] splitDataItem(){
         checkValidDataItem(txt);
 
@@ -254,36 +299,61 @@ public class UcdParser implements ExceptionCheckProvider {
     }
 
 
+    /**
+     * splits the two role definition into two seperate string
+     * @return the array containing both Roles
+     */
     public String[] splitTwoRoles(){
-        checkValidRole(txt);
-
-        String roles = txt.split(NEW_LINE_TOKEN)[1];
-        String[] twoRoles = roles.split(LIST_SEPERATOR);
+        String[] twoRoles = new String[2];
+        try {
+            checkValidRole(txt);
+            Utils.Log.test(txt);
+            String roles = txt.split(NEW_LINE_TOKEN)[1];
+            twoRoles = roles.split(LIST_SEPERATOR);
+        } catch (ArrayIndexOutOfBoundsException ex){
+            malformed();
+        }
         return new String[]{twoRoles[0].trim(), twoRoles[1].trim()};
 
     }
 
 
+    /**
+     * Simply splits on comma
+     * @return a ArrayList of String split on commas
+     */
     public List<String> splitArgs(){
-        String[] args = txt.split("~");
+        String[] args = txt.split(",");
         return new ArrayList<>(Arrays.asList(args));
     }
 
 
-
-
+    /**
+     * removes all {@link GrammarModel#NEW_LINE_TOKEN} from a String.
+     * @param txt the String to operate on
+     * @return a clean text without any new line token
+     */
     public static String removeNewLines(String txt){
         String regEx = "("+NEW_LINE_TOKEN+")+";
         return Pattern.compile(regEx).matcher(txt).replaceAll("");
     }
 
+    /**
+     * Replaces custom {@link GrammarModel#NEW_LINE_TOKEN} with regule "\\n"
+     * @param txt the String to operate on
+     * @return a clean String where new line tokens have been replace with standard "backslash n"
+     */
     public static String replaceNewLines(String txt){
         String regEx = "("+NEW_LINE_TOKEN+")+";
         return Pattern.compile(regEx).matcher(txt).replaceAll("\n");
     }
 
 
-
+    /**
+     * Remove all blank spaces from a a String
+     * @param txt the String to operateon
+     * @return a clean text without any blank spaces
+     */
     public static String removeSpaces(String txt){
         String regEx = " ";
         return Pattern.compile(regEx).matcher(txt).replaceAll("");
@@ -309,7 +379,7 @@ public class UcdParser implements ExceptionCheckProvider {
 
     /**
      * WARNING : Modifies the {@link UcdParser#txt} attribute by removing all {@link GrammarModel#SPACE} tag from it.
-     * Use with caution .
+     * Use with caution !
      */
     private void removeSpaces(){
         txt = Pattern.compile(SPACE).matcher(txt).replaceAll("");
