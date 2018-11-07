@@ -1,0 +1,55 @@
+MODEL TestANA
+
+CLASS Test1
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op() : Integer,
+;
+
+
+CLASS Test2
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op() : Integer,
+      sec_op() : Integer,
+      third_op() : Integer,
+      fourth_op() : Integer
+;
+
+CLASS Test3
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op(arg1 : String) : Integer,
+;
+
+CLASS Test4
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op(agr1 : String) : Integer,
+      sec_op(agr1 : String) : Integer,
+      third_op(agr1 : String) : Integer,
+      fourth_op(agr1 : String) : Integer
+;
+
+
+CLASS Test5
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op(agr1 : Test2, agr2 : Test3, agr3 : Test4) : Integer,
+      sec_op(agr1 : String) : Integer,
+      third_op(agr1 : String) : Integer,
+      fourth_op() : Integer
+;
+
+
+CLASS Test6
+ATTRIBUTES
+      first_attr : String
+OPERATIONS
+      first_op(agr1 : Test2, agr2 : Test3, agr3 : Test4, agr4 : String) : Integer
+;

@@ -8,6 +8,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/junit4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/junit4"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/junit-4.10"/>
 	<classpathentry kind="output" path="out/production/parserUML"/>
 </classpath>

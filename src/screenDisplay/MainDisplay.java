@@ -152,7 +152,7 @@ public class MainDisplay extends BorderPane {
      * @param ucde the exceptionthat caused the error
      */
     public void errorScreen(MalformedFileException ucde){
-        MyAlertDialog dialog = new MyAlertDialog(ucde.getTextCause(), appTheme);
+        MyAlertDialog dialog = new MyAlertDialog("fichier corrompu", appTheme);
         setOnMousePressed( mousePressedEvent -> {
             if (dialog != null && dialog.isShowing()){
                 dialog.close();
@@ -221,8 +221,8 @@ public class MainDisplay extends BorderPane {
      * @param clazz the class that was clicked.
      */
     void updateClassSelected(UmlClass clazz){
-        centerView = new MainCenterClassInfo(clazz, appTheme, this);
-        setCenter(centerView.init());
+        centerView = new MainCenterClassInfo(appTheme, this);
+        setCenter(centerView.init(clazz));
         classView.forceClick(clazz.getName());
     }
 

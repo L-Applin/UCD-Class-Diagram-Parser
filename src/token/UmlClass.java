@@ -94,6 +94,18 @@ public class UmlClass extends UmlToken implements CsvFormatter {
         return combined;
     }
 
+    /**
+     * Used to merge the {@link UmlClass#agregations} and {@link UmlClass#associations} into a single list.
+     * @return A new list containing both {@link UmlClass#agregations} and {@link UmlClass#associations}.
+     */
+    List<AggAssoc> getAggAssocListAsInterface(){
+        ArrayList<AggAssoc> combined = new ArrayList<>();
+        combined.addAll(agregations);
+        combined.addAll(associations.values());
+        return combined;
+    }
+
+
     @Override
     public String display() {
         return name;

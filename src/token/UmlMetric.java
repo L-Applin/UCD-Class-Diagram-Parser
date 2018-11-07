@@ -61,12 +61,12 @@ public class UmlMetric extends UmlToken implements Displayable {
      *         et redéfinie localement (même nom, même ordre et types desarguments et même type de retour), elle ne compte qu’une fois.
      * [x] 3. NOA(ci) : Nombre d’attributs locaux/hérités de la classe ci.
      * [x] 4. ITC(ci) : Nombre de fois où d’autres classes du diagramme apparaissent comme types des arguments des méthodes de ci.
-     * [x] 5. ETC(ci) : Nombre de fois où ci apparaît comme type des arguments dans les méthodesdes autres classes du diagramme.
-     * [] 6.  CAC(ci) : Nombre d’associations (incluant les agrégations) locales/héritées auxquellesparticipe une classe ci.
-     * [] 7.  DIT(ci) : Taille du chemin le plus long reliant une classe ci à une classe racine dans le graphe d’héritage.
-     * [] 8.  CLD(ci) : Taille du chemin le plus long reliant une classe ci à une classe feuille dans le graphe d’héritage.
-     * [] 9.  NOC(ci) : Nombre de sous-classes directes de ci.
-     * [] 10. NOD(ci) : Nombre de sous-classes directes et indirectes de ci.
+     * [x] 5. ETC(ci) : Nombre de fois où ci apparaît comme type des arguments dans les méthodes des autres classes du diagramme.
+     * [x] 6.  CAC(ci) : Nombre d’associations (incluant les agrégations) locales/héritées auxquellesparticipe une classe ci.
+     * [x] 7.  DIT(ci) : Taille du chemin le plus long reliant une classe ci à une classe racine dans le graphe d’héritage.
+     * [x] 8.  CLD(ci) : Taille du chemin le plus long reliant une classe ci à une classe feuille dans le graphe d’héritage.
+     * [x] 9.  NOC(ci) : Nombre de sous-classes directes de ci.
+     * [x] 10. NOD(ci) : Nombre de sous-classes directes et indirectes de ci.
      */
     public enum MetricType { ANA, NOM, NOA, ITC, ETC, CAC, DIT, CLD, NOC, NOD }
 

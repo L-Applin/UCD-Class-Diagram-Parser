@@ -7,7 +7,7 @@ import token.visitor.UmlVisitor;
  * A general representation of a UML Aggregation between a class and the classes that it aggregate to.
  * Used to model a UML class diagram.
  */
-public class UmlAggregation extends UmlToken {
+public class UmlAggregation extends UmlToken implements AggAssoc {
 
     /**
      * The containing class.
@@ -48,6 +48,14 @@ public class UmlAggregation extends UmlToken {
     }
 
     @Override
+    public String toString() {
+        return "UmlAggregation{" +
+                "container=" + container +
+                ", part=" + part +
+                '}';
+    }
+
+    @Override
     public void updateScreen(ScreenController controller) {
         controller.updateSelection(this);
     }
@@ -75,5 +83,16 @@ public class UmlAggregation extends UmlToken {
     @Override
     public void accept(UmlVisitor visitor) {
         visitor.visit(this);
+    }
+
+    @Override
+    public String getFirstName() {
+        return getContainer().name;
+    }
+
+    @Override
+    public String getSecondName() {
+        if (part.clazz == null) return "null";
+        return part.clazz.name;
     }
 }

@@ -5,8 +5,8 @@
 	<contentEntry url="file://$MODULE_DIR$">
 		<testFolder url="file://$MODULE_DIR$/test"/>
 	</contentEntry>
-	<lib name="junit4" scope="TEST"/>
 	<levels>
 		<level name="junit4" value="project"/>
+		<level name="junit-4.10" value="project"/>
 	</levels>
 </component>

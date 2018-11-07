@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import screenDisplay.MainDisplay;
 import token.UmlToken;
 
-public class DetailsView extends VBox implements UmlView {
+public class DetailsView extends VBox {
 
     private static double width = 950;
     private static double height = 300;
@@ -20,18 +20,18 @@ public class DetailsView extends VBox implements UmlView {
     private MainDisplay mainDisplay;
     private AppTheme appTheme;
     private ScrollPane container;
-    private UmlToken content;
+    // private UmlToken content;
 
     private Text textDisplay;
 
-    public DetailsView(MainDisplay mainDisplay, UmlToken token) {
+    public DetailsView(MainDisplay mainDisplay) {
         this.mainDisplay = mainDisplay;
         appTheme = mainDisplay.getAppTheme();
-        this.content = token;
+        //this.content = token;
     }
 
     @SuppressWarnings("unchecked")
-    public DetailsView init(){
+    public DetailsView init(UmlToken content){
         container = new ScrollPane();
 
         container.setStyle(
@@ -62,7 +62,7 @@ public class DetailsView extends VBox implements UmlView {
 
 
     public void updateDetails(UmlToken token){
-        this.content = token;
+        // this.content = token;
         textDisplay.setText(token.getContent());
 
     }

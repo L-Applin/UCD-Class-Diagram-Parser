@@ -1,8 +1,10 @@
 package token;
 
+import app.Utils;
 import token.visitor.UmlMetricVisitor;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static token.UmlMetric.MetricType.*;
 
@@ -27,6 +29,8 @@ class MetricCalculator {
      */
     private Set<String> allClasses;
 
+    private UmlContext ctx;
+
     /**
      * @param umlClass the class on which the metric will be calculated
      * @param ctx the context containing all other related information of the model.
@@ -34,6 +38,7 @@ class MetricCalculator {
     MetricCalculator(UmlClass umlClass, UmlContext ctx) {
         this.umlClass = umlClass;
         allClasses = ctx.getClasses().keySet();
+        this.ctx = ctx;
     }
 
     /**
@@ -149,7 +154,7 @@ class MetricCalculator {
             clazz.getOperations().values().forEach(method -> {
                 method.getArguments().forEach(arg -> {
                     // is this arg a class that exist in the diagram ?
-                    if (allClasses.contains(arg.name)){
+                    if (allClasses.contains(arg.type)){
                         ditMetricVisitor.incrementValue();
                     }
                 });
@@ -170,18 +175,19 @@ class MetricCalculator {
     void calculateETC(){
 
         UmlMetricVisitor etcMetricVisitor = new UmlMetricVisitor();
+        String className = umlClass.getName();
 
         etcMetricVisitor.setClassVisitor(clazz ->{
-            String className = umlClass.getName();
-
-            allClasses.forEach(cls -> {
-                if(className.equals(clazz)){
-                    etcMetricVisitor.incrementValue();
-                }
+            clazz.getOperations().values().forEach(op ->{
+                op.getArguments().forEach(arg ->{
+                    if (!clazz.getName().equals(className) && arg.type.equals(className)){
+                        etcMetricVisitor.incrementValue();
+                    }
+                });
             });
         });
 
-        umlClass.accept(etcMetricVisitor);
+        ctx.visitClasses(etcMetricVisitor);
         umlClass.addMetric(ETC, etcMetricVisitor.getValue());
 
     }
@@ -189,12 +195,41 @@ class MetricCalculator {
     /**
      * CAC : Nombre d’associations (incluant les agrégations) locales/héritées auxquelles participe la classe.
      */
-    public void calculateCAC(){
+    public Integer calculateCAC(){
+
+        AtomicInteger i = new AtomicInteger();
+        String className = umlClass.getName();
+
+        ctx.getAllAggAssoc().forEach(aggAssoc -> {
+
+            Utils.Log.test(aggAssoc.toString());
+            String firstName = aggAssoc.getFirstName();
+            String secondName = aggAssoc.getSecondName();
+
+            // Utils.Log.test(String.format("checking : %s\nfirst : %s, second : %s", className, firstName, secondName));
+            // Utils.Log.test((firstName.equals(className) || secondName.equals(className))+"");
+            if (firstName.equals(className) || secondName.equals(className)){
+                i.incrementAndGet();
+               //  Utils.Log.test("increment");
+            }
+            // Utils.Log.test(i.doubleValue()+"");
+            // Utils.Log.test("\n");
+        });
+
+        if (umlClass.getSuperClass() != null){
+            i.addAndGet(new MetricCalculator(umlClass.getSuperClass(), ctx).calculateCAC());
+        }
+
+        umlClass.addMetric(CAC, i.doubleValue());
+        return i.intValue();
+
+/*
 
         UmlMetricVisitor cacMetricVisitor = new UmlMetricVisitor();
 
         cacMetricVisitor.setClassVisitor(clazz ->{
 
+            // cacMetricVisitor.incrementValue(clazz.getAggAssocList().size());
             // visiter les assoc et aggreg de la classe courante :
             clazz.getAggAssocList().forEach(aggAss -> aggAss.accept(cacMetricVisitor));
 
@@ -205,10 +240,11 @@ class MetricCalculator {
 
         }).setAggregationVisitor(aggregation -> {
 
-            String aggName = aggregation.getPart().clazz.getName();
+            String partName = aggregation.getPart().clazz.getName();
+            String contName = aggregation.getContainer().getName();
             String className = umlClass.getName();
 
-            if (className.equals(aggName)){
+            if (className.equals(partName) || className.equals(contName)){
                 cacMetricVisitor.incrementValue();
             }
 
@@ -224,8 +260,9 @@ class MetricCalculator {
 
         });
 
-        umlClass.accept(cacMetricVisitor);
+        ctx.visitClasses(cacMetricVisitor);
         umlClass.addMetric(CAC, cacMetricVisitor.getValue());
+*/
 
     }
 

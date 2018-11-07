@@ -1,11 +1,10 @@
 package token;
 
 import app.Utils;
+import parsing.syntaxTree.exceptions.MalformedFileException;
 import token.visitor.UmlVisitor;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Serves as an entry point for operation on the class diagram representation.
@@ -53,6 +52,9 @@ public class UmlContext {
     }
 
     public void createClass(String id, String content){
+        if (classes.containsKey(id)){
+            throw new MalformedFileException(String.format("Class %s already defined", id));
+        }
         classes.put(id, new UmlClass(id, content));
     }
 
@@ -82,7 +84,7 @@ public class UmlContext {
 
 
     /**
-     *
+     * Visitt all classes with the designated visitor
      * @param visitor
      */
     public void visitClasses(UmlVisitor visitor){
@@ -105,8 +107,12 @@ public class UmlContext {
 
     public void logMetrics(){
         if (metricCalculated) {
-            classes.forEach((name, umlClass) -> {
-                System.out.println(name);
+
+            List<UmlClass> allClasses = new ArrayList<>(classes.values());
+            allClasses.sort(Comparator.comparing(UmlClass::getName, String.CASE_INSENSITIVE_ORDER));
+
+            allClasses.forEach(umlClass -> {
+                System.out.println("\n"+umlClass.getName());
                 umlClass.getMetrics().forEach((type, umlMetric) -> {
                     System.out.printf("%s : %s\n", type.name(), umlMetric.getValue());
                 });
@@ -116,5 +122,13 @@ public class UmlContext {
         } else {
             Utils.Log.log("Les métriques n'ont pas été calculée");
         }
+    }
+
+    public List<AggAssoc> getAllAggAssoc(){
+        Set<AggAssoc> set = new HashSet<>();
+        classes.values().forEach(clazz ->{
+            set.addAll(clazz.getAggAssocListAsInterface());
+        });
+        return new ArrayList<>(set);
     }
 }

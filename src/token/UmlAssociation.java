@@ -3,7 +3,7 @@ package token;
 import screenDisplay.ScreenController;
 import token.visitor.UmlVisitor;
 
-public class UmlAssociation extends UmlToken {
+public class UmlAssociation extends UmlToken implements AggAssoc{
 
     private UmlClass firstClass, secondClasse;
     private String association, firstClassMultiplicity, secondClassMultiplicity;
@@ -33,5 +33,27 @@ public class UmlAssociation extends UmlToken {
     @Override
     public void accept(UmlVisitor visitor) {
         visitor.visit(this);
+    }
+
+
+    @Override
+    public String toString() {
+        return "UmlAssociation{" +
+                "firstClass=" + firstClass +
+                ", secondClasse=" + secondClasse +
+                ", association='" + association + '\'' +
+                ", firstClassMultiplicity='" + firstClassMultiplicity + '\'' +
+                ", secondClassMultiplicity='" + secondClassMultiplicity + '\'' +
+                '}';
+    }
+
+    @Override
+    public String getFirstName() {
+        return firstClass.getName();
+    }
+
+    @Override
+    public String getSecondName() {
+        return secondClasse.getName();
     }
 }

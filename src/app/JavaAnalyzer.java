@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,7 +40,7 @@ public final class JavaAnalyzer {
      * Path of the file to analyze, needs to be changed depending on the computer of the user.
      */
     // todo : test if automatic path generation based on the user system works on every computer (it works on Oli's mac)
-    private static final String basic_file_path = "file:" + System.getProperty("user.dir") + "/src/";
+    private static final String basic_file_path = "file:" + Main.USER_PATH + "/src/";
 
 
     /**
@@ -77,9 +76,10 @@ public final class JavaAnalyzer {
      */
     static String toUcdFile() throws IOException  {
         Stream<Path> p = Files.walk(Paths.get(""));
-        List<Path> allFiles = p.filter(path -> path.toFile().getName().endsWith(".java")).collect(Collectors.toList());
-
-
+        List<Path> allFiles = p
+                .filter(path -> path.toFile().getName().endsWith(".java") && !path.toString().contains("test"))
+                .collect(Collectors.toList());
+        
         // get all Class<?> object from Java reflection package
         List<Class<?>> allClass = allFiles
             .stream()
