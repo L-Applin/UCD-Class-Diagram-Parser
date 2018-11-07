@@ -7,41 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/parserUML.eml" afterPath="$PROJECT_DIR$/parserUML.eml" />
-      <change beforePath="$PROJECT_DIR$/res/manual.txt" afterPath="$PROJECT_DIR$/res/manual.txt" />
-      <change beforePath="$PROJECT_DIR$/res/parser.ucd" afterPath="$PROJECT_DIR$/res/parser.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/parser_auto2.ucd" afterPath="$PROJECT_DIR$/res/parser_auto2.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/ana_test.ucd" afterPath="$PROJECT_DIR$/res/testFiles/ana_test.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/cac_test.ucd" afterPath="$PROJECT_DIR$/res/testFiles/cac_test.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/dit_test.ucd" afterPath="$PROJECT_DIR$/res/testFiles/dit_test.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/itc_test.ucd" afterPath="$PROJECT_DIR$/res/testFiles/itc_test.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/noa_test.ucd" afterPath="$PROJECT_DIR$/res/testFiles/noa_test.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/nom_test.ucd" afterPath="$PROJECT_DIR$/res/testFiles/nom_test.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/sameClass.ucd" afterPath="$PROJECT_DIR$/res/testFiles/sameClass.ucd" />
-      <change beforePath="$PROJECT_DIR$/res/testFiles/sameClassBig.ucd" afterPath="$PROJECT_DIR$/res/testFiles/sameClassBig.ucd" />
-      <change beforePath="$PROJECT_DIR$/src/app/AppController.java" afterPath="$PROJECT_DIR$/src/app/AppController.java" />
-      <change beforePath="$PROJECT_DIR$/src/app/JavaAnalyzer.java" afterPath="$PROJECT_DIR$/src/app/JavaAnalyzer.java" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" afterPath="$PROJECT_DIR$/src/app/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/app/Utils.java" afterPath="$PROJECT_DIR$/src/app/Utils.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/UcdParser.java" afterPath="$PROJECT_DIR$/src/parsing/UcdParser.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/ArgDeclaration.java" afterPath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/ArgDeclaration.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Operation.java" afterPath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/Operation.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/SubClassNames.java" afterPath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/SubClassNames.java" />
-      <change beforePath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/TwoRole.java" afterPath="$PROJECT_DIR$/src/parsing/syntaxTree/expressions/TwoRole.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" afterPath="$PROJECT_DIR$/src/screenDisplay/MainDisplay.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/DetailsView.java" />
-      <change beforePath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java" afterPath="$PROJECT_DIR$/src/screenDisplay/components/umlComponents/MainCenterClassInfo.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/AggAssoc.java" afterPath="$PROJECT_DIR$/src/token/AggAssoc.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/MetricCalculator.java" afterPath="$PROJECT_DIR$/src/token/MetricCalculator.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlAggregation.java" afterPath="$PROJECT_DIR$/src/token/UmlAggregation.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlAssociation.java" afterPath="$PROJECT_DIR$/src/token/UmlAssociation.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlClass.java" afterPath="$PROJECT_DIR$/src/token/UmlClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlContext.java" afterPath="$PROJECT_DIR$/src/token/UmlContext.java" />
-      <change beforePath="$PROJECT_DIR$/src/token/UmlMetric.java" afterPath="$PROJECT_DIR$/src/token/UmlMetric.java" />
-      <change beforePath="$PROJECT_DIR$/test/ParsingTest.java" afterPath="$PROJECT_DIR$/test/ParsingTest.java" />
-      <change beforePath="$PROJECT_DIR$/test/token/MetricCalculatorTest.java" afterPath="$PROJECT_DIR$/test/token/MetricCalculatorTest.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -158,16 +124,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/DataItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1026">
-              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="UmlAggregation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/token/UmlAggregation.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -191,12 +147,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="itc_test.ucd" pinned="false" current-in-tab="true">
+      <file leaf-file-name="itc_test.ucd" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/testFiles/itc_test.ucd">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="432">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="e#11571#11575#1" expanded="true" />
+                <element signature="e#11619#11623#1" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -298,6 +267,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -308,7 +278,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/token/UmlOperation.java" />
         <option value="$PROJECT_DIR$/src/token/visitor/UmlVisitorElement.java" />
         <option value="$PROJECT_DIR$/src/token/CsvFormatter.java" />
         <option value="$PROJECT_DIR$/test/token/UmlOperationTest.java" />
@@ -359,6 +328,7 @@
         <option value="$PROJECT_DIR$/res/parser.ucd" />
         <option value="$PROJECT_DIR$/src/token/MetricCalculator.java" />
         <option value="$PROJECT_DIR$/src/token/UmlAggregation.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -407,66 +377,7 @@
             <path>
               <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
               <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="testFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="parsing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="parsing" type="462c0819:PsiDirectoryNode" />
-              <item name="syntaxTree" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="token" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="parsing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="parser-tp1" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="token" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="parser-tp1" type="b2602c69:ProjectViewProjectNode" />
@@ -928,7 +839,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541595766372</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Merge branch 'master' of https://github.com/L-Applin/parser-tp1&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1541596043273</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1541596043273</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -977,17 +895,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295325" sideWeight="0.5021482" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45153934" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3295325" sideWeight="0.49785176" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Floobits" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1007,6 +924,32 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -1072,14 +1015,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/SubClassNames.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="25" column="12" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parsing/syntaxTree/expressions/ArgDeclaration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
@@ -1192,10 +1127,10 @@
         <state relative-caret-position="290">
           <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
-            <element signature="e#1778#1779#0" expanded="true" />
-            <element signature="e#1821#1822#0" expanded="true" />
-            <element signature="e#1872#1873#0" expanded="true" />
-            <element signature="e#1917#1918#0" expanded="true" />
+            <element signature="e#1778#1779#0" expanded="false" />
+            <element signature="e#1821#1822#0" expanded="false" />
+            <element signature="e#1872#1873#0" expanded="false" />
+            <element signature="e#1917#1918#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1213,7 +1148,7 @@
         <state relative-caret-position="-2618">
           <caret line="297" column="0" lean-forward="false" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1278,8 +1213,8 @@
         <state relative-caret-position="43">
           <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
           <folding>
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#886#887#0" expanded="true" />
+            <element signature="e#854#855#0" expanded="false" />
+            <element signature="e#886#887#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1343,10 +1278,10 @@
         <state relative-caret-position="1134">
           <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
-            <element signature="e#1402#1403#0" expanded="true" />
-            <element signature="e#1440#1441#0" expanded="true" />
-            <element signature="e#2760#2761#0" expanded="true" />
-            <element signature="e#2832#2833#0" expanded="true" />
+            <element signature="e#1402#1403#0" expanded="false" />
+            <element signature="e#1440#1441#0" expanded="false" />
+            <element signature="e#2760#2761#0" expanded="false" />
+            <element signature="e#2832#2833#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1488,9 +1423,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/testFiles/itc_test.ucd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#11571#11575#1" expanded="true" />
+            <element signature="e#11619#11623#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
