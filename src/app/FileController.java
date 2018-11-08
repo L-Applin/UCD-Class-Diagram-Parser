@@ -61,9 +61,10 @@ public class FileController {
         // append date to filename
         File directory = dirChooser.showDialog(new Stage());
         String currentTime = new Timestamp(Calendar.getInstance().getTimeInMillis()).toString();
-        File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + "_" + currentTime.substring(0, currentTime.length() - 13)  + ".csv");
 
-        if (toSave!= null) {
+        if (directory!= null) {
+            
+            File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + "_" + currentTime.substring(0, currentTime.length() - 13)  + ".csv");
             BufferedWriter writer = new BufferedWriter(new FileWriter(toSave));
 
             boolean create_self_file_ucd = Main.CREATE_SELF_UCD && fileName.equals(Main.SELF_MODEL_NAME);
