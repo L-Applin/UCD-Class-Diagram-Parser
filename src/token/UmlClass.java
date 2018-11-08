@@ -240,23 +240,24 @@ public class UmlClass extends UmlToken implements CsvFormatter {
             if (selfUcd) {
                 // this wll created the custom .csv file for the current project
                 // todo : remove before handing
-                // todo : do not walk on every file for every class ???
 
                 List<Path> test = JavaAnalyzer.ALL_PATHS.stream()
                             .filter(path -> path.toFile().getName().equals(name + ".java"))
                             .collect(Collectors.toList());
+
+                test.forEach(System.out::println);
 
                 if (test.get(0) != null) {
 
                     FileController fc = new FileController();
                     FileController.LineCount lines = fc.countLines(test.get(0));
 
-                    sb
-                        .append(test.get(0).toAbsolutePath().toString()).append(SEPERATOR) // chemin
+                    sb.append(test.get(0).toAbsolutePath().toString()).append(SEPERATOR) // chemin
                         .append(name).append(SEPERATOR) // nom
                         .append(1).append(SEPERATOR) // taille
                         .append(lines.nLoc).append(SEPERATOR) // NLOC
                         .append(lines.cLoc).append(SEPERATOR); // CLOC
+
                     appendMetrics(sb);
                 }
             }
@@ -269,7 +270,9 @@ public class UmlClass extends UmlToken implements CsvFormatter {
             }
 
 
-        } catch (Exception e) {
+        }
+
+        catch (Exception e) {
             System.out.printf("CANNOT FIND CLASS [%s]\n", name);
             e.printStackTrace();
         }
