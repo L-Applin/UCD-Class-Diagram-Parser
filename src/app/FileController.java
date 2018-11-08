@@ -63,7 +63,7 @@ public class FileController {
         String currentTime = new Timestamp(Calendar.getInstance().getTimeInMillis()).toString();
 
         if (directory!= null) {
-            
+
             File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + "_" + currentTime.substring(0, currentTime.length() - 13)  + ".csv");
             BufferedWriter writer = new BufferedWriter(new FileWriter(toSave));
 
