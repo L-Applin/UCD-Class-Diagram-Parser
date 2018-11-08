@@ -40,6 +40,7 @@ public class FileController {
 
 
     public File createCsvFile(String fileName, Collection<? extends CsvFormatter> elements) throws IOException {
+
         // filename is model name
         DirectoryChooser dirChooser = new DirectoryChooser();
         dirChooser.setTitle("Veuillez choisir une destination");
@@ -47,7 +48,7 @@ public class FileController {
         // append date to filename
         File directory = dirChooser.showDialog(new Stage());
         String currentTime = new Timestamp(Calendar.getInstance().getTimeInMillis()).toString();
-        File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + "_" + currentTime.substring(0, currentTime.length() - 4)  + ".csv");
+        File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + "_" + currentTime.substring(0, currentTime.length() - 13)  + ".csv");
         BufferedWriter writer = new BufferedWriter(new FileWriter(toSave));
 
         boolean create_self_file_ucd = Main.CREATE_SELF_UCD && fileName.equals(Main.SELF_MODEL_NAME);
@@ -86,7 +87,7 @@ public class FileController {
     }
 
     public LineCount countLines(Path path) throws IOException {
-        int nLOC = 0;
+        int cLOC = 0;
         int total = 0;
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path.toFile()));
         String line;
@@ -95,12 +96,12 @@ public class FileController {
             if (!currentLine.equals("")){
                 total++;
             }
-            if ((currentLine.startsWith("//") || currentLine.startsWith("//*")) || currentLine.startsWith("*")){
-                nLOC++;
+            if ((currentLine.startsWith("//") || currentLine.startsWith("/*")) || currentLine.startsWith("*")){
+                cLOC++;
             }
         }
 
-        return new LineCount(nLOC, total - nLOC);
+        return new LineCount(total - cLOC, cLOC);
     }
 
     public static class LineCount {

@@ -11,8 +11,18 @@ import static app.Utils.Log;
 public class Main extends Application {
 
     public static final String APP_NAME = "ucd file reader 4000";
+
+    /**
+     * Le nom du MODEL pour lequel un fichier .csv avec plus d'informations sera créé
+     */
     public static final String SELF_MODEL_NAME = "Parser";
-    public static final boolean CREATE_SELF_UCD = true;
+
+    /**
+     * Permet de créer automatiquement le .csv avec plus d'information que le .csv standard si
+     * le fichier à analyser a comme nom de MOEL {@link Main#SELF_MODEL_NAME}
+     */
+    public static final boolean CREATE_SELF_UCD = false;
+
     public static final Platform os = Platform.getPlatform();
     public static final String USER_PATH = System.getProperty("user.dir");
 

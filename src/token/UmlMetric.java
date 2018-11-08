@@ -21,7 +21,9 @@ public class UmlMetric extends UmlToken implements Displayable {
      */
     private MetricType type;
 
-
+    /**
+     * The numerical value of the metric
+     */
     private double value;
     public double getValue() { return value; }
     public void setValue(double value) { this.value = value; }

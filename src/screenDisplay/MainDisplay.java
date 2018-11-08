@@ -330,6 +330,7 @@ public class MainDisplay extends BorderPane {
                 } catch (IOException ioe){
                     MyAlertDialog alertDialog = new MyAlertDialog("Une erreur s'est produite", appTheme);
                     alertDialog.make().show();
+                    ioe.printStackTrace();
                 }
 
             }

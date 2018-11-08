@@ -31,7 +31,7 @@ public class MetricCalculatorTest {
 
     private static String ana_path, nom_path,noa_path,itc_path, cac_path, dit_path;
 
-    private static UmlContext ctxSmall, ctxMedium, ctxLarge;
+    private static UmlContext ctxSmall, ctxMedium;
     private static UmlClass sLast, sOther, sParent, sChild;
 
 
