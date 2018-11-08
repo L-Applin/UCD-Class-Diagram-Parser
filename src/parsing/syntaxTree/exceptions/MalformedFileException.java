@@ -1,5 +1,8 @@
 package parsing.syntaxTree.exceptions;
 
+/**
+ * Exception for parsing error in a .ucd File
+ */
 public class MalformedFileException extends RuntimeException {
 
     public static final String PARSING_ERROR_MESSAGE = "Fichier corrompu";

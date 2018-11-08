@@ -10,6 +10,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * A modal type dialog that appears on top of the current window
+ */
 public class MyAlertDialog extends Stage {
 
     protected String message;
@@ -21,6 +24,10 @@ public class MyAlertDialog extends Stage {
         this.theme = theme;
     }
 
+    /**
+     * sets all value and makes it ready for display
+     * @return itself for chaining commands
+     */
     public Stage make(){
 
         initModality(Modality.WINDOW_MODAL);

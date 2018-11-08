@@ -36,6 +36,9 @@ public class ClassListView extends UmlBtnListView {
         this.font = Font.font ("Verdana", 16);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BtnListView init(){
 

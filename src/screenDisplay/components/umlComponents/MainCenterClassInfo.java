@@ -32,6 +32,9 @@ public class MainCenterClassInfo extends GridPane {
         this.mainDisplay = main;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public MainCenterClassInfo init(UmlClass umlClass){
 

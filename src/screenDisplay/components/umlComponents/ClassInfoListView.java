@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * A representation of A list of UmlTokens associated to a UmlClass that can be hovered
+ */
 public class ClassInfoListView extends UmlBtnListView {
 
     static final Insets list_container_padding = new Insets(0,20,0,20);
@@ -43,13 +45,19 @@ public class ClassInfoListView extends UmlBtnListView {
         listItem = tokens;
     }
 
-
+    /**
+     * Change the title that will appeare on top of the listz
+     * @param txt
+     */
     void setTitle(String txt){
         this.title = mainDisplay.sectionTitle(txt);
         title.setBackground(mainDisplay.getAppTheme().getPrimaryDarkBackground());
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BtnListView init() {
 

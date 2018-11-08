@@ -99,12 +99,19 @@ public class ListButton extends HBox implements ListItem {
         }
     }
 
+    /**
+     * used to manually select this Button from the {@link screenDisplay.components.umlComponents.UmlBtnListView}
+     * that this Item is part of
+     */
     public void select(){
         listView.setCurrentSelected(this);
         setStatus(Status.SELECTED);
         isSelected = true;
     }
 
+    /**
+     * Simulate a mouse click on this Button
+     */
     public void forceClick(){
         if (!isSelected){
             listView.resetSelect();

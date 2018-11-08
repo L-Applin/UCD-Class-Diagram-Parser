@@ -30,6 +30,9 @@ public class DetailsView extends VBox {
         //this.content = token;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public DetailsView init(UmlToken content){
         container = new ScrollPane();

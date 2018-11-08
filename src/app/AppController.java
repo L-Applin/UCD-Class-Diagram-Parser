@@ -26,12 +26,13 @@ public class AppController {
     }
 
     /**
-     *
-     * @param doc
-     * @return
+     * Creates a whole {@link UmlContext} from a String representation of a .ucd file.
+     * @param doc the ucd file representation of the
+     * @return the full current context used for display. Basically is the model of the MVC.
      */
     public UmlContext parseUcdFile(String doc) throws IllegalAccessException {
 
+        // empy files are not allowed
         if (doc.trim().equals("")) {
             throw new MalformedFileException("Cannot read empty files");
         }

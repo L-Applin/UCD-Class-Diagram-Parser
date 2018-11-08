@@ -23,6 +23,11 @@ public class FileController {
             new FileChooser.ExtensionFilter("UCD", "*.ucd");
 
 
+    /**
+     * Allows a .ucd to be opened from a "popup" that ask tu user to choose a File. Only .ucd file
+     * will be considered because a filter is used to black othe type of files.
+     * @param main the mainDisplay on which to display the current model
+     */
     public void openUcdFileFromSystemExplorer(MainDisplay main){
         String title = "Choose .ucd file";
         FileChooser fc = new FileChooser();
@@ -38,7 +43,15 @@ public class FileController {
 
     }
 
-
+    /**
+     * Entry point for the creation of the csv file from a Collection of elements that can be transformed
+     * into a csv element.
+     * @param fileName the name of the file to save
+     * @param elements This is the collections of element that will be saved in the csv file.
+     *                 Each element will be representedas a row in the csv file
+     * @return the file that represent the location on disk where the csv file was created
+     * @throws IOException
+     */
     public File createCsvFile(String fileName, Collection<? extends CsvFormatter> elements) throws IOException {
 
         // filename is model name
@@ -68,6 +81,15 @@ public class FileController {
 
     }
 
+    /**
+     * used to create a ucd file based on the content of the java files of the current project.
+     * Should only be used when a new .ucd file is required. {@link Main#CREATE_SELF_UCD} is used to
+     * control if this method is executed or not. It will generate all CLASS tag automatically then append
+     * manual.txt (provided it is in the same folder) content to the created file.
+     * @param path the path to where the new file will be saved. Also where manual.txt needs to be.
+     * @return the file that represent the location on disk where the ucd file was created
+     * @throws IOException
+     */
     public static File createUcdFileFromJavaClass(String path) throws IOException {
 
         String ucdContent = JavaAnalyzer.toUcdFile();
@@ -86,6 +108,12 @@ public class FileController {
         return toSave;
     }
 
+    /**
+     * Counts NLOC and CLOC of a file
+     * @param path path of the file to count the lines
+     * @return
+     * @throws IOException if someting happends during file opening
+     */
     public LineCount countLines(Path path) throws IOException {
         int cLOC = 0;
         int total = 0;
