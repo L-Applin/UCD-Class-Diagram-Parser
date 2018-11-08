@@ -325,8 +325,12 @@ public class MainDisplay extends BorderPane {
             } else {
                 try {
                     File savedFile = fc.createCsvFile(controller.getCtx().getModelId(), controller.getCtx().getClasses().values());
-                    fc.calculateTotal(savedFile);
-                    new MyAlertDialog("Fichier enregistré : " + savedFile.getAbsolutePath(), appTheme).make().show();
+                    if (savedFile != null) {
+                        fc.calculateTotal(savedFile);
+                        new MyAlertDialog("Fichier enregistré : " + savedFile.getAbsolutePath(), appTheme).make().show();
+                    } else {
+                        new MyAlertDialog("Opération annulée", appTheme).make().show();
+                    }
                 } catch (IOException ioe){
                     MyAlertDialog alertDialog = new MyAlertDialog("Une erreur s'est produite", appTheme);
                     alertDialog.make().show();

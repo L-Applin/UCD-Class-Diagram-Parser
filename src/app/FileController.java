@@ -62,22 +62,25 @@ public class FileController {
         File directory = dirChooser.showDialog(new Stage());
         String currentTime = new Timestamp(Calendar.getInstance().getTimeInMillis()).toString();
         File toSave = new File(directory.getAbsoluteFile() + File.separator + fileName + "_" + currentTime.substring(0, currentTime.length() - 13)  + ".csv");
-        BufferedWriter writer = new BufferedWriter(new FileWriter(toSave));
 
-        boolean create_self_file_ucd = Main.CREATE_SELF_UCD && fileName.equals(Main.SELF_MODEL_NAME);
+        if (toSave!= null) {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(toSave));
 
-        writer.write((create_self_file_ucd ? csv_title_long : csv_title_short) + "\n");
+            boolean create_self_file_ucd = Main.CREATE_SELF_UCD && fileName.equals(Main.SELF_MODEL_NAME);
 
-        elements.forEach(row -> {
-            try {
-                writer.write(row.csvFormat(create_self_file_ucd));
-            } catch (IOException ioe){
-                // todo
-            }
-        });
-        writer.close();
+            writer.write((create_self_file_ucd ? csv_title_long : csv_title_short) + "\n");
 
-        return toSave;
+            elements.forEach(row -> {
+                try {
+                    writer.write(row.csvFormat(create_self_file_ucd));
+                } catch (IOException ioe) {
+                    // todo
+                }
+            });
+            writer.close();
+
+            return toSave;
+        } else return null;
 
     }
 

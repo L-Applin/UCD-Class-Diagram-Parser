@@ -71,7 +71,7 @@ public class AppController {
             screen.setFileLoaded(true);
         } catch (MalformedFileException ucde) {
             screen.errorScreen(ucde);
-            ucde.printStackTrace();
+            // ucde.printStackTrace();
             // System.out.println(ucde.getTextCause());
         }catch (IllegalAccessException iae){
             screen.errorScreen("Le fichier ne peut être analysé qu'une seule fois");
