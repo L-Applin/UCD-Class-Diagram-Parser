@@ -21,7 +21,6 @@ public class Main extends Application {
      */
     public static final boolean CREATE_SELF_UCD = false;
 
-    // public static final Platform os = Platform.getPlatform();
     public static final String USER_PATH = System.getProperty("user.dir");
 
 
@@ -32,9 +31,9 @@ public class Main extends Application {
 
         final ScreenController screen = new ScreenController(primaryStage, getParameters());
         screen.setupMainDisplay();
-         if (JavaAnalyzer.CREATE_UCD_FILE_AT_LAUNCH) {
-             FileController.createUcdFileFromJavaClass(System.getProperty("user.dir") + "/res/");
-         }
+        if (JavaAnalyzer.CREATE_UCD_FILE_AT_LAUNCH) {
+            FileController.createUcdFileFromJavaClass(System.getProperty("user.dir") + "/res/");
+        }
 
     }
 

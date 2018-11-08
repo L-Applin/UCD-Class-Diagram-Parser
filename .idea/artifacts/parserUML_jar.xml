@@ -1,17 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="parserUML:jar">
+  <artifact type="jar" name="parserUML:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/parserUML_jar</output-path>
-    <properties id="javafx-properties">
-      <options>
-        <option name="appClass" value="app.Main" />
-        <option name="description" value="" />
-        <option name="htmlPlaceholderId" value="" />
-        <option name="title" value="TP2" />
-        <option name="vendor" value="" />
-        <option name="version" value="" />
-      </options>
-    </properties>
-    <root id="root">
+    <root id="archive" name="parserUML_jar.jar">
       <element id="module-output" name="parserUML" />
     </root>
   </artifact>
