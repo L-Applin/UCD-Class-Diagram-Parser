@@ -37,8 +37,6 @@ public class TwoRole implements Expression {
 
         try {
 
-            Utils.Log.test(associationId.toString());
-
             if (first.getAssociations().containsKey(associationId.getValue())){
                 throw new MalformedFileException();
             }

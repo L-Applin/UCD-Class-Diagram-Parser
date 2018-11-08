@@ -1,6 +1,5 @@
 package token;
 
-import app.Utils;
 import token.visitor.UmlMetricVisitor;
 
 import java.util.*;
@@ -202,18 +201,11 @@ class MetricCalculator {
 
         ctx.getAllAggAssoc().forEach(aggAssoc -> {
 
-            Utils.Log.test(aggAssoc.toString());
             String firstName = aggAssoc.getFirstName();
             String secondName = aggAssoc.getSecondName();
-
-            // Utils.Log.test(String.format("checking : %s\nfirst : %s, second : %s", className, firstName, secondName));
-            // Utils.Log.test((firstName.equals(className) || secondName.equals(className))+"");
             if (firstName.equals(className) || secondName.equals(className)){
                 i.incrementAndGet();
-               //  Utils.Log.test("increment");
             }
-            // Utils.Log.test(i.doubleValue()+"");
-            // Utils.Log.test("\n");
         });
 
         if (umlClass.getSuperClass() != null){
@@ -222,47 +214,6 @@ class MetricCalculator {
 
         umlClass.addMetric(CAC, i.doubleValue());
         return i.intValue();
-
-/*
-
-        UmlMetricVisitor cacMetricVisitor = new UmlMetricVisitor();
-
-        cacMetricVisitor.setClassVisitor(clazz ->{
-
-            // cacMetricVisitor.incrementValue(clazz.getAggAssocList().size());
-            // visiter les assoc et aggreg de la classe courante :
-            clazz.getAggAssocList().forEach(aggAss -> aggAss.accept(cacMetricVisitor));
-
-            // visiter les assoc / aggreg de la classe parente
-            if (clazz.getSuperClass() != null) {
-                clazz.getSuperClass().accept(cacMetricVisitor);
-            }
-
-        }).setAggregationVisitor(aggregation -> {
-
-            String partName = aggregation.getPart().clazz.getName();
-            String contName = aggregation.getContainer().getName();
-            String className = umlClass.getName();
-
-            if (className.equals(partName) || className.equals(contName)){
-                cacMetricVisitor.incrementValue();
-            }
-
-        }).setAssociationVisitor(assoc -> {
-
-            String firstAssocName = assoc.getFirstClass().getName();
-            String secondAssocName = assoc.getSecondClasse().getName();
-            String className = umlClass.getName();
-
-            if (className.equals(firstAssocName) || className.equals(secondAssocName)){
-                cacMetricVisitor.incrementValue();
-            }
-
-        });
-
-        ctx.visitClasses(cacMetricVisitor);
-        umlClass.addMetric(CAC, cacMetricVisitor.getValue());
-*/
 
     }
 

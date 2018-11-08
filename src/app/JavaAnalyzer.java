@@ -32,8 +32,11 @@ public final class JavaAnalyzer {
      * WARNING ! IF THIS IS SET TO TRUE, it will use {@link JavaAnalyzer#basic_file_path} as the root
      * of the project and starts analyzing all java files within the directory and subdirectories. As such,
      * it needs to be changed manually in the code to reflect the starting point for the analysis.
+     *
+     * WOULD NOT WORK IN RELEASE ! ONLY USE DURING DEVELOPPEMENT !
+     *
      */
-    static final boolean CREATE_UCD_FILE_AT_LAUNCH = true;
+    static final boolean CREATE_UCD_FILE_AT_LAUNCH = false;
 
 
     /**

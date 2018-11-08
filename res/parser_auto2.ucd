@@ -15,12 +15,12 @@ ATTRIBUTES
 OPERATIONS
   accept(visitor : UmlVisitor) : void,
   getType() : String,
-  display() : String,
   setType(type : String) : void,
-  updateScreen(controller : ScreenController) : void,
   getArguments() : List<UmlOperation.Args>,
   setArguments(arguments : List<UmlOperation.Args>) : void,
-  addArgument(id : String, type : String) : void
+  addArgument(id : String, type : String) : void,
+  display() : String,
+  updateScreen(controller : ScreenController) : void
 ;
 
 
@@ -31,13 +31,13 @@ ATTRIBUTES
 OPERATIONS
   toString() : String,
   accept(visitor : UmlVisitor) : void,
+  getPart() : UmlAggregation.PartsEntry,
+  setPart(part : UmlAggregation.PartsEntry) : void,
+  getContainer() : UmlClass,
+  setContainer(container : UmlClass) : void,
   display() : String,
   getFirstName() : String,
   getSecondName() : String,
-  getContainer() : UmlClass,
-  setContainer(container : UmlClass) : void,
-  getPart() : UmlAggregation.PartsEntry,
-  setPart(part : UmlAggregation.PartsEntry) : void,
   updateScreen(controller : ScreenController) : void
 ;
 
@@ -113,16 +113,16 @@ ATTRIBUTES
 OPERATIONS
   getValue() : double,
   setValue(value : double) : void,
-  setClassVisitor(classVisitor : UmlMetricVisitor.UmlVisitorClassRunnable) : UmlMetricVisitor,
-  incrementValue(value : double) : void,
   incrementValue() : void,
+  incrementValue(value : double) : void,
   setAggregationVisitor(aggregationVisitor : UmlMetricVisitor.UmlVisitorAggregationRunnable) : UmlMetricVisitor,
   setAssociationVisitor(associationVisitor : UmlMetricVisitor.UmlVisitorAssociationRunnable) : UmlMetricVisitor,
   setOperationVisitor(operationVisitor : UmlMetricVisitor.UmlVisitorOperationRunnable) : UmlMetricVisitor,
   setAttributeVisitor(attributeVisitor : UmlMetricVisitor.UmlVisitorAttributeRunnable) : UmlMetricVisitor,
   setMetricVisitor(metricVisitor : UmlMetricVisitor.UmlVisitorMetricRunnable) : UmlMetricVisitor,
-  visit(umlClass : UmlClass) : void,
+  setClassVisitor(classVisitor : UmlMetricVisitor.UmlVisitorClassRunnable) : UmlMetricVisitor,
   visit(operation : UmlOperation) : void,
+  visit(umlClass : UmlClass) : void,
   visit(umlMetric : UmlMetric) : void,
   visit(attribute : UmlAttribute) : void,
   visit(association : UmlAssociation) : void,
@@ -157,18 +157,18 @@ ATTRIBUTES
   classes : Map<String, UmlClass>
 OPERATIONS
   getClasses() : Map<String, UmlClass>,
-  visitClasses(visitor : UmlVisitor) : void,
-  setImmutable() : void,
-  calculateMetrics() : void,
-  isImmutable() : boolean,
   setModelId(modelId : String) : void,
+  isImmutable() : boolean,
   getUmlClass(id : String) : UmlClass,
   createClass(id : String, content : String) : void,
   addArgumentToMethod(classId : String, methodId : String, argId : String, argType : String) : void,
   addAttributeToMethod(classId : String, attrId : String, attrType : String, attrContent : String) : void,
   logMetrics() : void,
   getAllAggAssoc() : List<AggAssoc>,
-  getModelId() : String
+  getModelId() : String,
+  visitClasses(visitor : UmlVisitor) : void,
+  setImmutable() : void,
+  calculateMetrics() : void
 ;
 
 
@@ -178,8 +178,8 @@ ATTRIBUTES
 OPERATIONS
   accept(visitor : UmlVisitor) : void,
   getType() : String,
-  display() : String,
   setType(type : String) : void,
+  display() : String,
   updateScreen(controller : ScreenController) : void
 ;
 
@@ -191,9 +191,6 @@ ATTRIBUTES
   ctx : UmlContext
 OPERATIONS
   calculateAllMetrics() : void,
-  calculateANA() : void,
-  calculateNOM() : void,
-  calculateNOA() : void,
   calculateITC() : void,
   calculateETC() : void,
   calculateCAC() : Integer,
@@ -202,7 +199,10 @@ OPERATIONS
   calculateNOC() : void,
   calculateNOD() : void,
   recursiveNOD(clazz : UmlClass) : double,
-  recursiveCLD(clazz : UmlClass) : Integer
+  recursiveCLD(clazz : UmlClass) : Integer,
+  calculateNOM() : void,
+  calculateNOA() : void,
+  calculateANA() : void
 ;
 
 
@@ -219,27 +219,27 @@ OPERATIONS
   toString() : String,
   accept(visitor : UmlVisitor) : void,
   getAttributes() : Map<String, UmlAttribute>,
+  getMetrics() : Map<MetricType, UmlMetric>,
+  getOperation(methodId : String) : UmlOperation,
+  getAggAssocListAsInterface() : List<AggAssoc>,
   setSuperClass(superClass : UmlClass) : void,
+  csvFormat(selfUcd : boolean) : String,
+  createAttributes(id : String, type : String, content : String) : void,
+  display() : String,
+  updateScreen(controller : ScreenController) : void,
   getOperations() : Map<String, UmlOperation>,
   getSubClasses() : Map<String, UmlClass>,
   getAggAssocList() : List<UmlToken>,
   getSuperClass() : UmlClass,
   getAssociations() : Map<String, UmlAssociation>,
   getAgregations() : List<UmlAggregation>,
-  getOperation(methodId : String) : UmlOperation,
-  getAggAssocListAsInterface() : List<AggAssoc>,
   addMetric(type : UmlMetric.MetricType, value : double) : void,
-  hasOperation(toCompare : UmlOperation) : boolean,
-  getMetricValue(metricType : UmlMetric.MetricType) : double,
   createOperation(name : String, type : String, content : String) : void,
   addSubClass(classId : String, subClass : UmlClass) : void,
   compareArgumentList(args1 : List<UmlOperation.Args>, args2 : List<UmlOperation.Args>) : boolean,
   appendMetrics(sb : StringBuilder) : void,
-  getMetrics() : Map<MetricType, UmlMetric>,
-  display() : String,
-  updateScreen(controller : ScreenController) : void,
-  createAttributes(id : String, type : String, content : String) : void,
-  csvFormat(selfUcd : boolean) : String
+  getMetricValue(metricType : UmlMetric.MetricType) : double,
+  hasOperation(toCompare : UmlOperation) : boolean
 ;
 
 
@@ -271,10 +271,10 @@ CLASS AppController
 ATTRIBUTES
   ctx : UmlContext
 OPERATIONS
-  openUcdFile(path : String) : String,
-  parseUcdFile(doc : String) : UmlContext,
   lauchUcdActivity(screen : MainDisplay, ucdFile : File) : void,
-  getCtx() : UmlContext
+  getCtx() : UmlContext,
+  openUcdFile(path : String) : String,
+  parseUcdFile(doc : String) : UmlContext
 ;
 
 
@@ -306,7 +306,6 @@ ATTRIBUTES
   APP_NAME : String,
   SELF_MODEL_NAME : String,
   CREATE_SELF_UCD : boolean,
-  os : Platform,
   USER_PATH : String
 OPERATIONS
   main(args : String[]) : void,
@@ -323,12 +322,12 @@ ATTRIBUTES
   attr_model : String,
   method_model : String
 OPERATIONS
-  lastDot(str : String) : String,
+  toUcdFile() : String,
   createMethods(declaredMethods : Method[]) : String,
   defineUcdClass(className : String, attributes : String, operations : String) : String,
   createAttributes(fields : Field[]) : String,
   removePackageName(classPath : String) : String,
-  toUcdFile() : String
+  lastDot(str : String) : String
 ;
 
 
@@ -435,16 +434,14 @@ ATTRIBUTES
   ctx : UmlContext
 OPERATIONS
   toString() : String,
-  tokenize(ctx : UmlContext, content : String) : Expression,
-  getCtx() : UmlContext
+  getCtx() : UmlContext,
+  tokenize(ctx : UmlContext, content : String) : Expression
 ;
 
 
 CLASS ExceptionCheckProvider
 ATTRIBUTES
 OPERATIONS
-  malformed(txt : String) : void,
-  malformed() : void,
   checkIllegalChar(txt : String) : void,
   checkTagEqual(txt : String, delim : String) : void,
   checkClassContent(classContent : String) : void,
@@ -455,7 +452,9 @@ OPERATIONS
   checkValidRole(txt : String) : void,
   checkValidType(content : String) : void,
   checkValidSubclasses(txt : String) : void,
-  checkValidAggregations(txt : String) : void
+  checkValidAggregations(txt : String) : void,
+  malformed() : void,
+  malformed(txt : String) : void
 ;
 
 
@@ -534,9 +533,9 @@ ATTRIBUTES
   multiplicity : Multiplicity.MultiplicityValue
 OPERATIONS
   toString() : String,
-  tokenize(ctx : UmlContext, content : String) : Expression,
   getMultiplicity() : Multiplicity.MultiplicityValue,
-  fromString(value : String) : Multiplicity.MultiplicityValue
+  fromString(value : String) : Multiplicity.MultiplicityValue,
+  tokenize(ctx : UmlContext, content : String) : Expression
 ;
 
 
@@ -657,9 +656,9 @@ ATTRIBUTES
 OPERATIONS
   toString() : String,
   getClassId() : Identifier,
+  getMultiplicity() : Expression,
   tokenize(ctx : UmlContext, content : String) : Expression,
-  getMultiplicityValueAsString() : String,
-  getMultiplicity() : Expression
+  getMultiplicityValueAsString() : String
 ;
 
 
@@ -734,8 +733,8 @@ ATTRIBUTES
 OPERATIONS
   init(content : UmlToken) : DetailsView,
   setTitle(txt : String) : void,
-  createTextContent(content : String) : Text,
-  updateDetails(token : UmlToken) : void
+  updateDetails(token : UmlToken) : void,
+  createTextContent(content : String) : Text
 ;
 
 
@@ -787,11 +786,11 @@ ATTRIBUTES
 OPERATIONS
   init() : BtnListView,
   init() : Node,
-  resetSelect() : void,
+  getContainer() : ScrollPane,
   setCurrentSelected(btn : ListButton) : void,
   createButton(content : String) : ListButton,
   resetButtonView() : void,
-  getContainer() : ScrollPane,
+  resetSelect() : void,
   getBtnList() : List<ListButton>
 ;
 
@@ -825,16 +824,16 @@ ATTRIBUTES
   listView : BtnListView
 OPERATIONS
   getContent() : Text,
-  setOnClickListener(action : ListItem.BtnAction) : void,
-  updateStyle(style : ListButton.OverlayStyle) : void,
-  registerTo(listView : BtnListView) : void,
+  setText(txt : String) : void,
   setSelected(selected : boolean) : void,
   setStatus() : void,
   setStatus(status : ListButton.Status) : void,
-  setText(txt : String) : void,
-  select() : void,
+  registerTo(listView : BtnListView) : void,
+  updateStyle(style : ListButton.OverlayStyle) : void,
   forceClick() : void,
-  setFont(font : Font) : void
+  setFont(font : Font) : void,
+  setOnClickListener(action : ListItem.BtnAction) : void,
+  select() : void
 ;
 
 
@@ -850,11 +849,11 @@ ATTRIBUTES
   textContent : Text,
   appTheme : AppTheme
 OPERATIONS
-  setDefaultBackground() : void,
-  setTextColor(color : Color) : void,
   getText() : String,
   setStyle(style : OverlayButton.ThemeStyle) : void,
-  setContent(content : Node[]) : OverlayButton
+  setContent(content : Node[]) : OverlayButton,
+  setDefaultBackground() : void,
+  setTextColor(color : Color) : void
 ;
 
 
@@ -864,13 +863,13 @@ ATTRIBUTES
   parameters : Application.Parameters,
   main : MainDisplay
 OPERATIONS
+  setupMainDisplay() : void,
   updateSelection(assoc : UmlAssociation) : void,
-  updateSelection(attr : UmlAttribute) : void,
   updateSelection(aggreg : UmlAggregation) : void,
   updateSelection(metric : UmlMetric) : void,
+  updateSelection(attr : UmlAttribute) : void,
   updateSelection(op : UmlOperation) : void,
-  updateSelection(umlClass : UmlClass) : void,
-  setupMainDisplay() : void
+  updateSelection(umlClass : UmlClass) : void
 ;
 
 
@@ -915,8 +914,8 @@ ATTRIBUTES
   primaryLightTextColor : Color,
   primaryDarkTextColor : Color
 OPERATIONS
-  getPrimaryDarkBackgroundAlpha() : Background,
   elevation(color : Color) : DropShadow,
+  getPrimaryDarkBackgroundAlpha() : Background,
   getMediumPadding() : Insets,
   getPrimaryDarkValue() : String,
   setPrimaryDarkValue(primaryDarkValue : String) : void,
@@ -949,16 +948,16 @@ OPERATIONS
   getPrimaryLightBackground(radii : CornerRadii, insets : Insets) : Background,
   getPrimaryLightBackground() : Background,
   getContrastDark() : Color,
+  getPrimaryDarkBackground() : Background,
+  getPrimaryDarkBackground(radii : CornerRadii, insets : Insets) : Background,
+  getSecondaryDarkBackground() : Background,
+  getPrimaryLight() : Color,
+  primaryRadialGradientBackground() : Background,
   getMediumFont() : Font,
   getPrimaryLightTextColor() : Color,
   getContrastLightBackground(radii : CornerRadii, insets : Insets) : Background,
   getContrastLightBackground(radii : CornerRadii) : Background,
-  getContrastLightBackground() : Background,
-  getPrimaryDarkBackground(radii : CornerRadii, insets : Insets) : Background,
-  getPrimaryDarkBackground() : Background,
-  getSecondaryDarkBackground() : Background,
-  getPrimaryLight() : Color,
-  primaryRadialGradientBackground() : Background
+  getContrastLightBackground() : Background
 ;
 
 
@@ -980,21 +979,21 @@ ATTRIBUTES
   yOffset : double
 OPERATIONS
   init() : void,
-  updateClassSelected(clazz : UmlClass) : void,
-  updateTokenClicked(token : UmlToken) : void,
   getPrimaryStage() : Stage,
   getAppTheme() : AppTheme,
   setFileLoaded(fileLoaded : boolean) : void,
   getController() : AppController,
   setupUcdDisplay(context : UmlContext) : void,
+  errorScreen() : void,
+  errorScreen(str : String) : void,
   errorScreen(ucde : MalformedFileException) : void,
   errorScreen(e : Exception) : void,
-  errorScreen(str : String) : void,
-  errorScreen() : void,
   resetLayout() : void,
   createTopBar() : BorderPane,
   createCenterView() : VBox,
-  sectionTitle(title : String) : HBox
+  sectionTitle(title : String) : HBox,
+  updateClassSelected(clazz : UmlClass) : void,
+  updateTokenClicked(token : UmlToken) : void
 ;
 
 

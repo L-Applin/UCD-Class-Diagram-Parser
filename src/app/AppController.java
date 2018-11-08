@@ -77,10 +77,10 @@ public class AppController {
             screen.errorScreen("Le fichier ne peut être analysé qu'une seule fois");
         } catch (NullPointerException npe){
     	    screen.errorScreen(npe);
-    	    npe.printStackTrace();
+    	    // npe.printStackTrace();
         } catch (Exception e){
             screen.errorScreen(e);
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
     }
